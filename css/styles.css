@@ -137,11 +137,14 @@ a:hover {
 
 .brand img,
 .brand-mark {
-  width: 4.75rem;
   height: 4.75rem;
+  width: auto;
+  max-width: 5rem;
   object-fit: contain;
+  object-position: center;
   background: transparent;
   flex-shrink: 0;
+  display: block;
 }
 
 .brand-name {
@@ -853,8 +856,9 @@ body.consent-open {
 
   .brand img,
   .brand-mark {
-    width: 3.5rem;
     height: 3.5rem;
+    width: auto;
+    max-width: 3.75rem;
   }
 
   .brand-name {
