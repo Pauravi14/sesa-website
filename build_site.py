@@ -15,9 +15,14 @@ ADDRESS = "Pohlweg 76, 33098 Paderborn"
 BUSINESS = "SESA KFZ-Sachverständigenbüro"
 OWNER = "Selim Sabahoglu"
 
-WHATSAPP_FLOAT_TEXT = (
+WHATSAPP_TEXT_BERATUNG = (
     "Guten Tag SESA,\n"
-    "ich möchte Sie kontaktieren.\n"
+    "ich benötige eine Beratung.\n"
+    "Bitte rufen Sie mich zurück."
+)
+WHATSAPP_TEXT_SCHADEN = (
+    "Guten Tag SESA,\n"
+    "ich möchte einen Schaden melden.\n"
     "Bitte rufen Sie mich zurück."
 )
 
@@ -33,11 +38,26 @@ def whatsapp_url(text: str) -> str:
 
 
 def wa_float_widget() -> str:
-    url = whatsapp_url(WHATSAPP_FLOAT_TEXT)
+    beratung = whatsapp_url(WHATSAPP_TEXT_BERATUNG)
+    schaden = whatsapp_url(WHATSAPP_TEXT_SCHADEN)
     return f"""
-    <a class="wa-float" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp: Nachricht an SESA senden" title="WhatsApp">
-      {WHATSAPP_ICON_SVG}
-    </a>"""
+    <div class="wa-float-wrap" data-wa-float>
+      <button type="button" class="wa-float" aria-label="WhatsApp: Optionen anzeigen" aria-expanded="false" data-wa-toggle>
+        {WHATSAPP_ICON_SVG}
+      </button>
+      <div class="wa-float-menu" hidden data-wa-menu>
+        <p class="wa-float-greeting">Guten Tag SESA</p>
+        <p class="wa-float-hint">Wie können wir Ihnen helfen?</p>
+        <a class="wa-float-option" href="{beratung}" target="_blank" rel="noopener noreferrer">
+          <span class="wa-float-option-title">Beratung</span>
+          <span class="wa-float-preview">Guten Tag SESA, ich benötige eine Beratung. Bitte rufen Sie mich zurück.</span>
+        </a>
+        <a class="wa-float-option" href="{schaden}" target="_blank" rel="noopener noreferrer">
+          <span class="wa-float-option-title">Schaden melden</span>
+          <span class="wa-float-preview">Guten Tag SESA, ich möchte einen Schaden melden. Bitte rufen Sie mich zurück.</span>
+        </a>
+      </div>
+    </div>"""
 
 NAV = [
     ("Startseite", "index.html"),
@@ -88,7 +108,7 @@ def shell(
 ) -> str:
     p = prefix(depth)
     return f"""<!DOCTYPE html>
-<html lang="de">
+<html lang="de" translate="no">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -98,7 +118,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=8" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=9" />
     {extra_head}
   </head>
   <body>

@@ -549,20 +549,25 @@ select {
   display: block;
 }
 
-.wa-float {
+.wa-float-wrap {
   position: fixed;
   right: 1.25rem;
   bottom: 1.25rem;
   z-index: 60;
+}
+
+.wa-float {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 3.75rem;
   height: 3.75rem;
+  padding: 0;
+  border: none;
   border-radius: 50%;
   background: #25d366;
   color: #fff;
-  text-decoration: none;
+  cursor: pointer;
   box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -575,7 +580,6 @@ select {
 .wa-float:hover {
   transform: scale(1.08);
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.55);
-  color: #fff;
 }
 
 .wa-float:focus-visible {
@@ -583,10 +587,79 @@ select {
   outline-offset: 3px;
 }
 
+.wa-float-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.65rem);
+  width: min(18rem, calc(100vw - 2rem));
+  padding: 0.9rem 1rem;
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.wa-float-menu[hidden] {
+  display: none;
+}
+
+.wa-float-greeting {
+  margin: 0 0 0.2rem;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.wa-float-hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  color: var(--mute);
+}
+
+.wa-float-option {
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--navy);
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  background: #fff;
+}
+
+.wa-float-option:hover {
+  background: #eef2f7;
+  color: var(--text);
+}
+
+.wa-float-option-title {
+  display: block;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+
+.wa-float-preview {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--mute);
+}
+
+.wa-float-option:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
 @media (max-width: 760px) {
-  .wa-float {
+  .wa-float-wrap {
     right: 1rem;
     bottom: 5rem;
+  }
+
+  .wa-float {
     width: 3.35rem;
     height: 3.35rem;
   }

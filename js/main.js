@@ -73,7 +73,8 @@
   });
 
   document.querySelector("#schaden-form")?.addEventListener("submit", function (event) {
-    event.preventDefault();    const ort = document.querySelector("#unfallort")?.value.trim();
+    event.preventDefault();
+    const ort = document.querySelector("#unfallort")?.value.trim();
     const wer = document.querySelector("input[name='verursacher']:checked")?.value;
     const note = document.querySelector("#hinweis")?.value.trim();
     if (!ort || !wer) {
@@ -90,5 +91,42 @@
     lines.push("Bitte rufen Sie mich zurück.");
     const url = "https://wa.me/491773145839?text=" + encodeURIComponent(lines.join("\n"));
     window.location.href = url;
+  });
+
+  const waWrap = document.querySelector("[data-wa-float]");
+  const waToggle = document.querySelector("[data-wa-toggle]");
+  const waMenu = document.querySelector("[data-wa-menu]");
+
+  function closeWaMenu() {
+    if (!waMenu || !waToggle) return;
+    waMenu.hidden = true;
+    waToggle.setAttribute("aria-expanded", "false");
+  }
+
+  function openWaMenu() {
+    if (!waMenu || !waToggle) return;
+    waMenu.hidden = false;
+    waToggle.setAttribute("aria-expanded", "true");
+  }
+
+  waToggle?.addEventListener("click", function () {
+    if (waMenu?.hidden) {
+      openWaMenu();
+    } else {
+      closeWaMenu();
+    }
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!waWrap || waMenu?.hidden) return;
+    if (!waWrap.contains(event.target)) {
+      closeWaMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeWaMenu();
+    }
   });
 })();
