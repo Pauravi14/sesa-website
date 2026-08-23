@@ -32,6 +32,12 @@ WHATSAPP_ICON_SVG = (
     "</svg>"
 )
 
+PHONE_ICON_SVG = (
+    '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+    '<path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>'
+    "</svg>"
+)
+
 
 def whatsapp_url(text: str) -> str:
     return f"https://wa.me/{WHATSAPP_NUMBER}?text={quote(text, safe='')}"
@@ -75,8 +81,8 @@ def prefix(depth: int) -> str:
 def nav_links(depth: int, active: str) -> str:
     targets = [
         ("Startseite", "index.html"),
-        ("Leistungen", "leistungen/index.html"),
         ("Über uns", "ueber-uns.html"),
+        ("Leistungen", "leistungen/index.html"),
         ("Ratgeber", "ratgeber/index.html"),
         ("Kontakt", "kontakt.html"),
     ]
@@ -88,13 +94,15 @@ def nav_links(depth: int, active: str) -> str:
     return "\n".join(parts)
 
 
-def actions(depth: int) -> str:
+def header_contact(depth: int) -> str:
     p = prefix(depth)
     return f"""
-    <div class="nav-actions">
-      <a class="btn" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
-      <a class="btn" href="{p}schaden-melden.html">Schaden melden</a>
-      <a class="btn btn-solid" href="{p}schaden-melden.html">WhatsApp</a>
+    <div class="header-contact">
+      <a class="header-phone" href="tel:{PHONE_LINK}">
+        {PHONE_ICON_SVG}
+        <span>{PHONE_DISPLAY}</span>
+      </a>
+      <a class="btn btn-inquiry" href="{p}kontakt.html">Anfrage</a>
     </div>"""
 
 
@@ -167,27 +175,25 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=12" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=13" />
     {extra_head}
   </head>
   <body>
     <a class="skip" href="#main">Zum Hauptinhalt springen</a>
-    <div class="topbar">
-      <span>Kostenlose und unverbindliche Beratung</span>
-      <span><a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></span>
-    </div>
     <header class="header">
       <div class="nav">
         <a class="brand" href="{p}index.html">
           <img class="brand-mark" src="{p}assets/logo-mark.png" alt="" />
-          <span>
+          <span class="brand-text">
             <span class="brand-name">SESA</span>
-            <span class="brand-sub">KFZ-Sachverständigenbüro</span>
+            <span class="brand-sub">KFZ – SACHVERSTÄNDIGENBÜRO</span>
           </span>
         </a>
+        <div class="nav-divider" aria-hidden="true"></div>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Menü">Menü</button>
         <ul class="menu">{nav_links(depth, active)}</ul>
-        {actions(depth)}
+        <div class="nav-divider nav-divider-end" aria-hidden="true"></div>
+        {header_contact(depth)}
       </div>
     </header>
     <main id="main">{body}</main>
