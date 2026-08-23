@@ -73,8 +73,7 @@
   });
 
   document.querySelector("#schaden-form")?.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const ort = document.querySelector("#unfallort")?.value.trim();
+    event.preventDefault();    const ort = document.querySelector("#unfallort")?.value.trim();
     const wer = document.querySelector("input[name='verursacher']:checked")?.value;
     const note = document.querySelector("#hinweis")?.value.trim();
     if (!ort || !wer) {
