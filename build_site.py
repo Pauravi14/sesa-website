@@ -78,7 +78,7 @@ def shell(
   <body>
     <a class="skip" href="#main">Zum Hauptinhalt springen</a>
     <div class="topbar">
-      <span>Kostenlose Erstberatung</span>
+      <span>Kostenlose und unverbindliche Beratung</span>
       <span><a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></span>
     </div>
     <header class="header">

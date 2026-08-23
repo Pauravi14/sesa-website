@@ -94,14 +94,14 @@ a:hover {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.45rem 6vw;
-  background: #0c0b0a;
-  color: var(--mute);
+  background: #0f141c;
+  color: rgba(255, 255, 255, 0.88);
   font-size: 0.86rem;
   letter-spacing: 0.02em;
 }
 
 .topbar a {
-  color: var(--mute);
+  color: #fff;
 }
 
 .header {
@@ -145,7 +145,7 @@ a:hover {
   font-family: var(--sans);
   font-size: 0.68rem;
   letter-spacing: 0.12em;
-  color: var(--mute);
+  color: rgba(255, 255, 255, 0.78);
   text-transform: uppercase;
 }
 
@@ -165,7 +165,13 @@ a:hover {
 
 .menu a[aria-current="page"],
 .menu a:hover {
-  color: var(--accent-2);
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.nav a {
+  color: inherit;
 }
 
 .nav-actions {
@@ -179,8 +185,8 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  border: 1px solid var(--accent);
-  color: var(--cream);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
   background: transparent;
   padding: 0.55rem 0.95rem;
   border-radius: 3px;
@@ -190,8 +196,8 @@ a:hover {
 }
 
 .btn:hover {
-  background: rgba(201, 137, 88, 0.14);
-  color: var(--cream);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
 }
 
 .btn-solid {
@@ -202,8 +208,52 @@ a:hover {
 }
 
 .btn-solid:hover {
-  color: var(--ink);
-  filter: brightness(1.05);
+  color: #fff;
+  filter: brightness(1.08);
+}
+
+.content-light .kicker {
+  color: var(--navy);
+}
+
+.content-light label,
+.content-light legend {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.content-light input,
+.content-light textarea,
+.content-light select {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid #b8c0ca;
+}
+
+.content-light input::placeholder,
+.content-light textarea::placeholder {
+  color: #6a7380;
+}
+
+.content-light .btn {
+  border-color: var(--navy);
+  color: var(--navy);
+  background: #fff;
+}
+
+.content-light .btn:hover {
+  background: #eef2f7;
+  color: var(--navy);
+}
+
+.content-light .btn-solid {
+  background: var(--navy-2);
+  color: #fff;
+  border-color: var(--navy-2);
+}
+
+.content-light .btn-solid:hover {
+  color: #fff;
 }
 
 .menu-toggle {
@@ -409,6 +459,12 @@ label {
   font-size: 0.95rem;
 }
 
+fieldset legend {
+  color: inherit;
+  font-weight: 600;
+  padding: 0 0.25rem;
+}
+
 input,
 textarea,
 select {
@@ -468,12 +524,25 @@ select {
 .footer {
   margin-top: 2rem;
   padding: 1.4rem 6vw 2rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
   font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer a {
+  color: #fff;
+}
+
+.footer a:hover {
+  color: #dce8f5;
+}
+
+.footer .muted {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .footer nav {
