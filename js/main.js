@@ -8,9 +8,31 @@
     });
   }
 
-  const cookie = document.querySelector("[data-cookie]");
+  const CONSENT_KEY = "sesa-consent";
+  const LEGACY_KEY = "sesa-maps-consent";
+  const backdrop = document.querySelector("[data-consent-backdrop]");
+  const mainPanel = document.querySelector("[data-consent-main]");
+  const detailPanel = document.querySelector("[data-consent-detail]");
+  const mapsToggle = document.querySelector("[data-consent-maps]");
   const mapsHost = document.querySelector("[data-map]");
-  const consentKey = "sesa-maps-consent";
+
+  function readConsent() {
+    try {
+      const raw = localStorage.getItem(CONSENT_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (_) {
+      /* ignore */
+    }
+    const legacy = localStorage.getItem(LEGACY_KEY);
+    if (legacy === "1") return { decided: true, maps: true };
+    if (legacy === "0") return { decided: true, maps: false };
+    return null;
+  }
+
+  function saveConsent(consent) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+    localStorage.removeItem(LEGACY_KEY);
+  }
 
   function loadMap() {
     if (!mapsHost || mapsHost.dataset.loaded === "1") return;
@@ -25,27 +47,80 @@
     mapsHost.dataset.loaded = "1";
   }
 
-  if (localStorage.getItem(consentKey) === "1") {
-    loadMap();
-  } else if (cookie) {
-    cookie.classList.add("is-on");
+  function showMainPanel() {
+    if (mainPanel) mainPanel.hidden = false;
+    if (detailPanel) detailPanel.hidden = true;
   }
 
-  document.querySelector("[data-cookie-accept]")?.addEventListener("click", function () {
-    localStorage.setItem(consentKey, "1");
-    cookie?.classList.remove("is-on");
+  function showDetailPanel() {
+    const consent = readConsent();
+    if (mapsToggle) mapsToggle.checked = consent?.maps === true;
+    if (mainPanel) mainPanel.hidden = true;
+    if (detailPanel) detailPanel.hidden = false;
+  }
+
+  function showModal() {
+    if (!backdrop) return;
+    showMainPanel();
+    backdrop.hidden = false;
+    document.body.classList.add("consent-open");
+  }
+
+  function hideModal() {
+    if (!backdrop) return;
+    backdrop.hidden = true;
+    document.body.classList.remove("consent-open");
+    showMainPanel();
+  }
+
+  function applyConsent(consent) {
+    saveConsent(consent);
+    if (consent.maps) {
+      loadMap();
+    } else if (mapsHost) {
+      mapsHost.dataset.loaded = "0";
+      mapsHost.innerHTML =
+        "<p class=\"muted\">Karte nur nach Einwilligung. <button class=\"btn\" type=\"button\" data-load-map>Karte laden</button></p>";
+    }
+    hideModal();
+  }
+
+  const stored = readConsent();
+  if (!stored || !stored.decided) {
+    showModal();
+  } else if (stored.maps) {
     loadMap();
+  }
+
+  document.querySelector("[data-consent-accept-all]")?.addEventListener("click", function () {
+    applyConsent({ decided: true, maps: true });
   });
 
-  document.querySelector("[data-cookie-decline]")?.addEventListener("click", function () {
-    localStorage.setItem(consentKey, "0");
-    cookie?.classList.remove("is-on");
+  document.querySelector("[data-consent-decline]")?.addEventListener("click", function () {
+    applyConsent({ decided: true, maps: false });
+  });
+
+  document.querySelector("[data-consent-customize]")?.addEventListener("click", function () {
+    showDetailPanel();
+  });
+
+  document.querySelector("[data-consent-back]")?.addEventListener("click", function () {
+    showMainPanel();
+  });
+
+  document.querySelector("[data-consent-save]")?.addEventListener("click", function () {
+    applyConsent({ decided: true, maps: mapsToggle?.checked === true });
+  });
+
+  document.querySelectorAll("[data-consent-reopen]").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      showModal();
+    });
   });
 
   document.querySelector("[data-load-map]")?.addEventListener("click", function () {
-    localStorage.setItem(consentKey, "1");
-    cookie?.classList.remove("is-on");
-    loadMap();
+    applyConsent({ decided: true, maps: true });
   });
 
   const geoBtn = document.querySelector("[data-geo]");
@@ -127,6 +202,9 @@
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
       closeWaMenu();
+      if (backdrop && !backdrop.hidden && detailPanel && !detailPanel.hidden) {
+        showMainPanel();
+      }
     }
   });
 })();
