@@ -22,6 +22,8 @@ python -m http.server 8765
 
 Dann: http://localhost:8765/
 
+**Live (GitHub Pages):** https://pauravi14.github.io/sesa-website/
+
 ## Rechtliches
 
 Siehe `LEGAL-NOTES.md` — Impressum, Datenschutz und Ratgeber-Texte sind sachlich formuliert; vor Live-Schaltung mit Inhaber bzw. Anwalt prüfen (TMG, DSGVO, keine Rechtsberatung).
