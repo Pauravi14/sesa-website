@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schaden melden — SESA KFZ-Sachverständigenbüro</title>
+    <meta name="description" content="Schaden per WhatsApp melden." />
+    <link rel="icon" href="./assets/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    
+  </head>
+  <body>
+    <a class="skip" href="#main">Zum Hauptinhalt springen</a>
+    <div class="topbar">
+      <span>Kostenlose Erstberatung</span>
+      <span><a href="tel:+491773145839">+49 177 3145839</a> · <a href="mailto:sesa-svb@outlook.de">sesa-svb@outlook.de</a></span>
+    </div>
+    <header class="header">
+      <div class="nav">
+        <a class="brand" href="./index.html">
+          <img src="./assets/logo-sesa.png" width="48" height="48" alt="SESA KFZ-Sachverständigenbüro" />
+          <span>
+            <span class="brand-name">SESA</span>
+            <span class="brand-sub">KFZ-Sachverständigenbüro</span>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Menü">Menü</button>
+        <ul class="menu"><li><a href="./index.html">Startseite</a></li>
+<li><a href="./leistungen/index.html">Leistungen</a></li>
+<li><a href="./ueber-uns.html">Über uns</a></li>
+<li><a href="./ratgeber/index.html">Ratgeber</a></li>
+<li><a href="./kontakt.html" aria-current="page">Kontakt</a></li></ul>
+        
+    <div class="nav-actions">
+      <a class="btn" href="tel:+491773145839">Jetzt anrufen</a>
+      <a class="btn" href="./schaden-melden.html">Schaden melden</a>
+      <a class="btn btn-solid" href="./schaden-melden.html">WhatsApp</a>
+    </div>
+      </div>
+    </header>
+    <main id="main">
+    <section class="page-hero">
+      <div>
+        <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+        <h1>Schaden melden</h1>
+        <p class="lead">Kurze Angaben — Weiterleitung an WhatsApp.</p>
+      </div>
+      <img src="./assets/damage-detail.png" alt="" loading="lazy" />
+    </section>
+    <section class="section content-light">
+      <form id="schaden-form" class="panel">
+        <label for="unfallort">Unfallort / Standort des Fahrzeugs (Pflichtfeld)</label>
+        <input id="unfallort" name="unfallort" required placeholder="Adresse, PLZ/Ort oder Werkstatt" />
+        <button class="btn" type="button" data-geo>Standort übernehmen (Browser)</button>
+        <p class="muted">Standortübernahme nur mit Ihrer Einwilligung — siehe Datenschutzerklärung.</p>
+        <fieldset class="choice">
+          <legend>Wer hat den Unfall verursacht?</legend>
+          <label><input type="radio" name="verursacher" value="Ich" required /> Ich</label>
+          <label><input type="radio" name="verursacher" value="Jemand anderes" /> Jemand anderes</label>
+        </fieldset>
+        <label for="hinweis">Kurze Hinweise (optional)</label>
+        <textarea id="hinweis" rows="4" placeholder="z. B. Kennzeichen, Kurzbeschreibung"></textarea>
+        <button class="btn btn-solid" type="submit">Weiter zu WhatsApp</button>
+        <p class="muted">Fotos können Sie direkt in WhatsApp senden. Kein Datei-Upload auf dieser Website.</p>
+      </form>
+    </section></main>
+    <footer class="footer">
+      <div>
+        <strong>SESA KFZ-Sachverständigenbüro</strong><br />
+        Inhaber: Selim Sabahoglu<br />
+        Pohlweg 76, 33098 Paderborn
+      </div>
+      <nav>
+        <a href="./impressum.html">Impressum</a>
+        <a href="./datenschutz.html">Datenschutz</a>
+        <a href="./widerruf.html">Widerrufsbelehrung</a>
+        <a href="./kontakt.html">Kontakt</a>
+      </nav>
+      <p class="muted">Keine Rechtsberatung. Inhalte dienen der sachlichen Information.</p>
+    </footer>
+    <div class="cookie" data-cookie>
+      <p class="muted">Für die Kartenansicht werden Daten an Google Maps übermittelt. Details in der Datenschutzerklärung.</p>
+      <div class="cta-row">
+        <button class="btn btn-solid" type="button" data-cookie-accept>Akzeptieren</button>
+        <button class="btn" type="button" data-cookie-decline>Ablehnen</button>
+      </div>
+    </div>
+    <script src="./js/main.js" defer></script>
+  </body>
+</html>

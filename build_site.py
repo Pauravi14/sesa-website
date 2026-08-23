@@ -1,0 +1,599 @@
+"""Generate static HTML pages for SESA KFZ-Sachverständigenbüro."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+
+PHONE_DISPLAY = "+49 177 3145839"
+PHONE_LINK = "+491773145839"
+EMAIL = "sesa-svb@outlook.de"
+ADDRESS = "Pohlweg 76, 33098 Paderborn"
+BUSINESS = "SESA KFZ-Sachverständigenbüro"
+OWNER = "Selim Sabahoglu"
+
+NAV = [
+    ("Startseite", "index.html"),
+    ("Leistungen", "leistungen/index.html"),
+    ("Über uns", "ueber-uns.html"),
+    ("Ratgeber", "ratgeber/index.html"),
+    ("Kontakt", "kontakt.html"),
+]
+
+
+def prefix(depth: int) -> str:
+    return "../" * depth if depth else "./"
+
+
+def nav_links(depth: int, active: str) -> str:
+    targets = [
+        ("Startseite", "index.html"),
+        ("Leistungen", "leistungen/index.html"),
+        ("Über uns", "ueber-uns.html"),
+        ("Ratgeber", "ratgeber/index.html"),
+        ("Kontakt", "kontakt.html"),
+    ]
+    parts = []
+    for label, href in targets:
+        full = prefix(depth) + href
+        cur = " aria-current=\"page\"" if active == label else ""
+        parts.append(f"<li><a href=\"{full}\"{cur}>{label}</a></li>")
+    return "\n".join(parts)
+
+
+def actions(depth: int) -> str:
+    p = prefix(depth)
+    return f"""
+    <div class="nav-actions">
+      <a class="btn" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
+      <a class="btn" href="{p}schaden-melden.html">Schaden melden</a>
+      <a class="btn btn-solid" href="{p}schaden-melden.html">WhatsApp</a>
+    </div>"""
+
+
+def shell(
+    depth: int,
+    active: str,
+    title: str,
+    description: str,
+    body: str,
+    extra_head: str = "",
+) -> str:
+    p = prefix(depth)
+    return f"""<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — {BUSINESS}</title>
+    <meta name="description" content="{description}" />
+    <link rel="icon" href="{p}assets/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{p}css/styles.css" />
+    {extra_head}
+  </head>
+  <body>
+    <a class="skip" href="#main">Zum Hauptinhalt springen</a>
+    <div class="topbar">
+      <span>Kostenlose Erstberatung</span>
+      <span><a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a> · <a href="mailto:{EMAIL}">{EMAIL}</a></span>
+    </div>
+    <header class="header">
+      <div class="nav">
+        <a class="brand" href="{p}index.html">
+          <img src="{p}assets/logo-sesa.png" width="48" height="48" alt="{BUSINESS}" />
+          <span>
+            <span class="brand-name">SESA</span>
+            <span class="brand-sub">KFZ-Sachverständigenbüro</span>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Menü">Menü</button>
+        <ul class="menu">{nav_links(depth, active)}</ul>
+        {actions(depth)}
+      </div>
+    </header>
+    <main id="main">{body}</main>
+    <footer class="footer">
+      <div>
+        <strong>{BUSINESS}</strong><br />
+        Inhaber: {OWNER}<br />
+        {ADDRESS}
+      </div>
+      <nav>
+        <a href="{p}impressum.html">Impressum</a>
+        <a href="{p}datenschutz.html">Datenschutz</a>
+        <a href="{p}widerruf.html">Widerrufsbelehrung</a>
+        <a href="{p}kontakt.html">Kontakt</a>
+      </nav>
+      <p class="muted">Keine Rechtsberatung. Inhalte dienen der sachlichen Information.</p>
+    </footer>
+    <div class="cookie" data-cookie>
+      <p class="muted">Für die Kartenansicht werden Daten an Google Maps übermittelt. Details in der Datenschutzerklärung.</p>
+      <div class="cta-row">
+        <button class="btn btn-solid" type="button" data-cookie-accept>Akzeptieren</button>
+        <button class="btn" type="button" data-cookie-decline>Ablehnen</button>
+      </div>
+    </div>
+    <script src="{p}js/main.js" defer></script>
+  </body>
+</html>"""
+
+
+def write(path: Path, depth: int, active: str, title: str, desc: str, body: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(shell(depth, active, title, desc, body), encoding="utf-8")
+    print("wrote", path)
+
+
+def page_hero(title: str, lead: str, img: str, depth: int) -> str:
+    p = prefix(depth)
+    return f"""
+    <section class="page-hero">
+      <div>
+        <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+        <h1>{title}</h1>
+        <p class="lead">{lead}</p>
+      </div>
+      <img src="{p}{img}" alt="" loading="lazy" />
+    </section>"""
+
+
+def service_page(slug: str, title: str, lead: str, paragraphs: list[str], img: str) -> None:
+    body = page_hero(title, lead, img, 1)
+    body += "<section class=\"section content-light\"><div class=\"legal\">"
+    for para in paragraphs:
+        body += f"<p>{para}</p>"
+    body += """
+    <p class="muted"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="../schaden-melden.html">Schaden melden</a>
+      <a class="btn" href="tel:+491773145839">Jetzt anrufen</a>
+    </div>
+    </div></section>"""
+    write(ROOT / "leistungen" / slug, 1, "Leistungen", title, lead, body)
+
+
+def main() -> None:
+  # --- Startseite ---
+    home = """
+    <section class="hero">
+      <div>
+        <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
+        <h1>Kfz-Gutachter für Nordrhein-Westfalen, Niedersachsen, Hessen, Hamburg und Bremen</h1>
+        <p class="lead">Unfallgutachten · Fahrzeugbewertung · Wohnmobile · Oldtimer. Unverschuldeter Unfall? Wir dokumentieren Schäden fachgerecht und schaffen eine belastbare Grundlage für die weitere Schadenregulierung.</p>
+        <ul class="lead">
+          <li>Kurzfristige Termine — abhängig von Standort und Auslastung</li>
+          <li>Mobil vor Ort: bei Ihnen, in der Werkstatt oder am Fahrzeugstandort</li>
+          <li>Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden nach vollständiger Schadenaufnahme</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="tel:+491773145839">Jetzt anrufen</a>
+          <a class="btn" href="schaden-melden.html">WhatsApp-Schadencheck</a>
+          <a class="btn" href="schaden-melden.html">Schaden online melden</a>
+        </div>
+      </div>
+      <img class="hero-photo" src="assets/hero-inspection.png" alt="Fahrzeugbegutachtung durch Kfz-Sachverständigen" />
+    </section>
+    <section class="section content-light">
+      <h2>Leistungen im Überblick</h2>
+      <div class="grid-4">
+        <article class="card"><img src="assets/damage-detail.png" alt="" /><h3>Unfallgutachten</h3><p>Unabhängige Schadenaufnahme als technische Grundlage für die Regulierung.</p><a href="leistungen/unfallgutachten.html">Mehr erfahren</a></article>
+        <article class="card"><img src="assets/workshop-tools.png" alt="" /><h3>Fahrzeugbewertung</h3><p>Marktwert, Wiederbeschaffungswert oder Fahrzeugwert je nach Anlass.</p><a href="leistungen/fahrzeugbewertung.html">Mehr erfahren</a></article>
+        <article class="card"><img src="assets/nrw-road.png" alt="" /><h3>Wohnmobile & Wohnwagen</h3><p>Begutachtung und Bewertung von Freizeitfahrzeugen.</p><a href="leistungen/wohnmobile.html">Mehr erfahren</a></article>
+        <article class="card"><img src="assets/hero-inspection.png" alt="" /><h3>Oldtimer & Youngtimer</h3><p>Zustand, Originalität und Wertermittlung für Klassiker.</p><a href="leistungen/oldtimer-youngtimer.html">Mehr erfahren</a></article>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Ablauf in vier Schritten</h2>
+      <ol class="steps">
+        <li>Kontaktaufnahme und Erstberatung</li>
+        <li>Begutachtung / Schadenaufnahme</li>
+        <li>Dokumentation und Gutachtenerstellung</li>
+        <li>Besprechung und Begleitung bei Rückfragen</li>
+      </ol>
+    </section>
+    <section class="section content-light">
+      <h2>Warum SESA?</h2>
+      <div class="grid-3">
+        <div class="panel"><h3>Qualifikation</h3><p class="muted">Kfz-Meister und personenzertifizierter Kraftfahrzeugsachverständiger (Nachweis vor Veröffentlichung prüfen).</p></div>
+        <div class="panel"><h3>Erfahrung</h3><p class="muted">Berufliche Tätigkeit u. a. als Fahrzeugbewerter und Unfallschadengutachter — frühere Tätigkeit bei TÜV NORD, keine aktuelle Partnerschaft.</p></div>
+        <div class="panel"><h3>Persönliche Betreuung</h3><p class="muted">Ein Ansprechpartner von der ersten Kontaktaufnahme bis zur Besprechung des Gutachtens.</p></div>
+      </div>
+    </section>"""
+    write(ROOT / "index.html", 0, "Startseite", "Kfz-Gutachter", "Unabhängiges Kfz-Sachverständigenbüro — Schadengutachten und Fahrzeugbewertung.", home)
+
+    # Leistungen overview
+    leistungen_body = page_hero(
+        "Leistungen",
+        "Alle fachlichen Angebote im Überblick — von Unfallgutachten bis Ortstermin.",
+        "assets/workshop-tools.png",
+        1,
+    )
+    leistungen_body += """
+    <section class="section content-light"><div class="grid-3">
+      <article class="card"><h3><a href="unfallgutachten.html">Unfallgutachten / Haftpflicht</a></h3><p class="muted">Schadenaufnahme nach unverschuldetem Unfall.</p></article>
+      <article class="card"><h3><a href="fahrzeugbewertung.html">Fahrzeugbewertung</a></h3><p class="muted">Marktwert und Wiederbeschaffungswert.</p></article>
+      <article class="card"><h3><a href="oldtimer-youngtimer.html">Oldtimer & Youngtimer</a></h3><p class="muted">Klassiker und Sammlerfahrzeuge.</p></article>
+      <article class="card"><h3><a href="wohnmobile.html">Wohnmobile & Wohnwagen</a></h3><p class="muted">Freizeitfahrzeuge.</p></article>
+      <article class="card"><h3><a href="beweissicherung.html">Beweissicherung</a></h3><p class="muted">Dokumentation vor Reparatur oder Veränderung.</p></article>
+      <article class="card"><h3><a href="privatgutachten.html">Privatgutachten</a></h3><p class="muted">Unabhängige Begutachtung im Privatauftrag.</p></article>
+      <article class="card"><h3><a href="kostenvoranschlag.html">Kostenvoranschlag</a></h3><p class="muted">Vereinfachte Reparaturkostenermittlung.</p></article>
+      <article class="card"><h3><a href="versicherungsgutachten.html">Versicherungsgutachten / Kasko</a></h3><p class="muted">Begutachtung von Kaskoschäden.</p></article>
+      <article class="card"><h3><a href="beratung.html">Beratung</a></h3><p class="muted">Ersteinschätzung und Vorgehen.</p></article>
+      <article class="card"><h3><a href="ortstermine.html">Ortstermine</a></h3><p class="muted">Begutachtung am Fahrzeugstandort.</p></article>
+    </div></section>"""
+    write(ROOT / "leistungen" / "index.html", 1, "Leistungen", "Leistungen", "Gutachten und Bewertungen.", leistungen_body)
+
+    services = {
+        "unfallgutachten.html": (
+            "Unfallgutachten / Haftpflichtgutachten",
+            "Unabhängige Schadenaufnahme nach einem Verkehrsunfall.",
+            [
+                "Ein Haftpflicht-Schadengutachten dokumentiert die festgestellten Schäden und kann unter anderem Reparaturkosten sowie weitere technisch und wirtschaftlich relevante Positionen erfassen.",
+                "Es schafft eine fachliche Grundlage für die weitere Schadenregulierung. Bei einem unverschuldeten Haftpflichtschaden können erforderliche Sachverständigenkosten grundsätzlich zu den ersatzfähigen Schadenpositionen gehören — im Einzelfall können Abweichungen bestehen.",
+                "Benötigte Unterlagen und der genaue Ablauf werden im persönlichen Gespräch besprochen.",
+            ],
+            "assets/damage-detail.png",
+        ),
+        "fahrzeugbewertung.html": (
+            "Fahrzeugbewertung / Wertgutachten",
+            "Ermittlung von Marktwert oder Wiederbeschaffungswert.",
+            [
+                "Relevant beim An- und Verkauf, für besondere Bewertungsanlässe sowie bei hochwertigen oder spezialisierten Fahrzeugen.",
+                "Die Bewertung erfolgt nach dem vereinbarten Anlass und den anerkannten fachlichen Grundsätzen.",
+            ],
+            "assets/workshop-tools.png",
+        ),
+        "oldtimer-youngtimer.html": (
+            "Oldtimer & Youngtimer",
+            "Bewertung von Klassikern und Sammlerfahrzeugen.",
+            [
+                "Zustand, Originalität und Wertermittlung für Versicherung, An- und Verkauf.",
+                "Es werden nur tatsächlich angewendete Bewertungsstandards genannt und dokumentiert.",
+            ],
+            "assets/hero-inspection.png",
+        ),
+        "wohnmobile.html": (
+            "Wohnmobile & Wohnwagen",
+            "Begutachtung von Freizeitfahrzeugen.",
+            [
+                "Bewertung von Fahrzeug und Aufbau, soweit im Auftrag vereinbart und fachlich abgedeckt.",
+                "Feuchtigkeits- oder Dichtigkeitsmessungen nur bei entsprechender Qualifikation und Auftrag.",
+            ],
+            "assets/nrw-road.png",
+        ),
+        "beweissicherung.html": (
+            "Beweissicherung",
+            "Dokumentation von Spuren, Schäden oder Mängeln.",
+            [
+                "Sinnvoll bevor das Fahrzeug repariert, verändert oder weiter genutzt wird.",
+                "Die Dokumentation dient der technischen Beweissicherung und kann als Grundlage in außergerichtlichen und gerichtlichen Auseinandersetzungen dienen.",
+            ],
+            "assets/damage-detail.png",
+        ),
+        "privatgutachten.html": (
+            "Privatgutachten",
+            "Unabhängige Begutachtung im Privatauftrag.",
+            [
+                "Etwa bei Streitigkeiten nach Reparaturen oder Mängeln nach einem Fahrzeugkauf.",
+                "Kosten trägt grundsätzlich der Auftraggeber.",
+            ],
+            "assets/workshop-tools.png",
+        ),
+        "kostenvoranschlag.html": (
+            "Kostenvoranschlag",
+            "Vereinfachte Ermittlung voraussichtlicher Reparaturkosten.",
+            [
+                "Wenn ein vollständiges Gutachten im konkreten Fall nicht erforderlich ist.",
+                "Ein Kostenvoranschlag konzentriert sich hauptsächlich auf Reparaturkosten; ein Schadengutachten dokumentiert darüber hinaus weitere relevante Positionen.",
+            ],
+            "assets/workshop-tools.png",
+        ),
+        "versicherungsgutachten.html": (
+            "Versicherungsgutachten / Kaskoschäden",
+            "Begutachtung von Kaskoschäden.",
+            [
+                "Soweit diese Leistung im konkreten Auftrag angeboten und vereinbart wird.",
+                "Bei Kaskoschäden entscheidet die eigene Versicherung über die Kostenübernahme.",
+            ],
+            "assets/damage-detail.png",
+        ),
+        "beratung.html": (
+            "Beratung",
+            "Fachliche Ersteinschätzung und Orientierung.",
+            [
+                "Unterstützung bei der Wahl des sinnvollen Vorgehens sowie Beratung rund um Kraftfahrzeuge.",
+                "Erste Orientierung per Telefon, E-Mail oder WhatsApp — ersetzt keine vollständige Begutachtung.",
+            ],
+            "assets/hero-inspection.png",
+        ),
+        "ortstermine.html": (
+            "Ortstermine",
+            "Begutachtung am Fahrzeugstandort.",
+            [
+                "Zu Hause, in der Werkstatt, auf dem Abschlepphof oder an einem anderen geeigneten Ort.",
+                "Kurzfristige Termine sind je nach Standort, Auslastung und Art des Auftrags möglich.",
+            ],
+            "assets/nrw-road.png",
+        ),
+    }
+    for slug, (title, lead, paras, img) in services.items():
+        service_page(slug, title, lead, paras, img)
+
+    # Über uns
+    ueber = page_hero(
+        "Über uns",
+        "Selim Sabahoglu — unabhängiger Kfz-Sachverständiger in Paderborn.",
+        "assets/portrait-placeholder.png",
+        0,
+    )
+    ueber += """
+    <section class="section content-light split">
+      <div class="portrait-card">
+        <img class="portrait" src="assets/portrait-placeholder.png" alt="Porträtfoto — Platzhalter bis Foto vom Inhaber eingereicht wird" />
+        <h2>""" + OWNER + """</h2>
+        <p>Inhaber · """ + BUSINESS + """</p>
+        <ul class="contact-list">
+          <li><a href="tel:+491773145839">""" + PHONE_DISPLAY + """</a></li>
+          <li><a href="mailto:""" + EMAIL + """">""" + EMAIL + """</a></li>
+          <li>""" + ADDRESS + """</li>
+        </ul>
+      </div>
+      <div class="legal">
+        <p>Schon als Kind interessierte mich die Fahrzeugtechnik — von neuen Modellen bis zu Klassikern. Nach der Ausbildung im VAG-Konzern bei einem VW- und Audi-Autohaus und dem Kfz-Meister folgte die Tätigkeit bei TÜV NORD als Fahrzeugbewerter und Unfallschadengutachter. Heute steht eine persönliche, unabhängige und gründliche Beratung im Mittelpunkt.</p>
+        <p><strong>Beruflicher Werdegang (Auszug):</strong></p>
+        <ul>
+          <li>TÜV NORD Autoservice, Paderborn — Kfz-Sachverständiger / Fahrzeugbewerter und Unfallschadengutachter (frühere Tätigkeit, keine aktuelle Partnerschaft mit TÜV NORD)</li>
+          <li>Grafschafter Autozentrale VW/Audi Partner, Nordhorn — Ausbildung Kfz-Mechatroniker</li>
+        </ul>
+        <p><strong>Qualifikationen (Nachweise vor Veröffentlichung prüfen):</strong></p>
+        <ul>
+          <li>Kfz-Meister</li>
+          <li>Personenzertifizierter Kraftfahrzeugsachverständiger (Euro-Zert) — exakte Bezeichnung gemäß Originalzertifikat</li>
+          <li>Mitglied im Verband freier Kraftfahrzeug-Sachverständiger e. V. (VFK)</li>
+        </ul>
+        <p>Ein Gutachten schafft Klarheit, wenn Sachverhalte komplex sind. Unabhängigkeit, fachliche Sorgfalt und transparente Dokumentation stehen im Mittelpunkt unserer Arbeit.</p>
+      </div>
+    </section>"""
+    write(ROOT / "ueber-uns.html", 0, "Über uns", "Über uns", "Selim Sabahoglu — Kfz-Sachverständiger.", ueber)
+
+    # Ratgeber
+    rat_index = page_hero("Ratgeber", "Sachliche Informationen — keine Rechtsberatung.", "assets/nrw-road.png", 1)
+    rat_index += """
+    <section class="section content-light"><div class="grid-3">
+      <article class="card"><h3><a href="nach-einem-unfall.html">Was tun nach einem Unfall?</a></h3></article>
+      <article class="card"><h3><a href="rechte.html">Ihre Rechte nach einem unverschuldeten Unfall</a></h3></article>
+      <article class="card"><h3><a href="faq.html">FAQ</a></h3></article>
+    </div></section>"""
+    write(ROOT / "ratgeber" / "index.html", 1, "Ratgeber", "Ratgeber", "Unfallhilfe und FAQ.", rat_index)
+
+    unfall_rat = page_hero("Was tun nach einem Unfall?", "Erste Schritte an der Unfallstelle.", "assets/damage-detail.png", 1)
+    unfall_rat += """
+    <section class="section content-light legal">
+      <ol>
+        <li>Ruhe bewahren und Unfallstelle sichern.</li>
+        <li>Bei Bedarf Polizei rufen und Beteiligte dokumentieren.</li>
+        <li>Unfallort, Uhrzeit und Schäden fotografieren.</li>
+        <li>Keine vorschnellen Erklärungen zur Schuld oder Schadenhöhe abgeben.</li>
+        <li>Schadenfotos und Informationen an SESA senden (WhatsApp oder Telefon).</li>
+        <li>Weiteres Vorgehen im persönlichen Gespräch klären.</li>
+      </ol>
+      <p class="muted"><em>Keine Rechtsberatung. Bei rechtlichen Fragen wenden Sie sich an einen Rechtsanwalt.</em></p>
+    </section>"""
+    write(ROOT / "ratgeber" / "nach-einem-unfall.html", 1, "Ratgeber", "Nach einem Unfall", "Erste Schritte.", unfall_rat)
+
+    rechte = page_hero("Ihre Rechte", "Informationen nach einem unverschuldeten Verkehrsunfall.", "assets/workshop-tools.png", 1)
+    rechte += """
+    <section class="section content-light legal">
+      <p>Die folgenden Hinweise dienen der sachlichen Information und ersetzen keine individuelle Rechtsberatung.</p>
+      <table class="legal-table">
+        <tr><th>Freie Sachverständigenwahl</th><td>Bei einem unverschuldeten Haftpflichtschaden kann grundsätzlich das Recht bestehen, einen eigenen unabhängigen Sachverständigen zu beauftragen. Ob Kosten erstattungsfähig sind, hängt vom Einzelfall ab.</td></tr>
+        <tr><th>Reparaturkosten</th><td>Das Gutachten dokumentiert technisch erforderliche Reparaturmaßnahmen und voraussichtliche Kosten.</td></tr>
+        <tr><th>Wertminderung</th><td>Ob eine merkantile Wertminderung vorliegt, wird im Einzelfall beurteilt.</td></tr>
+        <tr><th>Totalschaden</th><td>Wiederbeschaffungswert, Restwert und Reparaturkosten werden gegenübergestellt.</td></tr>
+        <tr><th>Teilschuld</th><td>Bei Mithaftung können Kosten nur anteilig erstattet werden. Die Haftungsquote sollte rechtlich geprüft werden.</td></tr>
+      </table>
+    </section>"""
+    write(ROOT / "ratgeber" / "rechte.html", 1, "Ratgeber", "Ihre Rechte", "Informationen nach Unfall.", rechte)
+
+    faq_items = [
+        ("Was kostet ein Gutachten?", "Bei einem unverschuldeten Haftpflichtschaden können erforderliche Sachverständigenkosten grundsätzlich zu den ersatzfähigen Schadenpositionen gehören. Bei Bagatellschäden oder Mithaftung können Abweichungen bestehen. Andere Gutachten werden je nach Auftrag berechnet."),
+        ("Wer bezahlt das Gutachten?", "Bei unverschuldetem Haftpflichtschaden können Kosten grundsätzlich vom Schädiger bzw. dessen Haftpflichtversicherung zu erstatten sein. Bei Kaskoschäden entscheidet die eigene Versicherung."),
+        ("Wie schnell bekomme ich einen Termin?", "Kurzfristige Termine sind je nach Standort, Auslastung und Auftrag möglich."),
+        ("Wie lange dauert die Erstellung?", "In der Regel innerhalb von 24–48 Stunden nach vollständiger Schadenaufnahme — abhängig vom Schadenumfang."),
+        ("Darf ich den Gutachter selbst wählen?", "Bei unverschuldetem Haftpflichtschaden besteht grundsätzlich die Möglichkeit zur freien Wahl. Bei kleinen Schäden und Kaskoschäden gelten Besonderheiten."),
+        ("Kann ich Fotos per WhatsApp schicken?", "Ja, für eine erste Orientierung. Je nach Schaden ersetzt dies keine vollständige Begutachtung."),
+    ]
+    faq_body = page_hero("FAQ", "Häufige Fragen zum Gutachten.", "assets/workshop-tools.png", 1)
+    faq_body += "<section class=\"section content-light faq\">"
+    for q, a in faq_items:
+        faq_body += f"<details><summary>{q}</summary><p class=\"muted\">{a}</p></details>"
+    faq_body += "</section>"
+    write(ROOT / "ratgeber" / "faq.html", 1, "Ratgeber", "FAQ", "Häufige Fragen.", faq_body)
+
+    # Kontakt
+    kontakt = page_hero("Kontakt", "Telefon, E-Mail, Anschrift und Kartenansicht.", "assets/hero-inspection.png", 0)
+    kontakt += """
+    <section class="section content-light split">
+      <div>
+        <div class="portrait-card">
+          <img class="portrait" src="assets/portrait-placeholder.png" alt="Porträtfoto Platzhalter" />
+          <h2>""" + OWNER + """</h2>
+          <ul class="contact-list">
+            <li>Telefon: <a href="tel:+491773145839">""" + PHONE_DISPLAY + """</a></li>
+            <li>E-Mail: <a href="mailto:""" + EMAIL + """">""" + EMAIL + """</a></li>
+            <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
+            <li>""" + ADDRESS + """</li>
+          </ul>
+          <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
+        </div>
+      </div>
+      <div>
+        <h2>Standort</h2>
+        <div class="map-wrap" data-map>
+          <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
+        </div>
+        <p class="muted"><a href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a></p>
+      </div>
+    </section>"""
+    write(ROOT / "kontakt.html", 0, "Kontakt", "Kontakt", "Kontakt und Anfahrt.", kontakt)
+
+    # Schaden melden
+    schaden = page_hero("Schaden melden", "Kurze Angaben — Weiterleitung an WhatsApp.", "assets/damage-detail.png", 0)
+    schaden += """
+    <section class="section content-light">
+      <form id="schaden-form" class="panel">
+        <label for="unfallort">Unfallort / Standort des Fahrzeugs (Pflichtfeld)</label>
+        <input id="unfallort" name="unfallort" required placeholder="Adresse, PLZ/Ort oder Werkstatt" />
+        <button class="btn" type="button" data-geo>Standort übernehmen (Browser)</button>
+        <p class="muted">Standortübernahme nur mit Ihrer Einwilligung — siehe Datenschutzerklärung.</p>
+        <fieldset class="choice">
+          <legend>Wer hat den Unfall verursacht?</legend>
+          <label><input type="radio" name="verursacher" value="Ich" required /> Ich</label>
+          <label><input type="radio" name="verursacher" value="Jemand anderes" /> Jemand anderes</label>
+        </fieldset>
+        <label for="hinweis">Kurze Hinweise (optional)</label>
+        <textarea id="hinweis" rows="4" placeholder="z. B. Kennzeichen, Kurzbeschreibung"></textarea>
+        <button class="btn btn-solid" type="submit">Weiter zu WhatsApp</button>
+        <p class="muted">Fotos können Sie direkt in WhatsApp senden. Kein Datei-Upload auf dieser Website.</p>
+      </form>
+    </section>"""
+    write(ROOT / "schaden-melden.html", 0, "Kontakt", "Schaden melden", "Schaden per WhatsApp melden.", schaden)
+
+    # Legal pages - Impressum
+    impressum = """
+    <section class="section content-light legal">
+      <h1>Impressum</h1>
+      <p>Angaben gemäß § 5 TMG</p>
+      <p><strong>""" + BUSINESS + """</strong><br />
+      Inhaber: """ + OWNER + """<br />
+      """ + ADDRESS + """</p>
+      <p><strong>Kontakt</strong><br />
+      Telefon: <a href="tel:+491773145839">""" + PHONE_DISPLAY + """</a><br />
+      E-Mail: <a href="mailto:""" + EMAIL + """">""" + EMAIL + """</a></p>
+      <p><strong>Berufsbezeichnung</strong><br />
+      Kfz-Sachverständiger / Kraftfahrzeugsachverständiger (Deutschland)</p>
+      <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</strong><br />
+      """ + OWNER + """, """ + ADDRESS + """</p>
+      <p class="muted">Umsatzsteuer-Identifikationsnummer und weitere registerrechtliche Angaben werden ergänzt, sobald vorhanden.</p>
+      <h2>Haftung für Inhalte</h2>
+      <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+      <h2>Haftung für Links</h2>
+      <p>Unser Angebot enthält Links zu externen Websites Dritter. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.</p>
+      <h2>Urheberrecht</h2>
+      <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.</p>
+    </section>"""
+    write(ROOT / "impressum.html", 0, "Kontakt", "Impressum", "Impressum.", impressum)
+
+    # Datenschutz — vollständig gemäß bereitgestelltem PDF + Web-Ergänzungen
+    datenschutz = """
+    <section class="section content-light legal">
+      <h1>Datenschutzerklärung</h1>
+      <p>Informationen über die Verarbeitung personenbezogener Daten gemäß Art. 13, 14 und 21 DSGVO</p>
+      <h2>1. Name und Kontaktdaten des Verantwortlichen</h2>
+      <p>Verantwortlicher: """ + BUSINESS + """<br />
+      Inhaber: """ + OWNER + """<br />
+      Anschrift: """ + ADDRESS + """<br />
+      Telefon: """ + PHONE_DISPLAY + """<br />
+      E-Mail: <a href="mailto:""" + EMAIL + """">""" + EMAIL + """</a></p>
+      <h2>2. Allgemeine Hinweise zur Datenverarbeitung</h2>
+      <p>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung. Wenn Sie unsere Website nutzen oder uns mit der Erstellung eines KFZ-Schadengutachtens beauftragen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können.</p>
+      <h2>3. Datenerfassung auf unserer Website (Server-Log-Dateien)</h2>
+      <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
+      <ul>
+        <li>Browsertyp und Browserversion sowie verwendetes Betriebssystem</li>
+        <li>Referrer URL (die zuvor besuchte Seite) und Hostname des zugreifenden Rechners (IP-Adresse)</li>
+        <li>Uhrzeit der Serveranfrage</li>
+      </ul>
+      <p>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website.</p>
+      <h2>4. Kontaktaufnahme per E-Mail, Telefon oder Anfragen</h2>
+      <p>Wenn Sie uns per E-Mail oder Telefon kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (z. B. Name, Telefonnummer, E-Mail-Adresse, Anliegen) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet.</p>
+      <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</p>
+      <h2>5. Datenverarbeitung im Rahmen der Erstellung von Schadengutachten</h2>
+      <p>Im Rahmen der Beauftragung zur Erstellung eines KFZ-Schadengutachtens erheben und verarbeiten wir personenbezogene Daten des Auftraggebers, Fahrzeughalters, Fahrers sowie ggf. von Unfallgegnern und Zeugen. Hierzu gehören insbesondere:</p>
+      <ul>
+        <li>Stammdaten (Name, Anschrift, Kontaktdaten)</li>
+        <li>Fahrzeug- und Auftragsdaten (Amtliches Kennzeichen, Fahrgestellnummer, Vorsteuerabzugsberechtigung)</li>
+        <li>Schadensdaten (Schadentag, Schadensort, Schadennummer, Hergang)</li>
+        <li>Versicherungs- und Geschäftsdaten (Versicherungsgesellschaft, Versicherungsnummer, Aktenzeichen)</li>
+      </ul>
+      <h3>Weitergabe von Daten zur Schadenregulierung</h3>
+      <p>Zum Zwecke der ordnungsgemäßen Erstellung des Schadengutachtens sowie zur zügigen Abwicklung und Regulierung des Schadensfalls übermitteln wir die erforderlichen personenbezogenen Daten an folgende Beteiligte:</p>
+      <ul>
+        <li>Die von Ihnen beauftragte Reparaturwerkstatt</li>
+        <li>Die von Ihnen beauftragte Anwaltskanzlei</li>
+        <li>Die für den Schadenfall zuständige und regulierungspflichtige Versicherung</li>
+      </ul>
+      <p>Rechtsgrundlagen der Datenweitergabe: Die Übermittlung erfolgt zur Erfüllung des Vertragsverhältnisses bzw. Durchführung vorvertraglicher Maßnahmen gem. Art. 6 Abs. 1 lit. b DSGVO sowie auf Grundlage Ihrer ausdrücklich erteilten schriftlichen Datenschutz-Einwilligung gem. Art. 6 Abs. 1 lit. a DSGVO.</p>
+      <h2>6. Speicherdauer</h2>
+      <p>Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen nach § 147 AO oder § 257 HGB von bis zu 10 Jahren).</p>
+      <h2>7. Rechte der betroffenen Personen</h2>
+      <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit folgende Rechte:</p>
+      <ul>
+        <li><strong>Auskunftsrecht (Art. 15 DSGVO):</strong> Sie haben das Recht, jederzeit unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten.</li>
+        <li><strong>Recht auf Berichtigung (Art. 16 DSGVO):</strong> Sie haben das Recht, die Berichtigung unrichtiger oder Vervollständigung Ihrer bei uns gespeicherten Daten zu verlangen.</li>
+        <li><strong>Recht auf Löschung (Art. 17 DSGVO):</strong> Sie haben das Recht, die Löschung Ihrer personenbezogenen Daten zu verlangen, soweit nicht gesetzliche Pflichten oder berechtigte Interessen dem entgegenstehen.</li>
+        <li><strong>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO):</strong> Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
+        <li><strong>Recht auf Datenübertragbarkeit (Art. 20 DSGVO):</strong> Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen.</li>
+        <li><strong>Widerruf Ihrer Einwilligung (Art. 7 Abs. 3 DSGVO):</strong> Sie können eine erteilte Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen (per E-Mail an """ + EMAIL + """). Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt unberührt.</li>
+        <li><strong>Beschwerderecht bei der Aufsichtsbehörde (Art. 77 DSGVO):</strong> Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), Kavalleriestr. 2-4, 40213 Düsseldorf.</li>
+      </ul>
+      <h2>8. Datensicherheit</h2>
+      <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Zudem setzen wir geeignete technische und organisatorische Sicherheitsmaßnahmen (TOM) ein, um Ihre Daten gegen unbefugten Zugriff Dritter, Verlust oder Manipulation zu schützen.</p>
+      <h2>9. WhatsApp-Kontakt (Ergänzung für diese Website)</h2>
+      <p>Auf der Seite „Schaden melden“ können Sie per Link zu WhatsApp (Meta Platforms Ireland Ltd.) eine Nachricht mit Schadeninformationen senden. Dabei werden Sie auf die Dienste von WhatsApp umgeleitet. Es gelten die Datenschutzbestimmungen von WhatsApp/Meta. Übermitteln Sie nur die für die Erstinformation erforderlichen Daten. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Anbahnung/Erfüllung) bzw. Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch Nutzung des Links).</p>
+      <h2>10. Google Maps (Ergänzung für diese Website)</h2>
+      <p>Auf der Kontaktseite kann nach Ihrer Einwilligung eine Kartenansicht von Google Maps eingebunden werden. Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Beim Laden der Karte können personenbezogene Daten (insbesondere IP-Adresse) an Google übermittelt werden. Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO. Sie können die Einwilligung jederzeit widerrufen, indem Sie die Karte nicht laden oder gespeicherte Einwilligungen in Ihrem Browser löschen.</p>
+      <h2>11. Standortübernahme im Browser (Ergänzung für diese Website)</h2>
+      <p>Wenn Sie auf „Standort übernehmen“ klicken, fragt Ihr Browser einmalig Ihren Standort ab. Die Koordinaten werden nur in das Formularfeld auf Ihrem Gerät eingetragen und nicht auf unseren Server übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO.</p>
+      <p class="muted">Stand der Datenschutzerklärung: August 2026</p>
+    </section>"""
+    write(ROOT / "datenschutz.html", 0, "Kontakt", "Datenschutz", "Datenschutzerklärung.", datenschutz)
+
+    widerruf = """
+    <section class="section content-light legal">
+      <h1>Widerrufsbelehrung</h1>
+      <p>Rechtssichere Widerrufsbelehrung für Kfz-Gutachten — konform mit BGB und EGBGB Fernabsatzrecht</p>
+      <p><strong>Diensteanbieter:</strong> """ + BUSINESS + """ (Inh. """ + OWNER + """)<br />
+      <strong>Anschrift:</strong> """ + ADDRESS + """<br />
+      <strong>Kontakt:</strong> Telefon: """ + PHONE_DISPLAY + """ · E-Mail: <a href="mailto:""" + EMAIL + """">""" + EMAIL + """</a></p>
+      <h2>1. Gesetzliche Widerrufsbelehrung (Dienstleistungen)</h2>
+      <h3>Widerrufsrecht</h3>
+      <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.</p>
+      <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (""" + BUSINESS + """, Inh. """ + OWNER + """, """ + ADDRESS + """, Tel.: """ + PHONE_DISPLAY + """, E-Mail: """ + EMAIL + """) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder eine E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p>
+      <p>Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
+      <h3>Folgen des Widerrufs</h3>
+      <p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist. Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet.</p>
+      <p>Haben Sie verlangt, dass die Dienstleistungen während der Widerrufsfrist beginnen sollen, so haben Sie uns einen angemessenen Betrag zu zahlen, der dem Anteil der bis zu dem Zeitpunkt, zu dem Sie uns von der Ausübung des Widerrufsrechts hinsichtlich dieses Vertrags unterrichten, bereits erbrachten Dienstleistungen im Verhältnis zum Gesamtumfang der im Vertrag vorgesehenen Dienstleistungen entspricht.</p>
+      <h3>Besonderer Hinweis zum vorzeitigen Erlöschen des Widerrufsrechts (§ 356 Abs. 4 BGB)</h3>
+      <p>Das Widerrufsrecht erlischt bei einem Vertrag zur Erbringung von Dienstleistungen auch dann, wenn der Unternehmer die Dienstleistung vollständig erbracht hat und mit der Ausführung der Dienstleistung erst begonnen hat, nachdem der Verbraucher dazu seine ausdrückliche Zustimmung erteilt hat und gleichzeitig seine Kenntnis davon bestätigt hat, dass er sein Widerrufsrecht bei vollständiger Vertragserfüllung durch den Unternehmer verliert.</p>
+      <h2>2. Muster-Widerrufsformular</h2>
+      <p>(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)</p>
+      <p>An: """ + BUSINESS + """, Inhaber: """ + OWNER + """, """ + ADDRESS + """, E-Mail: """ + EMAIL + """</p>
+      <p>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung (z. B. Kfz-Gutachten / Wertermittlung):</p>
+      <p>Bestellt am (*) / beauftragt am (*): ___________________<br />
+      Erhalten am (*): ___________________<br />
+      Name des/der Verbraucher(s):<br />
+      Anschrift des/der Verbraucher(s):<br />
+      __________________________________________________<br />
+      Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier) · Datum: __________________<br />
+      (*) Unzutreffendes streichen.</p>
+      <h2>3. Hinweis zur Online-Beauftragung</h2>
+      <p>Für eine spätere kostenpflichtige Online-Beauftragung auf dieser Website sind vor dem Absende-Button folgende Pflicht-Checkboxen vorgesehen (nicht vorausgewählt):</p>
+      <ul>
+        <li>„Ich habe die AGB und die Widerrufsbelehrung zur Kenntnis genommen und erkläre mich mit deren Geltung einverstanden.“</li>
+        <li>„Ich verlangt ausdrücklich und stimme zu, dass das """ + BUSINESS + """ mit der Dienstleistung (Gutachtenerstellung) vor Ablauf der 14-tägigen Widerrufsfrist beginnt. Mir ist bekannt, dass ich mein Widerrufsrecht bei vollständiger Vertragserfüllung verliere.“</li>
+      </ul>
+      <p>Der Absendebutton muss eindeutig beschriftet sein (z. B. „Kostenpflichtig beauftragen“, § 312j BGB). Nach Eingang einer Online-Beauftragung ist eine Bestätigungs-E-Mail inkl. Widerrufsbelehrung als dauerhafter Datenträger erforderlich.</p>
+      <p class="muted">Stand: August 2026</p>
+    </section>"""
+    write(ROOT / "widerruf.html", 0, "Kontakt", "Widerruf", "Widerrufsbelehrung.", widerruf)
+
+    print("done")
+
+
+if __name__ == "__main__":
+    main()
