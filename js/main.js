@@ -314,75 +314,136 @@
       let attentionNextTimer = null;
       let attentionPulseCount = 0;
       let attentionStarted = false;
-      let waAudioContext = null;
-      let waAudioUnlocked = false;
+      let waNotifyAudio = null;
+      let waAudioReady = false;
+      let waAudioUnlockPromise = null;
+
+      function createWaNotifyDataUri() {
+        const sampleRate = 22050;
+        const tones = [
+          { freq: 880, start: 0, len: 0.11, vol: 0.5 },
+          { freq: 1175, start: 0.1, len: 0.2, vol: 0.42 },
+        ];
+        const duration = 0.34;
+        const numSamples = Math.floor(sampleRate * duration);
+        const dataSize = numSamples * 2;
+        const buffer = new ArrayBuffer(44 + dataSize);
+        const view = new DataView(buffer);
+
+        function writeString(offset, str) {
+          for (let i = 0; i < str.length; i++) {
+            view.setUint8(offset + i, str.charCodeAt(i));
+          }
+        }
+
+        writeString(0, "RIFF");
+        view.setUint32(4, 36 + dataSize, true);
+        writeString(8, "WAVE");
+        writeString(12, "fmt ");
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, 1, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * 2, true);
+        view.setUint16(32, 2, true);
+        view.setUint16(34, 16, true);
+        writeString(36, "data");
+        view.setUint32(40, dataSize, true);
+
+        for (let i = 0; i < numSamples; i += 1) {
+          const t = i / sampleRate;
+          let sample = 0;
+
+          tones.forEach(function (tone) {
+            if (t < tone.start || t >= tone.start + tone.len) return;
+            const local = t - tone.start;
+            const attack = Math.min(1, local / 0.012);
+            const release = Math.min(1, (tone.len - local) / 0.08);
+            sample += Math.sin(2 * Math.PI * tone.freq * local) * tone.vol * attack * release;
+          });
+
+          sample = Math.max(-1, Math.min(1, sample));
+          view.setInt16(44 + i * 2, sample * 32767, true);
+        }
+
+        const bytes = new Uint8Array(buffer);
+        let binary = "";
+        bytes.forEach(function (byte) {
+          binary += String.fromCharCode(byte);
+        });
+        return "data:audio/wav;base64," + window.btoa(binary);
+      }
+
+      function getWaNotifyAudio() {
+        if (!waNotifyAudio) {
+          waNotifyAudio = new Audio(createWaNotifyDataUri());
+          waNotifyAudio.preload = "auto";
+          waNotifyAudio.volume = 0.62;
+        }
+        return waNotifyAudio;
+      }
 
       function unlockAttentionAudio() {
-        if (waAudioUnlocked) return;
-
-        try {
-          const AudioCtx = window.AudioContext || window.webkitAudioContext;
-          if (!AudioCtx) return;
-
-          if (!waAudioContext) {
-            waAudioContext = new AudioCtx();
-          }
-
-          if (waAudioContext.state === "suspended") {
-            waAudioContext.resume();
-          }
-
-          const now = waAudioContext.currentTime;
-          const osc = waAudioContext.createOscillator();
-          const gain = waAudioContext.createGain();
-          osc.type = "sine";
-          osc.frequency.setValueAtTime(440, now);
-          gain.gain.setValueAtTime(0.00001, now);
-          osc.connect(gain);
-          gain.connect(waAudioContext.destination);
-          osc.start(now);
-          osc.stop(now + 0.02);
-          waAudioUnlocked = true;
-        } catch (_) {
-          /* ignore audio errors */
+        if (waAudioReady) {
+          return Promise.resolve(true);
         }
+
+        if (waAudioUnlockPromise) {
+          return waAudioUnlockPromise;
+        }
+
+        waAudioUnlockPromise = (function () {
+          const audio = getWaNotifyAudio();
+          const previousVolume = audio.volume;
+          audio.volume = 0.001;
+          audio.currentTime = 0;
+          return audio.play();
+        })()
+          .then(function () {
+            waNotifyAudio.pause();
+            waNotifyAudio.currentTime = 0;
+            waNotifyAudio.volume = 0.62;
+            waAudioReady = true;
+            return true;
+          })
+          .catch(function () {
+            waAudioUnlockPromise = null;
+            return false;
+          });
+
+        return waAudioUnlockPromise;
       }
 
       function playAttentionSound() {
-        try {
-          const AudioCtx = window.AudioContext || window.webkitAudioContext;
-          if (!AudioCtx) return;
-
-          if (!waAudioContext) {
-            waAudioContext = new AudioCtx();
-          }
-
-          if (waAudioContext.state === "suspended") {
-            waAudioContext.resume();
-          }
-
-          const now = waAudioContext.currentTime;
-
-          function tone(frequency, start, duration, volume) {
-            const osc = waAudioContext.createOscillator();
-            const gain = waAudioContext.createGain();
-            osc.type = "sine";
-            osc.frequency.setValueAtTime(frequency, start);
-            gain.gain.setValueAtTime(0.0001, start);
-            gain.gain.exponentialRampToValueAtTime(volume, start + 0.015);
-            gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
-            osc.connect(gain);
-            gain.connect(waAudioContext.destination);
-            osc.start(start);
-            osc.stop(start + duration + 0.02);
-          }
-
-          tone(784, now, 0.12, 0.07);
-          tone(988, now + 0.11, 0.16, 0.06);
-        } catch (_) {
-          /* ignore audio errors */
-        }
+        const audio = getWaNotifyAudio();
+        audio.currentTime = 0;
+        audio.play().catch(function () {
+          unlockAttentionAudio().then(function (ready) {
+            if (!ready) return;
+            audio.currentTime = 0;
+            audio.play().catch(function () {
+              /* ignore blocked playback */
+            });
+          });
+        });
       }
+
+      function bindAttentionAudioUnlock() {
+        function tryUnlock() {
+          unlockAttentionAudio().then(function (ready) {
+            if (!ready) return;
+            document.removeEventListener("pointerdown", tryUnlock, true);
+            document.removeEventListener("keydown", tryUnlock, true);
+            document.removeEventListener("touchstart", tryUnlock, true);
+          });
+        }
+
+        document.addEventListener("pointerdown", tryUnlock, { capture: true, passive: true });
+        document.addEventListener("keydown", tryUnlock, { capture: true });
+        document.addEventListener("touchstart", tryUnlock, { capture: true, passive: true });
+      }
+
+      bindAttentionAudioUnlock();
 
       function clearAttentionTimers() {
         if (attentionPulseTimer !== null) {
@@ -491,9 +552,9 @@
         beginAttentionAfterScroll();
       }
 
-      window.addEventListener("scroll", onAttentionScroll, { passive: true, once: false });
+      window.addEventListener("scroll", onAttentionScroll, { passive: true });
       if (window.scrollY > 0) {
-        beginAttentionAfterScroll();
+        onAttentionScroll();
       }
     }
   }
