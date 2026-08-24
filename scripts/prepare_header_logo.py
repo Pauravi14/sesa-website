@@ -56,6 +56,15 @@ def resize_height(im: Image.Image, height: int) -> Image.Image:
     return im.resize((max(1, int(w * scale)), height), Image.Resampling.LANCZOS)
 
 
+def snap_copper(im: Image.Image) -> Image.Image:
+    arr = np.array(im.convert("RGBA"))
+    mask = arr[:, :, 3] > 20
+    arr[mask, 0] = COPPER[0]
+    arr[mask, 1] = COPPER[1]
+    arr[mask, 2] = COPPER[2]
+    return Image.fromarray(arr)
+
+
 def main() -> None:
     if not SRC.exists():
         raise SystemExit(f"missing source: {SRC}")
@@ -63,6 +72,7 @@ def main() -> None:
     logo = flat_copper_logo(raw)
     logo = crop_content(logo)
     logo = resize_height(logo, 280)
+    logo = snap_copper(logo)
     logo.save(OUT, optimize=True)
     print("saved", OUT, logo.size)
 
