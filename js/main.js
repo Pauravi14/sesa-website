@@ -12,12 +12,26 @@
     });
   }
 
+  function closeDesktopServicesMenu() {
+    document.querySelectorAll(".menu-item--services.is-services-open").forEach(function (item) {
+      item.classList.remove("is-services-open");
+      const details = item.querySelector(".menu-accordion");
+      const summary = item.querySelector(".menu-accordion__summary");
+      details?.removeAttribute("open");
+      summary?.setAttribute("aria-expanded", "false");
+    });
+  }
+
   function syncServicesMenuMode() {
     document.querySelectorAll(".menu-accordion").forEach(function (details) {
+      const item = details.closest(".menu-item--services");
       if (mobileNav.matches) {
+        item?.classList.remove("is-services-open");
         details.removeAttribute("open");
       } else {
-        details.setAttribute("open", "");
+        item?.classList.remove("is-services-open");
+        details.removeAttribute("open");
+        details.querySelector(".menu-accordion__summary")?.setAttribute("aria-expanded", "false");
       }
     });
   }
@@ -48,9 +62,24 @@
 
   document.querySelectorAll(".menu-accordion__summary").forEach(function (summary) {
     summary.addEventListener("click", function (event) {
-      if (!mobileNav.matches) {
-        event.preventDefault();
+      if (mobileNav.matches) return;
+      event.preventDefault();
+      const item = summary.closest(".menu-item--services");
+      const details = summary.closest(".menu-accordion");
+      if (!item || !details) return;
+      const willOpen = !item.classList.contains("is-services-open");
+      closeDesktopServicesMenu();
+      if (willOpen) {
+        item.classList.add("is-services-open");
+        details.setAttribute("open", "");
+        summary.setAttribute("aria-expanded", "true");
       }
+    });
+  });
+
+  document.querySelectorAll(".menu > li > a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      if (!mobileNav.matches) closeDesktopServicesMenu();
     });
   });
 
@@ -70,6 +99,7 @@
 
   document.addEventListener("keydown", function (event) {
     if (event.key !== "Escape") return;
+    closeDesktopServicesMenu();
     nav?.querySelectorAll(".menu-accordion[open]").forEach(function (details) {
       details.removeAttribute("open");
     });

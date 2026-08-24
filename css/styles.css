@@ -309,15 +309,6 @@ a:hover {
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
 }
 
-.menu-item--services:hover .menu-dropdown,
-.menu-item--services:focus-within .menu-dropdown,
-.menu-item--services:has(.menu-dropdown:hover) .menu-dropdown {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
-}
-
 .menu-dropdown a {
   display: block;
   padding: 0.55rem 1.15rem;
@@ -356,15 +347,23 @@ a:hover {
     height: 0.72rem;
   }
 
-  .menu-item--services:hover .menu-caret,
-  .menu-item--services:has(.menu-dropdown:hover) .menu-caret {
+  .menu-item--services.is-services-open .menu-caret {
     transform: rotate(180deg);
   }
 
+  .menu-item--services.is-services-open .menu-accordion__summary {
+    color: var(--copper);
+  }
+
+  .menu-item--services.is-services-open .menu-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
   .menu-dropdown {
-    top: 100%;
-    padding-top: 0.55rem;
-    background-clip: padding-box;
+    top: calc(100% + 0.35rem);
   }
 }
 

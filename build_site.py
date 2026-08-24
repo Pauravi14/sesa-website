@@ -330,7 +330,7 @@ def services_dropdown(depth: int, active: str) -> str:
     submenu = "\n".join(items)
     return f"""<li class="menu-item menu-item--services">
       <details class="menu-accordion">
-        <summary class="menu-accordion__summary">
+        <summary class="menu-accordion__summary" aria-expanded="false">
           <span class="menu-accordion__label">Leistungen</span>
           <span class="menu-caret" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" d="M2.5 4.5 6 8 9.5 4.5"/></svg></span>
         </summary>
@@ -441,7 +441,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=55" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=56" />
     {extra_head}
   </head>
   <body>
@@ -486,7 +486,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=11" defer></script>
+    <script src="{p}js/main.js?v=12" defer></script>
   </body>
 </html>"""
 
