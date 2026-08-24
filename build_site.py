@@ -121,28 +121,36 @@ def hero_slides_html() -> str:
     return "\n".join(parts)
 
 
+PROCESS_FLOW_CHEVRON = (
+    '<span class="process-flow__orbit-chevron" data-orbit-chevron aria-hidden="true">'
+    '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" '
+    'stroke-linecap="round" stroke-linejoin="round">'
+    '<path d="M2 6h8"/><path d="M7 3l3 3-3 3"/>'
+    '</svg></span>'
+)
+
 PROCESS_FLOW_CONNECTOR = (
-    '<li class="process-flow__connector" data-process-connector aria-hidden="true">'
+    '<span class="process-flow__connector" data-process-connector aria-hidden="true">'
     '<span class="process-flow__orbit" data-process-orbit>'
     '<span class="process-flow__orbit-track"></span>'
     '<span class="process-flow__orbit-progress"></span>'
-    '<span class="process-flow__orbit-chevron" data-orbit-chevron>&gt;</span>'
-    '</span></li>'
+    f'{PROCESS_FLOW_CHEVRON}'
+    '</span></span>'
 )
 
 
 def process_flow_unit(number: str, title: str, body: str, with_connector: bool) -> str:
-    connector = f"\n{PROCESS_FLOW_CONNECTOR}" if with_connector else ""
+    connector = f"\n            {PROCESS_FLOW_CONNECTOR}" if with_connector else ""
     return f"""
         <li class="process-flow__unit" data-flow-item>
           <div class="process-flow__unit-head">
-            <span class="process-flow__marker" aria-hidden="true">{number}</span>
+            <span class="process-flow__marker" aria-hidden="true">{number}</span>{connector}
           </div>
           <article class="process-flow__card">
             <h3>{title}</h3>
             <p>{body}</p>
           </article>
-        </li>{connector}"""
+        </li>"""
 
 
 def service_card_icon(key: str) -> str:
@@ -510,7 +518,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=94" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=95" />
     {extra_head}
   </head>
   <body>
