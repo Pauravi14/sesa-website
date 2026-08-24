@@ -126,15 +126,17 @@ def hero_slides_html() -> str:
     return "\n".join(parts)
 
 
-PROCESS_FLOW_ARROW = (
-    '<li class="process-flow__bridge" aria-hidden="true">'
-    '<span class="process-flow__bridge-line"></span>'
-    '</li>'
+PROCESS_FLOW_CONNECTOR = (
+    '<li class="process-flow__connector" aria-hidden="true">'
+    '<span class="process-flow__orbit" data-process-orbit>'
+    '<span class="process-flow__orbit-track"></span>'
+    '<span class="process-flow__orbit-chevron" data-orbit-chevron>&gt;</span>'
+    '</span></li>'
 )
 
 
-def process_flow_unit(number: str, title: str, body: str, with_bridge: bool) -> str:
-    bridge = f"\n{PROCESS_FLOW_ARROW}" if with_bridge else ""
+def process_flow_unit(number: str, title: str, body: str, with_connector: bool) -> str:
+    connector = f"\n{PROCESS_FLOW_CONNECTOR}" if with_connector else ""
     return f"""
         <li class="process-flow__unit" data-flow-item>
           <div class="process-flow__unit-head">
@@ -144,7 +146,7 @@ def process_flow_unit(number: str, title: str, body: str, with_bridge: bool) -> 
             <h3>{title}</h3>
             <p>{body}</p>
           </article>
-        </li>{bridge}"""
+        </li>{connector}"""
 
 
 def hero_preload_head() -> str:
@@ -260,10 +262,6 @@ def home_page_body() -> str:
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
       <div class="process-flow" data-process-flow>
-        <div class="process-flow__rail" aria-hidden="true">
-          <span class="process-flow__rail-base"></span>
-          <span class="process-flow__rail-flow"></span>
-        </div>
         <ol class="process-flow__track" role="list">
 {process_flow_unit("01", "Kontakt", "Kontaktaufnahme und Erstberatung", True)}
 {process_flow_unit("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", True)}
@@ -441,7 +439,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=59" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=60" />
     {extra_head}
   </head>
   <body>
@@ -486,7 +484,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=14" defer></script>
+    <script src="{p}js/main.js?v=15" defer></script>
   </body>
 </html>"""
 
