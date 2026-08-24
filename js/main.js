@@ -319,9 +319,9 @@
       markerReveal: 280,
       cardReveal: 350,
       betweenSegments: 180,
-      finalHold: 2200,
-      resetFade: 250
+      finalHold: 2200
     };
+    const SAFETY_TIMEOUT = 12000;
 
     let running = false;
     let sequenceCompleted = false;
@@ -329,6 +329,7 @@
     let timers = [];
     let rafIds = [];
     let flowObserver = null;
+    let safetyTimerId = null;
 
     function clearTimers() {
       timers.forEach(function (id) {
@@ -339,6 +340,10 @@
         window.cancelAnimationFrame(id);
       });
       rafIds = [];
+      if (safetyTimerId !== null) {
+        window.clearTimeout(safetyTimerId);
+        safetyTimerId = null;
+      }
     }
 
     function wait(ms) {
@@ -356,9 +361,16 @@
       orbit.style.setProperty("--connector-progress", String(value));
     }
 
+    function resetConnector(connector) {
+      connector.classList.remove("is-connector-live");
+      const orbit = connector.querySelector("[data-process-orbit]");
+      if (orbit) setConnectorProgress(orbit, 0);
+    }
+
     function travelConnector(connector, duration, generation) {
       return new Promise(function (resolve) {
         if (generation !== sequenceGeneration) {
+          resetConnector(connector);
           resolve();
           return;
         }
@@ -375,6 +387,7 @@
         let start = null;
         function frame(now) {
           if (generation !== sequenceGeneration) {
+            resetConnector(connector);
             resolve();
             return;
           }
@@ -417,10 +430,13 @@
     }
 
     function completeSequence(generation) {
-      if (generation !== sequenceGeneration) return Promise.resolve();
+      if (generation !== sequenceGeneration || sequenceCompleted) {
+        return Promise.resolve();
+      }
 
       running = false;
       sequenceCompleted = true;
+      clearTimers();
 
       units.forEach(function (unit) {
         unit.classList.add("is-step-live", "is-step-open");
@@ -434,11 +450,27 @@
 
       processFlow.classList.remove("is-sequencing");
       processFlow.classList.add("is-sequence-complete");
+
+      if (flowObserver) {
+        flowObserver.disconnect();
+        flowObserver = null;
+      }
+
       return Promise.resolve();
     }
 
     function runSequence(generation) {
-      units[0].classList.add("is-step-live", "is-step-open");
+      units.forEach(function (unit, index) {
+        unit.classList.remove("is-step-live", "is-step-open");
+        if (index === 0) {
+          unit.classList.add("is-step-live", "is-step-open");
+        }
+      });
+      connectors.forEach(resetConnector);
+
+      safetyTimerId = window.setTimeout(function () {
+        completeSequence(generation);
+      }, SAFETY_TIMEOUT);
 
       return wait(TIMING.initialDelay)
         .then(function () {
@@ -473,34 +505,20 @@
         });
     }
 
-    function stopSequence() {
-      if (sequenceCompleted) return;
-      running = false;
-      sequenceGeneration += 1;
-      clearTimers();
-      units.forEach(function (unit, index) {
-        if (index === 0) {
-          unit.classList.add("is-step-live", "is-step-open");
-        } else {
-          unit.classList.remove("is-step-live", "is-step-open");
-        }
-      });
-      connectors.forEach(function (connector) {
-        connector.classList.remove("is-connector-live");
-        const orbit = connector.querySelector("[data-process-orbit]");
-        if (orbit) setConnectorProgress(orbit, 0);
-      });
-      processFlow.classList.remove("is-sequencing");
-    }
-
     function startSequence() {
       if (running || sequenceCompleted) return;
       running = true;
       sequenceGeneration += 1;
       const generation = sequenceGeneration;
       clearTimers();
+      processFlow.classList.remove("is-sequence-complete");
       processFlow.classList.add("is-sequencing");
       runSequence(generation);
+
+      if (flowObserver) {
+        flowObserver.disconnect();
+        flowObserver = null;
+      }
     }
 
     function isProcessFlowInView() {
@@ -513,14 +531,17 @@
       units.forEach(function (unit) {
         unit.classList.add("is-step-live", "is-step-open");
       });
+      connectors.forEach(function (connector) {
+        connector.classList.add("is-connector-live");
+        const orbit = connector.querySelector("[data-process-orbit]");
+        if (orbit) setConnectorProgress(orbit, 1);
+      });
     } else {
       flowObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               startSequence();
-            } else {
-              stopSequence();
             }
           });
         },

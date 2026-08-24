@@ -127,7 +127,8 @@ def hero_slides_html() -> str:
 
 
 PROCESS_FLOW_CONNECTOR = (
-    '<li class="process-flow__connector" data-process-connector aria-hidden="true">'
+    '<li class="process-flow__connector process-flow__connector--{index}" '
+    'data-process-connector aria-hidden="true">'
     '<span class="process-flow__orbit" data-process-orbit>'
     '<span class="process-flow__orbit-track"></span>'
     '<span class="process-flow__orbit-progress"></span>'
@@ -136,10 +137,14 @@ PROCESS_FLOW_CONNECTOR = (
 )
 
 
-def process_flow_unit(number: str, title: str, body: str, with_connector: bool) -> str:
-    connector = f"\n{PROCESS_FLOW_CONNECTOR}" if with_connector else ""
+def process_flow_unit(number: str, title: str, body: str, step_index: int, with_connector: bool) -> str:
+    connector = (
+        f"\n{PROCESS_FLOW_CONNECTOR.format(index=step_index)}"
+        if with_connector
+        else ""
+    )
     return f"""
-        <li class="process-flow__unit" data-flow-item>
+        <li class="process-flow__unit process-flow__unit--{step_index}" data-flow-item>
           <div class="process-flow__unit-head">
             <span class="process-flow__marker" aria-hidden="true">{number}</span>
           </div>
@@ -271,10 +276,10 @@ def home_page_body() -> str:
       </header>
       <div class="process-flow" data-process-flow>
         <ol class="process-flow__track" role="list">
-{process_flow_unit("01", "Kontakt", "Kontaktaufnahme und Erstberatung", True)}
-{process_flow_unit("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", True)}
-{process_flow_unit("03", "Dokumentation", GUTACHTEN_TIMING_CARD, True)}
-{process_flow_unit("04", "Besprechung", "Persönliche Betreuung bei Rückfragen", False)}
+{process_flow_unit("01", "Kontakt", "Kontaktaufnahme und Erstberatung", 1, True)}
+{process_flow_unit("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", 2, True)}
+{process_flow_unit("03", "Dokumentation", GUTACHTEN_TIMING_CARD, 3, True)}
+{process_flow_unit("04", "Besprechung", "Persönliche Betreuung bei Rückfragen", 4, False)}
         </ol>
       </div>
     </section>
@@ -452,7 +457,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=65" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=66" />
     {extra_head}
   </head>
   <body>
@@ -497,7 +502,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=24" defer></script>
+    <script src="{p}js/main.js?v=25" defer></script>
   </body>
 </html>"""
 
