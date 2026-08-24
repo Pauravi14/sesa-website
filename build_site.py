@@ -128,19 +128,36 @@ def hero_slides_html() -> str:
 
 PROCESS_FLOW_ARROW = (
     '<li class="process-flow__bridge" data-flow-item aria-hidden="true">'
-    '<span class="process-flow__arrow"></span></li>'
+    '<svg class="process-flow__arrow" viewBox="0 0 44 10" '
+    'focusable="false" aria-hidden="true">'
+    '<path class="process-flow__arrow-path" pathLength="44" '
+    'd="M1 5 H30 M26 1.5 L40 5 L26 8.5" fill="none" stroke="currentColor" '
+    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+    '</svg></li>'
 )
 
 
-def process_flow_step(number: str, title: str, body: str) -> str:
+def process_flow_marker(number: str) -> str:
+    return f"""
+        <li class="process-flow__marker-cell" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">{number}</span>
+        </li>"""
+
+
+def process_flow_card(title: str, body: str) -> str:
     return f"""
         <li class="process-flow__step" data-flow-item>
-          <span class="process-flow__marker" aria-hidden="true">{number}</span>
           <article class="process-flow__card">
             <h3>{title}</h3>
             <p>{body}</p>
           </article>
         </li>"""
+
+
+def process_flow_unit(number: str, title: str, body: str, with_bridge: bool) -> str:
+    bridge = f"\n{PROCESS_FLOW_ARROW}" if with_bridge else ""
+    return f"""{process_flow_marker(number)}
+{process_flow_card(title, body)}{bridge}"""
 
 
 def hero_preload_head() -> str:
@@ -257,13 +274,10 @@ def home_page_body() -> str:
       </header>
       <div class="process-flow" data-process-flow>
         <ol class="process-flow__track" role="list">
-{process_flow_step("01", "Kontakt", "Kontaktaufnahme und Erstberatung")}
-{PROCESS_FLOW_ARROW}
-{process_flow_step("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort")}
-{PROCESS_FLOW_ARROW}
-{process_flow_step("03", "Dokumentation", GUTACHTEN_TIMING_CARD)}
-{PROCESS_FLOW_ARROW}
-{process_flow_step("04", "Besprechung", "Persönliche Betreuung bei Rückfragen")}
+{process_flow_unit("01", "Kontakt", "Kontaktaufnahme und Erstberatung", True)}
+{process_flow_unit("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", True)}
+{process_flow_unit("03", "Dokumentation", GUTACHTEN_TIMING_CARD, True)}
+{process_flow_unit("04", "Besprechung", "Persönliche Betreuung bei Rückfragen", False)}
         </ol>
       </div>
     </section>
@@ -438,7 +452,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=37" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=39" />
     {extra_head}
   </head>
   <body>
@@ -480,7 +494,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=4" defer></script>
+    <script src="{p}js/main.js?v=5" defer></script>
   </body>
 </html>"""
 

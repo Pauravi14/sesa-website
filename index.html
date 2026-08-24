@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=37" />
+    <link rel="stylesheet" href="./css/styles.css?v=39" />
         <link rel="preload" as="image" href="assets/hero/slide-1.jpg" />
     <link rel="preload" as="image" href="assets/hero/slide-2.jpg" />
     <link rel="preload" as="image" href="assets/hero/slide-3.jpg" />
@@ -177,35 +177,47 @@
       <div class="process-flow" data-process-flow>
         <ol class="process-flow__track" role="list">
 
-        <li class="process-flow__step" data-flow-item>
+        <li class="process-flow__marker-cell" data-flow-item>
           <span class="process-flow__marker" aria-hidden="true">01</span>
+        </li>
+
+        <li class="process-flow__step" data-flow-item>
           <article class="process-flow__card">
             <h3>Kontakt</h3>
             <p>Kontaktaufnahme und Erstberatung</p>
           </article>
         </li>
-<li class="process-flow__bridge" data-flow-item aria-hidden="true"><span class="process-flow__arrow"></span></li>
+<li class="process-flow__bridge" data-flow-item aria-hidden="true"><svg class="process-flow__arrow" viewBox="0 0 44 10" focusable="false" aria-hidden="true"><path class="process-flow__arrow-path" pathLength="44" d="M1 5 H30 M26 1.5 L40 5 L26 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+
+        <li class="process-flow__marker-cell" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">02</span>
+        </li>
 
         <li class="process-flow__step" data-flow-item>
-          <span class="process-flow__marker" aria-hidden="true">02</span>
           <article class="process-flow__card">
             <h3>Begutachtung</h3>
             <p>Schadenaufnahme am Fahrzeugstandort</p>
           </article>
         </li>
-<li class="process-flow__bridge" data-flow-item aria-hidden="true"><span class="process-flow__arrow"></span></li>
+<li class="process-flow__bridge" data-flow-item aria-hidden="true"><svg class="process-flow__arrow" viewBox="0 0 44 10" focusable="false" aria-hidden="true"><path class="process-flow__arrow-path" pathLength="44" d="M1 5 H30 M26 1.5 L40 5 L26 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+
+        <li class="process-flow__marker-cell" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">03</span>
+        </li>
 
         <li class="process-flow__step" data-flow-item>
-          <span class="process-flow__marker" aria-hidden="true">03</span>
           <article class="process-flow__card">
             <h3>Dokumentation</h3>
             <p>In der Regel innerhalb von 24–48 Stunden<br>nach vollständiger Schadenaufnahme</p>
           </article>
         </li>
-<li class="process-flow__bridge" data-flow-item aria-hidden="true"><span class="process-flow__arrow"></span></li>
+<li class="process-flow__bridge" data-flow-item aria-hidden="true"><svg class="process-flow__arrow" viewBox="0 0 44 10" focusable="false" aria-hidden="true"><path class="process-flow__arrow-path" pathLength="44" d="M1 5 H30 M26 1.5 L40 5 L26 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+
+        <li class="process-flow__marker-cell" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">04</span>
+        </li>
 
         <li class="process-flow__step" data-flow-item>
-          <span class="process-flow__marker" aria-hidden="true">04</span>
           <article class="process-flow__card">
             <h3>Besprechung</h3>
             <p>Persönliche Betreuung bei Rückfragen</p>
@@ -324,6 +336,6 @@
         </a>
       </div>
     </div>
-    <script src="./js/main.js?v=4" defer></script>
+    <script src="./js/main.js?v=5" defer></script>
   </body>
 </html>
