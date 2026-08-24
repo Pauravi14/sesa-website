@@ -953,7 +953,6 @@ a:hover {
   flex-direction: unset;
   gap: unset;
   max-width: none;
-}
   margin: 0 0 1.35rem;
   font-family: var(--serif);
   font-size: var(--type-h1);
