@@ -915,21 +915,21 @@ a:hover {
 .hero--centered .hero__overlay {
   background:
     radial-gradient(
-      ellipse 72% 78% at 50% 42%,
-      rgba(10, 22, 40, 0.94) 0%,
-      rgba(10, 22, 40, 0.82) 42%,
-      rgba(10, 22, 40, 0.52) 100%
+      ellipse 78% 82% at 50% 42%,
+      rgba(10, 22, 40, 0.8) 0%,
+      rgba(10, 22, 40, 0.62) 45%,
+      rgba(10, 22, 40, 0.34) 100%
     ),
     linear-gradient(
       90deg,
-      rgba(10, 22, 40, 0.72) 0%,
-      rgba(10, 22, 40, 0.88) 50%,
-      rgba(10, 22, 40, 0.72) 100%
+      rgba(10, 22, 40, 0.52) 0%,
+      rgba(10, 22, 40, 0.68) 50%,
+      rgba(10, 22, 40, 0.52) 100%
     );
 }
 
 .hero--centered .hero__slide {
-  object-position: center 36%;
+  object-position: 62% 36%;
 }
 
 .hero--centered .hero__inner--centered {
@@ -3043,9 +3043,9 @@ body.consent-open {
   .hero--centered .hero__overlay {
     background: linear-gradient(
       180deg,
-      rgba(10, 22, 40, 0.88) 0%,
-      rgba(10, 22, 40, 0.94) 45%,
-      rgba(10, 22, 40, 0.92) 100%
+      rgba(10, 22, 40, 0.72) 0%,
+      rgba(10, 22, 40, 0.82) 45%,
+      rgba(10, 22, 40, 0.78) 100%
     );
   }
 
@@ -3234,9 +3234,9 @@ body.consent-open {
   .hero--centered .hero__overlay {
     background: linear-gradient(
       180deg,
-      rgba(10, 22, 40, 0.88) 0%,
-      rgba(10, 22, 40, 0.94) 45%,
-      rgba(10, 22, 40, 0.92) 100%
+      rgba(10, 22, 40, 0.72) 0%,
+      rgba(10, 22, 40, 0.82) 45%,
+      rgba(10, 22, 40, 0.78) 100%
     );
   }
 
