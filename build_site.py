@@ -144,17 +144,15 @@ def home_page_body() -> str:
         </ul>
         <div class="hero-actions hero-actions--tiered">
           <a class="btn btn-primary hero-cta-primary" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
-          <div class="hero-actions__secondary">
-            <a class="btn btn-secondary btn-wa" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
-            <a class="btn btn-tertiary" href="schaden-melden.html">Schaden online melden</a>
-          </div>
+          <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+          <a class="btn btn-tertiary hero-cta-tertiary" href="schaden-melden.html">Schaden online melden</a>
         </div>
       </div>
       </div>
     </section>
 
     <section class="section home-section home-expert" data-section="expert" id="expertise">
-      <div class="expert-spotlight expert-spotlight--premium">
+      <div class="expert-spotlight expert-spotlight--premium expert-spotlight--composed">
         <div class="expert-spotlight__media">
           <img class="expert-spotlight__photo" src="assets/portrait-placeholder.png" alt="Porträtfoto — {OWNER}" loading="lazy" />
         </div>
@@ -183,7 +181,7 @@ def home_page_body() -> str:
       </header>
       <div class="service-grid">
         <article class="service-card">
-          <div class="service-card__media"><img src="assets/damage-detail.png" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="assets/service/service-unfall.jpg" alt="" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Unfallgutachten</h3>
             <p>Unabhängige Schadenaufnahme als technische Grundlage für die Regulierung.</p>
@@ -191,7 +189,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="assets/workshop-tools.png" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="assets/service/service-bewertung.jpg" alt="" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Fahrzeugbewertung</h3>
             <p>Marktwert, Wiederbeschaffungswert oder Fahrzeugwert je nach Anlass.</p>
@@ -199,7 +197,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="assets/nrw-road.png" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="assets/service/service-wohnmobile.jpg" alt="" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Wohnmobile &amp; Wohnwagen</h3>
             <p>Begutachtung und Bewertung von Freizeitfahrzeugen.</p>
@@ -207,7 +205,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="assets/hero-inspection.png" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="assets/service/service-oldtimer.jpg" alt="" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Oldtimer &amp; Youngtimer</h3>
             <p>Zustand, Originalität und Wertermittlung für Klassiker.</p>
@@ -225,28 +223,28 @@ def home_page_body() -> str:
       </header>
       <ol class="process-timeline" role="list">
         <li class="process-timeline__step">
-          <span class="process-timeline__marker" aria-hidden="true">1</span>
+          <span class="process-timeline__marker" aria-hidden="true">01</span>
           <article class="process-timeline__card">
             <h3>Kontakt</h3>
             <p>Kontaktaufnahme und Erstberatung</p>
           </article>
         </li>
         <li class="process-timeline__step">
-          <span class="process-timeline__marker" aria-hidden="true">2</span>
+          <span class="process-timeline__marker" aria-hidden="true">02</span>
           <article class="process-timeline__card">
             <h3>Begutachtung</h3>
             <p>Schadenaufnahme am Fahrzeugstandort</p>
           </article>
         </li>
         <li class="process-timeline__step">
-          <span class="process-timeline__marker" aria-hidden="true">3</span>
+          <span class="process-timeline__marker" aria-hidden="true">03</span>
           <article class="process-timeline__card">
             <h3>Dokumentation</h3>
             <p>Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden</p>
           </article>
         </li>
         <li class="process-timeline__step">
-          <span class="process-timeline__marker" aria-hidden="true">4</span>
+          <span class="process-timeline__marker" aria-hidden="true">04</span>
           <article class="process-timeline__card">
             <h3>Besprechung</h3>
             <p>Persönliche Betreuung bei Rückfragen</p>
@@ -425,7 +423,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=27" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=28" />
     {extra_head}
   </head>
   <body>
