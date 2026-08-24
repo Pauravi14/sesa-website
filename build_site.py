@@ -281,17 +281,14 @@ def home_page_body() -> str:
       </header>
       <div class="grid-3 trust-grid">
         <article class="panel trust-panel">
-          <span class="trust-panel__mark" aria-hidden="true">01</span>
           <h3>Qualifikation</h3>
           <p class="muted">{QUAL_TRUST_BLURB}</p>
         </article>
         <article class="panel trust-panel">
-          <span class="trust-panel__mark" aria-hidden="true">02</span>
           <h3>Erfahrung</h3>
           <p class="muted">Berufliche Tätigkeit u. a. als Fahrzeugbewerter und Unfallschadengutachter — frühere Tätigkeit bei TÜV NORD, keine aktuelle Partnerschaft.</p>
         </article>
         <article class="panel trust-panel">
-          <span class="trust-panel__mark" aria-hidden="true">03</span>
           <h3>Persönliche Betreuung</h3>
           <p class="muted">Ein Ansprechpartner von der ersten Kontaktaufnahme bis zur Besprechung des Gutachtens.</p>
         </article>
@@ -447,7 +444,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=78" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=79" />
     {extra_head}
   </head>
   <body>
