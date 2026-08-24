@@ -1182,6 +1182,26 @@ a:hover {
   padding-bottom: 7.75rem;
 }
 
+.home-services .section-header {
+  max-width: 48rem;
+}
+
+.home-services .service-grid {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-services .service-card__body {
+  align-items: center;
+  text-align: center;
+}
+
+.home-services .service-card__link {
+  align-self: center;
+  justify-content: center;
+}
+
 .home-process {
   padding-top: 7.75rem;
   padding-bottom: 7.75rem;
@@ -1483,6 +1503,21 @@ a:hover {
   flex-direction: column;
   flex: 1;
   padding: 1.25rem 1.35rem 1.35rem;
+}
+
+.service-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0 auto 0.85rem;
+  color: rgba(201, 137, 88, 0.95);
+}
+
+.service-card__icon svg {
+  width: 2.15rem;
+  height: 2.15rem;
 }
 
 .service-card__body h3 {

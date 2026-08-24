@@ -145,6 +145,38 @@ def process_flow_unit(number: str, title: str, body: str, with_connector: bool) 
         </li>{connector}"""
 
 
+def service_card_icon(key: str) -> str:
+    icons = {
+        "unfall": (
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" '
+            'stroke-linecap="round" stroke-linejoin="round">'
+            '<path d="M8 3h8v15H8z"/><path d="M10 3V2h4v1"/>'
+            '<path d="M12 7.2a2.4 2.7 0 0 0-2.4 2.7v1.6h4.8v-1.6A2.4 2.7 0 0 0 12 7.2Z"/>'
+            '<path d="M9.5 12.3 11 13.8l3.5-3.5"/></svg>'
+        ),
+        "bewertung": (
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" '
+            'stroke-linecap="round" stroke-linejoin="round">'
+            '<path d="M5 17h14l-1.2-5.5a2 2 0 0 0-2-1.5H8.2a2 2 0 0 0-2 1.5L5 17Z"/>'
+            '<path d="M5 11h14l1-4H4l1 4Z"/>'
+            '<circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>'
+        ),
+        "wohnmobile": (
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" '
+            'stroke-linecap="round" stroke-linejoin="round">'
+            '<path d="M3 10h12v8H3z"/><path d="M15 12h4l2 3v3h-6z"/>'
+            '<path d="M3 13h12"/><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/></svg>'
+        ),
+        "oldtimer": (
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" '
+            'stroke-linecap="round" stroke-linejoin="round">'
+            '<path d="M4 14h16l-1.5-4.5a2 2 0 0 0-1.9-1.3H7.4a2 2 0 0 0-1.9 1.3L4 14Z"/>'
+            '<path d="M4 11h16"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>'
+        ),
+    }
+    return f'<span class="service-card__icon" aria-hidden="true">{icons[key]}</span>'
+
+
 def hero_preload_head() -> str:
     return "\n".join(
         f'    <link rel="preload" as="image" href="{src.split("?")[0]}" />' for src, _ in HERO_SLIDES
@@ -230,7 +262,7 @@ def home_page_body() -> str:
     </section>
 
     <section class="section content-light home-section home-services" data-section="services" id="leistungen">
-      <header class="section-header">
+      <header class="section-header section-header--center">
         <h2>Leistungen im Überblick</h2>
         <p class="section-intro">Von der Schadenaufnahme bis zur Wertermittlung — fachlich fundiert und persönlich betreut.</p>
       </header>
@@ -238,6 +270,7 @@ def home_page_body() -> str:
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["unfall"]}" alt="Schadendetail am Fahrzeug" loading="lazy" /></div>
           <div class="service-card__body">
+            {service_card_icon("unfall")}
             <h3>Unfallgutachten</h3>
             <p>Unabhängige Schadenaufnahme als technische Grundlage für die Regulierung.</p>
             <a class="service-card__link" href="leistungen/unfallgutachten.html">Mehr erfahren</a>
@@ -246,6 +279,7 @@ def home_page_body() -> str:
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["bewertung"]}" alt="Werkzeug und Dokumentation zur Fahrzeugbewertung" loading="lazy" /></div>
           <div class="service-card__body">
+            {service_card_icon("bewertung")}
             <h3>Fahrzeugbewertung</h3>
             <p>Marktwert, Wiederbeschaffungswert oder Fahrzeugwert je nach Anlass.</p>
             <a class="service-card__link" href="leistungen/fahrzeugbewertung.html">Mehr erfahren</a>
@@ -254,6 +288,7 @@ def home_page_body() -> str:
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["wohnmobile"]}" alt="Wohnmobil auf einer Landstraße" loading="lazy" /></div>
           <div class="service-card__body">
+            {service_card_icon("wohnmobile")}
             <h3>Wohnmobile &amp; Wohnwagen</h3>
             <p>Begutachtung und Bewertung von Freizeitfahrzeugen.</p>
             <a class="service-card__link" href="leistungen/wohnmobile.html">Mehr erfahren</a>
@@ -262,6 +297,7 @@ def home_page_body() -> str:
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["oldtimer"]}" alt="Oldtimer in der Werkstatt" loading="lazy" /></div>
           <div class="service-card__body">
+            {service_card_icon("oldtimer")}
             <h3>Oldtimer &amp; Youngtimer</h3>
             <p>Zustand, Originalität und Wertermittlung für Klassiker.</p>
             <a class="service-card__link" href="leistungen/oldtimer-youngtimer.html">Mehr erfahren</a>
@@ -455,7 +491,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=88" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=89" />
     {extra_head}
   </head>
   <body>
