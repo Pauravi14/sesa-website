@@ -641,6 +641,24 @@ a:hover {
   align-items: center;
 }
 
+.expert-spotlight__title {
+  margin: 0 0 0.35rem;
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.expert-spotlight__title .kicker {
+  display: block;
+  margin-bottom: 0.55rem;
+}
+
+.expert-spotlight__name {
+  display: block;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  color: var(--ivory);
+}
+
 .expert-spotlight__photo {
   width: 100%;
   height: 360px;
