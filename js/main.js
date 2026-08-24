@@ -376,7 +376,6 @@
           return;
         }
 
-        resetConnectors();
         connector.classList.add("is-connector-live");
         setConnectorProgress(orbit, 0);
 
@@ -469,7 +468,6 @@
               })
               .then(function () {
                 if (generation !== sequenceGeneration) return;
-                resetConnectors();
                 return wait(TIMING.betweenSegments);
               });
           }, Promise.resolve());
