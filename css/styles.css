@@ -1483,7 +1483,13 @@ a:hover {
 
 .process-flow__card h3 {
   margin: 0 0 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1.28rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.process-flow__card h3::first-letter {
+  text-transform: uppercase;
 }
 
 .process-flow__card p {
