@@ -324,6 +324,7 @@
     };
 
     let running = false;
+    let sequenceFinished = false;
     let sequenceGeneration = 0;
     let timers = [];
     let rafIds = [];
@@ -415,26 +416,34 @@
       });
     }
 
-    function resetSequence(generation) {
-      return new Promise(function (resolve) {
-        if (generation !== sequenceGeneration) {
-          resolve();
-          return;
-        }
+    function finishSequence(generation) {
+      if (generation !== sequenceGeneration || sequenceFinished) {
+        return Promise.resolve();
+      }
 
-        units.forEach(function (unit, index) {
-          if (index === 0) return;
-          unit.classList.remove("is-step-live", "is-step-open");
-        });
+      running = false;
+      sequenceFinished = true;
+      clearTimers();
 
-        connectors.forEach(function (connector) {
-          connector.classList.remove("is-connector-live");
-          const orbit = connector.querySelector("[data-process-orbit]");
-          if (orbit) setConnectorProgress(orbit, 0);
-        });
-
-        wait(TIMING.resetFade).then(resolve);
+      units.forEach(function (unit) {
+        unit.classList.add("is-step-live", "is-step-open");
       });
+
+      connectors.forEach(function (connector) {
+        connector.classList.add("is-connector-live");
+        const orbit = connector.querySelector("[data-process-orbit]");
+        if (orbit) setConnectorProgress(orbit, 1);
+      });
+
+      processFlow.classList.remove("is-sequencing");
+      processFlow.classList.add("is-sequence-complete");
+
+      if (flowObserver) {
+        flowObserver.disconnect();
+        flowObserver = null;
+      }
+
+      return Promise.resolve();
     }
 
     function runSequence(generation) {
@@ -469,41 +478,27 @@
         })
         .then(function () {
           if (generation !== sequenceGeneration) return;
-          return resetSequence(generation);
-        })
-        .then(function () {
-          if (generation !== sequenceGeneration || !running) return;
-          return runSequence(generation);
+          return finishSequence(generation);
         });
     }
 
-    function stopSequence() {
-      running = false;
-      sequenceGeneration += 1;
-      clearTimers();
-      units.forEach(function (unit, index) {
-        if (index === 0) {
-          unit.classList.add("is-step-live", "is-step-open");
-        } else {
-          unit.classList.remove("is-step-live", "is-step-open");
-        }
-      });
-      connectors.forEach(function (connector) {
-        connector.classList.remove("is-connector-live");
-        const orbit = connector.querySelector("[data-process-orbit]");
-        if (orbit) setConnectorProgress(orbit, 0);
-      });
-      processFlow.classList.remove("is-sequencing");
-    }
-
     function startSequence() {
-      if (running) return;
+      if (running || sequenceFinished) return;
       running = true;
       sequenceGeneration += 1;
       const generation = sequenceGeneration;
       clearTimers();
       processFlow.classList.add("is-sequencing");
       runSequence(generation);
+
+      if (flowObserver) {
+        flowObserver.disconnect();
+        flowObserver = null;
+      }
+
+      window.setTimeout(function () {
+        finishSequence(generation);
+      }, 14000);
     }
 
     function isProcessFlowInView() {
@@ -516,14 +511,17 @@
       units.forEach(function (unit) {
         unit.classList.add("is-step-live", "is-step-open");
       });
+      connectors.forEach(function (connector) {
+        connector.classList.add("is-connector-live");
+        const orbit = connector.querySelector("[data-process-orbit]");
+        if (orbit) setConnectorProgress(orbit, 1);
+      });
     } else {
       flowObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               startSequence();
-            } else {
-              stopSequence();
             }
           });
         },
