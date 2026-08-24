@@ -119,8 +119,10 @@ def home_page_body() -> str:
           <img class="expert-spotlight__photo" src="assets/portrait-placeholder.png" alt="Porträtfoto — {OWNER}" loading="lazy" />
         </div>
         <div class="expert-spotlight__content">
-          <p class="kicker">Qualifikation &amp; Erfahrung</p>
-          <h2>{OWNER}</h2>
+          <h2 class="expert-spotlight__title">
+            <span class="kicker">Qualifikation &amp; Erfahrung</span>
+            <span class="expert-spotlight__name">{OWNER}</span>
+          </h2>
           <p class="expert-spotlight__role">Inhaber · {BUSINESS}</p>
           <ul class="expert-credentials">
             <li>Kfz-Meister</li>
@@ -383,7 +385,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=23" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=24" />
     {extra_head}
   </head>
   <body>

@@ -816,6 +816,18 @@ a:hover {
   margin: 0 0 0.7rem;
 }
 
+/* Chrome / browser translation often injects lowercase English in labels */
+html.translated-ltr .kicker,
+html.translated-rtl .kicker {
+  text-transform: capitalize;
+  letter-spacing: 0.08em;
+}
+
+html.translated-ltr .trust-panel h3,
+html.translated-rtl .trust-panel h3 {
+  text-transform: capitalize;
+}
+
 h1,
 h2,
 h3 {
