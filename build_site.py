@@ -6,6 +6,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
+LOGO_MONOGRAM = "assets/logo-monogram.png"
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -80,10 +81,10 @@ def prefix(depth: int) -> str:
 
 def nav_links(depth: int, active: str) -> str:
     targets = [
-        ("Startseite", "index.html"),
+        ("HOME", "index.html"),
         ("Über uns", "ueber-uns.html"),
         ("Leistungen", "leistungen/index.html"),
-        ("Ratgeber", "ratgeber/index.html"),
+        ("GUTACHTEN", "ratgeber/index.html"),
         ("Kontakt", "kontakt.html"),
     ]
     parts = []
@@ -175,7 +176,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=16" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=18" />
     {extra_head}
   </head>
   <body>
@@ -184,11 +185,11 @@ def shell(
       <div class="nav">
         <a class="brand" href="{p}index.html">
           <span class="brand-mark-slot">
-            <img class="brand-mark" src="{p}assets/logo-mark.svg" width="72" height="72" alt="" />
+            <img class="brand-mark" src="{p}{LOGO_MONOGRAM}" width="291" height="280" alt="" />
           </span>
           <span class="brand-text">
             <span class="brand-name">SESA</span>
-            <span class="brand-sub">KFZ – SACHVERSTÄNDIGENBÜRO</span>
+            <span class="brand-sub">KFZ - SACHVERSTÄNDIGENBÜRO</span>
           </span>
         </a>
         <div class="nav-divider" aria-hidden="true"></div>
@@ -302,7 +303,7 @@ def main() -> None:
         <div class="panel"><h3>Persönliche Betreuung</h3><p class="muted">Ein Ansprechpartner von der ersten Kontaktaufnahme bis zur Besprechung des Gutachtens.</p></div>
       </div>
     </section>"""
-    write(ROOT / "index.html", 0, "Startseite", "Kfz-Gutachter", "Unabhängiges Kfz-Sachverständigenbüro — Schadengutachten und Fahrzeugbewertung.", home)
+    write(ROOT / "index.html", 0, "HOME", "Kfz-Gutachter", "Unabhängiges Kfz-Sachverständigenbüro — Schadengutachten und Fahrzeugbewertung.", home)
 
     # Leistungen overview
     leistungen_body = page_hero(
@@ -467,7 +468,7 @@ def main() -> None:
       <article class="card"><h3><a href="rechte.html">Ihre Rechte nach einem unverschuldeten Unfall</a></h3></article>
       <article class="card"><h3><a href="faq.html">FAQ</a></h3></article>
     </div></section>"""
-    write(ROOT / "ratgeber" / "index.html", 1, "Ratgeber", "Ratgeber", "Unfallhilfe und FAQ.", rat_index)
+    write(ROOT / "ratgeber" / "index.html", 1, "GUTACHTEN", "Ratgeber", "Unfallhilfe und FAQ.", rat_index)
 
     unfall_rat = page_hero("Was tun nach einem Unfall?", "Erste Schritte an der Unfallstelle.", "assets/damage-detail.png", 1)
     unfall_rat += """
@@ -482,7 +483,7 @@ def main() -> None:
       </ol>
       <p class="muted"><em>Keine Rechtsberatung. Bei rechtlichen Fragen wenden Sie sich an einen Rechtsanwalt.</em></p>
     </section>"""
-    write(ROOT / "ratgeber" / "nach-einem-unfall.html", 1, "Ratgeber", "Nach einem Unfall", "Erste Schritte.", unfall_rat)
+    write(ROOT / "ratgeber" / "nach-einem-unfall.html", 1, "GUTACHTEN", "Nach einem Unfall", "Erste Schritte.", unfall_rat)
 
     rechte = page_hero("Ihre Rechte", "Informationen nach einem unverschuldeten Verkehrsunfall.", "assets/workshop-tools.png", 1)
     rechte += """
@@ -496,7 +497,7 @@ def main() -> None:
         <tr><th>Teilschuld</th><td>Bei Mithaftung können Kosten nur anteilig erstattet werden. Die Haftungsquote sollte rechtlich geprüft werden.</td></tr>
       </table>
     </section>"""
-    write(ROOT / "ratgeber" / "rechte.html", 1, "Ratgeber", "Ihre Rechte", "Informationen nach Unfall.", rechte)
+    write(ROOT / "ratgeber" / "rechte.html", 1, "GUTACHTEN", "Ihre Rechte", "Informationen nach Unfall.", rechte)
 
     faq_items = [
         ("Was kostet ein Gutachten?", "Bei einem unverschuldeten Haftpflichtschaden können erforderliche Sachverständigenkosten grundsätzlich zu den ersatzfähigen Schadenpositionen gehören. Bei Bagatellschäden oder Mithaftung können Abweichungen bestehen. Andere Gutachten werden je nach Auftrag berechnet."),
@@ -511,7 +512,7 @@ def main() -> None:
     for q, a in faq_items:
         faq_body += f"<details><summary>{q}</summary><p class=\"muted\">{a}</p></details>"
     faq_body += "</section>"
-    write(ROOT / "ratgeber" / "faq.html", 1, "Ratgeber", "FAQ", "Häufige Fragen.", faq_body)
+    write(ROOT / "ratgeber" / "faq.html", 1, "GUTACHTEN", "FAQ", "Häufige Fragen.", faq_body)
 
     # Kontakt
     kontakt = page_hero("Kontakt", "Telefon, E-Mail, Anschrift und Kartenansicht.", "assets/hero-inspection.png", 0)
