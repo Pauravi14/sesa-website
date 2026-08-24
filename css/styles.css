@@ -1592,6 +1592,12 @@ a:hover {
 
 .process-flow__unit {
   grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  min-height: 100%;
+  overflow: visible;
 }
 
 .process-flow__connector {
@@ -1610,23 +1616,25 @@ a:hover {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  overflow: visible;
 }
 
 .process-flow__unit:not(:last-child) .process-flow__connector {
   position: absolute;
   top: 2rem;
-  left: calc(50% + 2rem);
-  width: calc(100% - 4rem);
+  left: 50%;
+  width: 100%;
   height: 4rem;
   transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .process-flow__orbit {
   --connector-progress: 0;
   position: relative;
-  width: calc(100% + 4.5rem);
+  width: 100%;
   height: 4rem;
-  margin: 0 -2.25rem;
+  margin: 0;
   display: flex;
   align-items: center;
 }
@@ -1673,7 +1681,6 @@ a:hover {
   width: 0.85rem;
   height: 0.85rem;
   color: var(--copper);
-  filter: drop-shadow(0 0 8px rgba(201, 137, 88, 0.65));
   will-change: left;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -1697,7 +1704,7 @@ a:hover {
 
 .process-flow.is-sequencing .process-flow__connector.is-connector-done .process-flow__orbit-chevron {
   left: 100%;
-  transform: translate(-100%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .process-flow.is-sequencing .process-flow__unit:not(.is-step-live) .process-flow__marker {
@@ -1743,15 +1750,7 @@ a:hover {
 
 .process-flow.is-static .process-flow__orbit-chevron {
   left: 100%;
-  transform: translate(-100%, -50%);
-}
-
-.process-flow__unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 0;
-  min-height: 100%;
+  transform: translate(-50%, -50%);
 }
 
 .process-flow__marker-cell {
@@ -1971,7 +1970,7 @@ html.translated-rtl .process-flow__card h3 {
 
   .process-flow.is-sequencing .process-flow__orbit-chevron {
     left: 100%;
-    transform: translate(-100%, -50%);
+    transform: translate(-50%, -50%);
   }
 }
 
