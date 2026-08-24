@@ -307,28 +307,203 @@
 
   const processFlow = document.querySelector("[data-process-flow]");
   if (processFlow) {
-    const flowUnits = processFlow.querySelectorAll(".process-flow__unit[data-flow-item]");
+    const units = Array.prototype.slice.call(processFlow.querySelectorAll(".process-flow__unit"));
+    const connectors = Array.prototype.slice.call(
+      processFlow.querySelectorAll("[data-process-connector]")
+    );
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const TIMING = {
+      initialDelay: 600,
+      travel: 2200,
+      arrivalPause: 650,
+      markerReveal: 550,
+      cardReveal: 650,
+      betweenSegments: 450,
+      finalHold: 1700,
+      resetFade: 550
+    };
 
-    function startFlowMotion() {
-      processFlow.classList.add("is-flowing");
+    let running = false;
+    let sequenceGeneration = 0;
+    let timers = [];
+    let rafIds = [];
+    let flowObserver = null;
+
+    function clearTimers() {
+      timers.forEach(function (id) {
+        window.clearTimeout(id);
+      });
+      timers = [];
+      rafIds.forEach(function (id) {
+        window.cancelAnimationFrame(id);
+      });
+      rafIds = [];
     }
 
-    function revealFlowUnit(index) {
-      const item = flowUnits[index];
-      if (!item) return;
-      item.classList.add("is-visible");
-      if (index < flowUnits.length - 1) {
-        window.setTimeout(function () {
-          revealFlowUnit(index + 1);
-        }, reduceMotion ? 0 : 520);
-      }
+    function wait(ms) {
+      return new Promise(function (resolve) {
+        const id = window.setTimeout(resolve, ms);
+        timers.push(id);
+      });
     }
 
-    function activateProcessFlow() {
-      startFlowMotion();
-      if (!flowUnits[0] || flowUnits[0].classList.contains("is-visible")) return;
-      revealFlowUnit(0);
+    function easeInOut(t) {
+      return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    }
+
+    function setConnectorProgress(orbit, value) {
+      orbit.style.setProperty("--connector-progress", String(value));
+    }
+
+    function travelConnector(connector, duration, generation) {
+      return new Promise(function (resolve) {
+        if (generation !== sequenceGeneration) {
+          resolve();
+          return;
+        }
+
+        const orbit = connector.querySelector("[data-process-orbit]");
+        if (!orbit) {
+          resolve();
+          return;
+        }
+
+        connector.classList.add("is-connector-live");
+        setConnectorProgress(orbit, 0);
+
+        let start = null;
+        function frame(now) {
+          if (generation !== sequenceGeneration) {
+            resolve();
+            return;
+          }
+
+          if (start === null) start = now;
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          setConnectorProgress(orbit, easeInOut(progress));
+
+          if (progress < 1) {
+            const rafId = window.requestAnimationFrame(frame);
+            rafIds.push(rafId);
+          } else {
+            resolve();
+          }
+        }
+
+        const rafId = window.requestAnimationFrame(frame);
+        rafIds.push(rafId);
+      });
+    }
+
+    function revealStep(unit, generation) {
+      return new Promise(function (resolve) {
+        if (generation !== sequenceGeneration) {
+          resolve();
+          return;
+        }
+
+        unit.classList.add("is-step-live");
+        wait(TIMING.markerReveal).then(function () {
+          if (generation !== sequenceGeneration) {
+            resolve();
+            return;
+          }
+          unit.classList.add("is-step-open");
+          return wait(TIMING.cardReveal);
+        }).then(resolve);
+      });
+    }
+
+    function resetSequence(generation) {
+      return new Promise(function (resolve) {
+        if (generation !== sequenceGeneration) {
+          resolve();
+          return;
+        }
+
+        units.forEach(function (unit, index) {
+          if (index === 0) return;
+          unit.classList.remove("is-step-live", "is-step-open");
+        });
+
+        connectors.forEach(function (connector) {
+          connector.classList.remove("is-connector-live");
+          const orbit = connector.querySelector("[data-process-orbit]");
+          if (orbit) setConnectorProgress(orbit, 0);
+        });
+
+        wait(TIMING.resetFade).then(resolve);
+      });
+    }
+
+    function runSequence(generation) {
+      units[0].classList.add("is-step-live", "is-step-open");
+
+      return wait(TIMING.initialDelay)
+        .then(function () {
+          if (generation !== sequenceGeneration) return;
+          return connectors.reduce(function (chain, connector, index) {
+            return chain
+              .then(function () {
+                if (generation !== sequenceGeneration) return;
+                return travelConnector(connector, TIMING.travel, generation);
+              })
+              .then(function () {
+                if (generation !== sequenceGeneration) return;
+                return wait(TIMING.arrivalPause);
+              })
+              .then(function () {
+                if (generation !== sequenceGeneration) return;
+                return revealStep(units[index + 1], generation);
+              })
+              .then(function () {
+                if (generation !== sequenceGeneration) return;
+                return wait(TIMING.betweenSegments);
+              });
+          }, Promise.resolve());
+        })
+        .then(function () {
+          if (generation !== sequenceGeneration) return;
+          return wait(TIMING.finalHold);
+        })
+        .then(function () {
+          if (generation !== sequenceGeneration) return;
+          return resetSequence(generation);
+        })
+        .then(function () {
+          if (generation !== sequenceGeneration || !running) return;
+          return runSequence(generation);
+        });
+    }
+
+    function stopSequence() {
+      running = false;
+      sequenceGeneration += 1;
+      clearTimers();
+      units.forEach(function (unit, index) {
+        if (index === 0) {
+          unit.classList.add("is-step-live", "is-step-open");
+        } else {
+          unit.classList.remove("is-step-live", "is-step-open");
+        }
+      });
+      connectors.forEach(function (connector) {
+        connector.classList.remove("is-connector-live");
+        const orbit = connector.querySelector("[data-process-orbit]");
+        if (orbit) setConnectorProgress(orbit, 0);
+      });
+      processFlow.classList.remove("is-sequencing");
+    }
+
+    function startSequence() {
+      if (running) return;
+      running = true;
+      sequenceGeneration += 1;
+      const generation = sequenceGeneration;
+      clearTimers();
+      processFlow.classList.add("is-sequencing");
+      runSequence(generation);
     }
 
     function isProcessFlowInView() {
@@ -336,26 +511,29 @@
       return rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
     }
 
-    startFlowMotion();
-
-    if (reduceMotion || !flowUnits.length) {
-      flowUnits.forEach(function (item) {
-        item.classList.add("is-visible");
+    if (reduceMotion || !units.length) {
+      processFlow.classList.add("is-static");
+      units.forEach(function (unit) {
+        unit.classList.add("is-step-live", "is-step-open");
       });
-    } else if (isProcessFlowInView()) {
-      revealFlowUnit(0);
     } else {
-      const flowObserver = new IntersectionObserver(
+      flowObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-            revealFlowUnit(0);
-            flowObserver.disconnect();
+            if (entry.isIntersecting) {
+              startSequence();
+            } else {
+              stopSequence();
+            }
           });
         },
-        { threshold: 0.08, rootMargin: "0px 0px 0px 0px" }
+        { threshold: 0.12, rootMargin: "0px 0px 0px 0px" }
       );
       flowObserver.observe(processFlow);
+
+      if (isProcessFlowInView()) {
+        startSequence();
+      }
     }
   }
 
