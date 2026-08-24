@@ -123,18 +123,13 @@ def hero_slides_html() -> str:
     return "\n".join(parts)
 
 
-def process_step(number: str, title: str, body: str, with_arrow: bool) -> str:
-    arrow = (
-        '<span class="process-timeline__arrow-line" aria-hidden="true"></span>'
-        if with_arrow
-        else ""
-    )
+PROCESS_CONNECTOR = '<li class="process-timeline__connector" aria-hidden="true"></li>'
+
+
+def process_unit(number: str, title: str, body: str) -> str:
     return f"""
-        <li class="process-timeline__step">
-          <div class="process-timeline__rail">
-            <span class="process-timeline__marker" aria-hidden="true">{number}</span>
-            {arrow}
-          </div>
+        <li class="process-timeline__unit">
+          <span class="process-timeline__marker" aria-hidden="true">{number}</span>
           <article class="process-timeline__card">
             <h3>{title}</h3>
             <p>{body}</p>
@@ -254,11 +249,14 @@ def home_page_body() -> str:
       <header class="section-header section-header--center">
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
-      <ol class="process-timeline process-timeline--connected" role="list">
-{process_step("01", "Kontakt", "Kontaktaufnahme und Erstberatung", True)}
-{process_step("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", True)}
-{process_step("03", "Dokumentation", "In der Regel innerhalb von 24–48 Stunden<br>nach vollständiger Schadenaufnahme", True)}
-{process_step("04", "Besprechung", "Persönliche Betreuung bei Rückfragen", False)}
+      <ol class="process-timeline process-timeline--flow" role="list">
+{process_unit("01", "Kontakt", "Kontaktaufnahme und Erstberatung")}
+{PROCESS_CONNECTOR}
+{process_unit("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort")}
+{PROCESS_CONNECTOR}
+{process_unit("03", "Dokumentation", GUTACHTEN_TIMING)}
+{PROCESS_CONNECTOR}
+{process_unit("04", "Besprechung", "Persönliche Betreuung bei Rückfragen")}
       </ol>
     </section>
 
