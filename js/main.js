@@ -357,10 +357,17 @@
 
     function resetConnectors() {
       connectors.forEach(function (connector) {
-        connector.classList.remove("is-connector-live");
+        connector.classList.remove("is-connector-live", "is-connector-done");
         const orbit = connector.querySelector("[data-process-orbit]");
         if (orbit) setConnectorProgress(orbit, 0);
       });
+    }
+
+    function finishConnector(connector) {
+      const orbit = connector.querySelector("[data-process-orbit]");
+      connector.classList.remove("is-connector-live");
+      connector.classList.add("is-connector-done");
+      if (orbit) setConnectorProgress(orbit, 1);
     }
 
     function travelConnector(connector, duration, generation) {
@@ -395,6 +402,7 @@
             const rafId = window.requestAnimationFrame(frame);
             rafIds.push(rafId);
           } else {
+            finishConnector(connector);
             resolve();
           }
         }
@@ -507,7 +515,7 @@
         unit.classList.add("is-step-live", "is-step-open");
       });
       connectors.forEach(function (connector) {
-        connector.classList.add("is-connector-live");
+        connector.classList.add("is-connector-done");
         const orbit = connector.querySelector("[data-process-orbit]");
         if (orbit) setConnectorProgress(orbit, 1);
       });

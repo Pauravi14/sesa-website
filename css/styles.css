@@ -1365,8 +1365,14 @@ a:hover {
   transition: opacity 0.35s ease;
 }
 
-.process-flow.is-sequencing .process-flow__connector.is-connector-live {
+.process-flow.is-sequencing .process-flow__connector.is-connector-live,
+.process-flow.is-sequencing .process-flow__connector.is-connector-done {
   opacity: 1;
+}
+
+.process-flow.is-sequencing .process-flow__connector.is-connector-done .process-flow__orbit-chevron {
+  left: 100%;
+  transform: translate(0, -50%) translateX(-100%);
 }
 
 .process-flow.is-sequencing .process-flow__unit:not(.is-step-live) .process-flow__marker {
