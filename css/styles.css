@@ -2217,24 +2217,45 @@ body.consent-open {
   }
 
   50% {
-    transform: scale(1.1);
+    transform: scale(1.24);
+  }
+}
+
+@keyframes wa-bubble-pop {
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.14) translateY(-4px);
   }
 }
 
 @keyframes wa-attention-ring {
   0% {
     transform: scale(1);
-    opacity: 0.32;
+    opacity: 0.42;
   }
 
   100% {
-    transform: scale(1.42);
+    transform: scale(1.65);
     opacity: 0;
   }
 }
 
 .wa-float-wrap.is-attention-pulse .wa-float-icon {
-  animation: wa-attention-pulse 800ms ease-in-out;
+  animation: wa-attention-pulse 1000ms ease-in-out;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.62);
+}
+
+.wa-float-wrap.is-attention-pulse .wa-float-bubble {
+  animation: wa-bubble-pop 1000ms ease-in-out;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+}
+
+.wa-float-wrap.is-attention-pulse .wa-float-bubble-strong {
+  color: #128c7e;
 }
 
 .wa-float-wrap.is-attention-pulse .wa-float-icon::before {
@@ -2242,19 +2263,21 @@ body.consent-open {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid rgba(37, 211, 102, 0.4);
+  border: 2px solid rgba(37, 211, 102, 0.55);
   pointer-events: none;
-  animation: wa-attention-ring 800ms ease-out;
+  animation: wa-attention-ring 1000ms ease-out;
 }
 
 .wa-float-wrap.is-attention-paused.is-attention-pulse .wa-float-icon,
-.wa-float-wrap.is-attention-paused.is-attention-pulse .wa-float-icon::before {
+.wa-float-wrap.is-attention-paused.is-attention-pulse .wa-float-icon::before,
+.wa-float-wrap.is-attention-paused.is-attention-pulse .wa-float-bubble {
   animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .wa-float-wrap.is-attention-pulse .wa-float-icon,
-  .wa-float-wrap.is-attention-pulse .wa-float-icon::before {
+  .wa-float-wrap.is-attention-pulse .wa-float-icon::before,
+  .wa-float-wrap.is-attention-pulse .wa-float-bubble {
     animation: none !important;
   }
 }
@@ -2356,31 +2379,38 @@ body.consent-open {
 
 @media (max-width: 760px) {
   .wa-float-wrap {
-    right: 1rem;
-    bottom: 1rem;
+    right: 0.85rem;
+    bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
+    z-index: 60;
   }
 
   .wa-float-icon {
-    width: 3.35rem;
-    height: 3.35rem;
+    width: 3.55rem;
+    height: 3.55rem;
   }
 
   .wa-float-icon svg {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
   }
 
   .wa-float-bubble {
-    padding: 0.45rem 0.75rem 0.45rem 0.7rem;
-    margin-right: 0.5rem;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem 0.5rem 0.85rem;
+    margin-right: 0.55rem;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.16);
   }
 
   .wa-float-bubble-small {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
   }
 
   .wa-float-bubble-strong {
-    font-size: 0.82rem;
+    font-size: 0.88rem;
+  }
+
+  .wa-float-wrap.is-attention-pulse .wa-float-bubble {
+    transform-origin: center right;
   }
 }
 
@@ -2776,60 +2806,15 @@ body.consent-open {
   }
 
   body {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
   }
 
   .home-trust {
-    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
-  }
-
-  .wa-float-wrap {
-    display: none;
+    padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
   }
 
   .mobile-action-bar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 55;
-    border-top: 1px solid rgba(201, 137, 88, 0.35);
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-
-  .mobile-action-bar__btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.95rem 1rem;
-    font-weight: 700;
-    font-size: 0.92rem;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  .mobile-action-bar__btn--call {
-    background: var(--copper);
-    color: #fff;
-  }
-
-  .mobile-action-bar__btn--call:hover {
-    background: #d49a66;
-    color: #fff;
-  }
-
-  .mobile-action-bar__btn--wa {
-    background: #25d366;
-    color: #fff;
-  }
-
-  .mobile-action-bar__btn--wa:hover {
-    background: #1fb855;
-    color: #fff;
+    display: none;
   }
 
   .hero--home {

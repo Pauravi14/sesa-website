@@ -106,12 +106,7 @@ def wa_float_widget() -> str:
 
 
 def mobile_action_bar() -> str:
-    beratung = whatsapp_url(WHATSAPP_TEXT_BERATUNG)
-    return f"""
-    <nav class="mobile-action-bar" aria-label="Schnellkontakt">
-      <a class="mobile-action-bar__btn mobile-action-bar__btn--call" href="tel:{PHONE_LINK}">Anrufen</a>
-      <a class="mobile-action-bar__btn mobile-action-bar__btn--wa" href="{beratung}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-    </nav>"""
+    return ""
 
 
 def hero_slides_html() -> str:
@@ -452,7 +447,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=77" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=78" />
     {extra_head}
   </head>
   <body>
@@ -497,7 +492,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=38" defer></script>
+    <script src="{p}js/main.js?v=39" defer></script>
   </body>
 </html>"""
 

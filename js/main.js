@@ -307,12 +307,14 @@
 
   if (waWrap && waToggle && document.querySelector(".hero--home")) {
     const reduceWaMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ATTENTION_FIRST_DELAY_MS = 5000;
+    const ATTENTION_REPEAT_MS = 15000;
+    const ATTENTION_PULSE_MS = 1000;
 
     if (!reduceWaMotion) {
       let attentionPaused = false;
       let attentionPulseTimer = null;
       let attentionNextTimer = null;
-      let attentionPulseCount = 0;
       let attentionStarted = false;
       let waNotifyAudio = null;
       let waAudioReady = false;
@@ -468,11 +470,7 @@
         if (attentionPaused) return;
         clearAttentionTimers();
         const delay =
-          typeof customDelay === "number"
-            ? customDelay
-            : attentionPulseCount === 1
-              ? 7000
-              : 8000 + Math.floor(Math.random() * 2000);
+          typeof customDelay === "number" ? customDelay : ATTENTION_REPEAT_MS;
         attentionNextTimer = window.setTimeout(runAttentionPulse, delay);
       }
 
@@ -482,7 +480,6 @@
           return;
         }
 
-        attentionPulseCount += 1;
         waWrap.classList.remove("is-attention-pulse");
         void waWrap.offsetWidth;
         waWrap.classList.add("is-attention-pulse");
@@ -491,13 +488,13 @@
         attentionPulseTimer = window.setTimeout(function () {
           waWrap.classList.remove("is-attention-pulse");
           scheduleAttentionPulse();
-        }, 800);
+        }, ATTENTION_PULSE_MS);
       }
 
       function resumeAttentionAfterInteraction() {
         if (attentionPaused && !waWrap.matches(":hover") && waMenu?.hidden) {
           setAttentionPaused(false);
-          scheduleAttentionPulse(9000);
+          scheduleAttentionPulse(ATTENTION_REPEAT_MS);
         }
       }
 
@@ -507,7 +504,7 @@
 
       waWrap.addEventListener("mouseleave", function () {
         setAttentionPaused(false);
-        scheduleAttentionPulse(9000);
+        scheduleAttentionPulse(ATTENTION_REPEAT_MS);
       });
 
       waWrap.addEventListener("focusin", function () {
@@ -522,6 +519,10 @@
 
       waWrap.addEventListener("touchstart", function () {
         setAttentionPaused(true);
+      }, { passive: true });
+
+      waWrap.addEventListener("touchend", function () {
+        window.setTimeout(resumeAttentionAfterInteraction, 300);
       }, { passive: true });
 
       waToggle.addEventListener("click", function () {
@@ -544,7 +545,7 @@
         attentionStarted = true;
         unlockAttentionAudio();
         window.removeEventListener("scroll", onAttentionScroll);
-        attentionNextTimer = window.setTimeout(runAttentionPulse, 5000);
+        attentionNextTimer = window.setTimeout(runAttentionPulse, ATTENTION_FIRST_DELAY_MS);
       }
 
       function onAttentionScroll() {
