@@ -443,7 +443,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=41" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=42" />
     {extra_head}
   </head>
   <body>
@@ -460,7 +460,10 @@ def shell(
           </span>
         </a>
         <div class="nav-divider" aria-hidden="true"></div>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Menü">Menü</button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Menü">
+          <span class="menu-toggle__icon" aria-hidden="true"></span>
+          <span class="menu-toggle__label">Menü</span>
+        </button>
         <ul class="menu">{nav_links(depth, active)}</ul>
         <div class="nav-divider nav-divider-end" aria-hidden="true"></div>
         {header_contact(depth)}
@@ -485,7 +488,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=6" defer></script>
+    <script src="{p}js/main.js?v=7" defer></script>
   </body>
 </html>"""
 
