@@ -546,8 +546,13 @@ a:hover {
   display: block;
   position: relative;
   padding: 0;
-  min-height: min(96vh, 940px);
+  min-height: min(96vh, 960px);
   overflow: hidden;
+}
+
+.hero--home.hero--slideshow {
+  padding: 0;
+  gap: 0;
 }
 
 .hero--split {
@@ -641,13 +646,20 @@ a:hover {
   z-index: 1;
   background: linear-gradient(
     90deg,
-    rgba(10, 22, 40, 0.86) 0%,
-    rgba(10, 22, 40, 0.72) 26%,
-    rgba(10, 22, 40, 0.38) 46%,
-    rgba(10, 22, 40, 0.12) 68%,
-    rgba(10, 22, 40, 0.04) 100%
+    rgba(10, 22, 40, 0.9) 0%,
+    rgba(10, 22, 40, 0.72) 28%,
+    rgba(10, 22, 40, 0.32) 52%,
+    rgba(10, 22, 40, 0.1) 75%,
+    rgba(10, 22, 40, 0.02) 100%
   );
   pointer-events: none;
+}
+
+.hero--slideshow .hero__inner {
+  display: flex;
+  align-items: center;
+  min-height: inherit;
+  padding: 3.5rem 6vw 4rem;
 }
 
 .hero__inner {
@@ -660,15 +672,11 @@ a:hover {
 }
 
 .hero--slideshow .hero__content {
-  max-width: 34rem;
-  padding: 2rem 2.25rem 2.35rem;
-  background: linear-gradient(
-    145deg,
-    rgba(10, 22, 40, 0.78) 0%,
-    rgba(10, 22, 40, 0.52) 100%
-  );
-  border-left: 3px solid var(--copper);
-  backdrop-filter: blur(3px);
+  max-width: 36rem;
+  padding: 0;
+  background: none;
+  border: none;
+  backdrop-filter: none;
 }
 
 .hero--home h1 {
@@ -2005,6 +2013,19 @@ body.consent-open {
       rgba(10, 22, 40, 0.82) 42%,
       rgba(10, 22, 40, 0.94) 100%
     );
+  }
+
+  .hero--slideshow {
+    min-height: min(90vh, 820px);
+  }
+
+  .hero--slideshow .hero__inner {
+    align-items: flex-end;
+    padding: 2rem 5vw calc(2.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero--slideshow .hero__content {
+    max-width: none;
   }
 
   .hero__inner--split {

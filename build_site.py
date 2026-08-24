@@ -22,13 +22,15 @@ QUAL_TRUST_BLURB = (
     "Detaillierte Qualifikationsnachweise stellen wir auf Anfrage zur Verfügung."
 )
 
-HERO_IMG_VER = "2"
+HERO_IMG_VER = "4"
 SERVICE_IMG_VER = "3"
 
 HERO_SLIDES = [
-    ("assets/hero/slide-1.jpg?v=3", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
-    ("assets/hero/slide-2.jpg?v=3", "Schadendokumentation am Fahrzeug"),
-    ("assets/hero/slide-3.jpg?v=3", "Fachliche Begutachtung in der Werkstatt"),
+    (f"assets/hero/slide-1.jpg?v={HERO_IMG_VER}", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
+    (f"assets/hero/slide-2.jpg?v={HERO_IMG_VER}", "Schadendokumentation am Fahrzeug"),
+    (f"assets/hero/slide-3.jpg?v={HERO_IMG_VER}", "Wohnmobil-Begutachtung"),
+    (f"assets/hero/slide-4.jpg?v={HERO_IMG_VER}", "Oldtimer und Youngtimer"),
+    (f"assets/hero/slide-5.jpg?v={HERO_IMG_VER}", "Fachliche Fahrzeugbewertung"),
 ]
 
 SERVICE_THUMBS = {
@@ -126,8 +128,12 @@ def home_page_body() -> str:
     beratung = whatsapp_url(WHATSAPP_TEXT_BERATUNG)
     slides = hero_slides_html()
     return f"""
-    <section class="hero hero--home hero--split" data-section="hero" aria-label="SESA Kfz-Sachverständigenbüro">
-      <div class="hero__inner hero__inner--split">
+    <section class="hero hero--home hero--slideshow" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
+      <div class="hero__slides" aria-hidden="true">
+{slides}
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__inner">
       <div class="hero__content">
         <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
         <h1>Kfz-Gutachter für Nordrhein-Westfalen, Niedersachsen, Hessen, Hamburg und Bremen</h1>
@@ -151,12 +157,6 @@ def home_page_body() -> str:
           <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
           <a class="btn btn-tertiary hero-cta-tertiary" href="schaden-melden.html">Schaden online melden</a>
         </div>
-      </div>
-      <div class="hero__visual" data-hero-slider>
-        <div class="hero__slides" aria-hidden="true">
-{slides}
-        </div>
-        <div class="hero__visual-accent" aria-hidden="true"></div>
       </div>
       </div>
     </section>
@@ -433,7 +433,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=30" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=31" />
     {extra_head}
   </head>
   <body>

@@ -9,10 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=30" />
+    <link rel="stylesheet" href="./css/styles.css?v=31" />
         <link rel="preload" as="image" href="assets/hero/slide-1.jpg" />
     <link rel="preload" as="image" href="assets/hero/slide-2.jpg" />
     <link rel="preload" as="image" href="assets/hero/slide-3.jpg" />
+    <link rel="preload" as="image" href="assets/hero/slide-4.jpg" />
+    <link rel="preload" as="image" href="assets/hero/slide-5.jpg" />
   </head>
   <body>
     <a class="skip" href="#main">Zum Hauptinhalt springen</a>
@@ -66,8 +68,16 @@
       </div>
     </header>
     <main id="main">
-    <section class="hero hero--home hero--split" data-section="hero" aria-label="SESA Kfz-Sachverständigenbüro">
-      <div class="hero__inner hero__inner--split">
+    <section class="hero hero--home hero--slideshow" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
+      <div class="hero__slides" aria-hidden="true">
+        <img class="hero__slide is-active" src="assets/hero/slide-1.jpg?v=4" alt="" loading="eager" decoding="async" fetchpriority="high" />
+        <img class="hero__slide" src="assets/hero/slide-2.jpg?v=4" alt="" loading="eager" decoding="async" />
+        <img class="hero__slide" src="assets/hero/slide-3.jpg?v=4" alt="" loading="eager" decoding="async" />
+        <img class="hero__slide" src="assets/hero/slide-4.jpg?v=4" alt="" loading="eager" decoding="async" />
+        <img class="hero__slide" src="assets/hero/slide-5.jpg?v=4" alt="" loading="eager" decoding="async" />
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__inner">
       <div class="hero__content">
         <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
         <h1>Kfz-Gutachter für Nordrhein-Westfalen, Niedersachsen, Hessen, Hamburg und Bremen</h1>
@@ -91,14 +101,6 @@
           <a class="btn btn-secondary btn-wa hero-cta-secondary" href="https://wa.me/491773145839?text=Guten%20Tag%20SESA%2C%0Aich%20ben%C3%B6tige%20eine%20Beratung.%0ABitte%20rufen%20Sie%20mich%20zur%C3%BCck." target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
           <a class="btn btn-tertiary hero-cta-tertiary" href="schaden-melden.html">Schaden online melden</a>
         </div>
-      </div>
-      <div class="hero__visual" data-hero-slider>
-        <div class="hero__slides" aria-hidden="true">
-        <img class="hero__slide is-active" src="assets/hero/slide-1.jpg?v=3" alt="" loading="eager" decoding="async" fetchpriority="high" />
-        <img class="hero__slide" src="assets/hero/slide-2.jpg?v=3" alt="" loading="eager" decoding="async" />
-        <img class="hero__slide" src="assets/hero/slide-3.jpg?v=3" alt="" loading="eager" decoding="async" />
-        </div>
-        <div class="hero__visual-accent" aria-hidden="true"></div>
       </div>
       </div>
     </section>
