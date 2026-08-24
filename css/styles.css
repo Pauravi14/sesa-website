@@ -2263,11 +2263,37 @@ body.consent-open {
   }
 
   .menu-accordion[open] > .menu-accordion__summary {
+    position: sticky;
+    top: 0;
+    z-index: 2;
     color: var(--copper);
+    background: var(--bg-2);
+    box-shadow: 0 1px 0 rgba(201, 137, 88, 0.18);
+  }
+
+  .menu-accordion:not([open]) > .menu-accordion__summary .menu-caret {
+    transform: rotate(45deg) translateY(-1px);
+  }
+
+  .menu-accordion[open] > .menu-accordion__summary .menu-caret {
+    transform: rotate(-135deg) translateY(-1px);
+  }
+
+  .menu-accordion__summary .menu-caret {
+    padding: 0.75rem 0.55rem;
+    margin: -0.75rem -0.35rem -0.75rem 0;
+    box-sizing: content-box;
   }
 
   .menu-item--services .menu-accordion[open] {
     padding-bottom: 0.35rem;
+  }
+
+  .menu-item--services .menu-accordion[open] .menu-dropdown {
+    max-height: min(14rem, 42dvh);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .menu-item--services .menu-dropdown {

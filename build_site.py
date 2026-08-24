@@ -441,7 +441,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=48" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=49" />
     {extra_head}
   </head>
   <body>
@@ -486,7 +486,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=9" defer></script>
+    <script src="{p}js/main.js?v=10" defer></script>
   </body>
 </html>"""
 
