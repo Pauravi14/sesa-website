@@ -1,13 +1,17 @@
 :root {
-  --bg: #1a2332;
-  --bg-2: #152238;
+  --navy-deep: #0a1628;
+  --bg: #0a1628;
+  --bg-2: #0c1828;
   --panel: #f4f2ef;
-  --panel-dark: #222c3a;
+  --panel-dark: #141e2e;
   --line: rgba(30, 58, 95, 0.18);
   --navy: #1e3a5f;
   --navy-2: #2b4f78;
   --accent: #b07a4f;
   --accent-2: #c98958;
+  --copper: #c98958;
+  --ivory: #f7f5f2;
+  --text-on-dark: #aeb8c5;
   --cream: #f7f5f2;
   --text: #1c2430;
   --mute: #5c6672;
@@ -15,7 +19,6 @@
   --shadow: 0 12px 28px rgba(15, 20, 28, 0.12);
   --header-main: 6.5rem;
   --header-total: 6.5rem;
-  --copper: #c98958;
   --serif: "Cormorant Garamond", "Times New Roman", serif;
   --sans: "Source Sans 3", "Segoe UI", sans-serif;
 }
@@ -33,7 +36,7 @@ html {
 body {
   margin: 0;
   font-family: var(--sans);
-  color: var(--cream);
+  color: var(--text-on-dark);
   background: var(--bg);
   line-height: 1.6;
   min-height: 100vh;
@@ -115,7 +118,7 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: #0c1828;
+  background: var(--bg-2);
   border-bottom: 1px solid rgba(201, 137, 88, 0.22);
 }
 
@@ -358,20 +361,33 @@ h3 {
   font-weight: 600;
   line-height: 1.15;
   margin: 0 0 0.7rem;
+  color: var(--ivory);
 }
 
-h1 {
-  font-size: clamp(2.1rem, 4vw, 3.5rem);
-}
-
-h2 {
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
+.content-light h1,
+.content-light h2,
+.content-light h3 {
+  color: var(--navy);
 }
 
 .lead {
-  color: var(--mute);
+  color: var(--text-on-dark);
   font-size: 1.08rem;
   max-width: 42rem;
+  line-height: 1.65;
+}
+
+.content-light .lead {
+  color: var(--mute);
+}
+
+.hero p,
+.hero li,
+.page-hero p,
+.page-hero .lead,
+.section:not(.content-light) p,
+.section:not(.content-light) li {
+  color: var(--text-on-dark);
 }
 
 .hero-actions,
@@ -435,15 +451,42 @@ h2 {
   text-align: left;
 }
 
-.card h3 {
-  font-size: 1.35rem;
+h1 {
+  font-size: clamp(2.1rem, 4vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.card h3,
+.panel h3 {
+  color: var(--ivory);
+}
+
+.content-light .card h3,
+.content-light .panel h3 {
+  color: var(--navy);
 }
 
 .card p,
-.muted,
+.panel p {
+  color: var(--text-on-dark);
+}
+
+.muted {
+  color: var(--text-on-dark);
+}
+
+.content-light .muted,
+.content-light .card p,
+.content-light .panel p {
+  color: var(--mute);
+}
+
 footer,
 .legal {
-  color: var(--mute);
+  color: var(--text-on-dark);
 }
 
 .steps {
