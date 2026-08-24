@@ -1221,18 +1221,18 @@ a:hover {
   padding: 0 0.75rem;
 }
 
-.process-flow:not(.is-static) .process-flow__unit:not(:first-child) .process-flow__marker,
-.process-flow:not(.is-static) .process-flow__unit:not(:first-child) .process-flow__card {
+.process-flow:not(.is-static):not(.is-sequencing) .process-flow__unit:not(:first-child) .process-flow__marker,
+.process-flow:not(.is-static):not(.is-sequencing) .process-flow__unit:not(:first-child) .process-flow__card {
   opacity: 0;
   visibility: hidden;
 }
 
-.process-flow:not(.is-static) .process-flow__connector {
+.process-flow:not(.is-static):not(.is-sequencing) .process-flow__connector {
   opacity: 0;
 }
 
-.process-flow:not(.is-static) .process-flow__unit:first-child .process-flow__marker,
-.process-flow:not(.is-static) .process-flow__unit:first-child .process-flow__card {
+.process-flow:not(.is-static):not(.is-sequencing) .process-flow__unit:first-child .process-flow__marker,
+.process-flow:not(.is-static):not(.is-sequencing) .process-flow__unit:first-child .process-flow__card {
   opacity: 1;
   visibility: visible;
 }
@@ -1367,12 +1367,6 @@ a:hover {
 
 .process-flow.is-sequencing .process-flow__connector.is-connector-live {
   opacity: 1;
-}
-
-.process-flow.is-sequencing .process-flow__unit.is-pending {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
 }
 
 .process-flow.is-sequencing .process-flow__unit:not(.is-step-live) .process-flow__marker {

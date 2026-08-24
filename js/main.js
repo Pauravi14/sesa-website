@@ -363,16 +363,6 @@
       });
     }
 
-    function setPendingSteps() {
-      units.forEach(function (unit, index) {
-        if (index === 0) {
-          unit.classList.remove("is-pending");
-        } else {
-          unit.classList.add("is-pending");
-        }
-      });
-    }
-
     function travelConnector(connector, duration, generation) {
       return new Promise(function (resolve) {
         if (generation !== sequenceGeneration) {
@@ -422,7 +412,6 @@
           return;
         }
 
-        unit.classList.remove("is-pending");
         unit.classList.add("is-step-live");
         wait(TIMING.markerReveal).then(function () {
           if (generation !== sequenceGeneration) {
@@ -445,7 +434,6 @@
         units.forEach(function (unit, index) {
           if (index === 0) return;
           unit.classList.remove("is-step-live", "is-step-open");
-          unit.classList.add("is-pending");
         });
 
         resetConnectors();
@@ -454,11 +442,9 @@
     }
 
     function runSequence(generation) {
-      setPendingSteps();
       units.forEach(function (unit, index) {
         unit.classList.remove("is-step-live", "is-step-open");
         if (index === 0) {
-          unit.classList.remove("is-pending");
           unit.classList.add("is-step-live", "is-step-open");
         }
       });
