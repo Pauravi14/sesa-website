@@ -16,6 +16,11 @@ ADDRESS = "Pohlweg 76, 33098 Paderborn"
 BUSINESS = "SESA KFZ-Sachverständigenbüro"
 OWNER = "Selim Sabahoglu"
 
+# Qualification copy — use exact certificate wording only after client confirmation
+    "Kfz-Meister und Sachverständiger für Kraftfahrzeuge. "
+    "Detaillierte Qualifikationsnachweise stellen wir auf Anfrage zur Verfügung."
+)
+
 WHATSAPP_TEXT_BERATUNG = (
     "Guten Tag SESA,\n"
     "ich benötige eine Beratung.\n"
@@ -105,16 +110,18 @@ def home_page_body() -> str:
           </li>
         </ul>
         <div class="hero-actions hero-actions--tiered">
-          <a class="btn btn-primary" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
-          <a class="btn btn-secondary btn-wa" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
-          <a class="btn btn-tertiary" href="schaden-melden.html">Schaden online melden</a>
+          <a class="btn btn-primary hero-cta-primary" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
+          <div class="hero-actions__secondary">
+            <a class="btn btn-secondary btn-wa" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+            <a class="btn btn-tertiary" href="schaden-melden.html">Schaden online melden</a>
+          </div>
         </div>
       </div>
       <img class="hero-photo" src="assets/hero-inspection.png" alt="Fahrzeugbegutachtung durch Kfz-Sachverständigen" />
     </section>
 
     <section class="section home-section home-expert" data-section="expert" id="expertise">
-      <div class="expert-spotlight">
+      <div class="expert-spotlight expert-spotlight--premium">
         <div class="expert-spotlight__media">
           <img class="expert-spotlight__photo" src="assets/portrait-placeholder.png" alt="Porträtfoto — {OWNER}" loading="lazy" />
         </div>
@@ -126,7 +133,7 @@ def home_page_body() -> str:
           <p class="expert-spotlight__role">Inhaber · {BUSINESS}</p>
           <ul class="expert-credentials">
             <li>Kfz-Meister</li>
-            <li>Personenzertifizierter Kraftfahrzeugsachverständiger (Euro-Zert)</li>
+            <li>Sachverständiger für Kraftfahrzeuge</li>
             <li>Erfahrung als Fahrzeugbewerter und Unfallschadengutachter</li>
             <li>Frühere Tätigkeit bei TÜV NORD — keine aktuelle Partnerschaft</li>
           </ul>
@@ -183,34 +190,34 @@ def home_page_body() -> str:
         <p class="kicker">Ablauf</p>
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
-      <ol class="process-timeline">
+      <ol class="process-timeline" role="list">
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">1</span>
-          <div class="process-timeline__content">
+          <article class="process-timeline__card">
             <h3>Kontakt</h3>
             <p>Kontaktaufnahme und Erstberatung</p>
-          </div>
+          </article>
         </li>
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">2</span>
-          <div class="process-timeline__content">
+          <article class="process-timeline__card">
             <h3>Begutachtung</h3>
             <p>Schadenaufnahme am Fahrzeugstandort</p>
-          </div>
+          </article>
         </li>
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">3</span>
-          <div class="process-timeline__content">
+          <article class="process-timeline__card">
             <h3>Dokumentation</h3>
             <p>Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden</p>
-          </div>
+          </article>
         </li>
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">4</span>
-          <div class="process-timeline__content">
+          <article class="process-timeline__card">
             <h3>Besprechung</h3>
             <p>Persönliche Betreuung bei Rückfragen</p>
-          </div>
+          </article>
         </li>
       </ol>
     </section>
@@ -223,7 +230,7 @@ def home_page_body() -> str:
       <div class="grid-3 trust-grid">
         <article class="panel trust-panel">
           <h3>Qualifikation</h3>
-          <p class="muted">Kfz-Meister und personenzertifizierter Kraftfahrzeugsachverständiger (Nachweis vor Veröffentlichung prüfen).</p>
+          <p class="muted">{QUAL_TRUST_BLURB}</p>
         </article>
         <article class="panel trust-panel">
           <h3>Erfahrung</h3>
@@ -385,7 +392,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=24" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=25" />
     {extra_head}
   </head>
   <body>
@@ -621,10 +628,11 @@ def main() -> None:
           <li>TÜV NORD Autoservice, Paderborn — Kfz-Sachverständiger / Fahrzeugbewerter und Unfallschadengutachter (frühere Tätigkeit, keine aktuelle Partnerschaft mit TÜV NORD)</li>
           <li>Grafschafter Autozentrale VW/Audi Partner, Nordhorn — Ausbildung Kfz-Mechatroniker</li>
         </ul>
-        <p><strong>Qualifikationen (Nachweise vor Veröffentlichung prüfen):</strong></p>
+        <p><strong>Qualifikationen</strong></p>
+        <p class="muted">Kfz-Meister und Sachverständiger für Kraftfahrzeuge. Genaue Bezeichnungen und Nachweise gemäß Originalunterlagen stellen wir auf Anfrage zur Verfügung.</p>
         <ul>
           <li>Kfz-Meister</li>
-          <li>Personenzertifizierter Kraftfahrzeugsachverständiger (Euro-Zert) — exakte Bezeichnung gemäß Originalzertifikat</li>
+          <li>Sachverständiger für Kraftfahrzeuge</li>
           <li>Mitglied im Verband freier Kraftfahrzeug-Sachverständiger e. V. (VFK)</li>
         </ul>
         <p>Ein Gutachten schafft Klarheit, wenn Sachverhalte komplex sind. Unabhängigkeit, fachliche Sorgfalt und transparente Dokumentation stehen im Mittelpunkt unserer Arbeit.</p>
