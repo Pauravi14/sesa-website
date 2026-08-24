@@ -128,11 +128,13 @@ def hero_slides_html() -> str:
 
 PROCESS_FLOW_ARROW = (
     '<li class="process-flow__bridge" data-flow-item aria-hidden="true">'
-    '<svg class="process-flow__arrow" viewBox="0 0 44 10" '
+    '<svg class="process-flow__arrow" viewBox="0 0 120 20" '
     'focusable="false" aria-hidden="true">'
-    '<path class="process-flow__arrow-path" pathLength="44" '
-    'd="M1 5 H30 M26 1.5 L40 5 L26 8.5" fill="none" stroke="currentColor" '
-    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+    '<path class="process-flow__arrow-track" d="M0 10 H120" fill="none" '
+    'stroke="currentColor" stroke-width="4" stroke-linecap="round"/>'
+    '<path class="process-flow__arrow-path" pathLength="120" '
+    'd="M0 10 H96 M86 4 L120 10 L86 16" fill="none" stroke="currentColor" '
+    'stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>'
     '</svg></li>'
 )
 
@@ -441,7 +443,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=56" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=58" />
     {extra_head}
   </head>
   <body>
@@ -486,7 +488,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=12" defer></script>
+    <script src="{p}js/main.js?v=13" defer></script>
   </body>
 </html>"""
 

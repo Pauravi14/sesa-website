@@ -307,34 +307,49 @@
 
   const processFlow = document.querySelector("[data-process-flow]");
   if (processFlow) {
-    const flowItems = processFlow.querySelectorAll("[data-flow-item]");
+    const flowUnits = processFlow.querySelectorAll(".process-flow__unit[data-flow-item]");
+    const flowBridges = processFlow.querySelectorAll(".process-flow__bridge[data-flow-item]");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let flowStarted = false;
 
-    function revealFlowItem(index) {
-      const item = flowItems[index];
+    function startFlowMotion() {
+      if (flowStarted) return;
+      flowStarted = true;
+      processFlow.classList.add("is-flowing");
+      flowBridges.forEach(function (bridge) {
+        bridge.classList.add("is-visible");
+      });
+    }
+
+    function revealFlowUnit(index) {
+      const item = flowUnits[index];
       if (!item) return;
       item.classList.add("is-visible");
-      if (index < flowItems.length - 1) {
+      if (index < flowUnits.length - 1) {
         window.setTimeout(function () {
-          revealFlowItem(index + 1);
+          revealFlowUnit(index + 1);
         }, reducedMotion ? 0 : 520);
       }
     }
 
-    if (reducedMotion || !flowItems.length) {
-      flowItems.forEach(function (item) {
+    if (reducedMotion || !flowUnits.length) {
+      flowUnits.forEach(function (item) {
         item.classList.add("is-visible");
       });
+      flowBridges.forEach(function (bridge) {
+        bridge.classList.add("is-visible");
+      });
+      processFlow.classList.add("is-flowing");
     } else {
       const flowObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
-            flowObserver.disconnect();
-            revealFlowItem(0);
+            startFlowMotion();
+            revealFlowUnit(0);
           });
         },
-        { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+        { threshold: 0.15, rootMargin: "0px 0px -5% 0px" }
       );
       flowObserver.observe(processFlow);
     }
