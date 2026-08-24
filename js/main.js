@@ -308,7 +308,6 @@
   const processFlow = document.querySelector("[data-process-flow]");
   if (processFlow) {
     const flowUnits = processFlow.querySelectorAll(".process-flow__unit[data-flow-item]");
-    const flowBridges = processFlow.querySelectorAll(".process-flow__bridge[data-flow-item]");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let flowStarted = false;
 
@@ -316,9 +315,6 @@
       if (flowStarted) return;
       flowStarted = true;
       processFlow.classList.add("is-flowing");
-      flowBridges.forEach(function (bridge) {
-        bridge.classList.add("is-visible");
-      });
     }
 
     function revealFlowUnit(index) {
@@ -332,12 +328,20 @@
       }
     }
 
+    function activateProcessFlow() {
+      startFlowMotion();
+      if (!flowUnits[0] || flowUnits[0].classList.contains("is-visible")) return;
+      revealFlowUnit(0);
+    }
+
+    function isProcessFlowInView() {
+      const rect = processFlow.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+    }
+
     if (reducedMotion || !flowUnits.length) {
       flowUnits.forEach(function (item) {
         item.classList.add("is-visible");
-      });
-      flowBridges.forEach(function (bridge) {
-        bridge.classList.add("is-visible");
       });
       processFlow.classList.add("is-flowing");
     } else {
@@ -345,13 +349,16 @@
         function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
-            startFlowMotion();
-            revealFlowUnit(0);
+            activateProcessFlow();
           });
         },
-        { threshold: 0.15, rootMargin: "0px 0px -5% 0px" }
+        { threshold: 0.12, rootMargin: "0px 0px -5% 0px" }
       );
       flowObserver.observe(processFlow);
+
+      if (isProcessFlowInView()) {
+        activateProcessFlow();
+      }
     }
   }
 

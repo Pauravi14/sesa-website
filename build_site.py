@@ -127,15 +127,9 @@ def hero_slides_html() -> str:
 
 
 PROCESS_FLOW_ARROW = (
-    '<li class="process-flow__bridge" data-flow-item aria-hidden="true">'
-    '<svg class="process-flow__arrow" viewBox="0 0 120 20" '
-    'focusable="false" aria-hidden="true">'
-    '<path class="process-flow__arrow-track" d="M0 10 H120" fill="none" '
-    'stroke="currentColor" stroke-width="4" stroke-linecap="round"/>'
-    '<path class="process-flow__arrow-path" pathLength="120" '
-    'd="M0 10 H96 M86 4 L120 10 L86 16" fill="none" stroke="currentColor" '
-    'stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>'
-    '</svg></li>'
+    '<li class="process-flow__bridge" aria-hidden="true">'
+    '<span class="process-flow__bridge-line"></span>'
+    '</li>'
 )
 
 
@@ -266,6 +260,10 @@ def home_page_body() -> str:
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
       <div class="process-flow" data-process-flow>
+        <div class="process-flow__rail" aria-hidden="true">
+          <span class="process-flow__rail-base"></span>
+          <span class="process-flow__rail-flow"></span>
+        </div>
         <ol class="process-flow__track" role="list">
 {process_flow_unit("01", "Kontakt", "Kontaktaufnahme und Erstberatung", True)}
 {process_flow_unit("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", True)}
@@ -443,7 +441,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=58" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=59" />
     {extra_head}
   </head>
   <body>
@@ -488,7 +486,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=13" defer></script>
+    <script src="{p}js/main.js?v=14" defer></script>
   </body>
 </html>"""
 
