@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=22" />
+    <link rel="stylesheet" href="./css/styles.css?v=23" />
     
   </head>
   <body>
@@ -64,48 +64,152 @@
       </div>
     </header>
     <main id="main">
-    <section class="hero">
-      <div>
+    <section class="hero hero--home" data-section="hero">
+      <div class="hero__content">
         <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
         <h1>Kfz-Gutachter für Nordrhein-Westfalen, Niedersachsen, Hessen, Hamburg und Bremen</h1>
-        <p class="lead">Unfallgutachten · Fahrzeugbewertung · Wohnmobile · Oldtimer. Unverschuldeter Unfall? Wir dokumentieren Schäden fachgerecht und schaffen eine belastbare Grundlage für die weitere Schadenregulierung.</p>
-        <ul class="lead">
-          <li>Kurzfristige Termine — abhängig von Standort und Auslastung</li>
-          <li>Mobil vor Ort: bei Ihnen, in der Werkstatt oder am Fahrzeugstandort</li>
-          <li>Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden nach vollständiger Schadenaufnahme</li>
+        <p class="lead hero__lead">Unfallgutachten · Fahrzeugbewertung · Wohnmobile · Oldtimer. Unverschuldeter Unfall? Wir dokumentieren Schäden fachgerecht und schaffen eine belastbare Grundlage für die weitere Schadenregulierung.</p>
+        <ul class="hero-trust" role="list">
+          <li>
+            <strong>Unabhängig</strong>
+            <span>Eigenes Sachverständigenbüro ohne Weisungsbindung</span>
+          </li>
+          <li>
+            <strong>Mobil vor Ort</strong>
+            <span>Bei Ihnen, in der Werkstatt oder am Fahrzeugstandort</span>
+          </li>
+          <li>
+            <strong>24–48 Std.</strong>
+            <span>Gutachtenerstellung nach vollständiger Schadenaufnahme</span>
+          </li>
         </ul>
-        <div class="hero-actions">
-          <a class="btn btn-solid" href="tel:+491773145839">Jetzt anrufen</a>
-          <a class="btn" href="schaden-melden.html">WhatsApp-Schadencheck</a>
-          <a class="btn" href="schaden-melden.html">Schaden online melden</a>
+        <div class="hero-actions hero-actions--tiered">
+          <a class="btn btn-primary" href="tel:+491773145839">Jetzt anrufen</a>
+          <a class="btn btn-secondary btn-wa" href="https://wa.me/491773145839?text=Guten%20Tag%20SESA%2C%0Aich%20ben%C3%B6tige%20eine%20Beratung.%0ABitte%20rufen%20Sie%20mich%20zur%C3%BCck." target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+          <a class="btn btn-tertiary" href="schaden-melden.html">Schaden online melden</a>
         </div>
       </div>
       <img class="hero-photo" src="assets/hero-inspection.png" alt="Fahrzeugbegutachtung durch Kfz-Sachverständigen" />
     </section>
-    <section class="section content-light">
-      <h2>Leistungen im Überblick</h2>
-      <div class="grid-4">
-        <article class="card"><img src="assets/damage-detail.png" alt="" /><h3>Unfallgutachten</h3><p>Unabhängige Schadenaufnahme als technische Grundlage für die Regulierung.</p><a href="leistungen/unfallgutachten.html">Mehr erfahren</a></article>
-        <article class="card"><img src="assets/workshop-tools.png" alt="" /><h3>Fahrzeugbewertung</h3><p>Marktwert, Wiederbeschaffungswert oder Fahrzeugwert je nach Anlass.</p><a href="leistungen/fahrzeugbewertung.html">Mehr erfahren</a></article>
-        <article class="card"><img src="assets/nrw-road.png" alt="" /><h3>Wohnmobile & Wohnwagen</h3><p>Begutachtung und Bewertung von Freizeitfahrzeugen.</p><a href="leistungen/wohnmobile.html">Mehr erfahren</a></article>
-        <article class="card"><img src="assets/hero-inspection.png" alt="" /><h3>Oldtimer & Youngtimer</h3><p>Zustand, Originalität und Wertermittlung für Klassiker.</p><a href="leistungen/oldtimer-youngtimer.html">Mehr erfahren</a></article>
+
+    <section class="section home-section home-expert" data-section="expert" id="expertise">
+      <div class="expert-spotlight">
+        <div class="expert-spotlight__media">
+          <img class="expert-spotlight__photo" src="assets/portrait-placeholder.png" alt="Porträtfoto — Selim Sabahoglu" loading="lazy" />
+        </div>
+        <div class="expert-spotlight__content">
+          <p class="kicker">Qualifikation &amp; Erfahrung</p>
+          <h2>Selim Sabahoglu</h2>
+          <p class="expert-spotlight__role">Inhaber · SESA KFZ-Sachverständigenbüro</p>
+          <ul class="expert-credentials">
+            <li>Kfz-Meister</li>
+            <li>Personenzertifizierter Kraftfahrzeugsachverständiger (Euro-Zert)</li>
+            <li>Erfahrung als Fahrzeugbewerter und Unfallschadengutachter</li>
+            <li>Frühere Tätigkeit bei TÜV NORD — keine aktuelle Partnerschaft</li>
+          </ul>
+          <a class="btn btn-outline-copper" href="ueber-uns.html">Mehr über SESA</a>
+        </div>
       </div>
     </section>
-    <section class="section">
-      <h2>Ablauf in vier Schritten</h2>
-      <ol class="steps">
-        <li>Kontaktaufnahme und Erstberatung</li>
-        <li>Begutachtung / Schadenaufnahme</li>
-        <li>Dokumentation und Gutachtenerstellung</li>
-        <li>Besprechung und Begleitung bei Rückfragen</li>
+
+    <section class="section content-light home-section home-services" data-section="services" id="leistungen">
+      <header class="section-header">
+        <p class="kicker">Leistungen</p>
+        <h2>Leistungen im Überblick</h2>
+        <p class="section-intro">Von der Schadenaufnahme bis zur Wertermittlung — fachlich fundiert und persönlich betreut.</p>
+      </header>
+      <div class="service-grid">
+        <article class="service-card">
+          <div class="service-card__media"><img src="assets/damage-detail.png" alt="" loading="lazy" /></div>
+          <div class="service-card__body">
+            <h3>Unfallgutachten</h3>
+            <p>Unabhängige Schadenaufnahme als technische Grundlage für die Regulierung.</p>
+            <a class="service-card__link" href="leistungen/unfallgutachten.html">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-card__media"><img src="assets/workshop-tools.png" alt="" loading="lazy" /></div>
+          <div class="service-card__body">
+            <h3>Fahrzeugbewertung</h3>
+            <p>Marktwert, Wiederbeschaffungswert oder Fahrzeugwert je nach Anlass.</p>
+            <a class="service-card__link" href="leistungen/fahrzeugbewertung.html">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-card__media"><img src="assets/nrw-road.png" alt="" loading="lazy" /></div>
+          <div class="service-card__body">
+            <h3>Wohnmobile &amp; Wohnwagen</h3>
+            <p>Begutachtung und Bewertung von Freizeitfahrzeugen.</p>
+            <a class="service-card__link" href="leistungen/wohnmobile.html">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-card__media"><img src="assets/hero-inspection.png" alt="" loading="lazy" /></div>
+          <div class="service-card__body">
+            <h3>Oldtimer &amp; Youngtimer</h3>
+            <p>Zustand, Originalität und Wertermittlung für Klassiker.</p>
+            <a class="service-card__link" href="leistungen/oldtimer-youngtimer.html">Mehr erfahren</a>
+          </div>
+        </article>
+      </div>
+      <p class="section-footer-link"><a href="leistungen/index.html">Alle Leistungen ansehen</a></p>
+    </section>
+
+    <section class="section home-section home-process" data-section="process" id="ablauf">
+      <header class="section-header section-header--center">
+        <p class="kicker">Ablauf</p>
+        <h2>In vier Schritten zum Gutachten</h2>
+      </header>
+      <ol class="process-timeline">
+        <li class="process-timeline__step">
+          <span class="process-timeline__marker" aria-hidden="true">1</span>
+          <div class="process-timeline__content">
+            <h3>Kontakt</h3>
+            <p>Kontaktaufnahme und Erstberatung</p>
+          </div>
+        </li>
+        <li class="process-timeline__step">
+          <span class="process-timeline__marker" aria-hidden="true">2</span>
+          <div class="process-timeline__content">
+            <h3>Begutachtung</h3>
+            <p>Schadenaufnahme am Fahrzeugstandort</p>
+          </div>
+        </li>
+        <li class="process-timeline__step">
+          <span class="process-timeline__marker" aria-hidden="true">3</span>
+          <div class="process-timeline__content">
+            <h3>Dokumentation</h3>
+            <p>Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden</p>
+          </div>
+        </li>
+        <li class="process-timeline__step">
+          <span class="process-timeline__marker" aria-hidden="true">4</span>
+          <div class="process-timeline__content">
+            <h3>Besprechung</h3>
+            <p>Persönliche Betreuung bei Rückfragen</p>
+          </div>
+        </li>
       </ol>
     </section>
-    <section class="section content-light">
-      <h2>Warum SESA?</h2>
-      <div class="grid-3">
-        <div class="panel"><h3>Qualifikation</h3><p class="muted">Kfz-Meister und personenzertifizierter Kraftfahrzeugsachverständiger (Nachweis vor Veröffentlichung prüfen).</p></div>
-        <div class="panel"><h3>Erfahrung</h3><p class="muted">Berufliche Tätigkeit u. a. als Fahrzeugbewerter und Unfallschadengutachter — frühere Tätigkeit bei TÜV NORD, keine aktuelle Partnerschaft.</p></div>
-        <div class="panel"><h3>Persönliche Betreuung</h3><p class="muted">Ein Ansprechpartner von der ersten Kontaktaufnahme bis zur Besprechung des Gutachtens.</p></div>
+
+    <section class="section content-light home-section home-trust" data-section="trust" id="warum-sesa">
+      <header class="section-header">
+        <p class="kicker">Warum SESA?</p>
+        <h2>Ihr Vorteil auf einen Blick</h2>
+      </header>
+      <div class="grid-3 trust-grid">
+        <article class="panel trust-panel">
+          <h3>Qualifikation</h3>
+          <p class="muted">Kfz-Meister und personenzertifizierter Kraftfahrzeugsachverständiger (Nachweis vor Veröffentlichung prüfen).</p>
+        </article>
+        <article class="panel trust-panel">
+          <h3>Erfahrung</h3>
+          <p class="muted">Berufliche Tätigkeit u. a. als Fahrzeugbewerter und Unfallschadengutachter — frühere Tätigkeit bei TÜV NORD, keine aktuelle Partnerschaft.</p>
+        </article>
+        <article class="panel trust-panel">
+          <h3>Persönliche Betreuung</h3>
+          <p class="muted">Ein Ansprechpartner von der ersten Kontaktaufnahme bis zur Besprechung des Gutachtens.</p>
+        </article>
       </div>
     </section></main>
     <footer class="footer">
@@ -168,6 +272,11 @@
         </div>
       </div>
     </div>
+    
+    <nav class="mobile-action-bar" aria-label="Schnellkontakt">
+      <a class="mobile-action-bar__btn mobile-action-bar__btn--call" href="tel:+491773145839">Anrufen</a>
+      <a class="mobile-action-bar__btn mobile-action-bar__btn--wa" href="https://wa.me/491773145839?text=Guten%20Tag%20SESA%2C%0Aich%20ben%C3%B6tige%20eine%20Beratung.%0ABitte%20rufen%20Sie%20mich%20zur%C3%BCck." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </nav>
     
     <div class="wa-float-wrap" data-wa-float>
       <button type="button" class="wa-float-trigger" aria-label="WhatsApp: Hilfe anfordern" aria-expanded="false" data-wa-toggle>
