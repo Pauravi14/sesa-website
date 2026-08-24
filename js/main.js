@@ -315,6 +315,38 @@
       let attentionPulseCount = 0;
       let attentionStarted = false;
       let waAudioContext = null;
+      let waAudioUnlocked = false;
+
+      function unlockAttentionAudio() {
+        if (waAudioUnlocked) return;
+
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) return;
+
+          if (!waAudioContext) {
+            waAudioContext = new AudioCtx();
+          }
+
+          if (waAudioContext.state === "suspended") {
+            waAudioContext.resume();
+          }
+
+          const now = waAudioContext.currentTime;
+          const osc = waAudioContext.createOscillator();
+          const gain = waAudioContext.createGain();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(440, now);
+          gain.gain.setValueAtTime(0.00001, now);
+          osc.connect(gain);
+          gain.connect(waAudioContext.destination);
+          osc.start(now);
+          osc.stop(now + 0.02);
+          waAudioUnlocked = true;
+        } catch (_) {
+          /* ignore audio errors */
+        }
+      }
 
       function playAttentionSound() {
         try {
@@ -449,11 +481,13 @@
       function beginAttentionAfterScroll() {
         if (attentionStarted) return;
         attentionStarted = true;
+        unlockAttentionAudio();
         window.removeEventListener("scroll", onAttentionScroll);
         attentionNextTimer = window.setTimeout(runAttentionPulse, 5000);
       }
 
       function onAttentionScroll() {
+        unlockAttentionAudio();
         beginAttentionAfterScroll();
       }
 
