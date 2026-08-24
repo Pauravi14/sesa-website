@@ -968,35 +968,99 @@ body.consent-open {
   z-index: 60;
 }
 
-.wa-float {
+.wa-float-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.wa-float-bubble {
+  position: relative;
+  background: #f3f3f3;
+  border-radius: 8px;
+  padding: 0.55rem 1rem 0.55rem 0.9rem;
+  margin-right: 0.65rem;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.14);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wa-float-bubble::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 8px solid #f3f3f3;
+}
+
+.wa-float-bubble-small {
+  display: block;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  color: #8a8f96;
+  font-weight: 400;
+}
+
+.wa-float-bubble-strong {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.98rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #1c2430;
+  white-space: nowrap;
+}
+
+.wa-float-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 3.75rem;
   height: 3.75rem;
-  padding: 0;
-  border: none;
   border-radius: 50%;
   background: #25d366;
   color: #fff;
-  cursor: pointer;
   box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.wa-float svg {
+.wa-float-icon svg {
   display: block;
   flex-shrink: 0;
 }
 
-.wa-float:hover {
-  transform: scale(1.08);
+.wa-float-trigger:hover .wa-float-icon {
+  transform: scale(1.06);
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.55);
 }
 
-.wa-float:focus-visible {
+.wa-float-trigger:hover .wa-float-bubble {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.16);
+}
+
+.wa-float-trigger:focus-visible {
+  outline: none;
+}
+
+.wa-float-trigger:focus-visible .wa-float-icon {
   outline: 2px solid var(--navy);
   outline-offset: 3px;
+}
+
+.wa-float-trigger:focus-visible .wa-float-bubble {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
 }
 
 .wa-float-menu {
@@ -1068,17 +1132,30 @@ body.consent-open {
 @media (max-width: 760px) {
   .wa-float-wrap {
     right: 1rem;
-    bottom: 5rem;
+    bottom: 1rem;
   }
 
-  .wa-float {
+  .wa-float-icon {
     width: 3.35rem;
     height: 3.35rem;
   }
 
-  .wa-float svg {
+  .wa-float-icon svg {
     width: 26px;
     height: 26px;
+  }
+
+  .wa-float-bubble {
+    padding: 0.45rem 0.75rem 0.45rem 0.7rem;
+    margin-right: 0.5rem;
+  }
+
+  .wa-float-bubble-small {
+    font-size: 0.65rem;
+  }
+
+  .wa-float-bubble-strong {
+    font-size: 0.82rem;
   }
 }
 

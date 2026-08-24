@@ -49,8 +49,14 @@ def wa_float_widget() -> str:
     schaden = whatsapp_url(WHATSAPP_TEXT_SCHADEN)
     return f"""
     <div class="wa-float-wrap" data-wa-float>
-      <button type="button" class="wa-float" aria-label="WhatsApp: Optionen anzeigen" aria-expanded="false" data-wa-toggle>
-        {WHATSAPP_ICON_SVG}
+      <button type="button" class="wa-float-trigger" aria-label="WhatsApp: Hilfe anfordern" aria-expanded="false" data-wa-toggle>
+        <span class="wa-float-bubble">
+          <span class="wa-float-bubble-small">Brauchen Sie Hilfe?</span>
+          <span class="wa-float-bubble-strong">Jetzt kontaktieren</span>
+        </span>
+        <span class="wa-float-icon" aria-hidden="true">
+          {WHATSAPP_ICON_SVG}
+        </span>
       </button>
       <div class="wa-float-menu" hidden data-wa-menu>
         <p class="wa-float-greeting">Guten Tag SESA</p>
@@ -215,7 +221,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=21" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=22" />
     {extra_head}
   </head>
   <body>
