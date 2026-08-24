@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
-LOGO_MONOGRAM = "assets/logo-monogram.png?v=3"
+LOGO_MASK = "assets/logo-monogram-mask.png"
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -176,7 +176,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=18" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=19" />
     {extra_head}
   </head>
   <body>
@@ -185,7 +185,7 @@ def shell(
       <div class="nav">
         <a class="brand" href="{p}index.html">
           <span class="brand-mark-slot">
-            <img class="brand-mark" src="{p}{LOGO_MONOGRAM}" width="291" height="280" alt="" />
+            <span class="brand-mark" style="--brand-mark-url: url('{p}{LOGO_MASK}')" aria-hidden="true"></span>
           </span>
           <span class="brand-text">
             <span class="brand-name">SESA</span>

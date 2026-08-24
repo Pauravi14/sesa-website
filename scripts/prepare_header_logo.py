@@ -1,56 +1,33 @@
-"""Header monogram from transparent monogram — site copper (#c98958), not gold."""
+"""Header monogram mask — painted with CSS var(--copper) for exact brand color match."""
 from __future__ import annotations
 
 from pathlib import Path
 
+import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "assets" / "transparent monogram.png"
-OUT = ROOT / "assets" / "logo-monogram.png"
+OUT_MASK = ROOT / "assets" / "logo-monogram-mask.png"
 
-# Match css/styles.css --copper / --accent-2 and --accent
-COPPER_DARK = (176, 122, 79)   # #b07a4f
-COPPER = (201, 137, 88)        # #c98958 — brand text color
-COPPER_LIGHT = (201, 137, 88)  # flat copper — no gold shift on highlights
-MIN_LUM = 95
+MIN_LUM = 40
 
 
-def is_copper_pixel(r: int, g: int, b: int) -> bool:
-    if max(r, g, b) < MIN_LUM:
-        return False
-    if r < 70 or g < 45:
-        return False
-    if r < b + 10:
-        return False
-    return r + g >= 140
-
-
-def copper_tint(im: Image.Image) -> Image.Image:
-    im = im.convert("RGBA")
-    px = im.load()
-    w, h = im.size
-    for y in range(h):
-        for x in range(w):
-            r, g, b, a = px[x, y]
-            if a < 25:
-                px[x, y] = (0, 0, 0, 0)
-                continue
-            lum = max(r, g, b)
-            if not is_copper_pixel(r, g, b):
-                px[x, y] = (0, 0, 0, 0)
-                continue
-            t = min(1.0, (lum - MIN_LUM) / 155.0)
-            if t < 0.55:
-                local_t = t / 0.55
-                out = tuple(
-                    int(COPPER_DARK[i] + local_t * (COPPER[i] - COPPER_DARK[i]))
-                    for i in range(3)
-                )
-            else:
-                out = COPPER
-            px[x, y] = (*out, min(255, a))
-    return im
+def logo_alpha(raw: Image.Image) -> Image.Image:
+    arr = np.array(raw.convert("RGBA"))
+    r, g, b, a = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2], arr[:, :, 3]
+    lum = np.maximum(np.maximum(r, g), b)
+    in_logo = (a > 15) & (lum > MIN_LUM)
+    strength = np.zeros_like(lum, dtype=np.float32)
+    strength[in_logo] = np.clip((lum[in_logo] - MIN_LUM) / 190.0, 0.12, 1.0)
+    strength[in_logo] *= a[in_logo] / 255.0
+    alpha = (strength * 255).astype(np.uint8)
+    out = np.zeros((arr.shape[0], arr.shape[1], 4), dtype=np.uint8)
+    out[:, :, 0] = 255
+    out[:, :, 1] = 255
+    out[:, :, 2] = 255
+    out[:, :, 3] = alpha
+    return Image.fromarray(out)
 
 
 def crop_content(im: Image.Image, pad: float = 0.06) -> Image.Image:
@@ -82,11 +59,11 @@ def main() -> None:
     if not SRC.exists():
         raise SystemExit(f"missing source: {SRC}")
     raw = Image.open(SRC)
-    cleaned = copper_tint(raw)
-    cropped = crop_content(cleaned)
-    out = resize_height(cropped, 280)
-    out.save(OUT, optimize=True)
-    print("saved", OUT, out.size)
+    mask = logo_alpha(raw)
+    mask = crop_content(mask)
+    mask = resize_height(mask, 280)
+    mask.save(OUT_MASK, optimize=True)
+    print("saved", OUT_MASK, mask.size)
 
 
 if __name__ == "__main__":
