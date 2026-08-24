@@ -332,7 +332,7 @@ def services_dropdown(depth: int, active: str) -> str:
       <details class="menu-accordion">
         <summary class="menu-accordion__summary">
           <span class="menu-accordion__label">Leistungen</span>
-          <span class="menu-caret" aria-hidden="true"></span>
+          <span class="menu-caret" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" d="M2.5 4.5 6 8 9.5 4.5"/></svg></span>
         </summary>
         <ul class="menu-dropdown">
 {submenu}
@@ -441,7 +441,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=52" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=53" />
     {extra_head}
   </head>
   <body>
