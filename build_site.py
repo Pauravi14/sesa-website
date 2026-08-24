@@ -74,21 +74,60 @@ NAV = [
     ("Kontakt", "kontakt.html"),
 ]
 
+SERVICE_LINKS = [
+    ("Alle Leistungen", "leistungen/index.html"),
+    ("Unfallgutachten", "leistungen/unfallgutachten.html"),
+    ("Fahrzeugbewertung", "leistungen/fahrzeugbewertung.html"),
+    ("Oldtimer & Youngtimer", "leistungen/oldtimer-youngtimer.html"),
+    ("Wohnmobile & Wohnwagen", "leistungen/wohnmobile.html"),
+    ("Beweissicherung", "leistungen/beweissicherung.html"),
+    ("Privatgutachten", "leistungen/privatgutachten.html"),
+    ("Kostenvoranschlag", "leistungen/kostenvoranschlag.html"),
+    ("Versicherungsgutachten", "leistungen/versicherungsgutachten.html"),
+    ("Beratung", "leistungen/beratung.html"),
+    ("Ortstermine", "leistungen/ortstermine.html"),
+]
+
 
 def prefix(depth: int) -> str:
     return "../" * depth if depth else "./"
 
 
+def services_dropdown(depth: int, active: str) -> str:
+    p = prefix(depth)
+    parent_href = p + "leistungen/index.html"
+    parent_cur = " aria-current=\"page\"" if active == "Leistungen" else ""
+    items = []
+    for label, href in SERVICE_LINKS:
+        full = p + href
+        items.append(f"<li><a href=\"{full}\">{label}</a></li>")
+    submenu = "\n".join(items)
+    return f"""<li class="menu-item menu-item--dropdown" data-nav-dropdown>
+      <span class="menu-item-row">
+        <a href="{parent_href}" class="menu-parent-link"{parent_cur}>Leistungen</a>
+        <button type="button" class="menu-submenu-toggle" aria-expanded="false" aria-label="Leistungen Untermenü anzeigen" data-nav-dropdown-toggle>
+          <span class="menu-caret" aria-hidden="true"></span>
+        </button>
+      </span>
+      <ul class="menu-dropdown" data-nav-dropdown-menu>
+{submenu}
+      </ul>
+    </li>"""
+
+
 def nav_links(depth: int, active: str) -> str:
     targets = [
-        ("HOME", "index.html"),
-        ("Über uns", "ueber-uns.html"),
-        ("Leistungen", "leistungen/index.html"),
-        ("GUTACHTEN", "ratgeber/index.html"),
-        ("Kontakt", "kontakt.html"),
+        ("HOME", "index.html", False),
+        ("Über uns", "ueber-uns.html", False),
+        (None, None, True),
+        ("GUTACHTEN", "ratgeber/index.html", False),
+        ("Kontakt", "kontakt.html", False),
     ]
     parts = []
-    for label, href in targets:
+    for label, href, is_services in targets:
+        if is_services:
+            parts.append(services_dropdown(depth, active))
+            continue
         full = prefix(depth) + href
         cur = " aria-current=\"page\"" if active == label else ""
         parts.append(f"<li><a href=\"{full}\"{cur}>{label}</a></li>")
@@ -176,7 +215,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=20" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=21" />
     {extra_head}
   </head>
   <body>

@@ -5,8 +5,50 @@
     toggle.addEventListener("click", function () {
       const open = nav.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", String(open));
+      if (!open) {
+        nav.querySelectorAll("[data-nav-dropdown].is-open").forEach(function (item) {
+          item.classList.remove("is-open");
+          const btn = item.querySelector("[data-nav-dropdown-toggle]");
+          if (btn) btn.setAttribute("aria-expanded", "false");
+        });
+      }
     });
   }
+
+  document.querySelectorAll("[data-nav-dropdown]").forEach(function (item) {
+    const btn = item.querySelector("[data-nav-dropdown-toggle]");
+    if (!btn) return;
+
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const open = item.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", String(open));
+    });
+  });
+
+  document.addEventListener("click", function (event) {
+    if (window.matchMedia("(min-width: 761px)").matches) return;
+    document.querySelectorAll("[data-nav-dropdown].is-open").forEach(function (item) {
+      if (!item.contains(event.target)) {
+        item.classList.remove("is-open");
+        const btn = item.querySelector("[data-nav-dropdown-toggle]");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Escape") return;
+    document.querySelectorAll("[data-nav-dropdown].is-open").forEach(function (item) {
+      item.classList.remove("is-open");
+      const btn = item.querySelector("[data-nav-dropdown-toggle]");
+      if (btn) {
+        btn.setAttribute("aria-expanded", "false");
+        btn.focus();
+      }
+    });
+  });
 
   const CONSENT_KEY = "sesa-consent";
   const LEGACY_KEY = "sesa-maps-consent";
