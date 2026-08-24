@@ -145,74 +145,6 @@ def process_flow_unit(number: str, title: str, body: str, with_connector: bool) 
         </li>{connector}"""
 
 
-def service_nav_icon(key: str) -> str:
-    svg_open = (
-        '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" '
-        'stroke-linecap="round" stroke-linejoin="round">'
-    )
-    icons = {
-        "unfall": (
-            f'{svg_open}'
-            '<rect x="7" y="5" width="14" height="20" rx="1.2"/>'
-            '<path d="M11 5V3.5h6V5"/>'
-            '<path d="M10 11h8"/><path d="M10 14.5h8"/><path d="M10 18h5"/>'
-            '<path d="M18.2 19.4c0-1.45 1.15-2.6 2.6-2.6s2.6 1.15 2.6 2.6v3.1l-2.6 1.5-2.6-1.5v-3.1z"/>'
-            '<path d="M20.1 21.7 21.3 23l2.3-2.3"/></svg>'
-        ),
-        "bewertung": (
-            f'{svg_open}'
-            '<path d="M8 11.5 10.5 5h11L24 11.5"/>'
-            '<path d="M6.5 12.5h19"/>'
-            '<path d="M7.5 12.5V21h17v-8.5"/>'
-            '<path d="M8.5 21v2.5h15V21"/>'
-            '<circle cx="10.5" cy="17" r="1.15"/>'
-            '<circle cx="21.5" cy="17" r="1.15"/>'
-            '<path d="M13.5 17h5"/>'
-            '<path d="M14.5 14h3"/></svg>'
-        ),
-        "wohnmobile": (
-            f'{svg_open}'
-            '<path d="M4.5 20.5h7.5l2.2-6.3h5.3v6.3"/>'
-            '<path d="M14.5 14.2H26v6.3H4.5"/>'
-            '<path d="M6.8 14.2 8.8 8.8h4.2"/>'
-            '<rect x="17.2" y="16" width="6.2" height="3.1" rx="0.6"/>'
-            '<circle cx="9.5" cy="22.8" r="2"/>'
-            '<circle cx="23" cy="22.8" r="2"/></svg>'
-        ),
-        "oldtimer": (
-            f'{svg_open}'
-            '<path d="M5 18.5c0-6.2 5.4-9.2 11-9.2s11 3 11 9.2"/>'
-            '<path d="M5 18.5h22"/>'
-            '<path d="M7.5 18.5v2.2"/><path d="M24.5 18.5v2.2"/>'
-            '<path d="M8.2 18.5c1.2-2.2 3.2-3.2 5.3-3.2"/>'
-            '<path d="M18.5 15.3c2.1 0 4.1 1 5.3 3.2"/>'
-            '<circle cx="9.8" cy="22.8" r="2.1"/>'
-            '<circle cx="22.2" cy="22.8" r="2.1"/></svg>'
-        ),
-    }
-    return f'<span class="service-icon-nav__icon" aria-hidden="true">{icons[key]}</span>'
-
-
-def service_icon_nav() -> str:
-    items = (
-        ("unfall", "Unfallgutachten", "leistungen/unfallgutachten.html"),
-        ("bewertung", "Fahrzeugbewertung", "leistungen/fahrzeugbewertung.html"),
-        ("wohnmobile", "Wohnmobile", "leistungen/wohnmobile.html"),
-        ("oldtimer", "Oldtimer", "leistungen/oldtimer-youngtimer.html"),
-    )
-    links = "".join(
-        f"""
-        <a class="service-icon-nav__item" href="{href}">
-          {service_nav_icon(key)}
-          <span class="service-icon-nav__label">{label}</span>
-        </a>"""
-        for key, label, href in items
-    )
-    return f"""
-      <nav class="service-icon-nav" aria-label="Leistungen Kurzübersicht">{links}
-      </nav>"""
-
-
 def hero_preload_head() -> str:
     return "\n".join(
         f'    <link rel="preload" as="image" href="{src.split("?")[0]}" />' for src, _ in HERO_SLIDES
@@ -302,7 +234,6 @@ def home_page_body() -> str:
         <h2>Leistungen im Überblick</h2>
         <p class="section-intro">Von der Schadenaufnahme bis zur Wertermittlung — fachlich fundiert und persönlich betreut.</p>
       </header>
-{service_icon_nav()}
       <div class="service-grid">
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["unfall"]}" alt="Schadendetail am Fahrzeug" loading="lazy" /></div>
@@ -524,7 +455,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=92" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=93" />
     {extra_head}
   </head>
   <body>
