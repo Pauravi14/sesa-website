@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
-LOGO_MONOGRAM = "assets/logo-monogram.png"
+LOGO_MONOGRAM = "assets/logo-monogram.png?v=3"
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"

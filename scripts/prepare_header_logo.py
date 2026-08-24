@@ -1,4 +1,4 @@
-"""Header monogram from transparent monogram — bright copper, no dark shadows on navy."""
+"""Header monogram from transparent monogram — site copper (#c98958), not gold."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -9,9 +9,10 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "assets" / "transparent monogram.png"
 OUT = ROOT / "assets" / "logo-monogram.png"
 
-COPPER = (201, 137, 88)
-COPPER_LIGHT = (245, 215, 180)
-COPPER_MID = (220, 165, 115)
+# Match css/styles.css --copper / --accent-2 and --accent
+COPPER_DARK = (176, 122, 79)   # #b07a4f
+COPPER = (201, 137, 88)        # #c98958 — brand text color
+COPPER_LIGHT = (201, 137, 88)  # flat copper — no gold shift on highlights
 MIN_LUM = 95
 
 
@@ -40,10 +41,14 @@ def copper_tint(im: Image.Image) -> Image.Image:
                 px[x, y] = (0, 0, 0, 0)
                 continue
             t = min(1.0, (lum - MIN_LUM) / 155.0)
-            out = tuple(
-                int(COPPER[i] + t * (COPPER_LIGHT[i] - COPPER[i]))
-                for i in range(3)
-            )
+            if t < 0.55:
+                local_t = t / 0.55
+                out = tuple(
+                    int(COPPER_DARK[i] + local_t * (COPPER[i] - COPPER_DARK[i]))
+                    for i in range(3)
+                )
+            else:
+                out = COPPER
             px[x, y] = (*out, min(255, a))
     return im
 
