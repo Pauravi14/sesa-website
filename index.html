@@ -9,8 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=26" />
-    
+    <link rel="stylesheet" href="./css/styles.css?v=27" />
+        <link rel="preload" as="image" href="assets/hero-inspection.png" />
+    <link rel="preload" as="image" href="assets/damage-detail.png" />
+    <link rel="preload" as="image" href="assets/workshop-tools.png" />
+    <link rel="preload" as="image" href="assets/nrw-road.png" />
+    <link rel="preload" as="image" href="assets/portrait-placeholder.png" />
   </head>
   <body>
     <a class="skip" href="#main">Zum Hauptinhalt springen</a>
@@ -66,9 +70,11 @@
     <main id="main">
     <section class="hero hero--home hero--slideshow" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
       <div class="hero__slides" aria-hidden="true">
-        <img class="hero__slide is-active" src="assets/hero-inspection.png" alt="" loading="eager" decoding="async" />
-        <img class="hero__slide" src="assets/damage-detail.png" alt="" loading="lazy" decoding="async" />
-        <img class="hero__slide" src="assets/workshop-tools.png" alt="" loading="lazy" decoding="async" />
+        <img class="hero__slide is-active" src="assets/hero-inspection.png" alt="" loading="eager" decoding="async" fetchpriority="high" />
+        <img class="hero__slide" src="assets/damage-detail.png" alt="" loading="eager" decoding="async" />
+        <img class="hero__slide" src="assets/workshop-tools.png" alt="" loading="eager" decoding="async" />
+        <img class="hero__slide" src="assets/nrw-road.png" alt="" loading="eager" decoding="async" />
+        <img class="hero__slide" src="assets/portrait-placeholder.png" alt="" loading="eager" decoding="async" />
       </div>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__inner">
@@ -312,6 +318,6 @@
         </a>
       </div>
     </div>
-    <script src="./js/main.js" defer></script>
+    <script src="./js/main.js?v=2" defer></script>
   </body>
 </html>

@@ -26,6 +26,8 @@ HERO_SLIDES = [
     ("assets/hero-inspection.png", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
     ("assets/damage-detail.png", "Schadendokumentation am Fahrzeug"),
     ("assets/workshop-tools.png", "Fachliche Begutachtung in der Werkstatt"),
+    ("assets/nrw-road.png", "Mobiler Kfz-Gutachter in Nordrhein-Westfalen"),
+    ("assets/portrait-placeholder.png", "Kfz-Sachverständiger bei der Schadenaufnahme"),
 ]
 
 WHATSAPP_TEXT_BERATUNG = (
@@ -96,13 +98,20 @@ def mobile_action_bar() -> str:
 
 def hero_slides_html() -> str:
     parts = []
-    for i, (src, alt) in enumerate(HERO_SLIDES):
+    for i, (src, _alt) in enumerate(HERO_SLIDES):
         active = " is-active" if i == 0 else ""
+        fetch = " fetchpriority=\"high\"" if i == 0 else ""
         parts.append(
             f'        <img class="hero__slide{active}" src="{src}" alt="" '
-            f'loading="{("eager" if i == 0 else "lazy")}" decoding="async" />'
+            f'loading="eager" decoding="async"{fetch} />'
         )
     return "\n".join(parts)
+
+
+def hero_preload_head() -> str:
+    return "\n".join(
+        f'    <link rel="preload" as="image" href="{src}" />' for src, _ in HERO_SLIDES
+    )
 
 
 def home_page_body() -> str:
@@ -416,7 +425,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=26" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=27" />
     {extra_head}
   </head>
   <body>
@@ -458,14 +467,22 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js" defer></script>
+    <script src="{p}js/main.js?v=2" defer></script>
   </body>
 </html>"""
 
 
-def write(path: Path, depth: int, active: str, title: str, desc: str, body: str) -> None:
+def write(
+    path: Path,
+    depth: int,
+    active: str,
+    title: str,
+    desc: str,
+    body: str,
+    extra_head: str = "",
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(shell(depth, active, title, desc, body), encoding="utf-8")
+    path.write_text(shell(depth, active, title, desc, body, extra_head), encoding="utf-8")
     print("wrote", path)
 
 
@@ -506,6 +523,7 @@ def main() -> None:
         "Kfz-Gutachter",
         "Unabhängiges Kfz-Sachverständigenbüro — Schadengutachten und Fahrzeugbewertung.",
         home_page_body(),
+        hero_preload_head(),
     )
 
     # Leistungen overview
