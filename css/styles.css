@@ -1805,7 +1805,7 @@ body.consent-open {
 .wa-float-wrap {
   position: fixed;
   right: 1.25rem;
-  bottom: 1.25rem;
+  bottom: 6rem;
   z-index: 60;
 }
 
