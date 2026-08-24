@@ -2271,8 +2271,12 @@ body.consent-open {
   }
 
   .menu-accordion__summary .menu-caret {
-    padding: 0.75rem 0.55rem;
-    margin: -0.75rem -0.35rem -0.75rem 0;
+    width: 0.32rem;
+    height: 0.32rem;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    padding: 0.45rem 0.35rem;
+    margin: -0.45rem -0.15rem -0.45rem 0;
     box-sizing: content-box;
   }
 
