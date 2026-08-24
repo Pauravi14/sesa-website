@@ -919,16 +919,16 @@ a:hover {
 .hero--centered .hero__overlay {
   background:
     radial-gradient(
-      ellipse 78% 82% at 50% 42%,
-      rgba(10, 22, 40, 0.8) 0%,
-      rgba(10, 22, 40, 0.62) 45%,
-      rgba(10, 22, 40, 0.34) 100%
+      ellipse 82% 88% at 50% 40%,
+      rgba(10, 22, 40, 0.58) 0%,
+      rgba(10, 22, 40, 0.42) 48%,
+      rgba(10, 22, 40, 0.16) 100%
     ),
     linear-gradient(
       90deg,
-      rgba(10, 22, 40, 0.52) 0%,
-      rgba(10, 22, 40, 0.68) 50%,
-      rgba(10, 22, 40, 0.52) 100%
+      rgba(10, 22, 40, 0.28) 0%,
+      rgba(10, 22, 40, 0.5) 50%,
+      rgba(10, 22, 40, 0.28) 100%
     );
 }
 
@@ -3058,9 +3058,9 @@ body.consent-open {
   .hero--centered .hero__overlay {
     background: linear-gradient(
       180deg,
-      rgba(10, 22, 40, 0.72) 0%,
-      rgba(10, 22, 40, 0.82) 45%,
-      rgba(10, 22, 40, 0.78) 100%
+      rgba(10, 22, 40, 0.52) 0%,
+      rgba(10, 22, 40, 0.62) 45%,
+      rgba(10, 22, 40, 0.55) 100%
     );
   }
 
@@ -3249,9 +3249,9 @@ body.consent-open {
   .hero--centered .hero__overlay {
     background: linear-gradient(
       180deg,
-      rgba(10, 22, 40, 0.72) 0%,
-      rgba(10, 22, 40, 0.82) 45%,
-      rgba(10, 22, 40, 0.78) 100%
+      rgba(10, 22, 40, 0.52) 0%,
+      rgba(10, 22, 40, 0.62) 45%,
+      rgba(10, 22, 40, 0.55) 100%
     );
   }
 
