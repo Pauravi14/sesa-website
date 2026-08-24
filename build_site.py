@@ -165,7 +165,7 @@ def shell(
 ) -> str:
     p = prefix(depth)
     return f"""<!DOCTYPE html>
-<html lang="de" translate="no">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
