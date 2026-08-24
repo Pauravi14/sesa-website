@@ -319,7 +319,7 @@
       markerReveal: 280,
       cardReveal: 350,
       betweenSegments: 180,
-      finalHold: 1500,
+      finalHold: 2200,
       resetFade: 250
     };
 
