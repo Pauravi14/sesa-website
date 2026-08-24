@@ -137,27 +137,18 @@ PROCESS_FLOW_ARROW = (
 )
 
 
-def process_flow_marker(number: str) -> str:
+def process_flow_unit(number: str, title: str, body: str, with_bridge: bool) -> str:
+    bridge = f"\n{PROCESS_FLOW_ARROW}" if with_bridge else ""
     return f"""
-        <li class="process-flow__marker-cell" data-flow-item>
-          <span class="process-flow__marker" aria-hidden="true">{number}</span>
-        </li>"""
-
-
-def process_flow_card(title: str, body: str) -> str:
-    return f"""
-        <li class="process-flow__step" data-flow-item>
+        <li class="process-flow__unit" data-flow-item>
+          <div class="process-flow__unit-head">
+            <span class="process-flow__marker" aria-hidden="true">{number}</span>
+          </div>
           <article class="process-flow__card">
             <h3>{title}</h3>
             <p>{body}</p>
           </article>
-        </li>"""
-
-
-def process_flow_unit(number: str, title: str, body: str, with_bridge: bool) -> str:
-    bridge = f"\n{PROCESS_FLOW_ARROW}" if with_bridge else ""
-    return f"""{process_flow_marker(number)}
-{process_flow_card(title, body)}{bridge}"""
+        </li>{bridge}"""
 
 
 def hero_preload_head() -> str:
@@ -452,7 +443,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=39" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=40" />
     {extra_head}
   </head>
   <body>
