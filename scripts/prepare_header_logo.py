@@ -1,4 +1,4 @@
-"""Header monogram mask — painted with CSS var(--copper) for exact brand color match."""
+"""Header monogram — flat site copper (#c98958) PNG for reliable display."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -8,12 +8,13 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "assets" / "transparent monogram.png"
-OUT_MASK = ROOT / "assets" / "logo-monogram-mask.png"
+OUT = ROOT / "assets" / "logo-monogram.png"
 
+COPPER = (201, 137, 88)  # css --copper #c98958
 MIN_LUM = 40
 
 
-def logo_alpha(raw: Image.Image) -> Image.Image:
+def flat_copper_logo(raw: Image.Image) -> Image.Image:
     arr = np.array(raw.convert("RGBA"))
     r, g, b, a = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2], arr[:, :, 3]
     lum = np.maximum(np.maximum(r, g), b)
@@ -23,9 +24,9 @@ def logo_alpha(raw: Image.Image) -> Image.Image:
     strength[in_logo] *= a[in_logo] / 255.0
     alpha = (strength * 255).astype(np.uint8)
     out = np.zeros((arr.shape[0], arr.shape[1], 4), dtype=np.uint8)
-    out[:, :, 0] = 255
-    out[:, :, 1] = 255
-    out[:, :, 2] = 255
+    out[:, :, 0] = COPPER[0]
+    out[:, :, 1] = COPPER[1]
+    out[:, :, 2] = COPPER[2]
     out[:, :, 3] = alpha
     return Image.fromarray(out)
 
@@ -59,11 +60,11 @@ def main() -> None:
     if not SRC.exists():
         raise SystemExit(f"missing source: {SRC}")
     raw = Image.open(SRC)
-    mask = logo_alpha(raw)
-    mask = crop_content(mask)
-    mask = resize_height(mask, 280)
-    mask.save(OUT_MASK, optimize=True)
-    print("saved", OUT_MASK, mask.size)
+    logo = flat_copper_logo(raw)
+    logo = crop_content(logo)
+    logo = resize_height(logo, 280)
+    logo.save(OUT, optimize=True)
+    print("saved", OUT, logo.size)
 
 
 if __name__ == "__main__":
