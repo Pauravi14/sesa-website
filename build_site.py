@@ -492,7 +492,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=39" defer></script>
+    <script src="{p}js/main.js?v=40" defer></script>
   </body>
 </html>"""
 
