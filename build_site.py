@@ -155,49 +155,58 @@ def process_flow_unit(number: str, title: str, body: str, with_connector: bool) 
 
 def service_card_icon(key: str) -> str:
     svg = (
-        '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" '
+        '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.15" '
         'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
     )
     icons = {
         "unfall": (
             f"{svg}"
-            '<path d="M4.5 20.5h7l2-5.8h7.5l2 5.8"/>'
-            '<path d="M4 20.5h24"/>'
-            '<path d="M6.5 14.7 8.5 9.5h4"/>'
-            '<circle cx="8.5" cy="22.8" r="1.9"/>'
-            '<circle cx="23.5" cy="22.8" r="1.9"/>'
-            '<path d="M14.5 17.2h4.2"/>'
-            '<path d="M15.2 16.3 16.1 18.6l1-2.3 1 2.3"/>'
+            '<path d="M3.8 20.4h6.2l1.3-3.4h4.2"/>'
+            '<path d="M3.3 20.4h14.5"/>'
+            '<path d="M5.6 17 6.9 12.2h3.4"/>'
+            '<path d="M5.9 12.2 4.7 10.6"/>'
+            '<path d="M7.4 14.2l1-2.2"/>'
+            '<circle cx="7.1" cy="22.2" r="1.5"/>'
+            '<circle cx="14.7" cy="22.2" r="1.5"/>'
+            '<rect x="18.8" y="8.6" width="8.8" height="11.6" rx="1"/>'
+            '<path d="M20.8 8.6V7.3h4.8v1.3"/>'
+            '<path d="M20.7 12h4.9"/><path d="M20.7 14.7h4.9"/><path d="M20.7 17.4h3.2"/>'
             "</svg>"
         ),
         "bewertung": (
             f"{svg}"
-            '<path d="M5 21h6l1.6-4.2h6.8l1.6 4.2"/>'
-            '<path d="M4.5 21h23"/>'
-            '<circle cx="8.5" cy="23" r="1.5"/>'
-            '<circle cx="22" cy="23" r="1.5"/>'
-            '<circle cx="21.5" cy="10.5" r="3.8"/>'
-            '<path d="M24.2 13.2 26.5 15.5"/>'
+            '<path d="M5.2 12.2 7.6 6.1h10.8l2.4 6.1"/>'
+            '<path d="M4.5 12.9h17.1"/>'
+            '<path d="M8.1 17.3h10.2"/>'
+            '<circle cx="8.5" cy="20.8" r="1.35"/>'
+            '<circle cx="17.9" cy="20.8" r="1.35"/>'
+            '<circle cx="23" cy="9.2" r="3.2"/>'
+            '<path d="M25.3 11.5 27.6 13.8"/>'
             "</svg>"
         ),
         "wohnmobile": (
             f"{svg}"
-            '<path d="M4.5 20.5h7.5l2.2-6.3h5.3v6.3"/>'
-            '<path d="M14.5 14.2H26v6.3H4.5"/>'
-            '<path d="M6.8 14.2 8.8 8.8h4.2"/>'
-            '<rect x="17.2" y="16" width="6.2" height="3.1" rx="0.6"/>'
-            '<circle cx="9.5" cy="22.8" r="1.9"/>'
-            '<circle cx="23" cy="22.8" r="1.9"/>'
+            '<path d="M4 20.5h6.6l1.9-5.1h3.8v5.1"/>'
+            '<path d="M12.5 15.4H26v5.1H4"/>'
+            '<path d="M6.3 15.4 8.3 9.5h4"/>'
+            '<path d="M8.3 9.5 10.2 7h4.3l1.9 2.5"/>'
+            '<rect x="17.4" y="17.1" width="6" height="2.9" rx="0.5"/>'
+            '<path d="M15 17.9v2.1"/>'
+            '<circle cx="8.7" cy="22.5" r="1.55"/>'
+            '<circle cx="22.5" cy="22.5" r="1.55"/>'
             "</svg>"
         ),
         "oldtimer": (
             f"{svg}"
-            '<path d="M5 18.5c0-6.2 5.4-9.2 11-9.2s11 3 11 9.2"/>'
-            '<path d="M5 18.5h22"/>'
-            '<path d="M8.2 18.5c1.2-2.2 3.2-3.2 5.3-3.2"/>'
-            '<path d="M18.5 15.3c2.1 0 4.1 1 5.3 3.2"/>'
-            '<circle cx="9.8" cy="22.8" r="2"/>'
-            '<circle cx="22.2" cy="22.8" r="2"/>'
+            '<path d="M6 18.9c0-5.9 4.9-9 10-9s10 3.1 10 9"/>'
+            '<path d="M6 18.9h20"/>'
+            '<path d="M8.6 18.9c1.1-2.1 3-3.1 5-3.1"/>'
+            '<path d="M18.4 15.8c2 0 3.9 1.1 5 3.1"/>'
+            '<circle cx="9.4" cy="22.7" r="1.9"/>'
+            '<circle cx="22.6" cy="22.7" r="1.9"/>'
+            '<circle cx="9.4" cy="18.9" r="1.2"/>'
+            '<circle cx="22.6" cy="18.9" r="1.2"/>'
+            '<path d="M13.1 18.9v-1.9"/><path d="M15.8 18.9v-1.9"/><path d="M18.5 18.9v-1.9"/>'
             "</svg>"
         ),
     }
