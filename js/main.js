@@ -259,15 +259,10 @@
       const item = flowItems[index];
       if (!item) return;
       item.classList.add("is-visible");
-      if (index === 0) {
-        processFlow.classList.add("is-active");
-      }
       if (index < flowItems.length - 1) {
         window.setTimeout(function () {
           revealFlowItem(index + 1);
         }, reducedMotion ? 0 : 520);
-      } else {
-        processFlow.classList.add("is-flowing");
       }
     }
 
@@ -275,7 +270,6 @@
       flowItems.forEach(function (item) {
         item.classList.add("is-visible");
       });
-      processFlow.classList.add("is-active", "is-flowing");
     } else {
       const flowObserver = new IntersectionObserver(
         function (entries) {
