@@ -205,10 +205,6 @@ def home_page_body() -> str:
           </div>
         </div>
       </div>
-      <a class="hero__scroll-cue" href="#expertise" aria-label="Weiter scrollen">
-        <span class="hero__scroll-cue-text">Scrollen</span>
-        <span class="hero__scroll-cue-line" aria-hidden="true"></span>
-      </a>
     </section>
 
     <section class="section home-section home-expert" data-section="expert" id="expertise">
@@ -504,7 +500,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=40" defer></script>
+    <script src="{p}js/main.js?v=41" defer></script>
   </body>
 </html>"""
 
