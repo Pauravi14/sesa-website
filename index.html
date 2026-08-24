@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=25" />
+    <link rel="stylesheet" href="./css/styles.css?v=26" />
     
   </head>
   <body>
@@ -64,7 +64,14 @@
       </div>
     </header>
     <main id="main">
-    <section class="hero hero--home" data-section="hero">
+    <section class="hero hero--home hero--slideshow" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
+      <div class="hero__slides" aria-hidden="true">
+        <img class="hero__slide is-active" src="assets/hero-inspection.png" alt="" loading="eager" decoding="async" />
+        <img class="hero__slide" src="assets/damage-detail.png" alt="" loading="lazy" decoding="async" />
+        <img class="hero__slide" src="assets/workshop-tools.png" alt="" loading="lazy" decoding="async" />
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__inner">
       <div class="hero__content">
         <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
         <h1>Kfz-Gutachter für Nordrhein-Westfalen, Niedersachsen, Hessen, Hamburg und Bremen</h1>
@@ -91,7 +98,7 @@
           </div>
         </div>
       </div>
-      <img class="hero-photo" src="assets/hero-inspection.png" alt="Fahrzeugbegutachtung durch Kfz-Sachverständigen" />
+      </div>
     </section>
 
     <section class="section home-section home-expert" data-section="expert" id="expertise">

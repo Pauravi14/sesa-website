@@ -249,4 +249,17 @@
       }
     }
   });
+
+  const heroSlider = document.querySelector("[data-hero-slider]");
+  if (heroSlider) {
+    const slides = heroSlider.querySelectorAll(".hero__slide");
+    if (slides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      let active = 0;
+      window.setInterval(function () {
+        slides[active].classList.remove("is-active");
+        active = (active + 1) % slides.length;
+        slides[active].classList.add("is-active");
+      }, 7000);
+    }
+  }
 })();

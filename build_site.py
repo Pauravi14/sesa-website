@@ -22,6 +22,12 @@ QUAL_TRUST_BLURB = (
     "Detaillierte Qualifikationsnachweise stellen wir auf Anfrage zur Verfügung."
 )
 
+HERO_SLIDES = [
+    ("assets/hero-inspection.png", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
+    ("assets/damage-detail.png", "Schadendokumentation am Fahrzeug"),
+    ("assets/workshop-tools.png", "Fachliche Begutachtung in der Werkstatt"),
+]
+
 WHATSAPP_TEXT_BERATUNG = (
     "Guten Tag SESA,\n"
     "ich benötige eine Beratung.\n"
@@ -88,10 +94,27 @@ def mobile_action_bar() -> str:
     </nav>"""
 
 
+def hero_slides_html() -> str:
+    parts = []
+    for i, (src, alt) in enumerate(HERO_SLIDES):
+        active = " is-active" if i == 0 else ""
+        parts.append(
+            f'        <img class="hero__slide{active}" src="{src}" alt="" '
+            f'loading="{("eager" if i == 0 else "lazy")}" decoding="async" />'
+        )
+    return "\n".join(parts)
+
+
 def home_page_body() -> str:
     beratung = whatsapp_url(WHATSAPP_TEXT_BERATUNG)
+    slides = hero_slides_html()
     return f"""
-    <section class="hero hero--home" data-section="hero">
+    <section class="hero hero--home hero--slideshow" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
+      <div class="hero__slides" aria-hidden="true">
+{slides}
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__inner">
       <div class="hero__content">
         <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
         <h1>Kfz-Gutachter für Nordrhein-Westfalen, Niedersachsen, Hessen, Hamburg und Bremen</h1>
@@ -118,7 +141,7 @@ def home_page_body() -> str:
           </div>
         </div>
       </div>
-      <img class="hero-photo" src="assets/hero-inspection.png" alt="Fahrzeugbegutachtung durch Kfz-Sachverständigen" />
+      </div>
     </section>
 
     <section class="section home-section home-expert" data-section="expert" id="expertise">
@@ -393,7 +416,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=25" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=26" />
     {extra_head}
   </head>
   <body>
