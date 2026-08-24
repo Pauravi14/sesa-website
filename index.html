@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=24" />
+    <link rel="stylesheet" href="./css/styles.css?v=25" />
     
   </head>
   <body>
@@ -84,16 +84,18 @@
           </li>
         </ul>
         <div class="hero-actions hero-actions--tiered">
-          <a class="btn btn-primary" href="tel:+491773145839">Jetzt anrufen</a>
-          <a class="btn btn-secondary btn-wa" href="https://wa.me/491773145839?text=Guten%20Tag%20SESA%2C%0Aich%20ben%C3%B6tige%20eine%20Beratung.%0ABitte%20rufen%20Sie%20mich%20zur%C3%BCck." target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
-          <a class="btn btn-tertiary" href="schaden-melden.html">Schaden online melden</a>
+          <a class="btn btn-primary hero-cta-primary" href="tel:+491773145839">Jetzt anrufen</a>
+          <div class="hero-actions__secondary">
+            <a class="btn btn-secondary btn-wa" href="https://wa.me/491773145839?text=Guten%20Tag%20SESA%2C%0Aich%20ben%C3%B6tige%20eine%20Beratung.%0ABitte%20rufen%20Sie%20mich%20zur%C3%BCck." target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+            <a class="btn btn-tertiary" href="schaden-melden.html">Schaden online melden</a>
+          </div>
         </div>
       </div>
       <img class="hero-photo" src="assets/hero-inspection.png" alt="Fahrzeugbegutachtung durch Kfz-Sachverständigen" />
     </section>
 
     <section class="section home-section home-expert" data-section="expert" id="expertise">
-      <div class="expert-spotlight">
+      <div class="expert-spotlight expert-spotlight--premium">
         <div class="expert-spotlight__media">
           <img class="expert-spotlight__photo" src="assets/portrait-placeholder.png" alt="Porträtfoto — Selim Sabahoglu" loading="lazy" />
         </div>
@@ -105,7 +107,7 @@
           <p class="expert-spotlight__role">Inhaber · SESA KFZ-Sachverständigenbüro</p>
           <ul class="expert-credentials">
             <li>Kfz-Meister</li>
-            <li>Personenzertifizierter Kraftfahrzeugsachverständiger (Euro-Zert)</li>
+            <li>Sachverständiger für Kraftfahrzeuge</li>
             <li>Erfahrung als Fahrzeugbewerter und Unfallschadengutachter</li>
             <li>Frühere Tätigkeit bei TÜV NORD — keine aktuelle Partnerschaft</li>
           </ul>
@@ -162,34 +164,34 @@
         <p class="kicker">Ablauf</p>
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
-      <ol class="process-timeline">
+      <ol class="process-timeline" role="list">
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">1</span>
-          <div class="process-timeline__content">
+          <article class="process-timeline__card">
             <h3>Kontakt</h3>
             <p>Kontaktaufnahme und Erstberatung</p>
-          </div>
+          </article>
         </li>
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">2</span>
-          <div class="process-timeline__content">
+          <article class="process-timeline__card">
             <h3>Begutachtung</h3>
             <p>Schadenaufnahme am Fahrzeugstandort</p>
-          </div>
+          </article>
         </li>
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">3</span>
-          <div class="process-timeline__content">
+          <article class="process-timeline__card">
             <h3>Dokumentation</h3>
             <p>Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden</p>
-          </div>
+          </article>
         </li>
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">4</span>
-          <div class="process-timeline__content">
+          <article class="process-timeline__card">
             <h3>Besprechung</h3>
             <p>Persönliche Betreuung bei Rückfragen</p>
-          </div>
+          </article>
         </li>
       </ol>
     </section>
@@ -202,7 +204,7 @@
       <div class="grid-3 trust-grid">
         <article class="panel trust-panel">
           <h3>Qualifikation</h3>
-          <p class="muted">Kfz-Meister und personenzertifizierter Kraftfahrzeugsachverständiger (Nachweis vor Veröffentlichung prüfen).</p>
+          <p class="muted">Kfz-Meister und Sachverständiger für Kraftfahrzeuge. Detaillierte Qualifikationsnachweise stellen wir auf Anfrage zur Verfügung.</p>
         </article>
         <article class="panel trust-panel">
           <h3>Erfahrung</h3>

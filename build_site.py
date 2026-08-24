@@ -17,6 +17,7 @@ BUSINESS = "SESA KFZ-Sachverständigenbüro"
 OWNER = "Selim Sabahoglu"
 
 # Qualification copy — use exact certificate wording only after client confirmation
+QUAL_TRUST_BLURB = (
     "Kfz-Meister und Sachverständiger für Kraftfahrzeuge. "
     "Detaillierte Qualifikationsnachweise stellen wir auf Anfrage zur Verfügung."
 )
