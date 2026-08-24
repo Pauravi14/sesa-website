@@ -250,6 +250,47 @@
     }
   });
 
+  const processFlow = document.querySelector("[data-process-flow]");
+  if (processFlow) {
+    const flowItems = processFlow.querySelectorAll("[data-flow-item]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function revealFlowItem(index) {
+      const item = flowItems[index];
+      if (!item) return;
+      item.classList.add("is-visible");
+      if (index === 0) {
+        processFlow.classList.add("is-active");
+      }
+      if (index < flowItems.length - 1) {
+        window.setTimeout(function () {
+          revealFlowItem(index + 1);
+        }, reducedMotion ? 0 : 520);
+      } else {
+        processFlow.classList.add("is-flowing");
+      }
+    }
+
+    if (reducedMotion || !flowItems.length) {
+      flowItems.forEach(function (item) {
+        item.classList.add("is-visible");
+      });
+      processFlow.classList.add("is-active", "is-flowing");
+    } else {
+      const flowObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            flowObserver.disconnect();
+            revealFlowItem(0);
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+      );
+      flowObserver.observe(processFlow);
+    }
+  }
+
   const heroSlider = document.querySelector("[data-hero-slider]");
   if (heroSlider) {
     const slides = heroSlider.querySelectorAll(".hero__slide");

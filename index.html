@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=34" />
+    <link rel="stylesheet" href="./css/styles.css?v=36" />
         <link rel="preload" as="image" href="assets/hero/slide-1.jpg" />
     <link rel="preload" as="image" href="assets/hero/slide-2.jpg" />
     <link rel="preload" as="image" href="assets/hero/slide-3.jpg" />
@@ -174,52 +174,45 @@
       <header class="section-header section-header--center">
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
-      <ol class="process-timeline process-timeline--connected" role="list">
+      <div class="process-flow" data-process-flow>
+        <ol class="process-flow__track" role="list">
 
-        <li class="process-timeline__step">
-          <div class="process-timeline__rail">
-            <span class="process-timeline__marker" aria-hidden="true">01</span>
-            <span class="process-timeline__arrow-line" aria-hidden="true"></span>
-          </div>
-          <article class="process-timeline__card">
+        <li class="process-flow__step" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">01</span>
+          <article class="process-flow__card">
             <h3>Kontakt</h3>
             <p>Kontaktaufnahme und Erstberatung</p>
           </article>
         </li>
+<li class="process-flow__bridge" data-flow-item aria-hidden="true"><span class="process-flow__arrow"></span></li>
 
-        <li class="process-timeline__step">
-          <div class="process-timeline__rail">
-            <span class="process-timeline__marker" aria-hidden="true">02</span>
-            <span class="process-timeline__arrow-line" aria-hidden="true"></span>
-          </div>
-          <article class="process-timeline__card">
+        <li class="process-flow__step" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">02</span>
+          <article class="process-flow__card">
             <h3>Begutachtung</h3>
             <p>Schadenaufnahme am Fahrzeugstandort</p>
           </article>
         </li>
+<li class="process-flow__bridge" data-flow-item aria-hidden="true"><span class="process-flow__arrow"></span></li>
 
-        <li class="process-timeline__step">
-          <div class="process-timeline__rail">
-            <span class="process-timeline__marker" aria-hidden="true">03</span>
-            <span class="process-timeline__arrow-line" aria-hidden="true"></span>
-          </div>
-          <article class="process-timeline__card">
+        <li class="process-flow__step" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">03</span>
+          <article class="process-flow__card">
             <h3>Dokumentation</h3>
             <p>In der Regel innerhalb von 24–48 Stunden<br>nach vollständiger Schadenaufnahme</p>
           </article>
         </li>
+<li class="process-flow__bridge" data-flow-item aria-hidden="true"><span class="process-flow__arrow"></span></li>
 
-        <li class="process-timeline__step">
-          <div class="process-timeline__rail">
-            <span class="process-timeline__marker" aria-hidden="true">04</span>
-            
-          </div>
-          <article class="process-timeline__card">
+        <li class="process-flow__step" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">04</span>
+          <article class="process-flow__card">
             <h3>Besprechung</h3>
             <p>Persönliche Betreuung bei Rückfragen</p>
           </article>
         </li>
-      </ol>
+        </ol>
+      </div>
     </section>
 
     <section class="section content-light home-section home-trust" data-section="trust" id="warum-sesa">
@@ -331,6 +324,6 @@
         </a>
       </div>
     </div>
-    <script src="./js/main.js?v=3" defer></script>
+    <script src="./js/main.js?v=4" defer></script>
   </body>
 </html>

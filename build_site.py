@@ -26,6 +26,9 @@ GUTACHTEN_TIMING = (
     "Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden "
     "nach vollständiger Schadenaufnahme"
 )
+GUTACHTEN_TIMING_CARD = (
+    "In der Regel innerhalb von 24–48 Stunden<br>nach vollständiger Schadenaufnahme"
+)
 
 HERO_IMG_VER = "4"
 SERVICE_IMG_VER = "3"
@@ -123,14 +126,17 @@ def hero_slides_html() -> str:
     return "\n".join(parts)
 
 
-PROCESS_CONNECTOR = '<li class="process-timeline__connector" aria-hidden="true"></li>'
+PROCESS_FLOW_ARROW = (
+    '<li class="process-flow__bridge" data-flow-item aria-hidden="true">'
+    '<span class="process-flow__arrow"></span></li>'
+)
 
 
-def process_unit(number: str, title: str, body: str) -> str:
+def process_flow_step(number: str, title: str, body: str) -> str:
     return f"""
-        <li class="process-timeline__unit">
-          <span class="process-timeline__marker" aria-hidden="true">{number}</span>
-          <article class="process-timeline__card">
+        <li class="process-flow__step" data-flow-item>
+          <span class="process-flow__marker" aria-hidden="true">{number}</span>
+          <article class="process-flow__card">
             <h3>{title}</h3>
             <p>{body}</p>
           </article>
@@ -249,15 +255,17 @@ def home_page_body() -> str:
       <header class="section-header section-header--center">
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
-      <ol class="process-timeline process-timeline--flow" role="list">
-{process_unit("01", "Kontakt", "Kontaktaufnahme und Erstberatung")}
-{PROCESS_CONNECTOR}
-{process_unit("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort")}
-{PROCESS_CONNECTOR}
-{process_unit("03", "Dokumentation", GUTACHTEN_TIMING)}
-{PROCESS_CONNECTOR}
-{process_unit("04", "Besprechung", "Persönliche Betreuung bei Rückfragen")}
-      </ol>
+      <div class="process-flow" data-process-flow>
+        <ol class="process-flow__track" role="list">
+{process_flow_step("01", "Kontakt", "Kontaktaufnahme und Erstberatung")}
+{PROCESS_FLOW_ARROW}
+{process_flow_step("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort")}
+{PROCESS_FLOW_ARROW}
+{process_flow_step("03", "Dokumentation", GUTACHTEN_TIMING_CARD)}
+{PROCESS_FLOW_ARROW}
+{process_flow_step("04", "Besprechung", "Persönliche Betreuung bei Rückfragen")}
+        </ol>
+      </div>
     </section>
 
     <section class="section content-light home-section home-trust" data-section="trust" id="warum-sesa">
@@ -430,7 +438,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=34" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=36" />
     {extra_head}
   </head>
   <body>
@@ -472,7 +480,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=3" defer></script>
+    <script src="{p}js/main.js?v=4" defer></script>
   </body>
 </html>"""
 
