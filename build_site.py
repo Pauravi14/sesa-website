@@ -257,7 +257,7 @@ def home_page_body() -> str:
       <ol class="process-timeline process-timeline--connected" role="list">
 {process_step("01", "Kontakt", "Kontaktaufnahme und Erstberatung", True)}
 {process_step("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", True)}
-{process_step("03", "Dokumentation", GUTACHTEN_TIMING, True)}
+{process_step("03", "Dokumentation", "In der Regel innerhalb von 24–48 Stunden<br>nach vollständiger Schadenaufnahme", True)}
 {process_step("04", "Besprechung", "Persönliche Betreuung bei Rückfragen", False)}
       </ol>
     </section>
@@ -432,7 +432,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=33" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=34" />
     {extra_head}
   </head>
   <body>
