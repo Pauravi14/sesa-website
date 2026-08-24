@@ -316,11 +316,9 @@
       initialDelay: 250,
       travel: 1000,
       arrivalPause: 250,
-      markerReveal: 280,
-      cardReveal: 350,
+      stepFocus: 350,
       betweenSegments: 180,
-      finalHold: 2200,
-      resetFade: 250
+      finalHold: 2200
     };
 
     let running = false;
@@ -404,26 +402,22 @@
           return;
         }
 
-        unit.classList.add("is-step-live");
-        wait(TIMING.markerReveal).then(function () {
-          if (generation !== sequenceGeneration) {
-            resolve();
-            return;
-          }
-          unit.classList.add("is-step-open");
-          return wait(TIMING.cardReveal);
-        }).then(resolve);
+        unit.classList.add("is-step-open");
+        wait(TIMING.stepFocus).then(resolve);
       });
     }
 
     function completeSequence(generation) {
-      if (generation !== sequenceGeneration) return Promise.resolve();
+      if (generation !== sequenceGeneration || sequenceCompleted) {
+        return Promise.resolve();
+      }
 
       running = false;
       sequenceCompleted = true;
+      clearTimers();
 
       units.forEach(function (unit) {
-        unit.classList.add("is-step-live", "is-step-open");
+        unit.classList.add("is-step-open");
       });
 
       connectors.forEach(function (connector) {
@@ -434,11 +428,25 @@
 
       processFlow.classList.remove("is-sequencing");
       processFlow.classList.add("is-sequence-complete");
+
+      if (flowObserver) {
+        flowObserver.disconnect();
+        flowObserver = null;
+      }
+
       return Promise.resolve();
     }
 
     function runSequence(generation) {
-      units[0].classList.add("is-step-live", "is-step-open");
+      units.forEach(function (unit, index) {
+        unit.classList.toggle("is-step-open", index === 0);
+      });
+
+      connectors.forEach(function (connector) {
+        connector.classList.remove("is-connector-live");
+        const orbit = connector.querySelector("[data-process-orbit]");
+        if (orbit) setConnectorProgress(orbit, 0);
+      });
 
       return wait(TIMING.initialDelay)
         .then(function () {
@@ -473,26 +481,6 @@
         });
     }
 
-    function stopSequence() {
-      if (sequenceCompleted) return;
-      running = false;
-      sequenceGeneration += 1;
-      clearTimers();
-      units.forEach(function (unit, index) {
-        if (index === 0) {
-          unit.classList.add("is-step-live", "is-step-open");
-        } else {
-          unit.classList.remove("is-step-live", "is-step-open");
-        }
-      });
-      connectors.forEach(function (connector) {
-        connector.classList.remove("is-connector-live");
-        const orbit = connector.querySelector("[data-process-orbit]");
-        if (orbit) setConnectorProgress(orbit, 0);
-      });
-      processFlow.classList.remove("is-sequencing");
-    }
-
     function startSequence() {
       if (running || sequenceCompleted) return;
       running = true;
@@ -501,6 +489,11 @@
       clearTimers();
       processFlow.classList.add("is-sequencing");
       runSequence(generation);
+
+      if (flowObserver) {
+        flowObserver.disconnect();
+        flowObserver = null;
+      }
     }
 
     function isProcessFlowInView() {
@@ -511,16 +504,23 @@
     if (reduceMotion || !units.length) {
       processFlow.classList.add("is-static");
       units.forEach(function (unit) {
-        unit.classList.add("is-step-live", "is-step-open");
+        unit.classList.add("is-step-open");
+      });
+      connectors.forEach(function (connector) {
+        connector.classList.add("is-connector-live");
+        const orbit = connector.querySelector("[data-process-orbit]");
+        if (orbit) setConnectorProgress(orbit, 1);
       });
     } else {
+      units.forEach(function (unit, index) {
+        unit.classList.toggle("is-step-open", index === 0);
+      });
+
       flowObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               startSequence();
-            } else {
-              stopSequence();
             }
           });
         },
