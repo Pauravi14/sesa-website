@@ -9,12 +9,12 @@ from PIL import Image, ImageEnhance, ImageOps
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "service"
 
-# All workshop / vehicle scenes for a cohesive look (no landscape road shot).
+# Each image matches the service card topic.
 SPECS = [
-    ("damage-detail.png", "service-unfall.jpg", (0.5, 0.45)),
-    ("workshop-tools.png", "service-bewertung.jpg", (0.5, 0.5)),
-    ("hero-inspection.png", "service-wohnmobile.jpg", (0.55, 0.38)),
-    ("damage-detail.png", "service-oldtimer.jpg", (0.32, 0.42)),
+    ("damage-detail.png", "service-unfall.jpg", (0.58, 0.48)),
+    ("workshop-tools.png", "service-bewertung.jpg", (0.42, 0.58)),
+    ("source/wohnmobile-source.jpg", "service-wohnmobile.jpg", (0.5, 0.45)),
+    ("source/oldtimer-source.jpg", "service-oldtimer.jpg", (0.5, 0.42)),
 ]
 
 SIZE = (1280, 720)
@@ -48,6 +48,8 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     for src_name, out_name, focal in SPECS:
         src = ROOT / "assets" / src_name
+        if not src.exists():
+            raise FileNotFoundError(f"Missing source image: {src}")
         out = OUT / out_name
         with Image.open(src) as raw:
             img = ImageOps.exif_transpose(raw).convert("RGB")

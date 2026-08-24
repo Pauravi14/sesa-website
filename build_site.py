@@ -23,19 +23,19 @@ QUAL_TRUST_BLURB = (
 )
 
 HERO_IMG_VER = "2"
-SERVICE_IMG_VER = "2"
+SERVICE_IMG_VER = "3"
 
 HERO_SLIDES = [
-    ("assets/hero/slide-1.jpg?v=2", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
-    ("assets/hero/slide-2.jpg?v=2", "Schadendokumentation am Fahrzeug"),
-    ("assets/hero/slide-3.jpg?v=2", "Fachliche Begutachtung in der Werkstatt"),
+    ("assets/hero/slide-1.jpg?v=3", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
+    ("assets/hero/slide-2.jpg?v=3", "Schadendokumentation am Fahrzeug"),
+    ("assets/hero/slide-3.jpg?v=3", "Fachliche Begutachtung in der Werkstatt"),
 ]
 
 SERVICE_THUMBS = {
-    "unfall": "assets/service/service-unfall.jpg?v=2",
-    "bewertung": "assets/service/service-bewertung.jpg?v=2",
-    "wohnmobile": "assets/service/service-wohnmobile.jpg?v=2",
-    "oldtimer": "assets/service/service-oldtimer.jpg?v=2",
+    "unfall": "assets/service/service-unfall.jpg?v=3",
+    "bewertung": "assets/service/service-bewertung.jpg?v=3",
+    "wohnmobile": "assets/service/service-wohnmobile.jpg?v=3",
+    "oldtimer": "assets/service/service-oldtimer.jpg?v=3",
 }
 
 WHATSAPP_TEXT_BERATUNG = (
@@ -191,7 +191,7 @@ def home_page_body() -> str:
       </header>
       <div class="service-grid">
         <article class="service-card">
-          <div class="service-card__media"><img src="{SERVICE_THUMBS["unfall"]}" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["unfall"]}" alt="Schadendetail am Fahrzeug" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Unfallgutachten</h3>
             <p>Unabhängige Schadenaufnahme als technische Grundlage für die Regulierung.</p>
@@ -199,7 +199,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="{SERVICE_THUMBS["bewertung"]}" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["bewertung"]}" alt="Werkzeug und Dokumentation zur Fahrzeugbewertung" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Fahrzeugbewertung</h3>
             <p>Marktwert, Wiederbeschaffungswert oder Fahrzeugwert je nach Anlass.</p>
@@ -207,7 +207,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="{SERVICE_THUMBS["wohnmobile"]}" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["wohnmobile"]}" alt="Wohnmobil auf einer Landstraße" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Wohnmobile &amp; Wohnwagen</h3>
             <p>Begutachtung und Bewertung von Freizeitfahrzeugen.</p>
@@ -215,7 +215,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="{SERVICE_THUMBS["oldtimer"]}" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["oldtimer"]}" alt="Oldtimer in der Werkstatt" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Oldtimer &amp; Youngtimer</h3>
             <p>Zustand, Originalität und Wertermittlung für Klassiker.</p>
@@ -475,7 +475,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=2" defer></script>
+    <script src="{p}js/main.js?v=3" defer></script>
   </body>
 </html>"""
 
