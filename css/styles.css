@@ -921,6 +921,39 @@ a:hover {
   padding-bottom: 6.5rem;
 }
 
+.home-trust .section-header {
+  max-width: none;
+  margin-bottom: 3rem;
+}
+
+.home-trust h2.home-trust__title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 8.5vw, 5.25rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.85rem;
+  color: var(--navy);
+  text-wrap: balance;
+}
+
+.home-trust__title::after {
+  content: "";
+  display: block;
+  width: clamp(3.5rem, 12vw, 5rem);
+  height: 4px;
+  margin: 1rem auto 0;
+  background: linear-gradient(90deg, var(--copper), rgba(201, 137, 88, 0.35));
+  border-radius: 2px;
+}
+
+.home-trust .section-intro {
+  margin-top: 0;
+  font-size: 1.12rem;
+  font-weight: 500;
+  color: var(--mute);
+}
+
 .section-header {
   margin-bottom: 2.5rem;
   max-width: 40rem;
@@ -2184,7 +2217,7 @@ body.consent-open {
   }
 
   50% {
-    transform: scale(1.06);
+    transform: scale(1.1);
   }
 }
 

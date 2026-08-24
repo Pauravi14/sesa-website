@@ -280,9 +280,9 @@ def home_page_body() -> str:
     </section>
 
     <section class="section content-light home-section home-trust" data-section="trust" id="warum-sesa">
-      <header class="section-header">
-        <p class="kicker">Warum SESA?</p>
-        <h2>Ihr Vorteil auf einen Blick</h2>
+      <header class="section-header section-header--center">
+        <h2 class="home-trust__title">Warum SESA?</h2>
+        <p class="section-intro">Ihr Vorteil auf einen Blick</p>
       </header>
       <div class="grid-3 trust-grid">
         <article class="panel trust-panel">
@@ -452,7 +452,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=75" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=77" />
     {extra_head}
   </head>
   <body>
@@ -497,7 +497,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=35" defer></script>
+    <script src="{p}js/main.js?v=36" defer></script>
   </body>
 </html>"""
 

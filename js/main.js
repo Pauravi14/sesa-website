@@ -314,6 +314,43 @@
       let attentionNextTimer = null;
       let attentionPulseCount = 0;
       let attentionStarted = false;
+      let waAudioContext = null;
+
+      function playAttentionSound() {
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) return;
+
+          if (!waAudioContext) {
+            waAudioContext = new AudioCtx();
+          }
+
+          if (waAudioContext.state === "suspended") {
+            waAudioContext.resume();
+          }
+
+          const now = waAudioContext.currentTime;
+
+          function tone(frequency, start, duration, volume) {
+            const osc = waAudioContext.createOscillator();
+            const gain = waAudioContext.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(frequency, start);
+            gain.gain.setValueAtTime(0.0001, start);
+            gain.gain.exponentialRampToValueAtTime(volume, start + 0.015);
+            gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+            osc.connect(gain);
+            gain.connect(waAudioContext.destination);
+            osc.start(start);
+            osc.stop(start + duration + 0.02);
+          }
+
+          tone(784, now, 0.12, 0.07);
+          tone(988, now + 0.11, 0.16, 0.06);
+        } catch (_) {
+          /* ignore audio errors */
+        }
+      }
 
       function clearAttentionTimers() {
         if (attentionPulseTimer !== null) {
@@ -356,6 +393,7 @@
         waWrap.classList.remove("is-attention-pulse");
         void waWrap.offsetWidth;
         waWrap.classList.add("is-attention-pulse");
+        playAttentionSound();
 
         attentionPulseTimer = window.setTimeout(function () {
           waWrap.classList.remove("is-attention-pulse");
