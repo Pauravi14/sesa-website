@@ -313,14 +313,14 @@
     );
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const TIMING = {
-      initialDelay: 350,
-      travel: 1400,
-      arrivalPause: 350,
-      markerReveal: 350,
-      cardReveal: 450,
-      betweenSegments: 250,
-      finalHold: 1000,
-      resetFade: 350
+      initialDelay: 250,
+      travel: 1000,
+      arrivalPause: 250,
+      markerReveal: 280,
+      cardReveal: 350,
+      betweenSegments: 180,
+      finalHold: 700,
+      resetFade: 250
     };
 
     let running = false;
