@@ -169,24 +169,38 @@ def home_page_body() -> str:
           <p class="hero__description">Unverschuldeter Unfall? Wir dokumentieren Schäden fachgerecht und schaffen eine belastbare Grundlage für die weitere Schadenregulierung.</p>
           <ul class="hero-trust hero-trust--centered" role="list">
             <li class="hero-trust__item">
-              <span class="hero-trust__mark" aria-hidden="true">01</span>
-              <strong>Unabhängig</strong>
-              <span>Eigenes Sachverständigenbüro ohne Weisungsbindung</span>
+              <span class="hero-trust__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9.5 12 1.8 1.8L15 10.1"/></svg>
+              </span>
+              <div class="hero-trust__copy">
+                <strong>Unabhängig</strong>
+                <span>Eigenes Sachverständigenbüro ohne Weisungsbindung</span>
+              </div>
             </li>
             <li class="hero-trust__item">
-              <span class="hero-trust__mark" aria-hidden="true">02</span>
-              <strong>Mobil vor Ort</strong>
-              <span>Bei Ihnen, in der Werkstatt oder am Fahrzeugstandort</span>
+              <span class="hero-trust__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 17h14l-1.2-5.5a2 2 0 0 0-2-1.5H8.2a2 2 0 0 0-2 1.5L5 17Z"/><path d="M7 17v2M17 17v2"/><circle cx="7.5" cy="19.5" r="1.5"/><circle cx="16.5" cy="19.5" r="1.5"/><path d="M5 11h14l1-4H4l1 4Z"/></svg>
+              </span>
+              <div class="hero-trust__copy">
+                <strong>Mobil vor Ort</strong>
+                <span>Bei Ihnen, in der Werkstatt oder am Fahrzeugstandort</span>
+              </div>
             </li>
             <li class="hero-trust__item">
-              <span class="hero-trust__mark" aria-hidden="true">03</span>
-              <strong>24–48 Std.</strong>
-              <span>{GUTACHTEN_TIMING}</span>
+              <span class="hero-trust__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+              </span>
+              <div class="hero-trust__copy">
+                <strong>24–48 Std.</strong>
+                <span>{GUTACHTEN_TIMING}</span>
+              </div>
             </li>
           </ul>
           <div class="hero-actions hero-actions--centered">
-            <a class="btn btn-primary hero-cta-primary" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
-            <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+            <div class="hero-actions__row">
+              <a class="btn btn-primary hero-cta-primary" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
+              <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+            </div>
             <a class="btn btn-tertiary hero-cta-tertiary" href="schaden-melden.html">Schaden online melden</a>
           </div>
         </div>
@@ -445,7 +459,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=83" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=84" />
     {extra_head}
   </head>
   <body>
