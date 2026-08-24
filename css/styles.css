@@ -1221,18 +1221,18 @@ a:hover {
   padding: 0 0.75rem;
 }
 
-.process-flow:not(.is-static) .process-flow__unit:not(:first-child) .process-flow__marker,
-.process-flow:not(.is-static) .process-flow__unit:not(:first-child) .process-flow__card {
+.process-flow:not(.is-static):not(.is-sequence-complete) .process-flow__unit:not(:first-child) .process-flow__marker,
+.process-flow:not(.is-static):not(.is-sequence-complete) .process-flow__unit:not(:first-child) .process-flow__card {
   opacity: 0;
   visibility: hidden;
 }
 
-.process-flow:not(.is-static) .process-flow__connector {
+.process-flow:not(.is-static):not(.is-sequence-complete) .process-flow__connector {
   opacity: 0;
 }
 
-.process-flow:not(.is-static) .process-flow__unit:first-child .process-flow__marker,
-.process-flow:not(.is-static) .process-flow__unit:first-child .process-flow__card {
+.process-flow:not(.is-static):not(.is-sequence-complete) .process-flow__unit:first-child .process-flow__marker,
+.process-flow:not(.is-static):not(.is-sequence-complete) .process-flow__unit:first-child .process-flow__card {
   opacity: 1;
   visibility: visible;
 }
@@ -1404,17 +1404,21 @@ a:hover {
 }
 
 .process-flow.is-static .process-flow__unit .process-flow__marker,
-.process-flow.is-static .process-flow__unit .process-flow__card {
+.process-flow.is-static .process-flow__unit .process-flow__card,
+.process-flow.is-sequence-complete .process-flow__unit .process-flow__marker,
+.process-flow.is-sequence-complete .process-flow__unit .process-flow__card {
   opacity: 1;
   visibility: visible;
   transform: none;
 }
 
-.process-flow.is-static .process-flow__connector {
+.process-flow.is-static .process-flow__connector,
+.process-flow.is-sequence-complete .process-flow__connector {
   opacity: 1;
 }
 
-.process-flow.is-static .process-flow__orbit-chevron {
+.process-flow.is-static .process-flow__orbit-chevron,
+.process-flow.is-sequence-complete .process-flow__orbit-chevron {
   left: 100%;
   transform: translate(0, -50%) translateX(-100%);
 }
@@ -1482,14 +1486,20 @@ a:hover {
 }
 
 .process-flow__card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.28rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  margin: 0 0 0.55rem;
+  font-size: 1.38rem;
+  font-weight: 700;
+  color: var(--ivory);
+  letter-spacing: 0.02em;
 }
 
 .process-flow__card h3::first-letter {
   text-transform: uppercase;
+}
+
+html.translated-ltr .process-flow__card h3,
+html.translated-rtl .process-flow__card h3 {
+  text-transform: capitalize;
 }
 
 .process-flow__card p {
@@ -2966,6 +2976,12 @@ body.consent-open {
 
   .process-flow.is-sequencing .process-flow__unit.is-step-open .process-flow__card {
     transform: translateX(0);
+  }
+
+  .process-flow.is-sequence-complete .process-flow__orbit-chevron {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(90deg);
   }
 
   .process-flow__card h3 {
