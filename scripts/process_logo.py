@@ -1,100 +1,76 @@
-"""Extract crisp SA monogram with transparent background for header."""
+"""Build raster logo mark from PDF (favicon etc.) — emblem band only."""
 from pathlib import Path
 
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+PDF_RENDER = ROOT / "assets" / "logo-from-pdf.png"
 SRC = ROOT / "assets" / "logo-sesa-source.png"
-FULL = ROOT / "assets" / "logo-sesa.png"
-MARK = ROOT / "assets" / "logo-mark.png"
+OUT = ROOT / "assets" / "logo-mark.png"
 
 
-def is_foreground(r: int, g: int, b: int) -> bool:
-    """Keep rose-gold / copper logo pixels; drop dark grey background."""
-    if r < 55 and g < 55 and b < 60:
+def is_copper(r: int, g: int, b: int) -> bool:
+    if r < 75 or g < 50:
         return False
-    # metallic copper / rose gold
-    if r >= 90 and r >= b + 15 and g >= 50:
-        return True
-    # bright metal highlights
-    if r >= 150 and g >= 110 and b >= 70:
-        return True
-    return False
+    if r < b + 15:
+        return False
+    return r + g >= 155
 
 
-def remove_background(im: Image.Image) -> Image.Image:
+def copper_mask(im: Image.Image) -> Image.Image:
     im = im.convert("RGBA")
     px = im.load()
     w, h = im.size
     for y in range(h):
         for x in range(w):
             r, g, b, _ = px[x, y]
-            if is_foreground(r, g, b):
-                px[x, y] = (r, g, b, 255)
+            if is_copper(r, g, b):
+                px[x, y] = (min(255, r), min(255, g), min(255, b), 255)
             else:
                 px[x, y] = (0, 0, 0, 0)
     return im
 
 
-def trim_alpha(im: Image.Image, pad: int = 8) -> Image.Image:
-    alpha = im.split()[3]
-    bbox = alpha.getbbox()
-    if not bbox:
-        return im
-    x0, y0, x1, y1 = bbox
-    x0 = max(0, x0 - pad)
-    y0 = max(0, y0 - pad)
-    x1 = min(im.width, x1 + pad)
-    y1 = min(im.height, y1 + pad)
-    return im.crop((x0, y0, x1, y1))
-
-
-def crop_emblem(im: Image.Image) -> Image.Image:
-    """Isolate circular SA mark above the SESA wordmark."""
+def emblem_bounds(im: Image.Image) -> tuple[int, int, int, int]:
     w, h = im.size
+    y0 = int(h * 0.21)
+    y1 = int(h * 0.40)
     px = im.load()
-    top_limit = int(h * 0.52)
     xs, ys = [], []
-    for y in range(top_limit):
+    for y in range(y0, y1):
         for x in range(w):
-            if px[x, y][3] > 20:
+            if px[x, y][3] > 40:
                 xs.append(x)
                 ys.append(y)
     if not xs:
-        return trim_alpha(im.crop((0, 0, w, int(h * 0.45))))
-    x0, x1 = min(xs), max(xs)
-    y0, y1 = min(ys), max(ys)
-    pad = int(max(x1 - x0, y1 - y0) * 0.06)
-    return trim_alpha(
-        im.crop(
-            (
-                max(0, x0 - pad),
-                max(0, y0 - pad),
-                min(w, x1 + pad),
-                min(h, y1 + pad),
-            )
-        ),
-        pad=4,
+        return (0, y0, w, y1)
+    pad = int(max(max(xs) - min(xs), max(ys) - min(ys)) * 0.12)
+    return (
+        max(0, min(xs) - pad),
+        max(0, min(ys) - pad),
+        min(w, max(xs) + pad),
+        min(h, max(ys) + pad),
     )
 
 
-def resize_mark(im: Image.Image, size: int = 240) -> Image.Image:
+def pad_square(im: Image.Image, size: int = 512) -> Image.Image:
     w, h = im.size
-    scale = size / max(w, h)
-    new_w = max(1, int(w * scale))
-    new_h = max(1, int(h * scale))
-    return im.resize((new_w, new_h), Image.Resampling.LANCZOS)
+    scale = (size * 0.78) / max(w, h)
+    nw, nh = max(1, int(w * scale)), max(1, int(h * scale))
+    im = im.resize((nw, nh), Image.Resampling.LANCZOS)
+    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    canvas.paste(im, ((size - nw) // 2, (size - nh) // 2), im)
+    return canvas
 
 
 def main():
-    src = Image.open(SRC)
-    clean = remove_background(src)
-    clean.save(FULL, optimize=True)
-    mark = crop_emblem(clean)
-    mark = resize_mark(mark, 240)
-    mark.save(MARK, optimize=True)
-    alpha = mark.split()[3]
-    print("saved mark", mark.size, "bbox", alpha.getbbox())
+    src_path = PDF_RENDER if PDF_RENDER.exists() else SRC
+    im = Image.open(src_path)
+    masked = copper_mask(im)
+    box = emblem_bounds(masked)
+    mark = pad_square(masked.crop(box), 512)
+    mark.save(OUT, optimize=True)
+    print("saved", OUT, mark.size, "crop", box)
 
 
 if __name__ == "__main__":

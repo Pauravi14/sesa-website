@@ -141,14 +141,24 @@ a:hover {
   color: var(--copper);
 }
 
+.brand-mark-slot {
+  flex: 0 0 4.75rem;
+  width: 4.75rem;
+  height: 4.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--copper);
+}
+
 .brand img,
 .brand-mark {
-  height: 4.5rem;
-  width: auto;
-  max-width: 4.75rem;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
   object-fit: contain;
-  object-position: center;
-  background: transparent;
+  background: none;
   flex-shrink: 0;
   display: block;
 }
@@ -935,10 +945,16 @@ body.consent-open {
     --header-total: 4.75rem;
   }
 
+  .brand-mark-slot {
+    width: 3.5rem;
+    height: 3.5rem;
+    flex-basis: 3.5rem;
+  }
+
   .brand img,
   .brand-mark {
-    height: 3.25rem;
-    max-width: 3.5rem;
+    width: 100%;
+    height: 100%;
   }
 
   .brand-name {

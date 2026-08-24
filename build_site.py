@@ -175,7 +175,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=13" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=14" />
     {extra_head}
   </head>
   <body>
@@ -183,7 +183,9 @@ def shell(
     <header class="header">
       <div class="nav">
         <a class="brand" href="{p}index.html">
-          <img class="brand-mark" src="{p}assets/logo-mark.png" alt="" />
+          <span class="brand-mark-slot">
+            <img class="brand-mark" src="{p}assets/logo-mark.svg" width="72" height="72" alt="" />
+          </span>
           <span class="brand-text">
             <span class="brand-name">SESA</span>
             <span class="brand-sub">KFZ – SACHVERSTÄNDIGENBÜRO</span>
