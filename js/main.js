@@ -305,6 +305,127 @@
     }
   });
 
+  if (waWrap && waToggle && document.querySelector(".hero--home")) {
+    const reduceWaMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reduceWaMotion) {
+      let attentionPaused = false;
+      let attentionPulseTimer = null;
+      let attentionNextTimer = null;
+      let attentionPulseCount = 0;
+      let attentionStarted = false;
+
+      function clearAttentionTimers() {
+        if (attentionPulseTimer !== null) {
+          window.clearTimeout(attentionPulseTimer);
+          attentionPulseTimer = null;
+        }
+        if (attentionNextTimer !== null) {
+          window.clearTimeout(attentionNextTimer);
+          attentionNextTimer = null;
+        }
+      }
+
+      function setAttentionPaused(paused) {
+        attentionPaused = paused;
+        waWrap.classList.toggle("is-attention-paused", paused);
+        if (paused) {
+          waWrap.classList.remove("is-attention-pulse");
+        }
+      }
+
+      function scheduleAttentionPulse(customDelay) {
+        if (attentionPaused) return;
+        clearAttentionTimers();
+        const delay =
+          typeof customDelay === "number"
+            ? customDelay
+            : attentionPulseCount === 1
+              ? 7000
+              : 8000 + Math.floor(Math.random() * 2000);
+        attentionNextTimer = window.setTimeout(runAttentionPulse, delay);
+      }
+
+      function runAttentionPulse() {
+        if (attentionPaused) {
+          scheduleAttentionPulse(2000);
+          return;
+        }
+
+        attentionPulseCount += 1;
+        waWrap.classList.remove("is-attention-pulse");
+        void waWrap.offsetWidth;
+        waWrap.classList.add("is-attention-pulse");
+
+        attentionPulseTimer = window.setTimeout(function () {
+          waWrap.classList.remove("is-attention-pulse");
+          scheduleAttentionPulse();
+        }, 800);
+      }
+
+      function resumeAttentionAfterInteraction() {
+        if (attentionPaused && !waWrap.matches(":hover") && waMenu?.hidden) {
+          setAttentionPaused(false);
+          scheduleAttentionPulse(9000);
+        }
+      }
+
+      waWrap.addEventListener("mouseenter", function () {
+        setAttentionPaused(true);
+      });
+
+      waWrap.addEventListener("mouseleave", function () {
+        setAttentionPaused(false);
+        scheduleAttentionPulse(9000);
+      });
+
+      waWrap.addEventListener("focusin", function () {
+        setAttentionPaused(true);
+      });
+
+      waWrap.addEventListener("focusout", function (event) {
+        if (!waWrap.contains(event.relatedTarget)) {
+          window.setTimeout(resumeAttentionAfterInteraction, 120);
+        }
+      });
+
+      waWrap.addEventListener("touchstart", function () {
+        setAttentionPaused(true);
+      }, { passive: true });
+
+      waToggle.addEventListener("click", function () {
+        setAttentionPaused(true);
+      });
+
+      if (waMenu) {
+        const menuObserver = new MutationObserver(function () {
+          if (waMenu.hidden) {
+            window.setTimeout(resumeAttentionAfterInteraction, 120);
+          } else {
+            setAttentionPaused(true);
+          }
+        });
+        menuObserver.observe(waMenu, { attributes: true, attributeFilter: ["hidden"] });
+      }
+
+      function beginAttentionAfterScroll() {
+        if (attentionStarted) return;
+        attentionStarted = true;
+        window.removeEventListener("scroll", onAttentionScroll);
+        attentionNextTimer = window.setTimeout(runAttentionPulse, 5000);
+      }
+
+      function onAttentionScroll() {
+        beginAttentionAfterScroll();
+      }
+
+      window.addEventListener("scroll", onAttentionScroll, { passive: true, once: false });
+      if (window.scrollY > 0) {
+        beginAttentionAfterScroll();
+      }
+    }
+  }
+
   const processFlow = document.querySelector("[data-process-flow]");
   if (processFlow) {
     const units = Array.prototype.slice.call(processFlow.querySelectorAll(".process-flow__unit"));
