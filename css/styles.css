@@ -1204,9 +1204,47 @@ a:hover {
   font-weight: 700;
   line-height: 1;
   text-shadow: 0 0 14px rgba(201, 137, 88, 0.65);
-  will-change: transform;
+  will-change: left, transform, opacity;
   transform: translate(0, -50%) translateX(-50%);
   z-index: 1;
+}
+
+.process-flow.is-flowing .process-flow__orbit-chevron {
+  animation: process-flow-chevron-travel 1.75s linear infinite;
+}
+
+.process-flow__track > li:nth-child(2) .process-flow__orbit-chevron {
+  animation-delay: 0s;
+}
+
+.process-flow__track > li:nth-child(4) .process-flow__orbit-chevron {
+  animation-delay: 0.35s;
+}
+
+.process-flow__track > li:nth-child(6) .process-flow__orbit-chevron {
+  animation-delay: 0.7s;
+}
+
+@keyframes process-flow-chevron-travel {
+  0% {
+    left: 0;
+    opacity: 0.35;
+    transform: translate(0, -50%) translateX(-50%);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0.35;
+    transform: translate(0, -50%) translateX(-100%);
+  }
 }
 
 .process-flow__unit {
@@ -1314,11 +1352,18 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
   .process-flow__unit,
   .process-flow__marker,
-  .process-flow__card {
+  .process-flow__card,
+  .process-flow__orbit-chevron {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .process-flow__orbit-chevron {
+    left: 100%;
+    top: 50%;
+    transform: translate(0, -50%) translateX(-100%);
   }
 }
 
@@ -2697,6 +2742,34 @@ body.consent-open {
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .process-flow.is-flowing .process-flow__orbit-chevron {
+    animation-name: process-flow-chevron-travel-vertical;
+  }
+
+  @keyframes process-flow-chevron-travel-vertical {
+    0% {
+      top: 0;
+      left: 50%;
+      opacity: 0.35;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    100% {
+      top: 100%;
+      left: 50%;
+      opacity: 0.35;
+      transform: translate(-50%, -100%) rotate(90deg);
+    }
   }
 
   .process-flow__card h3 {

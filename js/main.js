@@ -309,59 +309,9 @@
   if (processFlow) {
     const flowUnits = processFlow.querySelectorAll(".process-flow__unit[data-flow-item]");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let flowStarted = false;
-    let orbitsStarted = false;
-
-    function initProcessOrbits() {
-      if (orbitsStarted) return;
-      orbitsStarted = true;
-
-      const orbits = processFlow.querySelectorAll("[data-process-orbit]");
-      orbits.forEach(function (orbit, index) {
-        const chevron = orbit.querySelector("[data-orbit-chevron]");
-        if (!chevron) return;
-
-        if (reduceMotion) {
-          chevron.style.transform = "translate(" + orbit.clientWidth + "px, -50%) translateX(-100%)";
-          return;
-        }
-
-        let start = null;
-        const moveMs = 1200;
-        const holdMs = 500;
-        const cycle = moveMs + holdMs;
-        const stagger = index * 420;
-
-        const tick = function (now) {
-          if (start == null) start = now;
-          let elapsed = (now - start - stagger) % cycle;
-          if (elapsed < 0) elapsed += cycle;
-          const inMove = elapsed < moveMs;
-          const progress = inMove ? elapsed / moveMs : 1;
-          const trackWidth = orbit.clientWidth;
-          const x = progress * trackWidth;
-          const isVertical = window.matchMedia("(max-width: 900px)").matches;
-
-          if (isVertical) {
-            const y = progress * orbit.clientHeight;
-            chevron.style.transform = "translate(-50%, " + y + "px) translateY(-100%) rotate(90deg)";
-          } else {
-            chevron.style.transform = "translate(" + x + "px, -50%) translateX(-100%)";
-          }
-
-          chevron.style.opacity = inMove && elapsed < 80 ? String(Math.max(0, elapsed / 80)) : "1";
-          window.requestAnimationFrame(tick);
-        };
-
-        window.requestAnimationFrame(tick);
-      });
-    }
 
     function startFlowMotion() {
-      if (flowStarted) return;
-      flowStarted = true;
       processFlow.classList.add("is-flowing");
-      initProcessOrbits();
     }
 
     function revealFlowUnit(index) {
@@ -383,30 +333,29 @@
 
     function isProcessFlowInView() {
       const rect = processFlow.getBoundingClientRect();
-      return rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+      return rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
     }
+
+    startFlowMotion();
 
     if (reduceMotion || !flowUnits.length) {
       flowUnits.forEach(function (item) {
         item.classList.add("is-visible");
       });
-      processFlow.classList.add("is-flowing");
-      initProcessOrbits();
+    } else if (isProcessFlowInView()) {
+      revealFlowUnit(0);
     } else {
       const flowObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
-            activateProcessFlow();
+            revealFlowUnit(0);
+            flowObserver.disconnect();
           });
         },
-        { threshold: 0.12, rootMargin: "0px 0px -5% 0px" }
+        { threshold: 0.08, rootMargin: "0px 0px 0px 0px" }
       );
       flowObserver.observe(processFlow);
-
-      if (isProcessFlowInView()) {
-        activateProcessFlow();
-      }
     }
   }
 
