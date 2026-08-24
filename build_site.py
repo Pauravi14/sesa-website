@@ -22,13 +22,21 @@ QUAL_TRUST_BLURB = (
     "Detaillierte Qualifikationsnachweise stellen wir auf Anfrage zur Verfügung."
 )
 
+HERO_IMG_VER = "2"
+SERVICE_IMG_VER = "2"
+
 HERO_SLIDES = [
-    ("assets/hero-inspection.png", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
-    ("assets/damage-detail.png", "Schadendokumentation am Fahrzeug"),
-    ("assets/workshop-tools.png", "Fachliche Begutachtung in der Werkstatt"),
-    ("assets/nrw-road.png", "Mobiler Kfz-Gutachter in Nordrhein-Westfalen"),
-    ("assets/portrait-placeholder.png", "Kfz-Sachverständiger bei der Schadenaufnahme"),
+    ("assets/hero/slide-1.jpg?v=2", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
+    ("assets/hero/slide-2.jpg?v=2", "Schadendokumentation am Fahrzeug"),
+    ("assets/hero/slide-3.jpg?v=2", "Fachliche Begutachtung in der Werkstatt"),
 ]
+
+SERVICE_THUMBS = {
+    "unfall": "assets/service/service-unfall.jpg?v=2",
+    "bewertung": "assets/service/service-bewertung.jpg?v=2",
+    "wohnmobile": "assets/service/service-wohnmobile.jpg?v=2",
+    "oldtimer": "assets/service/service-oldtimer.jpg?v=2",
+}
 
 WHATSAPP_TEXT_BERATUNG = (
     "Guten Tag SESA,\n"
@@ -110,7 +118,7 @@ def hero_slides_html() -> str:
 
 def hero_preload_head() -> str:
     return "\n".join(
-        f'    <link rel="preload" as="image" href="{src}" />' for src, _ in HERO_SLIDES
+        f'    <link rel="preload" as="image" href="{src.split("?")[0]}" />' for src, _ in HERO_SLIDES
     )
 
 
@@ -118,12 +126,8 @@ def home_page_body() -> str:
     beratung = whatsapp_url(WHATSAPP_TEXT_BERATUNG)
     slides = hero_slides_html()
     return f"""
-    <section class="hero hero--home hero--slideshow" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
-      <div class="hero__slides" aria-hidden="true">
-{slides}
-      </div>
-      <div class="hero__overlay" aria-hidden="true"></div>
-      <div class="hero__inner">
+    <section class="hero hero--home hero--split" data-section="hero" aria-label="SESA Kfz-Sachverständigenbüro">
+      <div class="hero__inner hero__inner--split">
       <div class="hero__content">
         <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
         <h1>Kfz-Gutachter für Nordrhein-Westfalen, Niedersachsen, Hessen, Hamburg und Bremen</h1>
@@ -147,6 +151,12 @@ def home_page_body() -> str:
           <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
           <a class="btn btn-tertiary hero-cta-tertiary" href="schaden-melden.html">Schaden online melden</a>
         </div>
+      </div>
+      <div class="hero__visual" data-hero-slider>
+        <div class="hero__slides" aria-hidden="true">
+{slides}
+        </div>
+        <div class="hero__visual-accent" aria-hidden="true"></div>
       </div>
       </div>
     </section>
@@ -181,7 +191,7 @@ def home_page_body() -> str:
       </header>
       <div class="service-grid">
         <article class="service-card">
-          <div class="service-card__media"><img src="assets/service/service-unfall.jpg" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["unfall"]}" alt="" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Unfallgutachten</h3>
             <p>Unabhängige Schadenaufnahme als technische Grundlage für die Regulierung.</p>
@@ -189,7 +199,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="assets/service/service-bewertung.jpg" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["bewertung"]}" alt="" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Fahrzeugbewertung</h3>
             <p>Marktwert, Wiederbeschaffungswert oder Fahrzeugwert je nach Anlass.</p>
@@ -197,7 +207,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="assets/service/service-wohnmobile.jpg" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["wohnmobile"]}" alt="" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Wohnmobile &amp; Wohnwagen</h3>
             <p>Begutachtung und Bewertung von Freizeitfahrzeugen.</p>
@@ -205,7 +215,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="assets/service/service-oldtimer.jpg" alt="" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["oldtimer"]}" alt="" loading="lazy" /></div>
           <div class="service-card__body">
             <h3>Oldtimer &amp; Youngtimer</h3>
             <p>Zustand, Originalität und Wertermittlung für Klassiker.</p>
@@ -423,7 +433,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=28" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=29" />
     {extra_head}
   </head>
   <body>
