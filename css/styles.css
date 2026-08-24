@@ -1488,6 +1488,15 @@ a:hover {
   font-size: 1.1rem;
 }
 
+.process-flow__card h3::first-letter {
+  text-transform: uppercase;
+}
+
+html.translated-ltr .process-flow__card h3,
+html.translated-rtl .process-flow__card h3 {
+  text-transform: capitalize;
+}
+
 .process-flow__card p {
   margin: 0;
   flex: 1;
