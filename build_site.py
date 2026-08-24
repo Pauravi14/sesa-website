@@ -123,6 +123,25 @@ def hero_slides_html() -> str:
     return "\n".join(parts)
 
 
+def process_step(number: str, title: str, body: str, with_arrow: bool) -> str:
+    arrow = (
+        '<span class="process-timeline__arrow-line" aria-hidden="true"></span>'
+        if with_arrow
+        else ""
+    )
+    return f"""
+        <li class="process-timeline__step">
+          <div class="process-timeline__rail">
+            <span class="process-timeline__marker" aria-hidden="true">{number}</span>
+            {arrow}
+          </div>
+          <article class="process-timeline__card">
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        </li>"""
+
+
 def hero_preload_head() -> str:
     return "\n".join(
         f'    <link rel="preload" as="image" href="{src.split("?")[0]}" />' for src, _ in HERO_SLIDES
@@ -233,38 +252,13 @@ def home_page_body() -> str:
 
     <section class="section home-section home-process" data-section="process" id="ablauf">
       <header class="section-header section-header--center">
-        <p class="kicker">Ablauf</p>
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
       <ol class="process-timeline process-timeline--connected" role="list">
-        <li class="process-timeline__step">
-          <span class="process-timeline__marker" aria-hidden="true">01</span>
-          <article class="process-timeline__card">
-            <h3>Kontakt</h3>
-            <p>Kontaktaufnahme und Erstberatung</p>
-          </article>
-        </li>
-        <li class="process-timeline__step">
-          <span class="process-timeline__marker" aria-hidden="true">02</span>
-          <article class="process-timeline__card">
-            <h3>Begutachtung</h3>
-            <p>Schadenaufnahme am Fahrzeugstandort</p>
-          </article>
-        </li>
-        <li class="process-timeline__step">
-          <span class="process-timeline__marker" aria-hidden="true">03</span>
-          <article class="process-timeline__card">
-            <h3>Dokumentation</h3>
-            <p>{GUTACHTEN_TIMING}</p>
-          </article>
-        </li>
-        <li class="process-timeline__step">
-          <span class="process-timeline__marker" aria-hidden="true">04</span>
-          <article class="process-timeline__card">
-            <h3>Besprechung</h3>
-            <p>Persönliche Betreuung bei Rückfragen</p>
-          </article>
-        </li>
+{process_step("01", "Kontakt", "Kontaktaufnahme und Erstberatung", True)}
+{process_step("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", True)}
+{process_step("03", "Dokumentation", GUTACHTEN_TIMING, True)}
+{process_step("04", "Besprechung", "Persönliche Betreuung bei Rückfragen", False)}
       </ol>
     </section>
 
@@ -438,7 +432,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=32" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=33" />
     {extra_head}
   </head>
   <body>
