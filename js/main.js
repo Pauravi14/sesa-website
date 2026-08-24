@@ -324,12 +324,10 @@
     };
 
     let running = false;
-    let sequenceFinished = false;
     let sequenceGeneration = 0;
     let timers = [];
     let rafIds = [];
     let flowObserver = null;
-    let safetyTimerId = null;
 
     function clearTimers() {
       timers.forEach(function (id) {
@@ -340,10 +338,6 @@
         window.cancelAnimationFrame(id);
       });
       rafIds = [];
-      if (safetyTimerId !== null) {
-        window.clearTimeout(safetyTimerId);
-        safetyTimerId = null;
-      }
     }
 
     function wait(ms) {
@@ -361,6 +355,24 @@
       orbit.style.setProperty("--connector-progress", String(value));
     }
 
+    function resetConnectors() {
+      connectors.forEach(function (connector) {
+        connector.classList.remove("is-connector-live");
+        const orbit = connector.querySelector("[data-process-orbit]");
+        if (orbit) setConnectorProgress(orbit, 0);
+      });
+    }
+
+    function setPendingSteps() {
+      units.forEach(function (unit, index) {
+        if (index === 0) {
+          unit.classList.remove("is-pending");
+        } else {
+          unit.classList.add("is-pending");
+        }
+      });
+    }
+
     function travelConnector(connector, duration, generation) {
       return new Promise(function (resolve) {
         if (generation !== sequenceGeneration) {
@@ -374,6 +386,7 @@
           return;
         }
 
+        resetConnectors();
         connector.classList.add("is-connector-live");
         setConnectorProgress(orbit, 0);
 
@@ -409,6 +422,7 @@
           return;
         }
 
+        unit.classList.remove("is-pending");
         unit.classList.add("is-step-live");
         wait(TIMING.markerReveal).then(function () {
           if (generation !== sequenceGeneration) {
@@ -421,38 +435,34 @@
       });
     }
 
-    function finishSequence(generation) {
-      if (generation !== sequenceGeneration || sequenceFinished) {
-        return Promise.resolve();
-      }
+    function resetSequence(generation) {
+      return new Promise(function (resolve) {
+        if (generation !== sequenceGeneration) {
+          resolve();
+          return;
+        }
 
-      running = false;
-      sequenceFinished = true;
-      clearTimers();
+        units.forEach(function (unit, index) {
+          if (index === 0) return;
+          unit.classList.remove("is-step-live", "is-step-open");
+          unit.classList.add("is-pending");
+        });
 
-      units.forEach(function (unit) {
-        unit.classList.add("is-step-live", "is-step-open");
+        resetConnectors();
+        wait(TIMING.resetFade).then(resolve);
       });
-
-      connectors.forEach(function (connector) {
-        connector.classList.add("is-connector-live");
-        const orbit = connector.querySelector("[data-process-orbit]");
-        if (orbit) setConnectorProgress(orbit, 1);
-      });
-
-      processFlow.classList.remove("is-sequencing");
-      processFlow.classList.add("is-sequence-complete");
-
-      if (flowObserver) {
-        flowObserver.disconnect();
-        flowObserver = null;
-      }
-
-      return Promise.resolve();
     }
 
     function runSequence(generation) {
-      units[0].classList.add("is-step-live", "is-step-open");
+      setPendingSteps();
+      units.forEach(function (unit, index) {
+        unit.classList.remove("is-step-live", "is-step-open");
+        if (index === 0) {
+          unit.classList.remove("is-pending");
+          unit.classList.add("is-step-live", "is-step-open");
+        }
+      });
+      resetConnectors();
 
       return wait(TIMING.initialDelay)
         .then(function () {
@@ -473,6 +483,7 @@
               })
               .then(function () {
                 if (generation !== sequenceGeneration) return;
+                resetConnectors();
                 return wait(TIMING.betweenSegments);
               });
           }, Promise.resolve());
@@ -483,27 +494,22 @@
         })
         .then(function () {
           if (generation !== sequenceGeneration) return;
-          return finishSequence(generation);
+          return resetSequence(generation);
+        })
+        .then(function () {
+          if (generation !== sequenceGeneration || !running) return;
+          return runSequence(generation);
         });
     }
 
     function startSequence() {
-      if (running || sequenceFinished) return;
+      if (running) return;
       running = true;
       sequenceGeneration += 1;
       const generation = sequenceGeneration;
       clearTimers();
       processFlow.classList.add("is-sequencing");
       runSequence(generation);
-
-      if (flowObserver) {
-        flowObserver.disconnect();
-        flowObserver = null;
-      }
-
-      safetyTimerId = window.setTimeout(function () {
-        finishSequence(generation);
-      }, 14000);
     }
 
     function isProcessFlowInView() {
