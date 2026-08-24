@@ -537,6 +537,20 @@
     }
   }
 
+  const heroScrollCue = document.querySelector(".hero__scroll-cue");
+  if (heroScrollCue) {
+    function updateHeroScrollCue() {
+      if (window.scrollY > 72) {
+        heroScrollCue.classList.add("is-hidden");
+      } else {
+        heroScrollCue.classList.remove("is-hidden");
+      }
+    }
+
+    window.addEventListener("scroll", updateHeroScrollCue, { passive: true });
+    updateHeroScrollCue();
+  }
+
   const heroSlider = document.querySelector("[data-hero-slider]");
   if (heroSlider) {
     const slides = heroSlider.querySelectorAll(".hero__slide");

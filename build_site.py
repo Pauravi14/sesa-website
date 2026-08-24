@@ -168,7 +168,10 @@ def home_page_body() -> str:
       <div class="hero__inner">
       <div class="hero__content">
         <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
-        <h1>Kfz-Gutachter für Nordrhein-Westfalen, Niedersachsen, Hessen, Hamburg und Bremen</h1>
+        <h1>
+          <span class="hero__title-main">Kfz-Gutachter für Unfall, Bewertung &amp; Begutachtung</span>
+          <span class="hero__title-region">Nordrhein-Westfalen · Niedersachsen · Hessen · Hamburg · Bremen</span>
+        </h1>
         <p class="lead hero__lead">Unfallgutachten · Fahrzeugbewertung · Wohnmobile · Oldtimer. Unverschuldeter Unfall? Wir dokumentieren Schäden fachgerecht und schaffen eine belastbare Grundlage für die weitere Schadenregulierung.</p>
         <ul class="hero-trust" role="list">
           <li>
@@ -191,6 +194,10 @@ def home_page_body() -> str:
         </div>
       </div>
       </div>
+      <a class="hero__scroll-cue" href="#expertise" aria-label="Weiter scrollen">
+        <span class="hero__scroll-cue-text">Scrollen</span>
+        <span class="hero__scroll-cue-line" aria-hidden="true"></span>
+      </a>
     </section>
 
     <section class="section home-section home-expert" data-section="expert" id="expertise">
@@ -279,14 +286,17 @@ def home_page_body() -> str:
       </header>
       <div class="grid-3 trust-grid">
         <article class="panel trust-panel">
+          <span class="trust-panel__mark" aria-hidden="true">01</span>
           <h3>Qualifikation</h3>
           <p class="muted">{QUAL_TRUST_BLURB}</p>
         </article>
         <article class="panel trust-panel">
+          <span class="trust-panel__mark" aria-hidden="true">02</span>
           <h3>Erfahrung</h3>
           <p class="muted">Berufliche Tätigkeit u. a. als Fahrzeugbewerter und Unfallschadengutachter — frühere Tätigkeit bei TÜV NORD, keine aktuelle Partnerschaft.</p>
         </article>
         <article class="panel trust-panel">
+          <span class="trust-panel__mark" aria-hidden="true">03</span>
           <h3>Persönliche Betreuung</h3>
           <p class="muted">Ein Ansprechpartner von der ersten Kontaktaufnahme bis zur Besprechung des Gutachtens.</p>
         </article>
@@ -378,13 +388,8 @@ def consent_banner(depth: int) -> str:
       <div class="consent-modal" role="dialog" aria-labelledby="consent-title" aria-modal="true">
         <div class="consent-panel" data-consent-main>
           <h2 id="consent-title">Datenschutzeinstellungen</h2>
-          <div class="consent-text">
-            <p>Wir verwenden auf dieser Website Cookies und ähnliche Technologien, um die Website bereitzustellen und — nur mit Ihrer Einwilligung — Dienste von Drittanbietern einzubinden.</p>
-            <p>Dabei können personenbezogene Daten (z. B. IP-Adresse) verarbeitet werden. Einwilligung ist freiwillig und kann jederzeit widerrufen werden. Details in der <a href="{p}datenschutz.html">Datenschutzerklärung</a>.</p>
-            <ul>
-              <li>Speichern Ihrer Einwilligung (technisch erforderlich)</li>
-              <li>Google Maps auf der Kontaktseite (optional)</li>
-            </ul>
+          <div class="consent-text consent-text--compact">
+            <p>Wir verwenden Cookies, um die Website bereitzustellen und Ihre Einwilligung zu speichern. Optional können Google Maps auf der Kontaktseite eingebunden werden. Details in der <a href="{p}datenschutz.html">Datenschutzerklärung</a>.</p>
           </div>
           <div class="consent-actions">
             <button type="button" class="consent-btn consent-btn-primary" data-consent-accept-all>Alle akzeptieren</button>
@@ -394,6 +399,13 @@ def consent_banner(depth: int) -> str:
         </div>
         <div class="consent-panel" data-consent-detail hidden>
           <h2>Einstellungen anpassen</h2>
+          <div class="consent-text consent-text--detail">
+            <p>Im Detail können Sie festlegen, welche optionalen Dienste wir einbinden dürfen:</p>
+            <ul>
+              <li>Speichern Ihrer Einwilligung (technisch erforderlich)</li>
+              <li>Google Maps auf der Kontaktseite (optional)</li>
+            </ul>
+          </div>
           <div class="consent-option">
             <div>
               <strong>Technisch erforderlich</strong>
@@ -440,7 +452,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=62" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=63" />
     {extra_head}
   </head>
   <body>
@@ -485,7 +497,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=22" defer></script>
+    <script src="{p}js/main.js?v=23" defer></script>
   </body>
 </html>"""
 
