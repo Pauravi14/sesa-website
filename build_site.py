@@ -145,9 +145,9 @@ def process_flow_unit(number: str, title: str, body: str, with_connector: bool) 
         </li>{connector}"""
 
 
-def service_card_icon(key: str) -> str:
+def service_nav_icon(key: str) -> str:
     svg_open = (
-        '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.15" '
+        '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" '
         'stroke-linecap="round" stroke-linejoin="round">'
     )
     icons = {
@@ -190,7 +190,27 @@ def service_card_icon(key: str) -> str:
             '<circle cx="22.2" cy="22.8" r="2.1"/></svg>'
         ),
     }
-    return f'<span class="service-card__icon" aria-hidden="true">{icons[key]}</span>'
+    return f'<span class="service-icon-nav__icon" aria-hidden="true">{icons[key]}</span>'
+
+
+def service_icon_nav() -> str:
+    items = (
+        ("unfall", "Unfallgutachten", "leistungen/unfallgutachten.html"),
+        ("bewertung", "Fahrzeugbewertung", "leistungen/fahrzeugbewertung.html"),
+        ("wohnmobile", "Wohnmobile", "leistungen/wohnmobile.html"),
+        ("oldtimer", "Oldtimer", "leistungen/oldtimer-youngtimer.html"),
+    )
+    links = "".join(
+        f"""
+        <a class="service-icon-nav__item" href="{href}">
+          {service_nav_icon(key)}
+          <span class="service-icon-nav__label">{label}</span>
+        </a>"""
+        for key, label, href in items
+    )
+    return f"""
+      <nav class="service-icon-nav" aria-label="Leistungen Kurzübersicht">{links}
+      </nav>"""
 
 
 def hero_preload_head() -> str:
@@ -282,11 +302,11 @@ def home_page_body() -> str:
         <h2>Leistungen im Überblick</h2>
         <p class="section-intro">Von der Schadenaufnahme bis zur Wertermittlung — fachlich fundiert und persönlich betreut.</p>
       </header>
+{service_icon_nav()}
       <div class="service-grid">
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["unfall"]}" alt="Schadendetail am Fahrzeug" loading="lazy" /></div>
           <div class="service-card__body">
-            {service_card_icon("unfall")}
             <h3>Unfallgutachten</h3>
             <p>Unabhängige Schadenaufnahme als technische Grundlage für die Regulierung.</p>
             <a class="service-card__link" href="leistungen/unfallgutachten.html">Mehr erfahren</a>
@@ -295,7 +315,6 @@ def home_page_body() -> str:
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["bewertung"]}" alt="Werkzeug und Dokumentation zur Fahrzeugbewertung" loading="lazy" /></div>
           <div class="service-card__body">
-            {service_card_icon("bewertung")}
             <h3>Fahrzeugbewertung</h3>
             <p>Marktwert, Wiederbeschaffungswert oder Fahrzeugwert je nach Anlass.</p>
             <a class="service-card__link" href="leistungen/fahrzeugbewertung.html">Mehr erfahren</a>
@@ -304,7 +323,6 @@ def home_page_body() -> str:
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["wohnmobile"]}" alt="Wohnmobil auf einer Landstraße" loading="lazy" /></div>
           <div class="service-card__body">
-            {service_card_icon("wohnmobile")}
             <h3>Wohnmobile &amp; Wohnwagen</h3>
             <p>Begutachtung und Bewertung von Freizeitfahrzeugen.</p>
             <a class="service-card__link" href="leistungen/wohnmobile.html">Mehr erfahren</a>
@@ -313,7 +331,6 @@ def home_page_body() -> str:
         <article class="service-card">
           <div class="service-card__media"><img src="{SERVICE_THUMBS["oldtimer"]}" alt="Oldtimer in der Werkstatt" loading="lazy" /></div>
           <div class="service-card__body">
-            {service_card_icon("oldtimer")}
             <h3>Oldtimer &amp; Youngtimer</h3>
             <p>Zustand, Originalität und Wertermittlung für Klassiker.</p>
             <a class="service-card__link" href="leistungen/oldtimer-youngtimer.html">Mehr erfahren</a>
@@ -507,7 +524,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=90" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=91" />
     {extra_head}
   </head>
   <body>

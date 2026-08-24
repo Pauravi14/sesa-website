@@ -1192,14 +1192,58 @@ a:hover {
   margin-right: auto;
 }
 
-.home-services .service-card__body {
-  align-items: center;
-  text-align: center;
+.service-icon-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto 3rem;
 }
 
-.home-services .service-card__link {
-  align-self: center;
+.service-icon-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 1.35rem;
+  border-left: 1px solid rgba(201, 137, 88, 0.38);
+  text-align: center;
+  text-decoration: none;
+  color: var(--navy);
+  transition: color 0.2s ease;
+}
+
+.service-icon-nav__item:first-child {
+  border-left: none;
+}
+
+.service-icon-nav__item:hover,
+.service-icon-nav__item:focus-visible {
+  color: var(--copper);
+}
+
+.service-icon-nav__icon {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 0.8rem;
+  color: rgba(176, 112, 62, 0.95);
+}
+
+.service-icon-nav__icon svg {
+  width: 2.85rem;
+  height: 2.85rem;
+}
+
+.service-icon-nav__label {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
 }
 
 .home-process {
@@ -1503,21 +1547,6 @@ a:hover {
   flex-direction: column;
   flex: 1;
   padding: 1.25rem 1.35rem 1.35rem;
-}
-
-.service-card__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  margin: 0 auto 0.85rem;
-  color: rgba(176, 112, 62, 0.95);
-}
-
-.service-card__icon svg {
-  width: 2.5rem;
-  height: 2.5rem;
 }
 
 .service-card__body h3 {
