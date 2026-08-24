@@ -948,10 +948,12 @@ a:hover {
   color: rgba(255, 255, 255, 0.92);
 }
 
-.hero--centered .hero__title {
+.hero--centered.hero--home h1.hero__title {
   display: block;
-  width: 100%;
-  max-width: min(42rem, 100%);
+  flex-direction: unset;
+  gap: unset;
+  max-width: none;
+}
   margin: 0 0 1.35rem;
   font-family: var(--serif);
   font-size: var(--type-h1);
@@ -959,7 +961,13 @@ a:hover {
   line-height: 1.08;
   letter-spacing: -0.015em;
   color: var(--ivory);
-  text-wrap: balance;
+  text-wrap: normal;
+}
+
+@media (min-width: 900px) {
+  .hero--centered .hero__title {
+    white-space: nowrap;
+  }
 }
 
 .hero--centered .hero__content--centered {
@@ -3044,6 +3052,7 @@ body.consent-open {
 
   .hero--centered .hero__title {
     max-width: none;
+    white-space: normal;
     font-size: var(--type-h1);
     line-height: 1.1;
   }
@@ -3234,6 +3243,7 @@ body.consent-open {
 
   .hero--centered .hero__title {
     max-width: none;
+    white-space: normal;
     font-size: var(--type-h1);
     line-height: 1.1;
   }
