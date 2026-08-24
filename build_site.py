@@ -22,6 +22,11 @@ QUAL_TRUST_BLURB = (
     "Detaillierte Qualifikationsnachweise stellen wir auf Anfrage zur Verfügung."
 )
 
+GUTACHTEN_TIMING = (
+    "Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden "
+    "nach vollständiger Schadenaufnahme"
+)
+
 HERO_IMG_VER = "4"
 SERVICE_IMG_VER = "3"
 
@@ -149,7 +154,7 @@ def home_page_body() -> str:
           </li>
           <li>
             <strong>24–48 Std.</strong>
-            <span>Gutachtenerstellung nach vollständiger Schadenaufnahme</span>
+            <span>{GUTACHTEN_TIMING}</span>
           </li>
         </ul>
         <div class="hero-actions hero-actions--tiered">
@@ -231,7 +236,7 @@ def home_page_body() -> str:
         <p class="kicker">Ablauf</p>
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
-      <ol class="process-timeline" role="list">
+      <ol class="process-timeline process-timeline--connected" role="list">
         <li class="process-timeline__step">
           <span class="process-timeline__marker" aria-hidden="true">01</span>
           <article class="process-timeline__card">
@@ -250,7 +255,7 @@ def home_page_body() -> str:
           <span class="process-timeline__marker" aria-hidden="true">03</span>
           <article class="process-timeline__card">
             <h3>Dokumentation</h3>
-            <p>Gutachtenerstellung in der Regel innerhalb von 24–48 Stunden</p>
+            <p>{GUTACHTEN_TIMING}</p>
           </article>
         </li>
         <li class="process-timeline__step">
@@ -433,7 +438,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=31" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=32" />
     {extra_head}
   </head>
   <body>
@@ -733,7 +738,7 @@ def main() -> None:
         ("Was kostet ein Gutachten?", "Bei einem unverschuldeten Haftpflichtschaden können erforderliche Sachverständigenkosten grundsätzlich zu den ersatzfähigen Schadenpositionen gehören. Bei Bagatellschäden oder Mithaftung können Abweichungen bestehen. Andere Gutachten werden je nach Auftrag berechnet."),
         ("Wer bezahlt das Gutachten?", "Bei unverschuldetem Haftpflichtschaden können Kosten grundsätzlich vom Schädiger bzw. dessen Haftpflichtversicherung zu erstatten sein. Bei Kaskoschäden entscheidet die eigene Versicherung."),
         ("Wie schnell bekomme ich einen Termin?", "Kurzfristige Termine sind je nach Standort, Auslastung und Auftrag möglich."),
-        ("Wie lange dauert die Erstellung?", "In der Regel innerhalb von 24–48 Stunden nach vollständiger Schadenaufnahme — abhängig vom Schadenumfang."),
+        ("Wie lange dauert die Erstellung?", f"{GUTACHTEN_TIMING} — abhängig vom Schadenumfang."),
         ("Darf ich den Gutachter selbst wählen?", "Bei unverschuldetem Haftpflichtschaden besteht grundsätzlich die Möglichkeit zur freien Wahl. Bei kleinen Schäden und Kaskoschäden gelten Besonderheiten."),
         ("Kann ich Fotos per WhatsApp schicken?", "Ja, für eine erste Orientierung. Je nach Schaden ersetzt dies keine vollständige Begutachtung."),
     ]

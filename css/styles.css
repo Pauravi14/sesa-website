@@ -630,14 +630,15 @@ a:hover {
   object-position: center 32%;
   opacity: 0;
   z-index: 0;
-  transition: opacity 3s ease-in-out;
-  will-change: opacity;
-  transform: scale(1.02);
+  transition: opacity 3s ease-in-out, transform 8s ease-out;
+  will-change: opacity, transform;
+  transform: scale(1);
 }
 
 .hero__slide.is-active {
   opacity: 1;
   z-index: 1;
+  transform: scale(1.05);
 }
 
 .hero__overlay {
@@ -647,9 +648,9 @@ a:hover {
   background: linear-gradient(
     90deg,
     rgba(10, 22, 40, 0.9) 0%,
-    rgba(10, 22, 40, 0.72) 28%,
-    rgba(10, 22, 40, 0.32) 52%,
-    rgba(10, 22, 40, 0.1) 75%,
+    rgba(10, 22, 40, 0.62) 26%,
+    rgba(10, 22, 40, 0.24) 50%,
+    rgba(10, 22, 40, 0.08) 72%,
     rgba(10, 22, 40, 0.02) 100%
   );
   pointer-events: none;
@@ -672,7 +673,7 @@ a:hover {
 }
 
 .hero--slideshow .hero__content {
-  max-width: 36rem;
+  max-width: 33rem;
   padding: 0;
   background: none;
   border: none;
@@ -680,7 +681,7 @@ a:hover {
 }
 
 .hero--home h1 {
-  font-size: clamp(1.95rem, 3.6vw, 3.2rem);
+  font-size: clamp(1.85rem, 3.35vw, 3rem);
   max-width: 12ch;
   margin-bottom: 1rem;
   line-height: 1.1;
@@ -727,45 +728,48 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.7rem;
+  gap: 0.5rem;
   width: 100%;
-  max-width: 20rem;
+  max-width: 17.5rem;
 }
 
 .hero-cta-primary {
-  font-size: 1.12rem;
-  padding: 1.1rem 2rem;
+  font-size: 1.14rem;
+  padding: 1.15rem 2.1rem;
   min-width: 0;
   width: 100%;
   justify-content: center;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  box-shadow: 0 10px 36px rgba(201, 137, 88, 0.52);
+  box-shadow: 0 14px 42px rgba(201, 137, 88, 0.58);
+  border-width: 2px;
 }
 
 .hero-cta-secondary {
   width: 100%;
   justify-content: center;
-  font-size: 0.92rem;
-  padding: 0.8rem 1.25rem;
-  border-width: 2px;
+  font-size: 0.86rem;
+  padding: 0.68rem 1.05rem;
+  border-width: 1.5px;
   font-weight: 600;
-  background: rgba(37, 211, 102, 0.1);
+  background: rgba(37, 211, 102, 0.08);
+  margin-top: 0.35rem;
 }
 
 .hero-cta-secondary:hover {
-  background: rgba(37, 211, 102, 0.22);
+  background: rgba(37, 211, 102, 0.18);
 }
 
 .hero-cta-tertiary {
   width: 100%;
   justify-content: center;
-  font-size: 0.8rem;
-  padding: 0.45rem 0.25rem;
-  color: rgba(201, 212, 222, 0.78);
+  font-size: 0.74rem;
+  padding: 0.35rem 0.15rem;
+  color: rgba(201, 212, 222, 0.68);
   text-decoration: underline;
   text-underline-offset: 3px;
-  opacity: 0.9;
+  opacity: 0.85;
+  margin-top: 0.1rem;
 }
 
 .hero-cta-tertiary:hover {
@@ -1056,6 +1060,57 @@ a:hover {
 
 .service-card__link:hover {
   color: var(--copper);
+}
+
+.process-timeline--connected::before {
+  content: "";
+  position: absolute;
+  top: 2rem;
+  left: 11%;
+  right: 11%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 137, 88, 0.35),
+    var(--copper) 15%,
+    var(--copper) 85%,
+    rgba(201, 137, 88, 0.35)
+  );
+  z-index: 0;
+  border-radius: 3px;
+  box-shadow: 0 0 16px rgba(201, 137, 88, 0.25);
+}
+
+.process-timeline--connected .process-timeline__step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 1.45rem;
+  right: -0.15rem;
+  transform: translateX(50%);
+  color: var(--copper);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 3;
+  pointer-events: none;
+  text-shadow: 0 0 12px rgba(201, 137, 88, 0.45);
+}
+
+.process-timeline--connected .process-timeline__marker {
+  width: 4rem;
+  height: 4rem;
+  font-size: 0.88rem;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 0 0 7px var(--bg),
+    0 8px 20px rgba(201, 137, 88, 0.38);
+}
+
+.process-timeline--connected .process-timeline__card {
+  margin-top: 1.35rem;
+  min-height: 7.75rem;
+  background: rgba(16, 26, 42, 0.88);
+  border-color: rgba(201, 137, 88, 0.28);
 }
 
 .process-timeline {
@@ -2207,6 +2262,31 @@ body.consent-open {
     gap: 0;
     margin-top: 2.25rem;
     padding-left: 0.35rem;
+  }
+
+  .process-timeline--connected::before {
+    top: 2rem;
+    bottom: 2rem;
+    left: 1.98rem;
+    right: auto;
+    width: 3px;
+    height: auto;
+  }
+
+  .process-timeline--connected .process-timeline__step:not(:last-child)::after {
+    content: "↓";
+    top: auto;
+    bottom: -0.55rem;
+    left: 1.98rem;
+    right: auto;
+    transform: translateX(-50%);
+    font-size: 1rem;
+  }
+
+  .process-timeline--connected .process-timeline__marker {
+    width: 3.6rem;
+    height: 3.6rem;
+    font-size: 0.8rem;
   }
 
   .process-timeline::before {
