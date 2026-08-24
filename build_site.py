@@ -146,32 +146,48 @@ def process_flow_unit(number: str, title: str, body: str, with_connector: bool) 
 
 
 def service_card_icon(key: str) -> str:
+    svg_open = (
+        '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.15" '
+        'stroke-linecap="round" stroke-linejoin="round">'
+    )
     icons = {
         "unfall": (
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" '
-            'stroke-linecap="round" stroke-linejoin="round">'
-            '<path d="M8 3h8v15H8z"/><path d="M10 3V2h4v1"/>'
-            '<path d="M12 7.2a2.4 2.7 0 0 0-2.4 2.7v1.6h4.8v-1.6A2.4 2.7 0 0 0 12 7.2Z"/>'
-            '<path d="M9.5 12.3 11 13.8l3.5-3.5"/></svg>'
+            f'{svg_open}'
+            '<rect x="7" y="5" width="14" height="20" rx="1.2"/>'
+            '<path d="M11 5V3.5h6V5"/>'
+            '<path d="M10 11h8"/><path d="M10 14.5h8"/><path d="M10 18h5"/>'
+            '<path d="M18.2 19.4c0-1.45 1.15-2.6 2.6-2.6s2.6 1.15 2.6 2.6v3.1l-2.6 1.5-2.6-1.5v-3.1z"/>'
+            '<path d="M20.1 21.7 21.3 23l2.3-2.3"/></svg>'
         ),
         "bewertung": (
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" '
-            'stroke-linecap="round" stroke-linejoin="round">'
-            '<path d="M5 17h14l-1.2-5.5a2 2 0 0 0-2-1.5H8.2a2 2 0 0 0-2 1.5L5 17Z"/>'
-            '<path d="M5 11h14l1-4H4l1 4Z"/>'
-            '<circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>'
+            f'{svg_open}'
+            '<path d="M8 11.5 10.5 5h11L24 11.5"/>'
+            '<path d="M6.5 12.5h19"/>'
+            '<path d="M7.5 12.5V21h17v-8.5"/>'
+            '<path d="M8.5 21v2.5h15V21"/>'
+            '<circle cx="10.5" cy="17" r="1.15"/>'
+            '<circle cx="21.5" cy="17" r="1.15"/>'
+            '<path d="M13.5 17h5"/>'
+            '<path d="M14.5 14h3"/></svg>'
         ),
         "wohnmobile": (
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" '
-            'stroke-linecap="round" stroke-linejoin="round">'
-            '<path d="M3 10h12v8H3z"/><path d="M15 12h4l2 3v3h-6z"/>'
-            '<path d="M3 13h12"/><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/></svg>'
+            f'{svg_open}'
+            '<path d="M4.5 20.5h7.5l2.2-6.3h5.3v6.3"/>'
+            '<path d="M14.5 14.2H26v6.3H4.5"/>'
+            '<path d="M6.8 14.2 8.8 8.8h4.2"/>'
+            '<rect x="17.2" y="16" width="6.2" height="3.1" rx="0.6"/>'
+            '<circle cx="9.5" cy="22.8" r="2"/>'
+            '<circle cx="23" cy="22.8" r="2"/></svg>'
         ),
         "oldtimer": (
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" '
-            'stroke-linecap="round" stroke-linejoin="round">'
-            '<path d="M4 14h16l-1.5-4.5a2 2 0 0 0-1.9-1.3H7.4a2 2 0 0 0-1.9 1.3L4 14Z"/>'
-            '<path d="M4 11h16"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>'
+            f'{svg_open}'
+            '<path d="M5 18.5c0-6.2 5.4-9.2 11-9.2s11 3 11 9.2"/>'
+            '<path d="M5 18.5h22"/>'
+            '<path d="M7.5 18.5v2.2"/><path d="M24.5 18.5v2.2"/>'
+            '<path d="M8.2 18.5c1.2-2.2 3.2-3.2 5.3-3.2"/>'
+            '<path d="M18.5 15.3c2.1 0 4.1 1 5.3 3.2"/>'
+            '<circle cx="9.8" cy="22.8" r="2.1"/>'
+            '<circle cx="22.2" cy="22.8" r="2.1"/></svg>'
         ),
     }
     return f'<span class="service-card__icon" aria-hidden="true">{icons[key]}</span>'
@@ -491,7 +507,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=89" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=90" />
     {extra_head}
   </head>
   <body>

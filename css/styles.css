@@ -1509,15 +1509,15 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 3rem;
+  height: 3rem;
   margin: 0 auto 0.85rem;
-  color: rgba(201, 137, 88, 0.95);
+  color: rgba(176, 112, 62, 0.95);
 }
 
 .service-card__icon svg {
-  width: 2.15rem;
-  height: 2.15rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .service-card__body h3 {
