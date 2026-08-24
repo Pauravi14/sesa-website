@@ -323,23 +323,21 @@ def prefix(depth: int) -> str:
 
 def services_dropdown(depth: int, active: str) -> str:
     p = prefix(depth)
-    parent_href = p + "leistungen/index.html"
-    parent_cur = " aria-current=\"page\"" if active == "Leistungen" else ""
     items = []
     for label, href in SERVICE_LINKS:
         full = p + href
         items.append(f"<li><a href=\"{full}\">{label}</a></li>")
     submenu = "\n".join(items)
-    return f"""<li class="menu-item menu-item--dropdown" data-nav-dropdown>
-      <span class="menu-item-row">
-        <a href="{parent_href}" class="menu-parent-link"{parent_cur}>Leistungen</a>
-        <button type="button" class="menu-submenu-toggle" aria-expanded="false" aria-label="Leistungen Untermenü anzeigen" data-nav-dropdown-toggle>
+    return f"""<li class="menu-item menu-item--services">
+      <details class="menu-accordion">
+        <summary class="menu-accordion__summary">
+          <span class="menu-accordion__label">Leistungen</span>
           <span class="menu-caret" aria-hidden="true"></span>
-        </button>
-      </span>
-      <ul class="menu-dropdown" data-nav-dropdown-menu>
+        </summary>
+        <ul class="menu-dropdown">
 {submenu}
-      </ul>
+        </ul>
+      </details>
     </li>"""
 
 
@@ -443,7 +441,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=42" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=43" />
     {extra_head}
   </head>
   <body>
@@ -488,7 +486,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=7" defer></script>
+    <script src="{p}js/main.js?v=8" defer></script>
   </body>
 </html>"""
 
