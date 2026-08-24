@@ -155,39 +155,41 @@ def home_page_body() -> str:
     beratung = whatsapp_url(WHATSAPP_TEXT_BERATUNG)
     slides = hero_slides_html()
     return f"""
-    <section class="hero hero--home hero--slideshow" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
+    <section class="hero hero--home hero--slideshow hero--centered" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
       <div class="hero__slides" aria-hidden="true">
 {slides}
       </div>
       <div class="hero__overlay" aria-hidden="true"></div>
-      <div class="hero__inner">
-      <div class="hero__content">
-        <p class="kicker">Unabhängiger Kfz-Sachverständiger</p>
-        <h1>
-          <span class="hero__title-main">Kfz-Gutachter für Unfall, Bewertung &amp; Begutachtung</span>
-          <span class="hero__title-region">Nordrhein-Westfalen · Niedersachsen · Hessen · Hamburg · Bremen</span>
-        </h1>
-        <p class="lead hero__lead">Unfallgutachten · Fahrzeugbewertung · Wohnmobile · Oldtimer. Unverschuldeter Unfall? Wir dokumentieren Schäden fachgerecht und schaffen eine belastbare Grundlage für die weitere Schadenregulierung.</p>
-        <ul class="hero-trust" role="list">
-          <li>
-            <strong>Unabhängig</strong>
-            <span>Eigenes Sachverständigenbüro ohne Weisungsbindung</span>
-          </li>
-          <li>
-            <strong>Mobil vor Ort</strong>
-            <span>Bei Ihnen, in der Werkstatt oder am Fahrzeugstandort</span>
-          </li>
-          <li>
-            <strong>24–48 Std.</strong>
-            <span>{GUTACHTEN_TIMING}</span>
-          </li>
-        </ul>
-        <div class="hero-actions hero-actions--tiered">
-          <a class="btn btn-primary hero-cta-primary" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
-          <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
-          <a class="btn btn-tertiary hero-cta-tertiary" href="schaden-melden.html">Schaden online melden</a>
+      <div class="hero__inner hero__inner--centered">
+        <div class="hero__content hero__content--centered">
+          <p class="hero__eyebrow">Unabhängiger Kfz-Sachverständiger</p>
+          <h1 class="hero__title">Kfz-Gutachter für Unfall, Bewertung &amp; Begutachtung</h1>
+          <p class="hero__region">Nordrhein-Westfalen · Niedersachsen · Hessen · Hamburg · Bremen</p>
+          <p class="hero__services">Unfallgutachten · Fahrzeugbewertung · Wohnmobile · Oldtimer.</p>
+          <p class="hero__description">Unverschuldeter Unfall? Wir dokumentieren Schäden fachgerecht und schaffen eine belastbare Grundlage für die weitere Schadenregulierung.</p>
+          <ul class="hero-trust hero-trust--centered" role="list">
+            <li class="hero-trust__item">
+              <span class="hero-trust__mark" aria-hidden="true">01</span>
+              <strong>Unabhängig</strong>
+              <span>Eigenes Sachverständigenbüro ohne Weisungsbindung</span>
+            </li>
+            <li class="hero-trust__item">
+              <span class="hero-trust__mark" aria-hidden="true">02</span>
+              <strong>Mobil vor Ort</strong>
+              <span>Bei Ihnen, in der Werkstatt oder am Fahrzeugstandort</span>
+            </li>
+            <li class="hero-trust__item">
+              <span class="hero-trust__mark" aria-hidden="true">03</span>
+              <strong>24–48 Std.</strong>
+              <span>{GUTACHTEN_TIMING}</span>
+            </li>
+          </ul>
+          <div class="hero-actions hero-actions--centered">
+            <a class="btn btn-primary hero-cta-primary" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
+            <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+            <a class="btn btn-tertiary hero-cta-tertiary" href="schaden-melden.html">Schaden online melden</a>
+          </div>
         </div>
-      </div>
       </div>
       <a class="hero__scroll-cue" href="#expertise" aria-label="Weiter scrollen">
         <span class="hero__scroll-cue-text">Scrollen</span>
@@ -443,7 +445,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=82" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=83" />
     {extra_head}
   </head>
   <body>
