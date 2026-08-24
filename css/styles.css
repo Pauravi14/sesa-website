@@ -1624,6 +1624,41 @@ select {
   flex-wrap: wrap;
 }
 
+@media (min-width: 761px) {
+  .footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "info nav"
+      "legal legal";
+    align-items: start;
+    column-gap: 2rem;
+    row-gap: 1.15rem;
+  }
+
+  .footer > div:first-child {
+    grid-area: info;
+  }
+
+  .footer nav {
+    grid-area: nav;
+    justify-self: end;
+    justify-content: flex-end;
+  }
+
+  .footer .muted {
+    grid-area: legal;
+    margin: 0;
+    padding-right: min(21rem, 34vw);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wa-float-wrap {
+    bottom: 1.75rem;
+  }
+}
+
 .consent-backdrop {
   position: fixed;
   inset: 0;
@@ -1805,7 +1840,7 @@ body.consent-open {
 .wa-float-wrap {
   position: fixed;
   right: 1.25rem;
-  bottom: 6rem;
+  bottom: 1.75rem;
   z-index: 60;
 }
 
