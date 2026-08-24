@@ -2213,10 +2213,6 @@ body.consent-open {
     margin-top: 0.85rem;
     padding: 0.35rem 0 0.5rem;
     border-top: 1px solid rgba(201, 137, 88, 0.28);
-    max-height: min(28rem, calc(100dvh - 13.5rem - env(safe-area-inset-bottom, 0px)));
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
   }
 
   .nav.is-open .menu > li {
@@ -2263,12 +2259,7 @@ body.consent-open {
   }
 
   .menu-accordion[open] > .menu-accordion__summary {
-    position: sticky;
-    top: 0;
-    z-index: 2;
     color: var(--copper);
-    background: var(--bg-2);
-    box-shadow: 0 1px 0 rgba(201, 137, 88, 0.18);
   }
 
   .menu-accordion:not([open]) > .menu-accordion__summary .menu-caret {

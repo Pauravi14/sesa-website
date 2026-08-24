@@ -34,6 +34,18 @@
     });
   }
 
+  document.querySelectorAll(".menu-accordion").forEach(function (details) {
+    details.addEventListener("toggle", function () {
+      if (!mobileNav.matches || !nav?.classList.contains("is-open")) return;
+      const summary = details.querySelector(".menu-accordion__summary");
+      if (details.open && summary) {
+        window.requestAnimationFrame(function () {
+          summary.scrollIntoView({ block: "nearest", behavior: "auto" });
+        });
+      }
+    });
+  });
+
   document.querySelectorAll(".menu-accordion__summary").forEach(function (summary) {
     summary.addEventListener("click", function (event) {
       if (!mobileNav.matches) {
