@@ -329,6 +329,7 @@
     let timers = [];
     let rafIds = [];
     let flowObserver = null;
+    let safetyTimerId = null;
 
     function clearTimers() {
       timers.forEach(function (id) {
@@ -339,6 +340,10 @@
         window.cancelAnimationFrame(id);
       });
       rafIds = [];
+      if (safetyTimerId !== null) {
+        window.clearTimeout(safetyTimerId);
+        safetyTimerId = null;
+      }
     }
 
     function wait(ms) {
@@ -496,7 +501,7 @@
         flowObserver = null;
       }
 
-      window.setTimeout(function () {
+      safetyTimerId = window.setTimeout(function () {
         finishSequence(generation);
       }, 14000);
     }
