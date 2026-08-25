@@ -1557,8 +1557,7 @@ a:hover {
 }
 
 .process-flow {
-  --process-step: #ae663c;
-  --process-step-deep: #8f522f;
+  --process-step: #AE663C;
   --process-copper: var(--logo-copper);
   --process-copper-line: rgba(201, 137, 88, 0.95);
   --process-copper-soft: rgba(201, 137, 88, 0.55);
@@ -1704,23 +1703,14 @@ a:hover {
   height: 4rem;
   margin: 0;
   border-radius: 50%;
-  background: var(--process-step);
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.18) 0%,
-    var(--process-step) 38%,
-    var(--process-step-deep) 100%
-  );
+  background: #AE663C;
   color: #fff;
   font-family: var(--sans);
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 0.06em;
-  border: 1px solid rgba(174, 102, 60, 0.55);
-  box-shadow:
-    0 0 0 7px var(--bg),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 8px 22px rgba(174, 102, 60, 0.35);
+  border: none;
+  box-shadow: 0 0 0 7px var(--bg);
   flex-shrink: 0;
   position: relative;
   z-index: 2;
@@ -1947,10 +1937,7 @@ html.translated-rtl .process-flow__card h3 {
     width: 3.25rem;
     height: 3.25rem;
     font-size: 0.8rem;
-    box-shadow:
-      0 0 0 5px var(--bg),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      0 6px 16px rgba(174, 102, 60, 0.35);
+    box-shadow: 0 0 0 5px var(--bg);
   }
 
   .process-flow__unit .process-flow__card {
