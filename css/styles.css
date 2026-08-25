@@ -3935,10 +3935,10 @@ body.consent-open {
   border-bottom: 1px solid rgba(12, 24, 40, 0.1);
   color: var(--text);
   font-family: inherit;
-  font-size: 1.0625rem;
+  font-size: var(--type-card-body);
   font-style: italic;
   font-weight: 400;
-  line-height: 1.62;
+  line-height: 1.65;
 }
 
 .about-bio__mark {
@@ -3996,9 +3996,9 @@ body.consent-open {
   padding-top: 0.42rem;
   color: var(--navy);
   font-family: var(--serif);
-  font-size: clamp(1rem, 1.6vw, 1.125rem);
+  font-size: var(--type-card-title);
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.2;
   overflow-wrap: break-word;
 }
 
@@ -4010,8 +4010,8 @@ body.consent-open {
 .about-detail li {
   margin-bottom: 0.55rem;
   color: var(--text);
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: var(--type-body);
+  line-height: 1.6;
   overflow-wrap: break-word;
 }
 
@@ -4051,8 +4051,8 @@ body.consent-open {
 .about-note p {
   margin: 0;
   color: var(--text);
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: var(--type-card-body);
+  line-height: 1.7;
 }
 
 /* —— Values section —— */
