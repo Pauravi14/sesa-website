@@ -8,6 +8,7 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parent
 LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
+ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -225,7 +226,7 @@ def service_card_icon(key: str) -> str:
 def about_page_body(depth: int = 0) -> str:
     p = prefix(depth)
     kontakt = f"{p}kontakt.html"
-    hero_img = f"{p}{ABOUT_HERO}"
+    portrait_img = f"{p}{ABOUT_PORTRAIT}"
     return f"""
     <div class="about-page">
       <section class="about-hero" aria-labelledby="about-title">
@@ -237,7 +238,7 @@ def about_page_body(depth: int = 0) -> str:
             <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
           </header>
           <div class="about-hero__media" aria-hidden="true">
-            <img src="{hero_img}" alt="" width="480" height="600" decoding="async" />
+            <img src="{portrait_img}" alt="" width="480" height="600" decoding="async" />
           </div>
         </div>
       </section>
@@ -246,7 +247,7 @@ def about_page_body(depth: int = 0) -> str:
         <div class="about-page__inner about-main__grid">
           <aside class="about-profile">
             <div class="about-profile__photo">
-              <img src="{hero_img}" alt="" width="480" height="600" decoding="async" />
+              <img src="{portrait_img}" alt="" width="480" height="600" decoding="async" />
             </div>
             <div class="about-profile__body">
               <h2>{OWNER}</h2>
@@ -650,7 +651,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=123" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=124" />
     {extra_head}
   </head>
   <body>
