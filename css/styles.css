@@ -2233,9 +2233,22 @@ h3 {
   color: var(--mute);
 }
 
-footer,
-.legal {
+footer {
   color: var(--text-on-dark);
+}
+
+.content-light.legal,
+.content-light.legal p,
+.content-light.legal li {
+  color: var(--text);
+}
+
+.content-light.legal a {
+  color: var(--navy-2);
+}
+
+.content-light.legal a:hover {
+  color: var(--copper);
 }
 
 .steps {
