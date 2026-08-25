@@ -3935,7 +3935,7 @@ body.consent-open {
   border-bottom: 1px solid rgba(12, 24, 40, 0.1);
   color: var(--text);
   font-family: inherit;
-  font-size: var(--type-card-body);
+  font-size: var(--type-section-sub);
   font-style: italic;
   font-weight: 400;
   line-height: 1.65;
@@ -3947,7 +3947,7 @@ body.consent-open {
   left: 0;
   color: rgba(174, 102, 60, 0.38);
   font-family: var(--serif);
-  font-size: 3.5rem;
+  font-size: 3.85rem;
   font-style: normal;
   font-weight: 600;
   line-height: 1;
@@ -3977,8 +3977,8 @@ body.consent-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.45rem;
-  height: 2.45rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border: 1.5px solid var(--copper);
   border-radius: 50%;
   background: transparent;
@@ -3987,18 +3987,18 @@ body.consent-open {
 }
 
 .about-detail__icon svg {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .about-detail h3 {
   margin: 0;
-  padding-top: 0.42rem;
+  padding-top: 0.35rem;
   color: var(--navy);
   font-family: var(--serif);
-  font-size: var(--type-card-title);
+  font-size: var(--type-h3);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
   overflow-wrap: break-word;
 }
 
@@ -4010,8 +4010,8 @@ body.consent-open {
 .about-detail li {
   margin-bottom: 0.55rem;
   color: var(--text);
-  font-size: var(--type-body);
-  line-height: 1.6;
+  font-size: var(--type-card-body);
+  line-height: 1.65;
   overflow-wrap: break-word;
 }
 
@@ -4051,7 +4051,7 @@ body.consent-open {
 .about-note p {
   margin: 0;
   color: var(--text);
-  font-size: var(--type-card-body);
+  font-size: var(--type-section-sub);
   line-height: 1.7;
 }
 
