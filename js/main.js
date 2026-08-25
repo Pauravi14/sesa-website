@@ -432,15 +432,14 @@
     const units = Array.prototype.slice.call(processFlow.querySelectorAll(".process-flow__unit"));
     const connectors = Array.prototype.slice.call(
       processFlow.querySelectorAll("[data-process-connector]")
-    );
+    ).filter(function (connector) {
+      return window.getComputedStyle(connector).display !== "none";
+    });
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const TIMING = {
       initialDelay: 250,
       travel: 1000,
-      arrivalPause: 250,
-      markerReveal: 280,
-      cardReveal: 350,
-      betweenSegments: 180,
+      betweenSegments: 120,
       finalHold: 2200,
       resetFade: 250
     };
@@ -473,15 +472,16 @@
       return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
     }
 
-    function setConnectorProgress(orbit, value) {
-      orbit.style.setProperty("--connector-progress", String(value));
+    function setConnectorProgress(orbit, head, tail) {
+      orbit.style.setProperty("--connector-head", String(head));
+      orbit.style.setProperty("--connector-tail", String(tail !== undefined ? tail : head));
     }
 
     function resetConnectors() {
       connectors.forEach(function (connector) {
         connector.classList.remove("is-connector-live", "is-connector-done");
         const orbit = connector.querySelector("[data-process-orbit]");
-        if (orbit) setConnectorProgress(orbit, 0);
+        if (orbit) setConnectorProgress(orbit, 0, 0);
       });
     }
 
@@ -489,7 +489,7 @@
       const orbit = connector.querySelector("[data-process-orbit]");
       connector.classList.remove("is-connector-live");
       connector.classList.add("is-connector-done");
-      if (orbit) setConnectorProgress(orbit, 1);
+      if (orbit) setConnectorProgress(orbit, 1, 1);
     }
 
     function travelConnector(connector, duration, generation) {
@@ -506,8 +506,9 @@
         }
 
         connector.classList.add("is-connector-live");
-        setConnectorProgress(orbit, 0);
+        setConnectorProgress(orbit, 0, 0);
 
+        const tailLead = 0.2;
         let start = null;
         function frame(now) {
           if (generation !== sequenceGeneration) {
@@ -518,7 +519,9 @@
           if (start === null) start = now;
           const elapsed = now - start;
           const progress = Math.min(elapsed / duration, 1);
-          setConnectorProgress(orbit, easeInOut(progress));
+          const head = easeInOut(progress);
+          const tail = progress >= 1 ? 1 : Math.max(0, head - tailLead);
+          setConnectorProgress(orbit, head, tail);
 
           if (progress < 1) {
             const rafId = window.requestAnimationFrame(frame);
@@ -541,15 +544,8 @@
           return;
         }
 
-        unit.classList.add("is-step-live");
-        wait(TIMING.markerReveal).then(function () {
-          if (generation !== sequenceGeneration) {
-            resolve();
-            return;
-          }
-          unit.classList.add("is-step-open");
-          return wait(TIMING.cardReveal);
-        }).then(resolve);
+        unit.classList.add("is-step-live", "is-step-open");
+        resolve();
       });
     }
 
@@ -587,10 +583,6 @@
               .then(function () {
                 if (generation !== sequenceGeneration) return;
                 return travelConnector(connector, TIMING.travel, generation);
-              })
-              .then(function () {
-                if (generation !== sequenceGeneration) return;
-                return wait(TIMING.arrivalPause);
               })
               .then(function () {
                 if (generation !== sequenceGeneration) return;
@@ -639,7 +631,7 @@
       connectors.forEach(function (connector) {
         connector.classList.add("is-connector-done");
         const orbit = connector.querySelector("[data-process-orbit]");
-        if (orbit) setConnectorProgress(orbit, 1);
+        if (orbit) setConnectorProgress(orbit, 1, 1);
       });
     } else {
       flowObserver = new IntersectionObserver(

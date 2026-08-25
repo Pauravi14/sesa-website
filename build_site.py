@@ -121,36 +121,40 @@ def hero_slides_html() -> str:
     return "\n".join(parts)
 
 
-PROCESS_FLOW_CHEVRON = (
-    '<span class="process-flow__orbit-chevron" data-orbit-chevron aria-hidden="true">'
-    '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" '
-    'stroke-linecap="round" stroke-linejoin="round">'
-    '<path d="M2 6h8"/><path d="M7 3l3 3-3 3"/>'
-    '</svg></span>'
-)
-
-PROCESS_FLOW_CONNECTOR = (
-    '<span class="process-flow__connector" data-process-connector aria-hidden="true">'
+PROCESS_FLOW_ORBIT = (
     '<span class="process-flow__orbit" data-process-orbit>'
     '<span class="process-flow__orbit-track"></span>'
     '<span class="process-flow__orbit-progress"></span>'
-    f'{PROCESS_FLOW_CHEVRON}'
-    '</span></span>'
+    '<span class="process-flow__orbit-chevron" data-orbit-chevron>&gt;</span>'
+    '</span>'
+)
+
+PROCESS_FLOW_CONNECTOR_TRACK = (
+    '<li class="process-flow__connector process-flow__connector--track" data-process-connector aria-hidden="true">'
+    f'{PROCESS_FLOW_ORBIT}'
+    '</li>'
+)
+
+PROCESS_FLOW_CONNECTOR_INLINE = (
+    '<span class="process-flow__connector process-flow__connector--inline" data-process-connector aria-hidden="true">'
+    f'{PROCESS_FLOW_ORBIT}'
+    '</span>'
 )
 
 
 def process_flow_unit(number: str, title: str, body: str, with_connector: bool) -> str:
-    connector = f"\n            {PROCESS_FLOW_CONNECTOR}" if with_connector else ""
+    inline = f"\n            {PROCESS_FLOW_CONNECTOR_INLINE}" if with_connector else ""
+    track = f"\n{PROCESS_FLOW_CONNECTOR_TRACK}" if with_connector else ""
     return f"""
         <li class="process-flow__unit" data-flow-item>
           <div class="process-flow__unit-head">
-            <span class="process-flow__marker" aria-hidden="true">{number}</span>{connector}
+            <span class="process-flow__marker" aria-hidden="true">{number}</span>{inline}
           </div>
           <article class="process-flow__card">
             <h3>{title}</h3>
             <p>{body}</p>
           </article>
-        </li>"""
+        </li>{track}"""
 
 
 def service_card_icon(key: str) -> str:
@@ -527,7 +531,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=97" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=99" />
     {extra_head}
   </head>
   <body>
@@ -572,7 +576,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=41" defer></script>
+    <script src="{p}js/main.js?v=42" defer></script>
   </body>
 </html>"""
 
