@@ -4416,3 +4416,359 @@ html.translated-ltr .about-values__cta {
     padding-right: 0;
   }
 }
+
+/* Leistungen overview */
+.services-page {
+  background: var(--cream);
+}
+
+.services-page__inner {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.services-hero {
+  background: var(--bg-2);
+  color: #fff;
+}
+
+.services-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(220px, 0.92fr);
+  gap: 1.5rem;
+  align-items: end;
+  width: min(1240px, 100%);
+  max-height: 16.5rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.services-hero__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.75rem 0 0.7rem;
+}
+
+.services-hero__kicker {
+  margin: 0 0 0.5rem;
+  color: var(--copper);
+  font-size: clamp(0.68rem, 2.8vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.services-hero__copy h1 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.6vw, 2.85rem);
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.services-hero__rule {
+  display: block;
+  width: 3.25rem;
+  height: 2px;
+  margin: 0.45rem 0 0.5rem;
+  background: var(--copper);
+}
+
+.services-hero__lead {
+  margin: 0;
+  max-width: 34rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+.services-hero__media {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  align-self: stretch;
+  max-height: 16.5rem;
+  overflow: hidden;
+}
+
+.services-hero__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, var(--bg-2) 0%, rgba(12, 24, 40, 0.55) 26%, transparent 56%),
+    linear-gradient(180deg, transparent 44%, var(--bg-2) 100%);
+  pointer-events: none;
+}
+
+.services-hero__media img {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 16.5rem;
+  object-fit: cover;
+  object-position: center 42%;
+  opacity: 0.92;
+}
+
+.services-grid {
+  padding: 2rem 0 2.25rem;
+}
+
+.services-grid__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+.leistungen-card {
+  min-width: 0;
+  background: #fff;
+  border: 1px solid rgba(30, 58, 95, 0.14);
+  border-top: 2px solid rgba(174, 102, 60, 0.42);
+  border-radius: 3px;
+  transition:
+    border-color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.leistungen-card:hover {
+  border-color: rgba(174, 102, 60, 0.48);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 20, 28, 0.07);
+}
+
+.leistungen-card--featured {
+  grid-column: 1 / -1;
+}
+
+.leistungen-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  height: 100%;
+  min-height: 100%;
+  padding: 1.2rem 1.25rem 1.3rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.leistungen-card--featured .leistungen-card__link {
+  flex-direction: row;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 1.35rem 1.45rem;
+}
+
+.leistungen-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--copper);
+  flex-shrink: 0;
+}
+
+.leistungen-card__icon svg {
+  width: 2.35rem;
+  height: 2.35rem;
+  display: block;
+}
+
+.leistungen-card--featured .leistungen-card__icon {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+
+.leistungen-card--featured .leistungen-card__icon svg {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.leistungen-card__copy {
+  min-width: 0;
+}
+
+.leistungen-card__title {
+  margin: 0 0 0.45rem;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.leistungen-card--featured .leistungen-card__title {
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+}
+
+.leistungen-card__desc {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+.services-cta {
+  padding: 1.65rem 0 2.35rem;
+  background: var(--bg-2);
+}
+
+.services-cta__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+  border-top: 1px solid rgba(174, 102, 60, 0.35);
+}
+
+.services-cta__text {
+  margin: 0;
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1rem;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+.services-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.services-cta .btn-primary {
+  min-height: 2.75rem;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.9375rem;
+}
+
+.services-cta .btn-outline-copper {
+  min-height: 2.75rem;
+  padding: 0.62rem 1.15rem;
+  font-size: 0.9375rem;
+  color: #fff;
+  border-color: rgba(174, 102, 60, 0.72);
+}
+
+.services-cta .btn-outline-copper:hover {
+  color: #fff;
+  background: rgba(174, 102, 60, 0.16);
+  border-color: var(--copper);
+}
+
+html.translated-ltr .services-grid__cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+html.translated-ltr .leistungen-card--featured {
+  grid-column: 1 / -1;
+}
+
+html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.leistungen-card--featured) {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1180px) {
+  html.translated-ltr .services-grid__cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.leistungen-card--featured) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .services-hero__inner {
+    grid-template-columns: 1fr;
+    max-height: none;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .services-hero__copy {
+    padding: 1rem 0 0.85rem;
+  }
+
+  .services-hero__media {
+    max-height: 12.5rem;
+  }
+
+  .services-hero__media img {
+    max-height: 12.5rem;
+  }
+
+  .leistungen-card--featured {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-page__inner {
+    padding: 0 1.1rem;
+  }
+
+  .services-hero__inner {
+    padding: 0 1.1rem;
+  }
+
+  .services-grid {
+    padding: 1.5rem 0 1.75rem;
+  }
+
+  .services-grid__cards {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .leistungen-card--featured .leistungen-card__link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1.2rem 1.15rem 1.25rem;
+  }
+
+  .services-cta__inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .services-cta__actions {
+    flex-direction: column;
+  }
+
+  .services-cta .btn-primary,
+  .services-cta .btn-outline-copper {
+    width: 100%;
+    justify-content: center;
+  }
+}
