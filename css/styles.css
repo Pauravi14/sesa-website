@@ -2398,6 +2398,10 @@ select {
   max-width: 48rem;
 }
 
+.content-light .legal > p.muted {
+  color: var(--text);
+}
+
 .legal h2 {
   margin-top: 1.4rem;
 }
