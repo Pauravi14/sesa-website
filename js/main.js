@@ -468,20 +468,19 @@
       });
     }
 
-    function easeInOut(t) {
-      return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
     }
 
-    function setConnectorProgress(orbit, head, tail) {
-      orbit.style.setProperty("--connector-head", String(head));
-      orbit.style.setProperty("--connector-tail", String(tail !== undefined ? tail : head));
+    function setConnectorProgress(orbit, value) {
+      orbit.style.setProperty("--connector-head", String(value));
     }
 
     function resetConnectors() {
       connectors.forEach(function (connector) {
         connector.classList.remove("is-connector-live", "is-connector-done");
         const orbit = connector.querySelector("[data-process-orbit]");
-        if (orbit) setConnectorProgress(orbit, 0, 0);
+        if (orbit) setConnectorProgress(orbit, 0);
       });
     }
 
@@ -489,7 +488,7 @@
       const orbit = connector.querySelector("[data-process-orbit]");
       connector.classList.remove("is-connector-live");
       connector.classList.add("is-connector-done");
-      if (orbit) setConnectorProgress(orbit, 1, 1);
+      if (orbit) setConnectorProgress(orbit, 1);
     }
 
     function travelConnector(connector, duration, generation) {
@@ -506,9 +505,8 @@
         }
 
         connector.classList.add("is-connector-live");
-        setConnectorProgress(orbit, 0, 0);
+        setConnectorProgress(orbit, 0);
 
-        const tailLead = 0.2;
         let start = null;
         function frame(now) {
           if (generation !== sequenceGeneration) {
@@ -518,12 +516,11 @@
 
           if (start === null) start = now;
           const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const head = easeInOut(progress);
-          const tail = progress >= 1 ? 1 : Math.max(0, head - tailLead);
-          setConnectorProgress(orbit, head, tail);
+          const linear = Math.min(elapsed / duration, 1);
+          const progress = easeOutCubic(linear);
+          setConnectorProgress(orbit, progress);
 
-          if (progress < 1) {
+          if (linear < 1) {
             const rafId = window.requestAnimationFrame(frame);
             rafIds.push(rafId);
           } else {
@@ -631,7 +628,7 @@
       connectors.forEach(function (connector) {
         connector.classList.add("is-connector-done");
         const orbit = connector.querySelector("[data-process-orbit]");
-        if (orbit) setConnectorProgress(orbit, 1, 1);
+        if (orbit) setConnectorProgress(orbit, 1);
       });
     } else {
       flowObserver = new IntersectionObserver(
