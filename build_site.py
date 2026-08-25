@@ -817,7 +817,7 @@ def main() -> None:
                 "Bewertung von Fahrzeug und Aufbau, soweit im Auftrag vereinbart und fachlich abgedeckt.",
                 "Feuchtigkeits- oder Dichtigkeitsmessungen nur bei entsprechender Qualifikation und Auftrag.",
             ],
-            "assets/nrw-road.png",
+            SERVICE_THUMBS["wohnmobile"],
         ),
         "beweissicherung.html": (
             "Beweissicherung",
