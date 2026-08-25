@@ -3919,28 +3919,29 @@ body.consent-open {
 }
 
 .about-story {
-  padding-top: 0.35rem;
+  padding-top: 0.15rem;
 }
 
 .about-quote {
   position: relative;
-  margin: 0 0 2rem;
-  padding: 0 0 0 2.35rem;
+  margin: 0 0 1.25rem;
+  padding: 0 0 1.15rem 1.65rem;
   border: 0;
+  border-bottom: 1px solid rgba(10, 22, 40, 0.12);
   color: var(--text);
   font-family: var(--serif);
-  font-size: clamp(1.35rem, 2.2vw, 1.72rem);
+  font-size: clamp(0.98rem, 1.35vw, 1.08rem);
   font-style: italic;
-  line-height: 1.58;
+  line-height: 1.62;
 }
 
 .about-quote__mark {
   position: absolute;
-  top: -0.45rem;
+  top: -0.15rem;
   left: 0;
   color: var(--copper);
   font-family: var(--serif);
-  font-size: 3.4rem;
+  font-size: 2rem;
   font-style: normal;
   line-height: 1;
 }
@@ -3948,8 +3949,8 @@ body.consent-open {
 .about-details {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem 2.75rem;
-  margin-bottom: 2rem;
+  gap: 1.35rem 2rem;
+  margin-bottom: 1.35rem;
 }
 
 .about-detail__head {
@@ -3979,7 +3980,7 @@ body.consent-open {
 .about-detail h3 {
   margin: 0;
   color: var(--text);
-  font-size: 1.12rem;
+  font-size: 1.02rem;
 }
 
 .about-detail ul {
@@ -3988,9 +3989,10 @@ body.consent-open {
 }
 
 .about-detail li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
   color: var(--text);
-  line-height: 1.65;
+  font-size: 0.94rem;
+  line-height: 1.58;
 }
 
 .about-detail li:last-child {
@@ -4004,8 +4006,8 @@ body.consent-open {
 .about-note {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 1.1rem 1.2rem;
+  gap: 0.85rem;
+  padding: 0.95rem 1.05rem;
   border: 1px solid rgba(174, 102, 60, 0.45);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.55);
@@ -4029,7 +4031,8 @@ body.consent-open {
 .about-note p {
   margin: 0;
   color: var(--text);
-  line-height: 1.65;
+  font-size: 0.94rem;
+  line-height: 1.58;
 }
 
 .about-values {
@@ -4166,7 +4169,11 @@ body.consent-open {
   }
 
   .about-quote {
-    padding-left: 2rem;
-    font-size: 1.25rem;
+    padding-left: 1.45rem;
+    font-size: 0.98rem;
+  }
+
+  .about-quote__mark {
+    font-size: 1.75rem;
   }
 }
