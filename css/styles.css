@@ -1556,12 +1556,14 @@ a:hover {
 }
 
 .process-flow {
-  --process-copper: #c4a56a;
-  --process-copper-line: rgba(196, 165, 106, 0.95);
-  --process-copper-soft: rgba(196, 165, 106, 0.55);
-  --process-copper-faint: rgba(196, 165, 106, 0.28);
-  --process-copper-border: rgba(196, 165, 106, 0.35);
-  --process-copper-glow: rgba(196, 165, 106, 0.65);
+  --process-copper: #ad8a52;
+  --process-copper-line: rgba(173, 138, 82, 0.95);
+  --process-copper-soft: rgba(173, 138, 82, 0.55);
+  --process-copper-faint: rgba(173, 138, 82, 0.28);
+  --process-copper-border: rgba(173, 138, 82, 0.32);
+  --process-copper-glow: rgba(173, 138, 82, 0.4);
+  --process-reveal-duration: 0.48s;
+  --process-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   max-width: 1120px;
   margin: 3rem auto 0;
@@ -1658,14 +1660,21 @@ a:hover {
 .process-flow.is-sequencing .process-flow__unit:not(.is-step-live) .process-flow__marker {
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.35);
+  transform: scale(0.82);
+  transition:
+    opacity var(--process-reveal-duration) var(--process-reveal-ease),
+    transform var(--process-reveal-duration) var(--process-reveal-ease),
+    visibility 0s linear var(--process-reveal-duration);
 }
 
 .process-flow.is-sequencing .process-flow__unit.is-step-live .process-flow__marker {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
-  transition: none;
+  transition:
+    opacity var(--process-reveal-duration) var(--process-reveal-ease),
+    transform var(--process-reveal-duration) var(--process-reveal-ease),
+    visibility 0s;
 }
 
 .process-flow.is-static .process-flow__unit .process-flow__marker,
@@ -1852,14 +1861,21 @@ html.translated-rtl .process-flow__card h3 {
 .process-flow.is-sequencing .process-flow__unit:not(.is-step-open) .process-flow__card {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(14px);
+  transform: translateY(10px);
+  transition:
+    opacity var(--process-reveal-duration) var(--process-reveal-ease),
+    transform var(--process-reveal-duration) var(--process-reveal-ease),
+    visibility 0s linear var(--process-reveal-duration);
 }
 
 .process-flow.is-sequencing .process-flow__unit.is-step-open .process-flow__card {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  transition: none;
+  transition:
+    opacity var(--process-reveal-duration) var(--process-reveal-ease),
+    transform var(--process-reveal-duration) var(--process-reveal-ease),
+    visibility 0s;
 }
 
 @media (max-width: 1100px) {
@@ -1978,14 +1994,21 @@ html.translated-rtl .process-flow__card h3 {
   .process-flow.is-sequencing .process-flow__unit:not(.is-step-open) .process-flow__card {
     opacity: 0;
     visibility: hidden;
-    transform: translateX(10px);
+    transform: translateX(8px);
+    transition:
+      opacity var(--process-reveal-duration) var(--process-reveal-ease),
+      transform var(--process-reveal-duration) var(--process-reveal-ease),
+      visibility 0s linear var(--process-reveal-duration);
   }
 
   .process-flow.is-sequencing .process-flow__unit.is-step-open .process-flow__card {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
-    transition: none;
+    transition:
+      opacity var(--process-reveal-duration) var(--process-reveal-ease),
+      transform var(--process-reveal-duration) var(--process-reveal-ease),
+      visibility 0s;
   }
 
   .process-flow__card h3 {

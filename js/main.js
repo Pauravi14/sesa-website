@@ -439,6 +439,7 @@
     const TIMING = {
       initialDelay: 250,
       travel: 1000,
+      stepReveal: 480,
       betweenSegments: 120,
       finalHold: 2200,
       resetFade: 250
@@ -491,7 +492,7 @@
       if (orbit) setConnectorProgress(orbit, 1);
     }
 
-    function travelConnector(connector, duration, generation) {
+    function travelConnector(connector, duration, generation, onArrive) {
       return new Promise(function (resolve) {
         if (generation !== sequenceGeneration) {
           resolve();
@@ -507,6 +508,8 @@
         connector.classList.add("is-connector-live");
         setConnectorProgress(orbit, 0);
 
+        let arrived = false;
+        let revealPromise = null;
         let start = null;
         function frame(now) {
           if (generation !== sequenceGeneration) {
@@ -520,12 +523,21 @@
           const progress = easeOutCubic(linear);
           setConnectorProgress(orbit, progress);
 
+          if (!arrived && progress >= 0.9 && onArrive) {
+            arrived = true;
+            revealPromise = onArrive() || null;
+          }
+
           if (linear < 1) {
             const rafId = window.requestAnimationFrame(frame);
             rafIds.push(rafId);
           } else {
             finishConnector(connector);
-            resolve();
+            if (revealPromise && typeof revealPromise.then === "function") {
+              revealPromise.then(resolve);
+            } else {
+              resolve();
+            }
           }
         }
 
@@ -541,8 +553,15 @@
           return;
         }
 
-        unit.classList.add("is-step-live", "is-step-open");
-        resolve();
+        if (unit.classList.contains("is-step-live")) {
+          wait(TIMING.stepReveal).then(resolve);
+          return;
+        }
+
+        window.requestAnimationFrame(function () {
+          unit.classList.add("is-step-live", "is-step-open");
+          wait(TIMING.stepReveal).then(resolve);
+        });
       });
     }
 
@@ -579,11 +598,10 @@
             return chain
               .then(function () {
                 if (generation !== sequenceGeneration) return;
-                return travelConnector(connector, TIMING.travel, generation);
-              })
-              .then(function () {
-                if (generation !== sequenceGeneration) return;
-                return revealStep(units[index + 1], generation);
+                return travelConnector(connector, TIMING.travel, generation, function () {
+                  if (generation !== sequenceGeneration) return;
+                  return revealStep(units[index + 1], generation);
+                });
               })
               .then(function () {
                 if (generation !== sequenceGeneration) return;
