@@ -3738,22 +3738,13 @@ body.consent-open {
   overflow: visible;
 }
 
-.about-shell__hero-bg {
-  position: absolute;
-  inset: 0 0 auto;
-  height: 14.75rem;
-  background: var(--bg);
-  pointer-events: none;
-}
-
 .about-shell__grid {
   position: relative;
-  z-index: 1;
   display: grid;
   grid-template-columns: minmax(220px, 258px) minmax(0, 1fr);
   column-gap: 2.25rem;
   row-gap: 0;
-  align-items: start;
+  align-items: stretch;
   overflow: visible;
   grid-template-areas:
     "hero-text hero-visual"
@@ -3766,15 +3757,18 @@ body.consent-open {
   z-index: 2;
   overflow: visible;
   padding: 2rem 0 1.75rem;
+  background: var(--bg);
 }
 
 .about-hero__kicker {
   margin: 0 0 0.55rem;
   color: var(--copper);
-  font-size: 0.78rem;
+  font-size: clamp(0.68rem, 2.8vw, 0.78rem);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
   text-transform: uppercase;
+  overflow-wrap: break-word;
 }
 
 .about-hero__content h1 {
@@ -3795,10 +3789,11 @@ body.consent-open {
 
 .about-hero__lead {
   margin: 0;
-  max-width: 26rem;
+  max-width: 100%;
   color: rgba(255, 255, 255, 0.92);
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.55;
+  overflow-wrap: break-word;
 }
 
 .about-hero__visual {
@@ -3806,9 +3801,10 @@ body.consent-open {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 10.5rem;
+  min-height: 10rem;
   overflow: hidden;
   pointer-events: none;
+  background: var(--bg);
 }
 
 .about-portrait--hero {
@@ -3892,9 +3888,10 @@ body.consent-open {
 .about-profile__role {
   margin: 0 0 0.95rem;
   color: var(--copper);
-  font-size: 0.86rem;
+  font-size: clamp(0.78rem, 2.8vw, 0.86rem);
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.4;
+  overflow-wrap: break-word;
 }
 
 .about-profile__contact {
@@ -4156,10 +4153,6 @@ body.consent-open {
 }
 
 @media (max-width: 1080px) {
-  .about-shell__hero-bg {
-    height: 14.25rem;
-  }
-
   .about-shell__grid {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -4167,14 +4160,19 @@ body.consent-open {
       "profile"
       "story";
     row-gap: 1rem;
+    align-items: start;
+  }
+
+  .about-hero__content {
+    width: calc(100% + 3rem);
+    max-width: none;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding: 1.85rem 1.5rem 1.5rem;
   }
 
   .about-hero__visual {
     display: none;
-  }
-
-  .about-hero__content {
-    padding: 1.85rem 0 1.5rem;
   }
 
   .about-profile {
@@ -4197,6 +4195,14 @@ body.consent-open {
 @media (max-width: 720px) {
   .about-page__inner {
     padding: 0 1.15rem;
+  }
+
+  .about-hero__content {
+    width: calc(100% + 2.3rem);
+    margin-left: -1.15rem;
+    margin-right: -1.15rem;
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
   }
 
   .about-details {

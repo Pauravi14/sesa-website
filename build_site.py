@@ -248,7 +248,6 @@ def about_page_body(depth: int = 0) -> str:
     return f"""
     <div class="about-page">
       <section class="about-shell">
-        <div class="about-shell__hero-bg" aria-hidden="true"></div>
         <div class="about-page__inner about-shell__grid">
           <header class="about-hero__content" aria-labelledby="about-title">
             <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
@@ -669,7 +668,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=120" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=121" />
     {extra_head}
   </head>
   <body>
