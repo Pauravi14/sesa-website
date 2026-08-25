@@ -3739,7 +3739,7 @@ body.consent-open {
 .about-shell__hero-bg {
   position: absolute;
   inset: 0 0 auto;
-  height: 12rem;
+  height: 13.25rem;
   background: var(--bg);
 }
 
@@ -3758,7 +3758,9 @@ body.consent-open {
 
 .about-hero__content {
   grid-area: hero-text;
-  padding: 1.55rem 0 0.75rem;
+  position: relative;
+  z-index: 2;
+  padding: 1.55rem 0 1.5rem;
 }
 
 .about-hero__kicker {
@@ -3852,7 +3854,7 @@ body.consent-open {
 
 .about-profile {
   grid-area: profile;
-  margin-top: -0.85rem;
+  margin-top: 0;
   border-radius: 8px;
   background: linear-gradient(180deg, #101a2a 0%, #0a1628 100%);
   color: #fff;
@@ -4147,7 +4149,7 @@ body.consent-open {
 
 @media (max-width: 1080px) {
   .about-shell__hero-bg {
-    height: 10.75rem;
+    height: 12.5rem;
   }
 
   .about-shell__grid {
@@ -4156,7 +4158,7 @@ body.consent-open {
       "hero-text"
       "profile"
       "story";
-    row-gap: 1rem;
+    row-gap: 0.85rem;
   }
 
   .about-hero__visual {
@@ -4164,7 +4166,7 @@ body.consent-open {
   }
 
   .about-hero__content {
-    padding-bottom: 0.35rem;
+    padding-bottom: 1.25rem;
   }
 
   .about-profile {
@@ -4172,7 +4174,7 @@ body.consent-open {
   }
 
   .about-story {
-    margin-top: 0.5rem;
+    margin-top: 0.35rem;
   }
 
   .about-values__layout {
