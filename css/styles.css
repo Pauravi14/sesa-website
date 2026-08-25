@@ -9,7 +9,8 @@
   --navy-2: #2b4f78;
   --accent: #b07a4f;
   --accent-2: #c98958;
-  --copper: #c98958;
+  --logo-copper: #c98958;
+  --copper: var(--logo-copper);
   --ivory: #f7f5f2;
   --text-on-dark: #c9d4de;
   --cream: #f7f5f2;
@@ -1556,7 +1557,7 @@ a:hover {
 }
 
 .process-flow {
-  --process-copper: var(--copper);
+  --process-copper: var(--logo-copper);
   --process-copper-line: rgba(201, 137, 88, 0.95);
   --process-copper-soft: rgba(201, 137, 88, 0.55);
   --process-copper-faint: rgba(201, 137, 88, 0.28);
@@ -1621,7 +1622,7 @@ a:hover {
   position: absolute;
   top: 50%;
   left: calc(var(--connector-head) * 100%);
-  color: var(--process-copper);
+  color: var(--logo-copper);
   font-family: var(--sans);
   font-size: 1.65rem;
   font-weight: 700;
@@ -1641,7 +1642,7 @@ a:hover {
   transform: translate3d(0, -50%, 0);
   transform-origin: left center;
   border-radius: 999px;
-  background: var(--process-copper);
+  background: var(--logo-copper);
   box-shadow: 0 0 10px var(--process-copper-glow);
   will-change: width;
   z-index: 1;
@@ -1701,16 +1702,23 @@ a:hover {
   height: 4rem;
   margin: 0;
   border-radius: 50%;
-  background: var(--process-copper);
+  background: var(--logo-copper);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    var(--logo-copper) 38%,
+    #a86838 100%
+  );
   color: #fff;
   font-family: var(--sans);
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 0.06em;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(201, 137, 88, 0.55);
   box-shadow:
     0 0 0 7px var(--bg),
-    0 8px 22px var(--process-copper-border);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 8px 22px rgba(201, 137, 88, 0.35);
   flex-shrink: 0;
   position: relative;
   z-index: 2;
@@ -1939,7 +1947,8 @@ html.translated-rtl .process-flow__card h3 {
     font-size: 0.8rem;
     box-shadow:
       0 0 0 5px var(--bg),
-      0 6px 16px var(--process-copper-border);
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 6px 16px rgba(201, 137, 88, 0.35);
   }
 
   .process-flow__unit .process-flow__card {
