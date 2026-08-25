@@ -4147,30 +4147,33 @@ body.consent-open {
 
 @media (max-width: 1080px) {
   .about-shell__hero-bg {
-    height: 15rem;
+    height: 10.25rem;
   }
 
   .about-shell__grid {
     grid-template-columns: 1fr;
     grid-template-areas:
       "hero-text"
-      "hero-visual"
       "profile"
       "story";
-    row-gap: 1.25rem;
-  }
-
-  .about-hero__content {
-    padding-bottom: 0;
+    row-gap: 1rem;
   }
 
   .about-hero__visual {
-    padding-bottom: 0;
+    display: none;
   }
 
-  .about-profile,
+  .about-hero__content {
+    padding-bottom: 0.35rem;
+  }
+
+  .about-profile {
+    margin-top: -1.75rem;
+  }
+
   .about-story {
     margin-top: 0;
+    padding-top: 0.15rem;
   }
 
   .about-values__layout {
