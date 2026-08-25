@@ -3745,6 +3745,7 @@ body.consent-open {
   align-items: stretch;
   width: min(1240px, 100%);
   min-height: 17.5rem;
+  max-height: 18.75rem;
   margin: 0 auto;
   padding: 0 1.5rem;
   box-sizing: border-box;
@@ -3754,7 +3755,7 @@ body.consent-open {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2.25rem 0 2rem;
+  padding: 1.85rem 0 1.75rem;
 }
 
 .about-hero__kicker {
@@ -3800,7 +3801,7 @@ body.consent-open {
   align-items: flex-end;
   justify-content: center;
   min-height: 17.5rem;
-  max-height: 21.875rem;
+  max-height: 18.75rem;
   overflow: hidden;
 }
 
@@ -3821,7 +3822,7 @@ body.consent-open {
   width: auto;
   max-width: 100%;
   height: 100%;
-  max-height: 21.875rem;
+  max-height: 18.75rem;
   object-fit: cover;
   object-position: center 12%;
   opacity: 0.92;
