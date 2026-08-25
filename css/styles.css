@@ -1503,7 +1503,7 @@ a:hover {
   width: 3rem;
   height: 3rem;
   margin: 0 auto 0.75rem;
-  color: #AE663C;
+  color: var(--copper);
   flex-shrink: 0;
 }
 
