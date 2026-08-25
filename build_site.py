@@ -221,6 +221,114 @@ def service_card_icon(key: str) -> str:
     return f'<span class="service-card__icon">{icons[key]}</span>'
 
 
+def about_page_body(depth: int = 0) -> str:
+    p = prefix(depth)
+    hero_img = f"{p}assets/hero/slide-1.jpg?v={HERO_IMG_VER}"
+    kontakt = f"{p}kontakt.html"
+    return f"""
+    <div class="about-page">
+      <section class="about-hero" aria-labelledby="about-title">
+        <div class="about-hero__content">
+          <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
+          <span class="about-hero__rule" aria-hidden="true"></span>
+          <h1 id="about-title">Über uns</h1>
+          <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
+        </div>
+        <div class="about-hero__media">
+          <img src="{hero_img}" alt="" loading="eager" />
+        </div>
+      </section>
+
+      <section class="about-intro content-light">
+        <div class="about-intro__layout">
+          <aside class="about-profile">
+            <div class="about-profile__photo-wrap">
+              <img src="{hero_img}" alt="Porträtfoto — Platzhalter bis Foto vom Inhaber eingereicht wird" loading="lazy" />
+            </div>
+            <h2>{OWNER}</h2>
+            <p class="about-profile__role">Inhaber · {BUSINESS}</p>
+            <ul class="about-profile__contact">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8a13 13 0 0 0 5.7 5.7l2.1-2.1a1 1 0 0 1 1-.24c1.1.37 2.2.57 3.4.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A16 16 0 0 1 3 4a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.5a1 1 0 0 1-.24 1Z"/></svg><a href="tel:+491773145839">{PHONE_DISPLAY}</a></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg><a href="mailto:{EMAIL}">{EMAIL}</a></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z"/><circle cx="12" cy="11" r="2.2"/></svg><span>{ADDRESS}</span></li>
+            </ul>
+          </aside>
+
+          <div class="about-story">
+            <blockquote class="about-quote">
+              <span class="about-quote__mark" aria-hidden="true">„</span>
+              Schon als Kind interessierte mich die Fahrzeugtechnik – von neuen Modellen bis zu Klassikern.
+              Nach meiner Ausbildung im VAG-Konzern bei einem VW- und Audi-Autohaus und dem Kfz-Meister folgte
+              die Tätigkeit bei TÜV NORD als Fahrzeugbewerter und Unfallschadengutachter. Heute steht eine
+              persönliche, unabhängige und gründliche Beratung im Mittelpunkt.
+            </blockquote>
+
+            <div class="about-details">
+              <div class="about-detail">
+                <div class="about-detail__head">
+                  <span class="about-detail__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="17" height="12" rx="1.5"/><path d="M8 8V6.5A1.5 1.5 0 0 1 9.5 5h5A1.5 1.5 0 0 1 16 6.5V8"/><path d="M3.5 13h17"/></svg></span>
+                  <h3>Beruflicher Werdegang (Auszug)</h3>
+                </div>
+                <ul>
+                  <li>TÜV NORD Autoservice, Paderborn — Kfz-Sachverständiger / Fahrzeugbewerter und Unfallschadengutachter (frühere Tätigkeit, keine aktuelle Partnerschaft mit TÜV NORD)</li>
+                  <li>Grafschafter Autozentrale VW/Audi Partner, Nordhorn — Ausbildung Kfz-Mechatroniker</li>
+                </ul>
+              </div>
+
+              <div class="about-detail">
+                <div class="about-detail__head">
+                  <span class="about-detail__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4.5"/><path d="M8.2 13 7 20l5-2.5L17 20l-1.2-7"/><path d="M9 18.5h6"/></svg></span>
+                  <h3>Qualifikationen</h3>
+                </div>
+                <ul>
+                  <li>Kfz-Meister</li>
+                  <li>Sachverständiger für Kraftfahrzeuge</li>
+                  <li>Mitglied im Verband freier Kraftfahrzeug-Sachverständiger e. V. (VfK)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="about-note">
+              <span class="about-note__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 3 7.5 7 9 4-1.5 7-4.8 7-9V6l-7-3Z"/><path d="m9.5 12 1.8 1.8L15 10.1"/></svg></span>
+              <p>Kfz-Meister und Sachverständiger für Kraftfahrzeuge. Genaue Bezeichnungen und Nachweise gemäß Originalunterlagen stellen wir auf Anfrage zur Verfügung. Ein Gutachten schafft Klarheit, wenn Sachverhalte komplex sind. Unabhängigkeit, fachliche Sorgfalt und transparente Dokumentation stehen im Mittelpunkt unserer Arbeit.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-values" aria-labelledby="about-values-title">
+        <div class="about-values__layout">
+          <div class="about-values__intro">
+            <h2 class="about-values__title" id="about-values-title">Wofür SESA steht</h2>
+            <span class="about-values__rule" aria-hidden="true"></span>
+          </div>
+          <div class="about-values__grid">
+            <article class="about-value">
+              <span class="about-value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v17"/><path d="M5 7h14"/><path d="M5 7 3 13h4l-2-6Z"/><path d="M19 7l-2 6h4l-2-6Z"/><path d="M8 20h8"/></svg></span>
+              <h3>Unabhängig</h3>
+              <p>Objektive Bewertungen ohne Hersteller- oder Werkstattbindung.</p>
+            </article>
+            <article class="about-value">
+              <span class="about-value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8l2 2v14H6V4h2Z"/><path d="M9 4v3h6V4"/><path d="M9 12h6"/><path d="M9 16h4"/><circle cx="16.5" cy="16.5" r="3.2"/><path d="m18.7 18.7 2 2"/></svg></span>
+              <h3>Gründlich</h3>
+              <p>Detaillierte Analyse und transparente Dokumentation.</p>
+            </article>
+            <article class="about-value">
+              <span class="about-value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></span>
+              <h3>Persönlich</h3>
+              <p>Direkter Kontakt und individuelle Betreuung Ihrer Anliegen.</p>
+            </article>
+          </div>
+          <aside class="about-values__cta">
+            <span class="about-values__cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8a13 13 0 0 0 5.7 5.7l2.1-2.1a1 1 0 0 1 1-.24c1.1.37 2.2.57 3.4.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A16 16 0 0 1 3 4a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.5a1 1 0 0 1-.24 1Z"/></svg></span>
+            <p>Fragen oder Gutachten nötig? Ich bin persönlich für Sie da.</p>
+            <a class="btn btn-primary" href="{kontakt}">Kontakt aufnehmen</a>
+          </aside>
+        </div>
+      </section>
+    </div>"""
+
+
 def hero_preload_head() -> str:
     return "\n".join(
         f'    <link rel="preload" as="image" href="{src.split("?")[0]}" />' for src, _ in HERO_SLIDES
@@ -612,132 +720,6 @@ def page_hero(title: str, lead: str, img: str, depth: int) -> str:
     </section>"""
 
 
-ABOUT_PORTRAIT = f"assets/hero/slide-1.jpg?v={HERO_IMG_VER}"
-
-
-def about_icon(name: str) -> str:
-    svg_open = (
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
-        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-    )
-    icons = {
-        "phone": f'{svg_open}<path d="M6.6 10.8a13 13 0 0 0 5.7 5.7l2.1-2.1a1 1 0 0 1 1-.24c1.1.37 2.2.57 3.4.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A16 16 0 0 1 3 4a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.5a1 1 0 0 1-.24 1Z"/></svg>',
-        "mail": f'{svg_open}<rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg>',
-        "pin": f'{svg_open}<path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z"/><circle cx="12" cy="11" r="2.2"/></svg>',
-        "briefcase": f'{svg_open}<rect x="3.5" y="8" width="17" height="12" rx="1.5"/><path d="M8 8V6.5A1.5 1.5 0 0 1 9.5 5h5A1.5 1.5 0 0 1 16 6.5V8"/><path d="M3.5 13h17"/></svg>',
-        "award": f'{svg_open}<circle cx="12" cy="8.5" r="4.5"/><path d="M8.2 13 7 20l5-2.5L17 20l-1.2-7"/><path d="M9 18.5h6"/></svg>',
-        "shield": f'{svg_open}<path d="M12 3 5 6v6c0 4.2 3 7.5 7 9 4-1.5 7-4.8 7-9V6l-7-3Z"/><path d="m9.5 12 1.8 1.8L15 10.1"/></svg>',
-        "scales": f'{svg_open}<path d="M12 3v17"/><path d="M5 7h14"/><path d="M5 7 3 13h4l-2-6Z"/><path d="M19 7l-2 6h4l-2-6Z"/><path d="M8 20h8"/></svg>',
-        "report": f'{svg_open}<path d="M8 4h8l2 2v14H6V4h2Z"/><path d="M9 4v3h6V4"/><path d="M9 12h6"/><path d="M9 16h4"/><circle cx="16.5" cy="16.5" r="3.2"/><path d="m18.7 18.7 2 2"/></svg>',
-        "person": f'{svg_open}<circle cx="12" cy="8" r="3.2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>',
-    }
-    return icons[name]
-
-
-def about_page_body(depth: int) -> str:
-    p = prefix(depth)
-    portrait = p + ABOUT_PORTRAIT
-    contact = p + "kontakt.html"
-    return f"""
-    <div class="about-page">
-      <section class="about-hero" aria-labelledby="about-title">
-        <div class="about-hero__content">
-          <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
-          <h1 id="about-title">Über uns</h1>
-          <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
-        </div>
-        <div class="about-hero__media">
-          <img src="{portrait}" alt="" loading="eager" />
-        </div>
-      </section>
-
-      <section class="about-intro content-light">
-        <div class="about-intro__layout">
-          <aside class="about-profile">
-            <div class="about-profile__photo-wrap">
-              <img src="{portrait}" alt="Porträtfoto — Platzhalter bis Foto vom Inhaber eingereicht wird" loading="lazy" />
-            </div>
-            <h2>{OWNER}</h2>
-            <p class="about-profile__role">Inhaber · {BUSINESS}</p>
-            <ul class="about-profile__contact">
-              <li>{about_icon("phone")}<a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></li>
-              <li>{about_icon("mail")}<a href="mailto:{EMAIL}">{EMAIL}</a></li>
-              <li>{about_icon("pin")}<span>{ADDRESS}</span></li>
-            </ul>
-          </aside>
-
-          <div class="about-story">
-            <blockquote class="about-quote">
-              Schon als Kind interessierte mich die Fahrzeugtechnik — von neuen Modellen bis zu Klassikern.
-              Nach der Ausbildung im VAG-Konzern bei einem VW- und Audi-Autohaus und dem Kfz-Meister folgte
-              die Tätigkeit bei TÜV NORD als Fahrzeugbewerter und Unfallschadengutachter. Heute steht eine
-              persönliche, unabhängige und gründliche Beratung im Mittelpunkt.
-            </blockquote>
-
-            <div class="about-details">
-              <div class="about-detail">
-                <div class="about-detail__head">
-                  <span class="about-detail__icon">{about_icon("briefcase")}</span>
-                  <h3>Beruflicher Werdegang (Auszug)</h3>
-                </div>
-                <ul>
-                  <li>TÜV NORD Autoservice, Paderborn — Kfz-Sachverständiger / Fahrzeugbewerter und Unfallschadengutachter (frühere Tätigkeit, keine aktuelle Partnerschaft mit TÜV NORD)</li>
-                  <li>Grafschafter Autozentrale VW/Audi Partner, Nordhorn — Ausbildung Kfz-Mechatroniker</li>
-                </ul>
-              </div>
-
-              <div class="about-detail">
-                <div class="about-detail__head">
-                  <span class="about-detail__icon">{about_icon("award")}</span>
-                  <h3>Qualifikationen</h3>
-                </div>
-                <p class="about-detail__note">Kfz-Meister und Sachverständiger für Kraftfahrzeuge. Genaue Bezeichnungen und Nachweise gemäß Originalunterlagen stellen wir auf Anfrage zur Verfügung.</p>
-                <ul>
-                  <li>Kfz-Meister</li>
-                  <li>Sachverständiger für Kraftfahrzeuge</li>
-                  <li>Mitglied im Verband freier Kraftfahrzeug-Sachverständiger e. V. (VFK)</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="about-note">
-              <span class="about-note__icon">{about_icon("shield")}</span>
-              <p>Ein Gutachten schafft Klarheit, wenn Sachverhalte komplex sind. Unabhängigkeit, fachliche Sorgfalt und transparente Dokumentation stehen im Mittelpunkt unserer Arbeit.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="about-values" aria-labelledby="about-values-title">
-        <div class="about-values__layout">
-          <h2 class="about-values__title" id="about-values-title">Wofür SESA steht</h2>
-          <div class="about-values__grid">
-            <article class="about-value">
-              <span class="about-value__icon">{about_icon("scales")}</span>
-              <h3>Unabhängig</h3>
-              <p>Objektive Bewertungen ohne Hersteller- oder Werkstattbindung.</p>
-            </article>
-            <article class="about-value">
-              <span class="about-value__icon">{about_icon("report")}</span>
-              <h3>Gründlich</h3>
-              <p>Detaillierte Analyse und transparente Dokumentation.</p>
-            </article>
-            <article class="about-value">
-              <span class="about-value__icon">{about_icon("person")}</span>
-              <h3>Persönlich</h3>
-              <p>Direkter Kontakt und individuelle Betreuung Ihrer Anliegen.</p>
-            </article>
-          </div>
-          <aside class="about-values__cta">
-            <span class="about-values__cta-icon">{about_icon("phone")}</span>
-            <p>Fragen oder Gutachten nötig? Ich bin persönlich für Sie da.</p>
-            <a class="btn btn-primary" href="{contact}">Kontakt aufnehmen</a>
-          </aside>
-        </div>
-      </section>
-    </div>"""
-
-
 def service_page(slug: str, title: str, lead: str, paragraphs: list[str], img: str) -> None:
     body = page_hero(title, lead, img, 1)
     body += "<section class=\"section content-light\"><div class=\"legal\">"
@@ -884,8 +866,14 @@ def main() -> None:
         service_page(slug, title, lead, paras, img)
 
     # Über uns
-    ueber = about_page_body(0)
-    write(ROOT / "ueber-uns.html", 0, "Über uns", "Über uns", "Selim Sabahoglu — Kfz-Sachverständiger.", ueber)
+    write(
+        ROOT / "ueber-uns.html",
+        0,
+        "Über uns",
+        "Über uns",
+        f"{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.",
+        about_page_body(0),
+    )
 
     # Ratgeber
     rat_index = page_hero("Ratgeber", "Sachliche Informationen — keine Rechtsberatung.", "assets/nrw-road.png", 1)
