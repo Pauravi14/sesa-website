@@ -235,7 +235,7 @@ def about_page_body(depth: int = 0) -> str:
             <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
             <h1 id="about-title">Über uns</h1>
             <span class="about-hero__rule" aria-hidden="true"></span>
-            <p class="about-hero__lead">Selim Sabahoglu — Independent Automotive Expert in Paderborn</p>
+            <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
           </header>
           <div class="about-hero__media" aria-hidden="true">
             <img src="{portrait_img}" alt="" width="480" height="600" decoding="async" />
@@ -651,7 +651,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=129" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=130" />
     {extra_head}
   </head>
   <body>
