@@ -1556,12 +1556,12 @@ a:hover {
 }
 
 .process-flow {
-  --process-copper: #ad8a52;
-  --process-copper-line: rgba(173, 138, 82, 0.95);
-  --process-copper-soft: rgba(173, 138, 82, 0.55);
-  --process-copper-faint: rgba(173, 138, 82, 0.28);
-  --process-copper-border: rgba(173, 138, 82, 0.32);
-  --process-copper-glow: rgba(173, 138, 82, 0.4);
+  --process-copper: var(--copper);
+  --process-copper-line: rgba(201, 137, 88, 0.95);
+  --process-copper-soft: rgba(201, 137, 88, 0.55);
+  --process-copper-faint: rgba(201, 137, 88, 0.28);
+  --process-copper-border: rgba(201, 137, 88, 0.35);
+  --process-copper-glow: rgba(201, 137, 88, 0.5);
   --process-reveal-duration: 0.48s;
   --process-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
