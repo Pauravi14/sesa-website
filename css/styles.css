@@ -3750,6 +3750,7 @@ body.consent-open {
   grid-template-columns: minmax(220px, 258px) minmax(0, 1fr);
   column-gap: 2.25rem;
   row-gap: 0;
+  align-items: start;
   grid-template-areas:
     "hero-text hero-visual"
     "profile story";
@@ -3757,7 +3758,7 @@ body.consent-open {
 
 .about-hero__content {
   grid-area: hero-text;
-  padding: 1.55rem 0 3.25rem;
+  padding: 1.55rem 0 0.75rem;
 }
 
 .about-hero__kicker {
@@ -3797,7 +3798,19 @@ body.consent-open {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 0.35rem;
+  height: 10.5rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.about-portrait--hero {
+  width: min(100%, 10.5rem);
+}
+
+.about-portrait--hero .about-portrait__figure {
+  width: auto;
+  height: 9.75rem;
+  min-height: 0;
 }
 
 .about-portrait {
@@ -3806,10 +3819,6 @@ body.consent-open {
   align-items: flex-end;
   justify-content: center;
   width: min(100%, 11.5rem);
-}
-
-.about-portrait--card {
-  width: 100%;
 }
 
 .about-portrait__glow {
@@ -3828,14 +3837,12 @@ body.consent-open {
   height: auto;
 }
 
-.about-portrait--hero .about-portrait__figure {
-  width: auto;
-  height: 10.5rem;
-  min-height: 0;
-}
-
 .about-portrait--hero .about-portrait__glow {
   inset: 10% 10% 22%;
+}
+
+.about-portrait--card {
+  width: 100%;
 }
 
 .about-portrait--card .about-portrait__figure {
@@ -3919,8 +3926,8 @@ body.consent-open {
 
 .about-story {
   grid-area: story;
-  margin-top: -2.65rem;
-  padding-top: 0.15rem;
+  margin-top: 0;
+  padding-top: 0.5rem;
 }
 
 .about-quote {
