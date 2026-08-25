@@ -224,13 +224,13 @@ def service_card_icon(key: str) -> str:
 
 def about_page_body(depth: int = 0) -> str:
     p = prefix(depth)
-    logo = f"{p}{LOGO_MONOGRAM}"
+    portrait = f"{p}assets/portrait-placeholder.png"
     about_hero = f"{p}{ABOUT_HERO}"
     kontakt = f"{p}kontakt.html"
     return f"""
     <div class="about-page">
       <section class="about-hero" aria-labelledby="about-title">
-        <div class="about-page__inner about-hero__grid">
+        <div class="about-hero__shell">
           <div class="about-hero__content">
             <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
             <span class="about-hero__rule" aria-hidden="true"></span>
@@ -248,15 +248,17 @@ def about_page_body(depth: int = 0) -> str:
         <div class="about-page__inner about-intro__layout">
           <aside class="about-profile">
             <div class="about-profile__photo-wrap">
-              <img src="{logo}" alt="" loading="lazy" />
+              <img src="{portrait}" alt="Porträtfoto — {OWNER}" loading="lazy" />
             </div>
-            <h2>{OWNER}</h2>
-            <p class="about-profile__role">Inhaber · {BUSINESS}</p>
-            <ul class="about-profile__contact">
+            <div class="about-profile__body">
+              <h2>{OWNER}</h2>
+              <p class="about-profile__role">Inhaber · {BUSINESS}</p>
+              <ul class="about-profile__contact">
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8a13 13 0 0 0 5.7 5.7l2.1-2.1a1 1 0 0 1 1-.24c1.1.37 2.2.57 3.4.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A16 16 0 0 1 3 4a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.5a1 1 0 0 1-.24 1Z"/></svg><a href="tel:+491773145839">{PHONE_DISPLAY}</a></li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg><a href="mailto:{EMAIL}">{EMAIL}</a></li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z"/><circle cx="12" cy="11" r="2.2"/></svg><span>{ADDRESS}</span></li>
             </ul>
+            </div>
           </aside>
 
           <div class="about-story">
@@ -302,7 +304,7 @@ def about_page_body(depth: int = 0) -> str:
       </section>
 
       <section class="about-values" aria-labelledby="about-values-title">
-        <div class="about-values__layout">
+        <div class="about-page__inner about-values__layout">
           <div class="about-values__intro">
             <h2 class="about-values__title" id="about-values-title">Wofür SESA steht</h2>
             <span class="about-values__rule" aria-hidden="true"></span>
@@ -648,7 +650,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=110" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=111" />
     {extra_head}
   </head>
   <body>
