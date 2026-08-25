@@ -3742,9 +3742,8 @@ body.consent-open {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(240px, 0.95fr);
   gap: 2rem;
-  align-items: stretch;
+  align-items: end;
   width: min(1240px, 100%);
-  min-height: 17.5rem;
   max-height: 18.75rem;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -3755,7 +3754,7 @@ body.consent-open {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1.85rem 0 1.75rem;
+  padding: 1rem 0 0.95rem;
 }
 
 .about-hero__kicker {
@@ -3782,7 +3781,7 @@ body.consent-open {
   display: block;
   width: 3.5rem;
   height: 2px;
-  margin: 0.65rem 0 0.7rem;
+  margin: 0.5rem 0 0.55rem;
   background: var(--copper);
 }
 
@@ -3800,7 +3799,7 @@ body.consent-open {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  min-height: 17.5rem;
+  align-self: stretch;
   max-height: 18.75rem;
   overflow: hidden;
 }
