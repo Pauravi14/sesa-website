@@ -249,15 +249,17 @@ def about_page_body(depth: int = 0) -> str:
     <div class="about-page">
       <section class="about-shell">
         <div class="about-page__inner about-shell__grid">
-          <header class="about-hero__content" aria-labelledby="about-title">
-            <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
-            <h1 id="about-title">Über uns</h1>
-            <span class="about-hero__rule" aria-hidden="true"></span>
-            <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
-          </header>
+          <div class="about-shell__hero">
+            <header class="about-hero__content" aria-labelledby="about-title">
+              <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
+              <h1 id="about-title">Über uns</h1>
+              <span class="about-hero__rule" aria-hidden="true"></span>
+              <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
+            </header>
 
-          <div class="about-hero__visual">
-            {hero_portrait}
+            <div class="about-hero__visual">
+              {hero_portrait}
+            </div>
           </div>
 
           <aside class="about-profile">
@@ -668,7 +670,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=121" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=122" />
     {extra_head}
   </head>
   <body>

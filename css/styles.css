@@ -3744,20 +3744,29 @@ body.consent-open {
   grid-template-columns: minmax(220px, 258px) minmax(0, 1fr);
   column-gap: 2.25rem;
   row-gap: 0;
-  align-items: stretch;
+  align-items: start;
   overflow: visible;
   grid-template-areas:
-    "hero-text hero-visual"
+    "hero hero"
     "profile story";
 }
 
+.about-shell__hero {
+  grid-area: hero;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(220px, 258px) minmax(0, 1fr);
+  column-gap: 2.25rem;
+  align-items: end;
+  background: var(--bg);
+}
+
 .about-hero__content {
-  grid-area: hero-text;
+  grid-column: 1;
   position: relative;
   z-index: 2;
   overflow: visible;
   padding: 2rem 0 1.75rem;
-  background: var(--bg);
 }
 
 .about-hero__kicker {
@@ -3797,14 +3806,13 @@ body.consent-open {
 }
 
 .about-hero__visual {
-  grid-area: hero-visual;
+  grid-column: 2;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  min-height: 10rem;
+  height: 10.5rem;
   overflow: hidden;
   pointer-events: none;
-  background: var(--bg);
 }
 
 .about-portrait--hero {
@@ -3933,7 +3941,7 @@ body.consent-open {
 
 .about-story {
   grid-area: story;
-  margin-top: 1.35rem;
+  margin-top: 0.35rem;
   padding-top: 0;
 }
 
@@ -3967,11 +3975,12 @@ body.consent-open {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.1rem 1.75rem;
   margin-bottom: 1rem;
+  align-items: start;
 }
 
 .about-detail__head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.7rem;
   margin-bottom: 0.65rem;
 }
@@ -3995,10 +4004,13 @@ body.consent-open {
 
 .about-detail h3 {
   margin: 0;
+  padding-top: 0.42rem;
   color: var(--text);
   font-family: var(--serif);
-  font-size: 0.98rem;
+  font-size: clamp(0.9rem, 1.5vw, 0.98rem);
   font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: break-word;
 }
 
 .about-detail ul {
@@ -4011,6 +4023,7 @@ body.consent-open {
   color: var(--text);
   font-size: 0.9rem;
   line-height: 1.52;
+  overflow-wrap: break-word;
 }
 
 .about-detail li:last-child {
@@ -4156,18 +4169,22 @@ body.consent-open {
   .about-shell__grid {
     grid-template-columns: 1fr;
     grid-template-areas:
-      "hero-text"
+      "hero"
       "profile"
       "story";
     row-gap: 1rem;
     align-items: start;
   }
 
-  .about-hero__content {
+  .about-shell__hero {
+    display: block;
     width: calc(100% + 3rem);
     max-width: none;
     margin-left: -1.5rem;
     margin-right: -1.5rem;
+  }
+
+  .about-hero__content {
     padding: 1.85rem 1.5rem 1.5rem;
   }
 
@@ -4197,10 +4214,13 @@ body.consent-open {
     padding: 0 1.15rem;
   }
 
-  .about-hero__content {
+  .about-shell__hero {
     width: calc(100% + 2.3rem);
     margin-left: -1.15rem;
     margin-right: -1.15rem;
+  }
+
+  .about-hero__content {
     padding-left: 1.15rem;
     padding-right: 1.15rem;
   }
