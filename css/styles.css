@@ -2243,6 +2243,13 @@ footer {
   color: var(--text);
 }
 
+.content-light.legal h1,
+.content-light.legal h2,
+.content-light.legal h3,
+.content-light.legal strong {
+  color: var(--text);
+}
+
 .content-light.legal a {
   color: var(--navy-2);
 }
