@@ -222,33 +222,50 @@ def service_card_icon(key: str) -> str:
     return f'<span class="service-card__icon">{icons[key]}</span>'
 
 
+def about_portrait_scene(variant: str = "hero") -> str:
+    grad_id = f"aboutPortraitFill-{variant}"
+    return f"""
+            <div class="about-portrait about-portrait--{variant}" aria-hidden="true">
+              <span class="about-portrait__glow"></span>
+              <svg class="about-portrait__figure" viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="{grad_id}" x1="120" y1="24" x2="120" y2="320" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#314158" />
+                    <stop offset="100%" stop-color="#070f1c" />
+                  </linearGradient>
+                </defs>
+                <path fill="url(#{grad_id})" d="M118 28c-34 0-52 24-52 54 0 14 6 26 14 34-22 8-38 20-50 38-12 18-16 44-16 92v74h208V246c0-48-4-74-16-92-12-18-28-30-50-38 8-8 14-20 14-34 0-30-18-54-52-54Z" />
+                <path fill="#162033" d="M118 116 98 168 118 154 138 168Z" />
+              </svg>
+            </div>"""
+
+
 def about_page_body(depth: int = 0) -> str:
     p = prefix(depth)
-    portrait = f"{p}assets/portrait-placeholder.png"
-    about_hero = f"{p}{ABOUT_HERO}"
     kontakt = f"{p}kontakt.html"
+    hero_portrait = about_portrait_scene("hero")
+    card_portrait = about_portrait_scene("card")
     return f"""
     <div class="about-page">
       <section class="about-hero" aria-labelledby="about-title">
-        <div class="about-hero__shell">
+        <div class="about-page__inner about-page__grid">
           <div class="about-hero__content">
             <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
-            <span class="about-hero__rule" aria-hidden="true"></span>
             <h1 id="about-title">Über uns</h1>
+            <span class="about-hero__rule" aria-hidden="true"></span>
             <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
           </div>
-          <div class="about-hero__figure">
-            <span class="about-hero__glow" aria-hidden="true"></span>
-            <img class="about-hero__photo" src="{about_hero}" alt="Klassisches Fahrzeug in der Werkstatt" loading="eager" decoding="async" />
+          <div class="about-hero__visual">
+            {hero_portrait}
           </div>
         </div>
       </section>
 
       <section class="about-intro content-light">
-        <div class="about-page__inner about-intro__layout">
+        <div class="about-page__inner about-page__grid about-intro__layout">
           <aside class="about-profile">
             <div class="about-profile__photo-wrap">
-              <img src="{portrait}" alt="Porträtfoto — {OWNER}" loading="lazy" />
+              {card_portrait}
             </div>
             <div class="about-profile__body">
               <h2>{OWNER}</h2>
@@ -304,14 +321,16 @@ def about_page_body(depth: int = 0) -> str:
       </section>
 
       <section class="about-values" aria-labelledby="about-values-title">
-        <div class="about-page__inner about-values__layout">
+        <div class="about-page__inner">
+          <div class="about-values__panel">
+            <div class="about-values__layout">
           <div class="about-values__intro">
             <h2 class="about-values__title" id="about-values-title">Wofür SESA steht</h2>
             <span class="about-values__rule" aria-hidden="true"></span>
           </div>
           <div class="about-values__grid">
             <article class="about-value">
-              <span class="about-value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v17"/><path d="M5 7h14"/><path d="M5 7 3 13h4l-2-6Z"/><path d="M19 7l-2 6h4l-2-6Z"/><path d="M8 20h8"/></svg></span>
+              <span class="about-value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v17"/><path d="M7 7h10"/><path d="M7 7 5 12h3l-1.5-5Z"/><path d="M17 7l-1.5 5h3l-2-5Z"/><path d="M8 20h8"/></svg></span>
               <h3>Unabhängig</h3>
               <p>Objektive Bewertungen ohne Hersteller- oder Werkstattbindung.</p>
             </article>
@@ -331,6 +350,8 @@ def about_page_body(depth: int = 0) -> str:
             <p>Fragen oder Gutachten nötig? Ich bin persönlich für Sie da.</p>
             <a class="btn btn-primary" href="{kontakt}">Kontakt aufnehmen</a>
           </aside>
+            </div>
+          </div>
         </div>
       </section>
     </div>"""
@@ -650,7 +671,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=111" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=112" />
     {extra_head}
   </head>
   <body>
