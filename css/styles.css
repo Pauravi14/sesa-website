@@ -7,10 +7,10 @@
   --line: rgba(30, 58, 95, 0.18);
   --navy: #1e3a5f;
   --navy-2: #2b4f78;
-  --accent: #b07a4f;
-  --accent-2: #c98958;
-  --logo-copper: #c98958;
-  --copper: var(--logo-copper);
+  --accent: #AE663C;
+  --accent-2: #AE663C;
+  --logo-copper: #AE663C;
+  --copper: #AE663C;
   --ivory: #f7f5f2;
   --text-on-dark: #c9d4de;
   --cream: #f7f5f2;
@@ -93,7 +93,7 @@ a {
 }
 
 a:hover {
-  color: #f0d2b0;
+  color: #AE663C;
 }
 
 .skip {
@@ -130,7 +130,7 @@ a:hover {
   top: 0;
   z-index: 40;
   background: var(--bg-2);
-  border-bottom: 1px solid rgba(201, 137, 88, 0.22);
+  border-bottom: 1px solid rgba(174, 102, 60, 0.22);
 }
 
 .nav {
@@ -309,7 +309,7 @@ a:hover {
   padding: 0.45rem 0;
   list-style: none;
   background: var(--bg-2);
-  border: 1px solid rgba(201, 137, 88, 0.35);
+  border: 1px solid rgba(174, 102, 60, 0.35);
   border-radius: 3px;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38);
   z-index: 50;
@@ -333,7 +333,7 @@ a:hover {
 
 .menu-dropdown a:hover {
   color: var(--copper);
-  background: rgba(201, 137, 88, 0.1);
+  background: rgba(174, 102, 60, 0.1);
 }
 
 .menu-dropdown li:first-child a {
@@ -342,7 +342,7 @@ a:hover {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.72rem;
-  border-bottom: 1px solid rgba(201, 137, 88, 0.22);
+  border-bottom: 1px solid rgba(174, 102, 60, 0.22);
   margin-bottom: 0.2rem;
   padding-bottom: 0.7rem;
 }
@@ -396,7 +396,7 @@ a:hover {
 }
 
 .header-phone:hover {
-  color: #e8b88a;
+  color: #AE663C;
 }
 
 .header-phone svg {
@@ -421,7 +421,7 @@ a:hover {
 }
 
 .btn-inquiry:hover {
-  background: rgba(201, 137, 88, 0.14);
+  background: rgba(174, 102, 60, 0.14);
   color: var(--copper);
 }
 
@@ -429,7 +429,7 @@ a:hover {
   display: none;
   background: transparent;
   color: var(--copper);
-  border: 1px solid rgba(201, 137, 88, 0.55);
+  border: 1px solid rgba(174, 102, 60, 0.55);
   padding: 0.4rem 0.65rem;
   margin-left: auto;
   font-size: 0.75rem;
@@ -507,10 +507,10 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background: #d49a66;
-  border-color: #d49a66;
+  background: var(--copper);
+  border-color: var(--copper);
   color: #fff;
-  filter: none;
+  filter: brightness(1.08);
 }
 
 .btn-secondary {
@@ -559,7 +559,7 @@ a:hover {
 }
 
 .btn-outline-copper:hover {
-  background: rgba(201, 137, 88, 0.14);
+  background: rgba(174, 102, 60, 0.14);
   color: var(--copper);
 }
 
@@ -747,7 +747,7 @@ a:hover {
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: 0.03em;
-  color: rgba(232, 196, 160, 0.98);
+  color: #AE663C;
   max-width: 28ch;
 }
 
@@ -779,7 +779,7 @@ a:hover {
   display: block;
   width: 1px;
   height: 2.2rem;
-  background: rgba(201, 137, 88, 0.45);
+  background: rgba(174, 102, 60, 0.45);
   overflow: hidden;
 }
 
@@ -872,7 +872,7 @@ a:hover {
   justify-content: center;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  box-shadow: 0 14px 42px rgba(201, 137, 88, 0.58);
+  box-shadow: 0 14px 42px rgba(174, 102, 60, 0.58);
   border-width: 2px;
 }
 
@@ -996,7 +996,7 @@ a:hover {
   font-weight: 600;
   line-height: 1.55;
   letter-spacing: 0.03em;
-  color: rgba(232, 196, 160, 0.98);
+  color: #AE663C;
 }
 
 .hero--centered .hero__services {
@@ -1033,7 +1033,7 @@ a:hover {
   align-items: flex-start;
   gap: 0.85rem;
   padding: 0 1.35rem;
-  border-left: 1px solid rgba(201, 137, 88, 0.42);
+  border-left: 1px solid rgba(174, 102, 60, 0.42);
   text-align: left;
 }
 
@@ -1049,7 +1049,7 @@ a:hover {
   width: 2.35rem;
   height: 2.35rem;
   margin-top: 0.1rem;
-  color: rgba(201, 137, 88, 0.95);
+  color: rgba(174, 102, 60, 0.95);
 }
 
 .hero-trust--centered .hero-trust__icon svg {
@@ -1225,7 +1225,7 @@ a:hover {
   width: clamp(3.5rem, 12vw, 5rem);
   height: 4px;
   margin: 1rem auto 0;
-  background: linear-gradient(90deg, var(--copper), rgba(201, 137, 88, 0.35));
+  background: linear-gradient(90deg, var(--copper), rgba(174, 102, 60, 0.35));
   border-radius: 2px;
 }
 
@@ -1293,8 +1293,8 @@ a:hover {
 
 .expert-spotlight--premium {
   padding: 2.75rem 3rem;
-  background: linear-gradient(145deg, rgba(201, 137, 88, 0.09) 0%, rgba(12, 24, 40, 0.4) 55%);
-  border: 1px solid rgba(201, 137, 88, 0.28);
+  background: linear-gradient(145deg, rgba(174, 102, 60, 0.09) 0%, rgba(12, 24, 40, 0.4) 55%);
+  border: 1px solid rgba(174, 102, 60, 0.28);
   border-radius: 6px;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22);
 }
@@ -1322,7 +1322,7 @@ a:hover {
   height: 100%;
   aspect-ratio: auto;
   border: none;
-  border-right: 1px solid rgba(201, 137, 88, 0.35);
+  border-right: 1px solid rgba(174, 102, 60, 0.35);
   border-radius: 0;
   box-shadow: none;
 }
@@ -1345,7 +1345,7 @@ a:hover {
   left: 14px;
   right: -14px;
   bottom: -14px;
-  border: 1px solid rgba(201, 137, 88, 0.45);
+  border: 1px solid rgba(174, 102, 60, 0.45);
   border-radius: 2px;
   z-index: 0;
   pointer-events: none;
@@ -1378,7 +1378,7 @@ a:hover {
   max-height: 420px;
   object-fit: cover;
   object-position: center top;
-  border: 1px solid rgba(201, 137, 88, 0.45);
+  border: 1px solid rgba(174, 102, 60, 0.45);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
 }
 
@@ -1413,8 +1413,8 @@ a:hover {
   width: 1.15rem;
   height: 1.15rem;
   border-radius: 50%;
-  background: rgba(201, 137, 88, 0.14);
-  border: 1px solid rgba(201, 137, 88, 0.45);
+  background: rgba(174, 102, 60, 0.14);
+  border: 1px solid rgba(174, 102, 60, 0.45);
 }
 
 .expert-credentials li::after {
@@ -1469,7 +1469,7 @@ a:hover {
   inset: 0;
   background:
     linear-gradient(180deg, transparent 52%, rgba(10, 22, 40, 0.45) 100%),
-    linear-gradient(0deg, rgba(201, 137, 88, 0.14), rgba(201, 137, 88, 0.14));
+    linear-gradient(0deg, rgba(174, 102, 60, 0.14), rgba(174, 102, 60, 0.14));
   pointer-events: none;
 }
 
@@ -1503,7 +1503,7 @@ a:hover {
   width: 3rem;
   height: 3rem;
   margin: 0 auto 0.75rem;
-  color: rgba(176, 112, 62, 0.95);
+  color: rgba(174, 102, 60, 0.95);
   flex-shrink: 0;
 }
 
@@ -1557,13 +1557,13 @@ a:hover {
 }
 
 .process-flow {
-  --process-step: #AE663C;
-  --process-copper: var(--logo-copper);
-  --process-copper-line: rgba(201, 137, 88, 0.95);
-  --process-copper-soft: rgba(201, 137, 88, 0.55);
-  --process-copper-faint: rgba(201, 137, 88, 0.28);
-  --process-copper-border: rgba(201, 137, 88, 0.35);
-  --process-copper-glow: rgba(201, 137, 88, 0.5);
+  --process-step: var(--copper);
+  --process-copper: var(--copper);
+  --process-copper-line: rgba(174, 102, 60, 0.95);
+  --process-copper-soft: rgba(174, 102, 60, 0.55);
+  --process-copper-faint: rgba(174, 102, 60, 0.28);
+  --process-copper-border: rgba(174, 102, 60, 0.35);
+  --process-copper-glow: rgba(174, 102, 60, 0.5);
   --process-reveal-duration: 0.48s;
   --process-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
@@ -1703,7 +1703,7 @@ a:hover {
   height: 4rem;
   margin: 0;
   border-radius: 50%;
-  background: #AE663C;
+  background: var(--copper);
   color: #fff;
   font-family: var(--sans);
   font-weight: 700;
@@ -3087,7 +3087,7 @@ body.consent-open {
     gap: 0;
     margin-top: 0.85rem;
     padding: 0.35rem 0 0.5rem;
-    border-top: 1px solid rgba(201, 137, 88, 0.28);
+    border-top: 1px solid rgba(174, 102, 60, 0.28);
   }
 
   .nav.is-open .menu > li {
@@ -3170,7 +3170,7 @@ body.consent-open {
     width: 100%;
     margin: 0.15rem 0 0.35rem;
     padding: 0.35rem 0;
-    border: 1px solid rgba(201, 137, 88, 0.22);
+    border: 1px solid rgba(174, 102, 60, 0.22);
     border-radius: 4px;
     box-shadow: none;
     background: rgba(255, 255, 255, 0.04);
@@ -3206,7 +3206,7 @@ body.consent-open {
   }
 
   .menu-item--services .menu-dropdown a:active {
-    background: rgba(201, 137, 88, 0.12);
+    background: rgba(174, 102, 60, 0.12);
   }
 
   .nav.is-open .header-contact {
@@ -3214,7 +3214,7 @@ body.consent-open {
     gap: 0.75rem;
     margin-top: 0.85rem;
     padding: 0.85rem 0 0.15rem;
-    border-top: 1px solid rgba(201, 137, 88, 0.28);
+    border-top: 1px solid rgba(174, 102, 60, 0.28);
   }
 
   .hero,
@@ -3302,7 +3302,7 @@ body.consent-open {
 
   .hero-trust--centered .hero-trust__item {
     border-left: none;
-    border-top: 1px solid rgba(201, 137, 88, 0.35);
+    border-top: 1px solid rgba(174, 102, 60, 0.35);
     padding: 1.15rem 0;
     gap: 0.75rem;
   }
@@ -3492,7 +3492,7 @@ body.consent-open {
 
   .hero-trust--centered .hero-trust__item {
     border-left: none;
-    border-top: 1px solid rgba(201, 137, 88, 0.35);
+    border-top: 1px solid rgba(174, 102, 60, 0.35);
     padding: 1.15rem 0;
     gap: 0.75rem;
   }
@@ -3526,7 +3526,7 @@ body.consent-open {
     max-height: 320px;
     height: auto;
     border-right: none;
-    border-bottom: 1px solid rgba(201, 137, 88, 0.35);
+    border-bottom: 1px solid rgba(174, 102, 60, 0.35);
   }
 
   .expert-spotlight--composed .expert-spotlight__content {

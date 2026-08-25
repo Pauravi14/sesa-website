@@ -1,4 +1,4 @@
-"""Header monogram — rusty logo copper (#ae663c) PNG for reliable display."""
+"""Header monogram — flat site copper (#AE663C) PNG for reliable display."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "assets" / "transparent monogram.png"
 OUT = ROOT / "assets" / "logo-monogram.png"
 
-COPPER = (174, 102, 60)  # css --rusty-copper #ae663c
+COPPER = (174, 102, 60)  # css --copper #AE663C
 MIN_LUM = 40
 
 
