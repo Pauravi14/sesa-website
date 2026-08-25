@@ -7,6 +7,7 @@ from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
 LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
+ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -223,27 +224,31 @@ def service_card_icon(key: str) -> str:
 
 def about_page_body(depth: int = 0) -> str:
     p = prefix(depth)
-    hero_img = f"{p}assets/hero/slide-1.jpg?v={HERO_IMG_VER}"
+    logo = f"{p}{LOGO_MONOGRAM}"
+    about_hero = f"{p}{ABOUT_HERO}"
     kontakt = f"{p}kontakt.html"
     return f"""
     <div class="about-page">
       <section class="about-hero" aria-labelledby="about-title">
-        <div class="about-hero__content">
-          <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
-          <span class="about-hero__rule" aria-hidden="true"></span>
-          <h1 id="about-title">Über uns</h1>
-          <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
-        </div>
-        <div class="about-hero__media">
-          <img src="{hero_img}" alt="" loading="eager" />
+        <div class="about-page__inner about-hero__grid">
+          <div class="about-hero__content">
+            <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
+            <span class="about-hero__rule" aria-hidden="true"></span>
+            <h1 id="about-title">Über uns</h1>
+            <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
+          </div>
+          <div class="about-hero__figure">
+            <span class="about-hero__glow" aria-hidden="true"></span>
+            <img class="about-hero__photo" src="{about_hero}" alt="Klassisches Fahrzeug in der Werkstatt" loading="eager" decoding="async" />
+          </div>
         </div>
       </section>
 
       <section class="about-intro content-light">
-        <div class="about-intro__layout">
+        <div class="about-page__inner about-intro__layout">
           <aside class="about-profile">
             <div class="about-profile__photo-wrap">
-              <img src="{hero_img}" alt="Porträtfoto — Platzhalter bis Foto vom Inhaber eingereicht wird" loading="lazy" />
+              <img src="{logo}" alt="" loading="lazy" />
             </div>
             <h2>{OWNER}</h2>
             <p class="about-profile__role">Inhaber · {BUSINESS}</p>
@@ -643,7 +648,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=108" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=110" />
     {extra_head}
   </head>
   <body>
