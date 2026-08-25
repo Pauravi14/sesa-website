@@ -7,13 +7,10 @@
   --line: rgba(30, 58, 95, 0.18);
   --navy: #1e3a5f;
   --navy-2: #2b4f78;
-  --accent: #965430;
-  --accent-2: #c07248;
-  --rusty-copper: #ae663c;
-  --rusty-copper-light: #c07248;
-  --rusty-copper-dark: #965430;
-  --logo-copper: var(--rusty-copper);
-  --copper: var(--rusty-copper);
+  --accent: #b07a4f;
+  --accent-2: #c98958;
+  --logo-copper: #c98958;
+  --copper: var(--logo-copper);
   --ivory: #f7f5f2;
   --text-on-dark: #c9d4de;
   --cream: #f7f5f2;
@@ -1560,12 +1557,14 @@ a:hover {
 }
 
 .process-flow {
-  --process-copper: var(--rusty-copper);
-  --process-copper-line: rgba(174, 102, 60, 0.95);
-  --process-copper-soft: rgba(174, 102, 60, 0.55);
-  --process-copper-faint: rgba(174, 102, 60, 0.28);
-  --process-copper-border: rgba(174, 102, 60, 0.35);
-  --process-copper-glow: rgba(192, 114, 72, 0.5);
+  --process-step: #ae663c;
+  --process-step-deep: #8f522f;
+  --process-copper: var(--logo-copper);
+  --process-copper-line: rgba(201, 137, 88, 0.95);
+  --process-copper-soft: rgba(201, 137, 88, 0.55);
+  --process-copper-faint: rgba(201, 137, 88, 0.28);
+  --process-copper-border: rgba(201, 137, 88, 0.35);
+  --process-copper-glow: rgba(201, 137, 88, 0.5);
   --process-reveal-duration: 0.48s;
   --process-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
@@ -1625,7 +1624,7 @@ a:hover {
   position: absolute;
   top: 50%;
   left: calc(var(--connector-head) * 100%);
-  color: var(--rusty-copper);
+  color: var(--logo-copper);
   font-family: var(--sans);
   font-size: 1.65rem;
   font-weight: 700;
@@ -1645,7 +1644,7 @@ a:hover {
   transform: translate3d(0, -50%, 0);
   transform-origin: left center;
   border-radius: 999px;
-  background: var(--rusty-copper);
+  background: var(--logo-copper);
   box-shadow: 0 0 10px var(--process-copper-glow);
   will-change: width;
   z-index: 1;
@@ -1705,11 +1704,12 @@ a:hover {
   height: 4rem;
   margin: 0;
   border-radius: 50%;
+  background: var(--process-step);
   background: linear-gradient(
     145deg,
-    var(--rusty-copper-light) 0%,
-    var(--rusty-copper) 44%,
-    var(--rusty-copper-dark) 100%
+    rgba(255, 255, 255, 0.18) 0%,
+    var(--process-step) 38%,
+    var(--process-step-deep) 100%
   );
   color: #fff;
   font-family: var(--sans);
@@ -1719,7 +1719,7 @@ a:hover {
   border: 1px solid rgba(174, 102, 60, 0.55);
   box-shadow:
     0 0 0 7px var(--bg),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
     0 8px 22px rgba(174, 102, 60, 0.35);
   flex-shrink: 0;
   position: relative;
