@@ -222,49 +222,31 @@ def service_card_icon(key: str) -> str:
     return f'<span class="service-card__icon">{icons[key]}</span>'
 
 
-def about_portrait_scene(variant: str = "hero") -> str:
-    grad_id = f"aboutPortraitFill-{variant}"
-    return f"""
-            <div class="about-portrait about-portrait--{variant}" aria-hidden="true">
-              <span class="about-portrait__glow"></span>
-              <svg class="about-portrait__figure" viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="{grad_id}" x1="120" y1="24" x2="120" y2="320" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#314158" />
-                    <stop offset="100%" stop-color="#070f1c" />
-                  </linearGradient>
-                </defs>
-                <path fill="url(#{grad_id})" d="M118 28c-34 0-52 24-52 54 0 14 6 26 14 34-22 8-38 20-50 38-12 18-16 44-16 92v74h208V246c0-48-4-74-16-92-12-18-28-30-50-38 8-8 14-20 14-34 0-30-18-54-52-54Z" />
-                <path fill="#162033" d="M118 116 98 168 118 154 138 168Z" />
-              </svg>
-            </div>"""
-
-
 def about_page_body(depth: int = 0) -> str:
     p = prefix(depth)
     kontakt = f"{p}kontakt.html"
-    hero_portrait = about_portrait_scene("hero")
-    card_portrait = about_portrait_scene("card")
+    hero_img = f"{p}{ABOUT_HERO}"
     return f"""
     <div class="about-page">
-      <section class="about-shell">
-        <div class="about-page__inner about-shell__grid">
-          <div class="about-shell__hero">
-            <header class="about-hero__content" aria-labelledby="about-title">
-              <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
-              <h1 id="about-title">Über uns</h1>
-              <span class="about-hero__rule" aria-hidden="true"></span>
-              <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
-            </header>
-
-            <div class="about-hero__visual">
-              {hero_portrait}
-            </div>
+      <section class="about-hero" aria-labelledby="about-title">
+        <div class="about-hero__inner">
+          <header class="about-hero__copy">
+            <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
+            <h1 id="about-title">Über uns</h1>
+            <span class="about-hero__rule" aria-hidden="true"></span>
+            <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
+          </header>
+          <div class="about-hero__media" aria-hidden="true">
+            <img src="{hero_img}" alt="" width="480" height="600" decoding="async" />
           </div>
+        </div>
+      </section>
 
+      <section class="about-main">
+        <div class="about-page__inner about-main__grid">
           <aside class="about-profile">
-            <div class="about-profile__photo-wrap">
-              {card_portrait}
+            <div class="about-profile__photo">
+              <img src="{hero_img}" alt="" width="480" height="600" decoding="async" />
             </div>
             <div class="about-profile__body">
               <h2>{OWNER}</h2>
@@ -277,9 +259,9 @@ def about_page_body(depth: int = 0) -> str:
             </div>
           </aside>
 
-          <div class="about-story content-light">
-            <blockquote class="about-quote">
-              <span class="about-quote__mark" aria-hidden="true">„</span>
+          <div class="about-editorial">
+            <blockquote class="about-bio">
+              <span class="about-bio__mark" aria-hidden="true">„</span>
               Schon als Kind interessierte mich die Fahrzeugtechnik – von neuen Modellen bis zu Klassikern.
               Nach meiner Ausbildung im VAG-Konzern bei einem VW- und Audi-Autohaus und dem Kfz-Meister folgte
               die Tätigkeit bei TÜV NORD als Fahrzeugbewerter und Unfallschadengutachter. Heute steht eine
@@ -320,13 +302,12 @@ def about_page_body(depth: int = 0) -> str:
       </section>
 
       <section class="about-values" aria-labelledby="about-values-title">
-        <div class="about-page__inner">
-          <div class="about-values__panel">
-            <div class="about-values__layout">
-              <div class="about-values__intro">
-                <h2 class="about-values__title" id="about-values-title">Wofür SESA steht</h2>
-                <span class="about-values__rule" aria-hidden="true"></span>
-              </div>
+        <div class="about-page__inner about-values__inner">
+          <div class="about-values__layout">
+            <header class="about-values__intro">
+              <h2 class="about-values__title" id="about-values-title">Wofür SESA steht</h2>
+              <span class="about-values__rule" aria-hidden="true"></span>
+            </header>
               <div class="about-values__grid">
                 <article class="about-value">
                   <span class="about-value__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v17"/><path d="M7 7h10"/><path d="M7 7 5 12h3l-1.5-5Z"/><path d="M17 7l-1.5 5h3l-2-5Z"/><path d="M8 20h8"/></svg></span>
@@ -348,8 +329,7 @@ def about_page_body(depth: int = 0) -> str:
                 <span class="about-values__cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8a13 13 0 0 0 5.7 5.7l2.1-2.1a1 1 0 0 1 1-.24c1.1.37 2.2.57 3.4.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A16 16 0 0 1 3 4a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.5a1 1 0 0 1-.24 1Z"/></svg></span>
                 <p>Fragen oder Gutachten nötig? Ich bin persönlich für Sie da.</p>
                 <a class="btn btn-primary" href="{kontakt}">Kontakt aufnehmen</a>
-              </aside>
-            </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -670,7 +650,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=122" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=123" />
     {extra_head}
   </head>
   <body>
