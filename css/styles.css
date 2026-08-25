@@ -3738,19 +3738,23 @@ body.consent-open {
   align-items: start;
 }
 
+.about-hero .about-page__grid {
+  align-items: center;
+}
+
 .about-hero {
   position: relative;
   z-index: 1;
-  padding: clamp(2.5rem, 5vw, 3.25rem) 0 clamp(4.75rem, 8vw, 6rem);
+  padding: 1.75rem 0 2rem;
   background: var(--bg);
 }
 
 .about-hero__content {
-  padding-top: 0.35rem;
+  padding-top: 0;
 }
 
 .about-hero__kicker {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.65rem;
   color: var(--copper);
   font-size: 0.82rem;
   font-weight: 600;
@@ -3761,15 +3765,15 @@ body.consent-open {
 .about-hero h1 {
   margin: 0;
   color: #fff;
-  font-size: clamp(2.75rem, 5vw, 4.1rem);
-  line-height: 1.02;
+  font-size: clamp(2.35rem, 4.2vw, 3.35rem);
+  line-height: 1.04;
 }
 
 .about-hero__rule {
   display: block;
   width: 3.75rem;
   height: 2px;
-  margin: 0.9rem 0 1rem;
+  margin: 0.65rem 0 0.75rem;
   background: var(--copper);
 }
 
@@ -3777,15 +3781,14 @@ body.consent-open {
   margin: 0;
   max-width: 30rem;
   color: rgba(255, 255, 255, 0.92);
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.55;
 }
 
 .about-hero__visual {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  margin-bottom: clamp(-5rem, -8vw, -3.5rem);
 }
 
 .about-portrait {
@@ -3793,7 +3796,7 @@ body.consent-open {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  width: min(100%, 17.5rem);
+  width: min(100%, 12.5rem);
 }
 
 .about-portrait--card {
@@ -3818,7 +3821,13 @@ body.consent-open {
 }
 
 .about-portrait--hero .about-portrait__figure {
-  min-height: 18.5rem;
+  width: auto;
+  height: clamp(9.5rem, 16vw, 11.25rem);
+  min-height: 0;
+}
+
+.about-portrait--hero .about-portrait__glow {
+  inset: 10% 10% 22%;
 }
 
 .about-portrait--card .about-portrait__figure {
@@ -3833,7 +3842,7 @@ body.consent-open {
 }
 
 .about-intro__layout {
-  margin-top: clamp(-4rem, -6vw, -2.75rem);
+  margin-top: clamp(-3.25rem, -5vw, -2.25rem);
   align-items: start;
 }
 
@@ -4127,16 +4136,19 @@ body.consent-open {
   }
 
   .about-hero {
-    padding-bottom: 2.5rem;
+    padding-bottom: 1.75rem;
   }
 
   .about-hero__visual {
-    margin-bottom: 0;
     justify-content: center;
   }
 
   .about-portrait--hero {
-    width: min(100%, 14rem);
+    width: min(100%, 10.5rem);
+  }
+
+  .about-portrait--hero .about-portrait__figure {
+    height: 9.5rem;
   }
 
   .about-values__layout {
