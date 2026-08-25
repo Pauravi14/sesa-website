@@ -3739,7 +3739,7 @@ body.consent-open {
 .about-shell__hero-bg {
   position: absolute;
   inset: 0 0 auto;
-  height: 11.75rem;
+  height: 12rem;
   background: var(--bg);
 }
 
@@ -3852,7 +3852,7 @@ body.consent-open {
 
 .about-profile {
   grid-area: profile;
-  margin-top: -2.65rem;
+  margin-top: -0.85rem;
   border-radius: 8px;
   background: linear-gradient(180deg, #101a2a 0%, #0a1628 100%);
   color: #fff;
@@ -3926,8 +3926,8 @@ body.consent-open {
 
 .about-story {
   grid-area: story;
-  margin-top: 0;
-  padding-top: 0.5rem;
+  margin-top: 1.35rem;
+  padding-top: 0;
 }
 
 .about-quote {
@@ -4147,7 +4147,7 @@ body.consent-open {
 
 @media (max-width: 1080px) {
   .about-shell__hero-bg {
-    height: 10.25rem;
+    height: 10.75rem;
   }
 
   .about-shell__grid {
@@ -4168,12 +4168,11 @@ body.consent-open {
   }
 
   .about-profile {
-    margin-top: -1.75rem;
+    margin-top: 0;
   }
 
   .about-story {
-    margin-top: 0;
-    padding-top: 0.15rem;
+    margin-top: 0.5rem;
   }
 
   .about-values__layout {
