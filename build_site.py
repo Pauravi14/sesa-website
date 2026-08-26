@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=154" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=155" />
     {extra_head}
   </head>
   <body>
@@ -942,6 +942,75 @@ def ratgeber_index_body() -> str:
           <div class="counselor-cards">
             {card_html}
           </div>
+        </div>
+      </section>
+    </div>"""
+
+
+UNFALL_STEPS_LEFT = [
+    "Ruhe bewahren und Unfallstelle sichern.",
+    "Bei Bedarf Polizei rufen und Beteiligte dokumentieren.",
+    "Unfallort, Uhrzeit und Schäden fotografieren.",
+]
+
+UNFALL_STEPS_RIGHT = [
+    "Keine vorschnellen Erklärungen zur Schuld oder Schadenhöhe abgeben.",
+    "Schadenfotos und Informationen an SESA senden (WhatsApp oder Telefon).",
+    "Weiteres Vorgehen im persönlichen Gespräch klären.",
+]
+
+
+def accident_step(number: int, text: str) -> str:
+    return f"""
+            <li class="accident-step">
+              <span class="accident-step__marker" aria-hidden="true">{number:02d}</span>
+              <p class="accident-step__text">{text}</p>
+            </li>"""
+
+
+def unfall_page_body() -> str:
+    left_steps = "".join(
+        accident_step(index, text) for index, text in enumerate(UNFALL_STEPS_LEFT, start=1)
+    )
+    right_steps = "".join(
+        accident_step(index, text) for index, text in enumerate(UNFALL_STEPS_RIGHT, start=4)
+    )
+    p = prefix(1)
+    return f"""
+    <div class="guide-unfall">
+      <section class="page-hero page-hero--editorial page-hero--unfall" aria-labelledby="unfall-title">
+        <div class="page-hero__inner">
+          <div class="page-hero__copy">
+            <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+            <h1 id="unfall-title">Was tun nach einem Unfall?</h1>
+            <p class="lead">Erste Schritte an der Unfallstelle.</p>
+            <span class="page-hero__rule" aria-hidden="true"></span>
+          </div>
+          <div class="page-hero__media">
+            <img src="{p}assets/damage-detail.png" alt="" loading="eager" decoding="async" />
+          </div>
+        </div>
+      </section>
+      <section class="guide-unfall__main" aria-label="Erste Schritte nach einem Unfall">
+        <div class="guide-unfall__inner">
+          <div class="accident-steps-panel">
+            <div class="accident-steps-panel__grid">
+              <ol class="accident-steps__col accident-steps__col--left" role="list">
+                {left_steps}
+              </ol>
+              <div class="accident-steps__divider" aria-hidden="true">
+                <span class="accident-steps__divider-track">
+                  <span class="accident-steps__divider-dot"></span>
+                  <span class="accident-steps__divider-dot"></span>
+                  <span class="accident-steps__divider-dot"></span>
+                </span>
+              </div>
+              <ol class="accident-steps__col accident-steps__col--right" role="list">
+                {right_steps}
+              </ol>
+            </div>
+          </div>
+          <p class="guide-unfall__disclaimer"><em>Keine Rechtsberatung. Bei rechtlichen Fragen wenden Sie sich an einen Rechtsanwalt.</em></p>
         </div>
       </section>
     </div>"""
@@ -1140,20 +1209,14 @@ def main() -> None:
         ratgeber_index_body(),
     )
 
-    unfall_rat = page_hero("Was tun nach einem Unfall?", "Erste Schritte an der Unfallstelle.", "assets/damage-detail.png", 1)
-    unfall_rat += """
-    <section class="section content-light legal">
-      <ol>
-        <li>Ruhe bewahren und Unfallstelle sichern.</li>
-        <li>Bei Bedarf Polizei rufen und Beteiligte dokumentieren.</li>
-        <li>Unfallort, Uhrzeit und Schäden fotografieren.</li>
-        <li>Keine vorschnellen Erklärungen zur Schuld oder Schadenhöhe abgeben.</li>
-        <li>Schadenfotos und Informationen an SESA senden (WhatsApp oder Telefon).</li>
-        <li>Weiteres Vorgehen im persönlichen Gespräch klären.</li>
-      </ol>
-      <p class="muted"><em>Keine Rechtsberatung. Bei rechtlichen Fragen wenden Sie sich an einen Rechtsanwalt.</em></p>
-    </section>"""
-    write(ROOT / "ratgeber" / "nach-einem-unfall.html", 1, "GUTACHTEN", "Nach einem Unfall", "Erste Schritte.", unfall_rat)
+    write(
+        ROOT / "ratgeber" / "nach-einem-unfall.html",
+        1,
+        "GUTACHTEN",
+        "Nach einem Unfall",
+        "Erste Schritte.",
+        unfall_page_body(),
+    )
 
     rechte = page_hero("Ihre Rechte", "Informationen nach einem unverschuldeten Verkehrsunfall.", "assets/workshop-tools.png", 1)
     rechte += """
