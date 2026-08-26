@@ -4818,8 +4818,8 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 .service-detail--classic .service-detail__aside p {
   margin: 0 0 0.9rem;
   color: var(--text);
-  font-size: 1.0625rem;
-  line-height: 1.68;
+  font-size: var(--type-body);
+  line-height: 1.65;
   overflow-wrap: break-word;
   word-break: normal;
   hyphens: none;
@@ -4840,9 +4840,9 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 .service-detail--classic .service-detail__note {
   margin: 0;
   max-width: 54rem;
-  color: var(--mute);
-  font-size: 0.9375rem;
-  line-height: 1.62;
+  color: var(--text);
+  font-size: var(--type-body);
+  line-height: 1.65;
   overflow-wrap: break-word;
   word-break: normal;
   hyphens: none;
@@ -4919,8 +4919,7 @@ html.translated-ltr .service-detail--classic .service-detail__grid--split .servi
 
   .service-detail--classic .service-detail__main p,
   .service-detail--classic .service-detail__aside p {
-    font-size: 1rem;
-    line-height: 1.64;
+    line-height: 1.65;
   }
 }
 
