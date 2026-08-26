@@ -4773,117 +4773,118 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   }
 }
 
-/* Service detail pages — content below hero */
-.service-detail {
-  padding: clamp(2.25rem, 5.5vw, 4.125rem) 0 clamp(2.25rem, 4.5vw, 3.5rem);
-  background: #f5f2ed;
+/* Service detail — Variant 1: Classic Clean (shared template, all Leistungen pages) */
+.service-detail.service-detail--classic {
+  padding: clamp(2.75rem, 6vw, 4.5rem) 0 clamp(2.5rem, 5vw, 3.75rem);
+  background: var(--cream);
 }
 
-.service-detail__inner {
-  width: min(1280px, 100%);
+.service-detail--classic .service-detail__inner {
+  width: min(1240px, 100%);
   margin: 0 auto;
-  padding: 0 1.35rem;
+  padding: 0 clamp(1.1rem, 2.5vw, 1.75rem);
   box-sizing: border-box;
 }
 
-.service-detail__editorial {
+.service-detail--classic .service-detail__editorial {
   position: relative;
 }
 
-.service-detail__editorial::before {
+.service-detail--classic .service-detail__editorial::before {
   content: "";
   display: block;
-  width: 3.25rem;
+  width: 3.5rem;
   height: 2px;
-  margin-bottom: clamp(1.35rem, 2.5vw, 1.75rem);
-  background: #ae663c;
+  margin-bottom: clamp(1.5rem, 2.8vw, 2rem);
+  background: var(--copper);
 }
 
-.service-detail__grid {
+.service-detail--classic .service-detail__grid {
   display: grid;
   align-items: start;
 }
 
-.service-detail__grid--split {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(1.75rem, 3vw, 2.75rem);
+.service-detail--classic .service-detail__grid--split {
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: clamp(2rem, 3.5vw, 3rem);
 }
 
-.service-detail__grid--single {
-  max-width: 42rem;
+.service-detail--classic .service-detail__grid--single {
+  max-width: 44rem;
 }
 
-.service-detail__main,
-.service-detail__aside {
+.service-detail--classic .service-detail__main,
+.service-detail--classic .service-detail__aside {
   min-width: 0;
 }
 
-.service-detail__grid--split .service-detail__aside {
-  padding-left: clamp(1.75rem, 3vw, 2.75rem);
-  border-left: 1px solid rgba(174, 102, 60, 0.38);
+.service-detail--classic .service-detail__grid--split .service-detail__aside {
+  padding-left: clamp(2rem, 3.5vw, 3rem);
+  border-left: 1px solid rgba(174, 102, 60, 0.34);
 }
 
-.service-detail__main p,
-.service-detail__aside p {
-  margin: 0 0 0.85rem;
+.service-detail--classic .service-detail__main p,
+.service-detail--classic .service-detail__aside p {
+  margin: 0 0 0.9rem;
   color: var(--text);
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.68;
   overflow-wrap: break-word;
   word-break: normal;
   hyphens: none;
   text-wrap: pretty;
 }
 
-.service-detail__main p:last-child,
-.service-detail__aside p:last-child {
+.service-detail--classic .service-detail__main p:last-child,
+.service-detail--classic .service-detail__aside p:last-child {
   margin-bottom: 0;
 }
 
-.service-detail__footer {
-  margin-top: clamp(1.75rem, 3vw, 2.5rem);
-  padding-top: clamp(1.5rem, 2.5vw, 2rem);
-  border-top: 1px solid rgba(174, 102, 60, 0.28);
+.service-detail--classic .service-detail__footer {
+  margin-top: clamp(2rem, 3.5vw, 2.75rem);
+  padding-top: clamp(1.65rem, 2.8vw, 2.15rem);
+  border-top: 1px solid rgba(174, 102, 60, 0.26);
 }
 
-.service-detail__note {
+.service-detail--classic .service-detail__note {
   margin: 0;
-  max-width: 52rem;
+  max-width: 54rem;
   color: var(--mute);
   font-size: 0.9375rem;
-  line-height: 1.6;
+  line-height: 1.62;
   overflow-wrap: break-word;
   word-break: normal;
   hyphens: none;
   text-wrap: pretty;
 }
 
-.service-detail__note em {
+.service-detail--classic .service-detail__note em {
   font-style: italic;
 }
 
-.service-detail__cta {
+.service-detail--classic .service-detail__cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: clamp(1rem, 2vw, 1.5rem);
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: clamp(1.15rem, 2.2vw, 1.65rem);
 }
 
-.service-detail__cta .btn-primary {
+.service-detail--classic .service-detail__cta .btn-primary {
   min-height: 2.75rem;
-  padding: 0.7rem 1.35rem;
+  padding: 0.7rem 1.4rem;
   font-size: 1rem;
 }
 
-.service-detail__cta .btn-secondary-navy {
+.service-detail--classic .service-detail__cta .btn-secondary-navy {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  padding: 0.68rem 1.3rem;
+  padding: 0.68rem 1.35rem;
   border: 1px solid var(--navy);
   border-radius: 3px;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.78);
   color: var(--navy);
   font: inherit;
   font-size: 1rem;
@@ -4897,67 +4898,63 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
     color 0.2s ease;
 }
 
-.service-detail__cta .btn-secondary-navy:hover {
+.service-detail--classic .service-detail__cta .btn-secondary-navy:hover {
   background: #fff;
   border-color: var(--navy-2);
   color: var(--navy-2);
 }
 
-html.translated-ltr .service-detail__grid--split {
+html.translated-ltr .service-detail--classic .service-detail__grid--split {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 2.5vw, 2.25rem);
+  gap: clamp(1.65rem, 2.8vw, 2.5rem);
 }
 
-html.translated-ltr .service-detail__grid--split .service-detail__aside {
-  padding-left: clamp(1.5rem, 2.5vw, 2.25rem);
+html.translated-ltr .service-detail--classic .service-detail__grid--split .service-detail__aside {
+  padding-left: clamp(1.65rem, 2.8vw, 2.5rem);
 }
 
 @media (max-width: 900px) {
-  .service-detail {
-    padding: clamp(2rem, 5vw, 3rem) 0 clamp(1.75rem, 3.5vw, 2.5rem);
+  .service-detail--classic {
+    padding: clamp(2.25rem, 5.5vw, 3.25rem) 0 clamp(2rem, 4vw, 2.75rem);
   }
 
-  .service-detail__grid--split {
-    gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  .service-detail--classic .service-detail__grid--split {
+    gap: clamp(1.35rem, 2.8vw, 1.85rem);
   }
 
-  .service-detail__grid--split .service-detail__aside {
-    padding-left: clamp(1.25rem, 2.5vw, 1.75rem);
+  .service-detail--classic .service-detail__grid--split .service-detail__aside {
+    padding-left: clamp(1.35rem, 2.8vw, 1.85rem);
   }
 
-  .service-detail__main p,
-  .service-detail__aside p {
+  .service-detail--classic .service-detail__main p,
+  .service-detail--classic .service-detail__aside p {
     font-size: 1rem;
-    line-height: 1.62;
+    line-height: 1.64;
   }
 }
 
 @media (max-width: 720px) {
-  .service-detail__inner {
-    padding: 0 1.1rem;
-  }
-
-  .service-detail__grid--split {
+  .service-detail--classic .service-detail__grid--split {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
-  .service-detail__grid--split .service-detail__aside {
-    margin-top: 1.25rem;
-    padding-top: 1.25rem;
+  .service-detail--classic .service-detail__grid--split .service-detail__aside {
+    margin-top: 1.35rem;
+    padding-top: 1.35rem;
     padding-left: 0;
     border-left: none;
-    border-top: 1px solid rgba(174, 102, 60, 0.28);
+    border-top: 1px solid rgba(174, 102, 60, 0.26);
   }
 
-  .service-detail__cta {
+  .service-detail--classic .service-detail__cta {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .service-detail__cta .btn-primary,
-  .service-detail__cta .btn-secondary-navy {
+  .service-detail--classic .service-detail__cta .btn-primary,
+  .service-detail--classic .service-detail__cta .btn-secondary-navy {
     width: 100%;
-    max-width: 18.5rem;
+    max-width: 19rem;
   }
 }

@@ -791,7 +791,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=139" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=140" />
     {extra_head}
   </head>
   <body>
@@ -869,6 +869,7 @@ def page_hero(title: str, lead: str, img: str, depth: int) -> str:
 
 
 def service_page_content(paragraphs: list[str]) -> str:
+    """Shared service-detail body — Variant 1 Classic Clean (all Leistungen pages)."""
     if len(paragraphs) >= 2:
         main_paras = paragraphs[:1]
         aside_paras = paragraphs[1:]
@@ -882,7 +883,7 @@ def service_page_content(paragraphs: list[str]) -> str:
     main_html = "".join(f"<p>{para}</p>" for para in main_paras)
 
     return f"""
-    <section class="section content-light service-detail">
+    <section class="section content-light service-detail service-detail--classic" aria-label="Leistungsbeschreibung">
       <div class="service-detail__inner">
         <div class="service-detail__editorial">
           <div class="{grid_class}">
