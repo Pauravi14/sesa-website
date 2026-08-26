@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=164" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=165" />
     {extra_head}
   </head>
   <body>
@@ -1059,7 +1059,7 @@ def rechte_page_body() -> str:
             <span class="page-hero__rule" aria-hidden="true"></span>
           </div>
           <div class="page-hero__media">
-            <img src="{p}assets/workshop-tools.png" alt="" loading="eager" decoding="async" />
+            <img src="{p}assets/damage-detail.png" alt="" loading="eager" decoding="async" />
           </div>
         </div>
       </section>

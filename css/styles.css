@@ -5564,6 +5564,10 @@ main:has(.guide-unfall) + .footer {
   color: var(--text-on-dark);
 }
 
+main:has(.guide-rechte) {
+  background: var(--bg-2);
+}
+
 main:has(.guide-rechte) + .footer {
   margin-top: 0;
   font-size: 0.975rem;
@@ -5575,58 +5579,62 @@ main:has(.guide-rechte) + .footer {
 }
 
 .guide-rechte .page-hero--rechte {
-  padding: 48px 0 48px;
+  padding: 44px 0 40px;
 }
 
 .guide-rechte .page-hero--rechte .page-hero__inner,
 .guide-rechte__inner {
   width: 100%;
-  max-width: 1160px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding-left: 48px;
-  padding-right: 48px;
+  padding-left: 40px;
+  padding-right: 40px;
   box-sizing: border-box;
 }
 
 .guide-rechte .page-hero--rechte .page-hero__inner {
   display: grid;
   grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
-  gap: 2.25rem;
+  gap: 2rem;
   align-items: center;
-  max-width: 1360px;
   padding-top: 0;
   padding-bottom: 0;
 }
 
 .guide-rechte .page-hero--rechte .page-hero__copy {
   min-width: 0;
-  max-width: 40rem;
+  max-width: 36rem;
 }
 
 .guide-rechte .page-hero--rechte .kicker {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.5rem;
   font-size: 0.8125rem;
 }
 
 .guide-rechte .page-hero--rechte h1 {
-  font-size: clamp(2.35rem, 3.5vw, 3.25rem);
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(2.35rem, 3.4vw, 3.125rem);
+  font-weight: 600;
   line-height: 1.08;
-  max-width: 40rem;
-}
-
-.guide-rechte .page-hero--rechte .page-hero__rule {
-  display: block;
-  width: 2.375rem;
-  height: 2px;
-  margin: 0.85rem 0 0;
-  background: var(--copper);
+  color: #fff;
+  max-width: 36rem;
 }
 
 .guide-rechte .page-hero--rechte .lead {
   margin: 0.65rem 0 0;
-  max-width: 40rem;
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.92);
   font-size: 1rem;
   line-height: 1.55;
+}
+
+.guide-rechte .page-hero--rechte .page-hero__rule {
+  display: block;
+  width: 2.25rem;
+  height: 2px;
+  margin: 0.85rem 0 0;
+  background: var(--copper);
 }
 
 .guide-rechte .page-hero--rechte .page-hero__media {
@@ -5639,29 +5647,28 @@ main:has(.guide-rechte) + .footer {
 .guide-rechte .page-hero--rechte .page-hero__media img {
   display: block;
   width: 100%;
-  height: 280px;
+  height: 272px;
   object-fit: cover;
   object-position: center center;
   opacity: 1;
 }
 
 .guide-rechte__article {
-  padding: 72px 0 44px;
+  padding: 44px 0 48px;
 }
 
 .guide-rechte__intro {
-  margin: 0 0 1.75rem;
-  max-width: 46rem;
-  color: rgba(201, 212, 222, 0.78);
-  font-size: 0.9375rem;
+  margin: 0 0 1.5rem;
+  color: rgba(201, 212, 222, 0.72);
+  font-size: 0.875rem;
   font-style: italic;
   line-height: 1.55;
 }
 
 .guide-rechte__table-wrap {
-  border: 1px solid rgba(174, 102, 60, 0.52);
-  border-radius: 10px;
-  background: var(--bg-2);
+  border: 1px solid rgba(174, 102, 60, 0.5);
+  border-radius: 8px;
+  background: rgba(4, 12, 22, 0.55);
   overflow: hidden;
 }
 
@@ -5684,57 +5691,57 @@ main:has(.guide-rechte) + .footer {
 }
 
 .guide-rechte__col-num {
-  width: 5.25rem;
+  width: 5rem;
 }
 
 .guide-rechte__col-title {
-  width: 28%;
+  width: 26%;
 }
 
 .guide-rechte__table tbody tr:not(:last-child) {
-  border-bottom: 1px solid rgba(174, 102, 60, 0.28);
+  border-bottom: 1px solid rgba(174, 102, 60, 0.32);
 }
 
 .guide-rechte__num,
 .guide-rechte__title,
 .guide-rechte__desc {
-  padding: 1.85rem 0;
+  padding: 2rem 0;
   vertical-align: middle;
   text-align: left;
 }
 
 .guide-rechte__num {
-  width: 5.25rem;
-  padding-left: 1.85rem;
+  width: 5rem;
+  padding-left: 1.75rem;
   padding-right: 1.25rem;
-  border-right: 1px solid rgba(174, 102, 60, 0.28);
+  border-right: 1px solid rgba(174, 102, 60, 0.32);
 }
 
 .guide-rechte__num span {
   display: inline-block;
   color: var(--copper);
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   line-height: 1;
 }
 
 .guide-rechte__title {
   padding-left: 1.5rem;
   padding-right: 1.75rem;
-  border-right: 1px solid rgba(174, 102, 60, 0.28);
+  border-right: 1px solid rgba(174, 102, 60, 0.32);
   color: rgba(255, 255, 255, 0.96);
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 600;
   line-height: 1.4;
 }
 
 .guide-rechte__desc {
   padding-left: 1.75rem;
-  padding-right: 1.85rem;
-  color: rgba(201, 212, 222, 0.82);
+  padding-right: 1.75rem;
+  color: rgba(201, 212, 222, 0.78);
   font-size: 0.9375rem;
   line-height: 1.55;
 }
@@ -5756,18 +5763,18 @@ main:has(.guide-rechte) + .footer {
   }
 
   .guide-rechte__col-title {
-    width: 30%;
+    width: 28%;
   }
 }
 
 @media (max-width: 900px) {
   .guide-rechte .page-hero--rechte {
-    padding: 36px 0 40px;
+    padding: 36px 0 32px;
   }
 
   .guide-rechte .page-hero--rechte .page-hero__inner {
     grid-template-columns: 1fr;
-    gap: 1.35rem;
+    gap: 1.25rem;
   }
 
   .guide-rechte .page-hero--rechte .page-hero__media {
@@ -5775,11 +5782,7 @@ main:has(.guide-rechte) + .footer {
   }
 
   .guide-rechte .page-hero--rechte .page-hero__media img {
-    height: clamp(220px, 42vw, 280px);
-  }
-
-  .guide-rechte__article {
-    padding-top: 56px;
+    height: clamp(220px, 42vw, 272px);
   }
 }
 
@@ -5812,12 +5815,12 @@ main:has(.guide-rechte) + .footer {
     grid-template-areas:
       "num title"
       "desc desc";
-    gap: 0.35rem 0.85rem;
-    padding: 1.35rem 1.25rem;
+    gap: 0.4rem 0.85rem;
+    padding: 1.5rem 1.25rem;
   }
 
   .guide-rechte__table tbody tr:not(:last-child) {
-    border-bottom: 1px solid rgba(174, 102, 60, 0.22);
+    border-bottom: 1px solid rgba(174, 102, 60, 0.32);
   }
 
   .guide-rechte__num,
@@ -5832,13 +5835,18 @@ main:has(.guide-rechte) + .footer {
   .guide-rechte__num {
     grid-area: num;
     align-self: start;
-    padding-top: 0.1rem;
+    padding-top: 0.15rem;
+  }
+
+  .guide-rechte__num span {
+    font-size: 1.25rem;
   }
 
   .guide-rechte__title {
     grid-area: title;
     margin: 0;
     padding-right: 0;
+    font-size: 1rem;
   }
 
   .guide-rechte__desc {
