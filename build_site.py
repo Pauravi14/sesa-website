@@ -12,9 +12,28 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
-KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Allura&display=swap"
+KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+KONTAKT_SIGNATURE_STYLE = """
+    <style>
+      .guide-kontakt__signature {
+        margin: 1.35rem 0 0;
+        padding: 0;
+        line-height: 1;
+      }
+      .guide-kontakt__signature-text {
+        display: inline-block;
+        color: #AE663C;
+        font-family: "Great Vibes", "Segoe Script", "Brush Script MT", cursive !important;
+        font-size: clamp(2.5rem, 5vw, 3.35rem);
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+      }
+    </style>"""
 KONTAKT_EXTRA_HEAD = f"""
-    <link href="{KONTAKT_SIGNATURE_FONT}" rel="stylesheet" />"""
+    <link rel="preload" href="{KONTAKT_SIGNATURE_FONT}" as="style" />
+    <link href="{KONTAKT_SIGNATURE_FONT}" rel="stylesheet" />{KONTAKT_SIGNATURE_STYLE}"""
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -1173,7 +1192,7 @@ def kontakt_page_body() -> str:
                     <li>{ADDRESS}</li>
                   </ul>
                   <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
-                  <p class="guide-kontakt__signature">{OWNER}</p>
+                  <p class="guide-kontakt__signature"><span class="guide-kontakt__signature-text">{OWNER}</span></p>
                 </div>
               </div>
             </div>
