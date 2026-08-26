@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=159" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=160" />
     {extra_head}
   </head>
   <body>
@@ -959,15 +959,18 @@ UNFALL_STEPS = [
 
 def guide_unfall_step(number: int, text: str) -> str:
     return f"""
-            <li class="guide-unfall__step">
-              <span class="guide-unfall__step-num" aria-hidden="true">{number:02d}</span>
+            <li class="guide-unfall__step-item">
+              <span class="guide-unfall__step-marker" aria-hidden="true">{number:02d}</span>
               <p class="guide-unfall__step-text">{text}</p>
             </li>"""
 
 
 def unfall_page_body() -> str:
-    steps = "".join(
-        guide_unfall_step(index, text) for index, text in enumerate(UNFALL_STEPS, start=1)
+    left_steps = "".join(
+        guide_unfall_step(index, text) for index, text in enumerate(UNFALL_STEPS[:3], start=1)
+    )
+    right_steps = "".join(
+        guide_unfall_step(index, text) for index, text in enumerate(UNFALL_STEPS[3:], start=4)
     )
     p = prefix(1)
     return f"""
@@ -977,8 +980,8 @@ def unfall_page_body() -> str:
           <div class="page-hero__copy">
             <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
             <h1 id="unfall-title">Was tun nach einem Unfall?</h1>
-            <p class="lead">Erste Schritte an der Unfallstelle.</p>
             <span class="page-hero__rule" aria-hidden="true"></span>
+            <p class="lead">Erste Schritte an der Unfallstelle.</p>
           </div>
           <div class="page-hero__media">
             <img src="{p}assets/damage-detail.png" alt="" loading="eager" decoding="async" />
@@ -987,14 +990,22 @@ def unfall_page_body() -> str:
       </section>
       <section class="guide-unfall__article" aria-label="Erste Schritte nach einem Unfall">
         <div class="guide-unfall__inner">
-          <div class="guide-unfall__editorial">
-            <div class="guide-unfall__intro">
-              <p class="guide-unfall__label">01</p>
-              <h2 class="guide-unfall__section-title">Erste Schritte an der Unfallstelle.</h2>
+          <div class="guide-unfall__panel">
+            <div class="guide-unfall__panel-grid">
+              <ol class="guide-unfall__col guide-unfall__col--left" role="list">
+                {left_steps}
+              </ol>
+              <div class="guide-unfall__divider" aria-hidden="true">
+                <span class="guide-unfall__divider-track">
+                  <span class="guide-unfall__divider-dot"></span>
+                  <span class="guide-unfall__divider-dot"></span>
+                  <span class="guide-unfall__divider-dot"></span>
+                </span>
+              </div>
+              <ol class="guide-unfall__col guide-unfall__col--right" role="list">
+                {right_steps}
+              </ol>
             </div>
-            <ol class="guide-unfall__steps" role="list">
-              {steps}
-            </ol>
           </div>
           <p class="guide-unfall__disclaimer"><em>Keine Rechtsberatung. Bei rechtlichen Fragen wenden Sie sich an einen Rechtsanwalt.</em></p>
         </div>
