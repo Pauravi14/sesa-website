@@ -15,45 +15,6 @@ CONTACT_HERO = "assets/hero-inspection.png"
 KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
-      .guide-kontakt__banner,
-      .guide-kontakt__banner-copy {
-        min-height: 200px;
-        max-height: 210px;
-      }
-      .guide-kontakt__banner-copy {
-        padding: 1rem 4vw;
-      }
-      @media (max-width: 900px) {
-        .guide-kontakt__banner,
-        .guide-kontakt__banner-copy {
-          min-height: 175px;
-          max-height: 185px;
-        }
-      }
-      .guide-kontakt__strip {
-        padding-top: 0.75rem;
-      }
-      .guide-kontakt__strip-item {
-        gap: 0.3rem;
-        padding: 0.95rem 0.85rem;
-      }
-      .guide-kontakt__strip-value {
-        font-size: 1.125rem;
-        line-height: 1.35;
-      }
-      .guide-kontakt__strip-label {
-        font-size: 0.75rem;
-        line-height: 1.3;
-      }
-      .guide-kontakt__main {
-        padding-top: 1.25rem;
-      }
-      .guide-kontakt__signature {
-        margin: 1.35rem 0 0;
-        padding: 0;
-        line-height: 1;
-        overflow: visible;
-      }
       .guide-kontakt__signature-text {
         display: inline-block;
         white-space: nowrap;
@@ -1176,15 +1137,17 @@ def kontakt_page_body() -> str:
     )
     return f"""
     <div class="guide-kontakt">
-      <section class="guide-kontakt__banner" aria-labelledby="kontakt-title">
-        <div class="guide-kontakt__banner-media" aria-hidden="true">
-          <img src="{CONTACT_HERO}" alt="" loading="eager" decoding="async" />
-        </div>
-        <div class="guide-kontakt__banner-copy">
-          <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
-          <h1 id="kontakt-title">Kontakt</h1>
-          <p class="lead">Telefon, E-Mail, Anschrift und Kartenansicht.</p>
-          <span class="guide-kontakt__rule" aria-hidden="true"></span>
+      <section class="guide-kontakt__hero" aria-labelledby="kontakt-title">
+        <div class="guide-kontakt__inner guide-kontakt__hero-grid">
+          <div class="guide-kontakt__hero-copy">
+            <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+            <h1 id="kontakt-title">Kontakt</h1>
+            <p class="lead">Telefon, E-Mail, Anschrift und Kartenansicht.</p>
+            <span class="guide-kontakt__rule" aria-hidden="true"></span>
+          </div>
+          <div class="guide-kontakt__hero-media">
+            <img src="{portrait}" alt="" width="520" height="640" loading="eager" decoding="async" />
+          </div>
         </div>
       </section>
 
@@ -1193,56 +1156,63 @@ def kontakt_page_body() -> str:
           <div class="guide-kontakt__strip-grid">
             <div class="guide-kontakt__strip-item">
               <span class="guide-kontakt__strip-icon">{phone_icon}</span>
-              <p class="guide-kontakt__strip-value"><a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></p>
               <p class="guide-kontakt__strip-label">Telefon</p>
+              <p class="guide-kontakt__strip-value"><a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></p>
             </div>
             <div class="guide-kontakt__strip-item">
               <span class="guide-kontakt__strip-icon">{mail_icon}</span>
-              <p class="guide-kontakt__strip-value"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
               <p class="guide-kontakt__strip-label">E-Mail</p>
+              <p class="guide-kontakt__strip-value"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
             </div>
             <div class="guide-kontakt__strip-item">
               <span class="guide-kontakt__strip-icon">{pin_icon}</span>
-              <p class="guide-kontakt__strip-value">{ADDRESS}</p>
               <p class="guide-kontakt__strip-label">Anschrift</p>
+              <p class="guide-kontakt__strip-value">{ADDRESS}</p>
             </div>
             <div class="guide-kontakt__strip-item">
               <span class="guide-kontakt__strip-icon">{clock_icon}</span>
-              <p class="guide-kontakt__strip-value">nach Vereinbarung</p>
               <p class="guide-kontakt__strip-label">Öffnungszeiten</p>
+              <p class="guide-kontakt__strip-value">nach Vereinbarung</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="guide-kontakt__main" aria-label="Ansprechpartner und Standort">
-        <div class="guide-kontakt__inner">
-          <div class="guide-kontakt__main-grid">
-            <div class="guide-kontakt__panel guide-kontakt__panel--profile">
-              <div class="guide-kontakt__profile-grid">
-                <div class="guide-kontakt__profile-photo">
-                  <img src="{portrait}" alt="Porträtfoto Platzhalter" width="480" height="600" loading="lazy" decoding="async" />
-                </div>
-                <div class="guide-kontakt__profile-body">
-                  <h2>{OWNER}</h2>
-                  <ul class="contact-list guide-kontakt__contact-list">
-                    <li>Telefon: <a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></li>
-                    <li>E-Mail: <a href="mailto:{EMAIL}">{EMAIL}</a></li>
-                    <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
-                    <li>{ADDRESS}</li>
-                  </ul>
-                  <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
-                  <p class="guide-kontakt__signature"><span class="guide-kontakt__signature-text">{OWNER}</span></p>
-                </div>
-              </div>
+      <section class="guide-kontakt__personal" aria-label="Persönlicher Kontakt">
+        <div class="guide-kontakt__inner guide-kontakt__personal-grid">
+          <div class="guide-kontakt__personal-copy">
+            <p class="guide-kontakt__eyebrow">Ihr Ansprechpartner</p>
+            <h2>Persönlicher Kontakt</h2>
+            <p class="guide-kontakt__intro">Ein Ansprechpartner von der ersten Kontaktaufnahme bis zur Besprechung des Gutachtens.</p>
+            <ul class="contact-list guide-kontakt__contact-list">
+              <li>Telefon: <a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></li>
+              <li>E-Mail: <a href="mailto:{EMAIL}">{EMAIL}</a></li>
+              <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
+              <li>{ADDRESS}</li>
+            </ul>
+            <p class="guide-kontakt__signature"><span class="guide-kontakt__signature-text">{OWNER}</span></p>
+            <a class="guide-kontakt__cta" href="mailto:{EMAIL}">Kontakt aufnehmen →</a>
+          </div>
+          <div class="guide-kontakt__personal-photo">
+            <img src="{portrait}" alt="Porträtfoto Platzhalter" width="560" height="700" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </section>
+
+      <section class="guide-kontakt__location" aria-labelledby="kontakt-location-title">
+        <div class="guide-kontakt__inner guide-kontakt__location-grid">
+          <div class="guide-kontakt__location-copy">
+            <p class="guide-kontakt__eyebrow">Anfahrt</p>
+            <h2 id="kontakt-location-title">Besuchen Sie SESA</h2>
+            <p class="guide-kontakt__location-name">{BUSINESS}</p>
+            <p class="guide-kontakt__location-detail">Inhaber: {OWNER}</p>
+            <p class="guide-kontakt__location-detail">{ADDRESS}</p>
+          </div>
+          <div class="guide-kontakt__location-map">
+            <div class="map-wrap guide-kontakt__map" data-map>
+              <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
             </div>
-            <div class="guide-kontakt__panel guide-kontakt__panel--map">
-              <h2 id="kontakt-map-title">Standort</h2>
-              <div class="map-wrap guide-kontakt__map" data-map>
-                <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
-              </div>
-              <a class="guide-kontakt__route-btn" href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a>
-            </div>
+            <a class="guide-kontakt__route-btn" href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a>
           </div>
         </div>
       </section>
