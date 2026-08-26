@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from urllib.parse import quote
 
@@ -281,6 +282,19 @@ SERVICE_ICONS = {
     ),
 }
 
+SERVICE_DETAIL_CARD_ICONS: dict[str, list[str]] = {
+    "unfallgutachten.html": ["unfall", "versicherungsgutachten", "beratung"],
+    "fahrzeugbewertung.html": ["bewertung", "privatgutachten"],
+    "oldtimer-youngtimer.html": ["oldtimer", "bewertung"],
+    "wohnmobile.html": ["wohnmobile", "bewertung"],
+    "beweissicherung.html": ["beweissicherung", "privatgutachten"],
+    "privatgutachten.html": ["privatgutachten", "kostenvoranschlag"],
+    "kostenvoranschlag.html": ["kostenvoranschlag", "unfall"],
+    "versicherungsgutachten.html": ["versicherungsgutachten", "beweissicherung"],
+    "beratung.html": ["beratung", "ortstermine"],
+    "ortstermine.html": ["ortstermine", "unfall"],
+}
+
 LEISTUNGEN_SERVICES = [
     ("unfallgutachten.html", "Unfallgutachten / Haftpflicht", "Schadenaufnahme nach unverschuldetem Unfall.", "unfall", True),
     ("fahrzeugbewertung.html", "Fahrzeugbewertung", "Marktwert und Wiederbeschaffungswert.", "bewertung", False),
@@ -301,6 +315,26 @@ def service_icon_svg(key: str) -> str:
 
 def service_card_icon(key: str, wrapper_class: str = "service-card__icon") -> str:
     return f'<span class="{wrapper_class}">{service_icon_svg(key)}</span>'
+
+
+def split_paragraph_for_card(text: str) -> tuple[str, str]:
+    stripped = text.strip()
+    match = re.match(r"^(.+?[.!?…])(?:\s+(.+))?$", stripped, flags=re.DOTALL)
+    if match:
+        return match.group(1).strip(), (match.group(2) or "").strip()
+    return stripped, ""
+
+
+def editorial_info_card(title: str, body: str, icon_key: str) -> str:
+    body_html = f'<p class="editorial-info-card__text">{body}</p>' if body else ""
+    return f"""
+        <article class="editorial-info-card">
+          <div class="editorial-info-card__body">
+            {service_card_icon(icon_key, "editorial-info-card__icon")}
+            <h2 class="editorial-info-card__title">{title}</h2>
+            {body_html}
+          </div>
+        </article>"""
 
 
 def leistungen_service_card(slug: str, title: str, description: str, icon_key: str, featured: bool = False) -> str:
@@ -791,7 +825,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=146" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=147" />
     {extra_head}
   </head>
   <body>
@@ -884,18 +918,19 @@ def page_hero(title: str, lead: str, img: str, depth: int, editorial: bool = Fal
 
 def ratgeber_index_body() -> str:
     cards = [
-        ("nach-einem-unfall.html", "Was tun nach einem Unfall?"),
-        ("rechte.html", "Ihre Rechte nach einem unverschuldeten Unfall"),
-        ("faq.html", "FAQ"),
+        ("nach-einem-unfall.html", "Was tun nach einem Unfall?", "unfall"),
+        ("rechte.html", "Ihre Rechte nach einem unverschuldeten Unfall", "versicherungsgutachten"),
+        ("faq.html", "FAQ", "beratung"),
     ]
     card_html = "".join(
         f"""
-        <article class="guide-card">
-          <a class="guide-card__link" href="{slug}">
-            <h3 class="guide-card__title">{title}</h3>
+        <article class="editorial-info-card editorial-info-card--link">
+          <a class="editorial-info-card__link" href="{slug}">
+            {service_card_icon(icon_key, "editorial-info-card__icon")}
+            <h3 class="editorial-info-card__title">{title}</h3>
           </a>
         </article>"""
-        for slug, title in cards
+        for slug, title, icon_key in cards
     )
     hero = page_hero(
         "Ratgeber",
@@ -917,29 +952,23 @@ def ratgeber_index_body() -> str:
     </div>"""
 
 
-def service_page_content(paragraphs: list[str]) -> str:
-    """Shared service-detail body — Variant 1 Classic Clean (all Leistungen pages)."""
-    if len(paragraphs) >= 2:
-        main_paras = paragraphs[:1]
-        aside_paras = paragraphs[1:]
-        grid_class = "service-detail__grid service-detail__grid--split"
-        aside_html = f'<div class="service-detail__aside">{"".join(f"<p>{para}</p>" for para in aside_paras)}</div>'
-    else:
-        main_paras = paragraphs
-        grid_class = "service-detail__grid service-detail__grid--single"
-        aside_html = ""
+def service_page_content(paragraphs: list[str], icon_keys: list[str]) -> str:
+    """Shared service-detail body — Variant 1 editorial info cards (all Leistungen pages)."""
+    if len(icon_keys) != len(paragraphs):
+        raise ValueError("Each service paragraph needs a matching detail-card icon.")
 
-    main_html = "".join(f"<p>{para}</p>" for para in main_paras)
+    cards_html = "".join(
+        editorial_info_card(*split_paragraph_for_card(para), icon_key)
+        for para, icon_key in zip(paragraphs, icon_keys)
+    )
+    grid_class = f"service-detail__grid service-detail__grid--cols-{len(paragraphs)}"
 
     return f"""
-    <section class="section content-light service-detail service-detail--classic" aria-label="Leistungsbeschreibung">
+    <section class="section content-light service-detail service-detail--variant1" aria-label="Leistungsbeschreibung">
       <div class="service-detail__inner">
-        <div class="service-detail__editorial">
+        <div class="service-detail__cards">
           <div class="{grid_class}">
-            <div class="service-detail__main">
-              {main_html}
-            </div>
-            {aside_html}
+            {cards_html}
           </div>
         </div>
         <div class="service-detail__footer">
@@ -955,7 +984,7 @@ def service_page_content(paragraphs: list[str]) -> str:
 
 def service_page(slug: str, title: str, lead: str, paragraphs: list[str], img: str) -> None:
     body = page_hero(title, lead, img, 1, editorial=True)
-    body += service_page_content(paragraphs)
+    body += service_page_content(paragraphs, SERVICE_DETAIL_CARD_ICONS[slug])
     write(ROOT / "leistungen" / slug, 1, "Leistungen", title, lead, body)
 
 
