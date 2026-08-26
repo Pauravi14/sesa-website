@@ -4779,20 +4779,20 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 }
 
 .service-detail__inner {
-  width: min(1200px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.35rem;
   box-sizing: border-box;
 }
 
 .service-detail__grid {
   display: grid;
-  gap: clamp(1.35rem, 2.5vw, 2.5rem);
+  gap: clamp(1.1rem, 2vw, 2rem);
   align-items: start;
 }
 
 .service-detail__grid--split {
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
 .service-detail__grid--single {
@@ -4801,7 +4801,7 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 
 .service-detail__main p,
 .service-detail__aside p {
-  margin: 0 0 1.05rem;
+  margin: 0 0 0.85rem;
   color: var(--text);
   font-size: 1.0625rem;
   line-height: 1.65;
@@ -4817,7 +4817,7 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 }
 
 .service-detail__note {
-  margin: clamp(2rem, 3.5vw, 3.25rem) 0 0;
+  margin: clamp(1.65rem, 2.85vw, 2.65rem) 0 0;
   max-width: 52rem;
   color: var(--mute);
   font-size: 0.9375rem;
@@ -4836,7 +4836,7 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
-  margin-top: clamp(2rem, 3.2vw, 3.25rem);
+  margin-top: clamp(1.65rem, 2.65vw, 2.65rem);
 }
 
 .service-detail__cta .btn-primary {
@@ -4883,7 +4883,7 @@ html.translated-ltr .service-detail__grid--split {
   }
 
   .service-detail__grid--split {
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .service-detail__main p,
