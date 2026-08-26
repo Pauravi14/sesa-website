@@ -5294,23 +5294,28 @@ html.translated-ltr .counselor-cards {
 
 /* Ratgeber — Was tun nach einem Unfall? */
 .guide-unfall {
-  --guide-unfall-width: min(1480px, 90vw);
-  background: var(--cream);
+  --guide-unfall-width: min(1280px, calc(100vw - 120px));
+  background: var(--bg-2);
+  color: var(--text-on-dark);
+}
+
+main:has(.guide-unfall) + .footer {
+  margin-top: 0;
 }
 
 .guide-unfall .page-hero--unfall {
-  padding: 50px 0 52px;
+  padding: 55px 0 60px;
   background: var(--bg-2);
 }
 
 .guide-unfall .page-hero--unfall .page-hero__inner {
   width: var(--guide-unfall-width);
-  max-width: 1480px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0;
   min-height: 0;
   grid-template-columns: minmax(0, 48fr) minmax(0, 52fr);
-  gap: 2.25rem;
+  gap: 2.5rem;
   align-items: center;
   box-sizing: border-box;
 }
@@ -5328,7 +5333,7 @@ html.translated-ltr .counselor-cards {
 }
 
 .guide-unfall .page-hero--unfall .lead {
-  margin-top: 0.8rem;
+  margin-top: 0.85rem;
   max-width: 650px;
   font-size: 1.0625rem;
   line-height: 1.55;
@@ -5353,128 +5358,96 @@ html.translated-ltr .counselor-cards {
 .guide-unfall .page-hero--unfall .page-hero__media img {
   display: block;
   width: 100%;
-  height: 290px;
+  height: 300px;
   object-fit: cover;
   object-position: center center;
   opacity: 1;
 }
 
-.guide-unfall__main {
-  padding: 50px 0 60px;
+.guide-unfall__article {
+  padding: 80px 0 56px;
+  background: var(--bg-2);
 }
 
 .guide-unfall__inner {
   width: var(--guide-unfall-width);
-  max-width: 1480px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
 }
 
-.accident-steps-panel {
-  width: min(100%, 1400px);
-  min-height: 345px;
-  margin: 0 auto;
-  background: var(--bg-2);
-  border: 1px solid rgba(174, 102, 60, 0.48);
-  border-radius: 11px;
-  padding: 50px 55px;
-  box-sizing: border-box;
-}
-
-.accident-steps-panel__grid {
+.guide-unfall__editorial {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: 3.25rem;
-  align-items: center;
+  grid-template-columns: minmax(0, 0.36fr) minmax(0, 0.64fr);
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
 }
 
-.accident-steps__col {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+.guide-unfall__intro {
+  min-width: 0;
+  padding-top: 0.35rem;
 }
 
-.accident-step {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0 1.4rem;
-  align-items: center;
-}
-
-.accident-step__marker {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.625rem;
-  height: 3.625rem;
-  border: 1px solid var(--copper);
-  border-radius: 50%;
+.guide-unfall__label {
+  margin: 0 0 1.15rem;
   color: var(--copper);
   font-family: var(--serif);
-  font-size: 1.75rem;
+  font-size: clamp(2.35rem, 3.5vw, 3rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.02em;
-  flex-shrink: 0;
 }
 
-.accident-step__text {
+.guide-unfall__section-title {
   margin: 0;
-  color: rgba(255, 255, 255, 0.94);
+  max-width: 16rem;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: clamp(1.65rem, 2.2vw, 2.05rem);
+  font-weight: 600;
+  line-height: 1.18;
+}
+
+.guide-unfall__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guide-unfall__step {
+  display: grid;
+  grid-template-columns: 3.75rem minmax(0, 1fr);
+  gap: 1.35rem;
+  align-items: start;
+  padding: 1.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guide-unfall__step-num {
+  display: block;
+  padding-top: 0.1rem;
+  color: var(--copper);
+  font-family: var(--serif);
+  font-size: 1.625rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+
+.guide-unfall__step-text {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
   font-size: 1.0625rem;
-  line-height: 1.5;
+  line-height: 1.55;
   overflow-wrap: break-word;
 }
 
-.accident-steps__divider {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 1rem;
-  min-width: 1rem;
-  height: 290px;
-}
-
-.accident-steps__divider-track {
-  position: relative;
-  width: 1px;
-  height: 100%;
-  background: rgba(174, 102, 60, 0.32);
-}
-
-.accident-steps__divider-dot {
-  position: absolute;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  margin-left: -2px;
-  border-radius: 50%;
-  background: rgba(174, 102, 60, 0.82);
-}
-
-.accident-steps__divider-dot:nth-child(1) {
-  top: 16.666%;
-}
-
-.accident-steps__divider-dot:nth-child(2) {
-  top: 50%;
-  margin-top: -2px;
-}
-
-.accident-steps__divider-dot:nth-child(3) {
-  top: 83.333%;
-  margin-top: -4px;
-}
-
 .guide-unfall__disclaimer {
-  margin: 1.75rem auto 0;
+  margin: 2rem auto 0;
   max-width: 42rem;
-  color: rgba(30, 58, 95, 0.68);
+  color: rgba(201, 212, 222, 0.68);
   font-size: 0.875rem;
   line-height: 1.5;
   text-align: center;
@@ -5482,17 +5455,13 @@ html.translated-ltr .counselor-cards {
 
 @media (max-width: 1100px) {
   .guide-unfall {
-    --guide-unfall-width: min(1480px, calc(100vw - 64px));
-  }
-
-  .accident-steps-panel {
-    padding: 44px 40px;
+    --guide-unfall-width: min(1280px, calc(100vw - 64px));
   }
 }
 
 @media (max-width: 900px) {
   .guide-unfall .page-hero--unfall {
-    padding: 40px 0 44px;
+    padding: 44px 0 48px;
   }
 
   .guide-unfall .page-hero--unfall .page-hero__inner {
@@ -5505,30 +5474,20 @@ html.translated-ltr .counselor-cards {
   }
 
   .guide-unfall .page-hero--unfall .page-hero__media img {
-    height: clamp(240px, 42vw, 290px);
+    height: clamp(240px, 42vw, 300px);
   }
 
-  .guide-unfall__main {
-    padding: 44px 0 52px;
+  .guide-unfall__article {
+    padding: 64px 0 48px;
   }
 
-  .accident-steps-panel {
-    min-height: 0;
-    padding: 40px 32px;
+  .guide-unfall__editorial {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
-  .accident-steps-panel__grid {
-    gap: 2rem;
-  }
-
-  .accident-steps__col {
-    gap: 2rem;
-  }
-
-  .accident-step__marker {
-    width: 3.25rem;
-    height: 3.25rem;
-    font-size: 1.5rem;
+  .guide-unfall__section-title {
+    max-width: none;
   }
 }
 
@@ -5541,51 +5500,21 @@ html.translated-ltr .counselor-cards {
     font-size: clamp(2.25rem, 8vw, 3.25rem);
   }
 
-  .accident-steps-panel {
-    padding: 36px 24px;
+  .guide-unfall__article {
+    padding: 52px 0 40px;
   }
 
-  .accident-steps-panel__grid {
-    position: relative;
-    grid-template-columns: 1fr;
-    gap: 0;
+  .guide-unfall__step {
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.35rem 0;
   }
 
-  .accident-steps-panel__grid::before {
-    content: "";
-    position: absolute;
-    top: 1.75rem;
-    bottom: 1.75rem;
-    left: 1.75rem;
-    width: 1px;
-    background: rgba(174, 102, 60, 0.32);
-  }
-
-  .accident-steps__divider {
-    display: none;
-  }
-
-  .accident-steps__col {
-    position: relative;
-    gap: 1.85rem;
-    padding-left: 4.5rem;
-  }
-
-  .accident-steps__col::before {
-    content: none;
-  }
-
-  .accident-steps__col--right {
-    margin-top: 1.85rem;
-  }
-
-  .accident-step__marker {
-    width: 3rem;
-    height: 3rem;
+  .guide-unfall__step-num {
     font-size: 1.375rem;
   }
 
-  .accident-step__text {
+  .guide-unfall__step-text {
     font-size: 1rem;
   }
 }

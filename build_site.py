@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=158" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=159" />
     {extra_head}
   </head>
   <body>
@@ -947,33 +947,27 @@ def ratgeber_index_body() -> str:
     </div>"""
 
 
-UNFALL_STEPS_LEFT = [
+UNFALL_STEPS = [
     "Ruhe bewahren und Unfallstelle sichern.",
     "Bei Bedarf Polizei rufen und Beteiligte dokumentieren.",
     "Unfallort, Uhrzeit und Schäden fotografieren.",
-]
-
-UNFALL_STEPS_RIGHT = [
     "Keine vorschnellen Erklärungen zur Schuld oder Schadenhöhe abgeben.",
     "Schadenfotos und Informationen an SESA senden (WhatsApp oder Telefon).",
     "Weiteres Vorgehen im persönlichen Gespräch klären.",
 ]
 
 
-def accident_step(number: int, text: str) -> str:
+def guide_unfall_step(number: int, text: str) -> str:
     return f"""
-            <li class="accident-step">
-              <span class="accident-step__marker" aria-hidden="true">{number:02d}</span>
-              <p class="accident-step__text">{text}</p>
+            <li class="guide-unfall__step">
+              <span class="guide-unfall__step-num" aria-hidden="true">{number:02d}</span>
+              <p class="guide-unfall__step-text">{text}</p>
             </li>"""
 
 
 def unfall_page_body() -> str:
-    left_steps = "".join(
-        accident_step(index, text) for index, text in enumerate(UNFALL_STEPS_LEFT, start=1)
-    )
-    right_steps = "".join(
-        accident_step(index, text) for index, text in enumerate(UNFALL_STEPS_RIGHT, start=4)
+    steps = "".join(
+        guide_unfall_step(index, text) for index, text in enumerate(UNFALL_STEPS, start=1)
     )
     p = prefix(1)
     return f"""
@@ -991,24 +985,16 @@ def unfall_page_body() -> str:
           </div>
         </div>
       </section>
-      <section class="guide-unfall__main" aria-label="Erste Schritte nach einem Unfall">
+      <section class="guide-unfall__article" aria-label="Erste Schritte nach einem Unfall">
         <div class="guide-unfall__inner">
-          <div class="accident-steps-panel">
-            <div class="accident-steps-panel__grid">
-              <ol class="accident-steps__col accident-steps__col--left" role="list">
-                {left_steps}
-              </ol>
-              <div class="accident-steps__divider" aria-hidden="true">
-                <span class="accident-steps__divider-track">
-                  <span class="accident-steps__divider-dot"></span>
-                  <span class="accident-steps__divider-dot"></span>
-                  <span class="accident-steps__divider-dot"></span>
-                </span>
-              </div>
-              <ol class="accident-steps__col accident-steps__col--right" role="list">
-                {right_steps}
-              </ol>
+          <div class="guide-unfall__editorial">
+            <div class="guide-unfall__intro">
+              <p class="guide-unfall__label">01</p>
+              <h2 class="guide-unfall__section-title">Erste Schritte an der Unfallstelle.</h2>
             </div>
+            <ol class="guide-unfall__steps" role="list">
+              {steps}
+            </ol>
           </div>
           <p class="guide-unfall__disclaimer"><em>Keine Rechtsberatung. Bei rechtlichen Fragen wenden Sie sich an einen Rechtsanwalt.</em></p>
         </div>
