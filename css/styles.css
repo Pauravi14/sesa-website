@@ -5618,12 +5618,12 @@ main:has(.guide-rechte) + .footer {
   display: block;
   width: 2.375rem;
   height: 2px;
-  margin: 0.85rem 0 0.75rem;
+  margin: 0.85rem 0 0;
   background: var(--copper);
 }
 
 .guide-rechte .page-hero--rechte .lead {
-  margin: 0;
+  margin: 0.65rem 0 0;
   max-width: 40rem;
   font-size: 1rem;
   line-height: 1.55;
@@ -5654,13 +5654,14 @@ main:has(.guide-rechte) + .footer {
   max-width: 46rem;
   color: rgba(201, 212, 222, 0.78);
   font-size: 0.9375rem;
+  font-style: italic;
   line-height: 1.55;
 }
 
 .guide-rechte__table-wrap {
   border: 1px solid rgba(174, 102, 60, 0.52);
   border-radius: 10px;
-  background: rgba(8, 18, 32, 0.35);
+  background: var(--bg-2);
   overflow: hidden;
 }
 
@@ -5683,7 +5684,7 @@ main:has(.guide-rechte) + .footer {
 }
 
 .guide-rechte__col-num {
-  width: 4.5rem;
+  width: 5.25rem;
 }
 
 .guide-rechte__col-title {
@@ -5691,45 +5692,48 @@ main:has(.guide-rechte) + .footer {
 }
 
 .guide-rechte__table tbody tr:not(:last-child) {
-  border-bottom: 1px solid rgba(174, 102, 60, 0.22);
+  border-bottom: 1px solid rgba(174, 102, 60, 0.28);
 }
 
 .guide-rechte__num,
 .guide-rechte__title,
 .guide-rechte__desc {
-  padding: 1.65rem 0;
-  vertical-align: top;
+  padding: 1.85rem 0;
+  vertical-align: middle;
   text-align: left;
 }
 
 .guide-rechte__num {
-  width: 4.5rem;
-  padding-left: 1.75rem;
-  padding-right: 0.75rem;
+  width: 5.25rem;
+  padding-left: 1.85rem;
+  padding-right: 1.25rem;
+  border-right: 1px solid rgba(174, 102, 60, 0.28);
 }
 
 .guide-rechte__num span {
   display: inline-block;
   color: var(--copper);
   font-family: var(--serif);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1;
 }
 
 .guide-rechte__title {
-  padding-left: 0.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.75rem;
+  border-right: 1px solid rgba(174, 102, 60, 0.28);
   color: rgba(255, 255, 255, 0.96);
-  font-family: var(--serif);
-  font-size: 1.0625rem;
+  font-family: var(--sans);
+  font-size: 1rem;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .guide-rechte__desc {
-  padding-right: 1.75rem;
+  padding-left: 1.75rem;
+  padding-right: 1.85rem;
   color: rgba(201, 212, 222, 0.82);
   font-size: 0.9375rem;
   line-height: 1.55;
@@ -5822,6 +5826,7 @@ main:has(.guide-rechte) + .footer {
     display: block;
     width: auto;
     padding: 0;
+    border-right: none;
   }
 
   .guide-rechte__num {
