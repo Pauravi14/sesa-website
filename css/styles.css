@@ -5854,3 +5854,53 @@ main:has(.guide-rechte) + .footer {
     padding-right: 0;
   }
 }
+
+/* Ratgeber — FAQ */
+.guide-faq {
+  background: var(--bg);
+  color: var(--text-on-dark);
+}
+
+main:has(.guide-faq) {
+  background: var(--bg);
+}
+
+main:has(.guide-faq) + .footer {
+  margin-top: 0;
+}
+
+.guide-faq .page-hero {
+  background: var(--bg);
+  border-bottom: none;
+}
+
+.guide-faq__content {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 6vw 3rem;
+}
+
+.guide-faq .faq details {
+  border-bottom: 1px solid rgba(174, 102, 60, 0.22);
+  padding: 0.85rem 0;
+}
+
+.guide-faq .faq summary {
+  color: rgba(255, 255, 255, 0.96);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.guide-faq .faq summary:hover {
+  color: #fff;
+}
+
+.guide-faq .faq details[open] summary {
+  color: #fff;
+}
+
+.guide-faq .faq .muted {
+  margin: 0.65rem 0 0.25rem;
+  color: rgba(201, 212, 222, 0.78);
+  line-height: 1.55;
+}

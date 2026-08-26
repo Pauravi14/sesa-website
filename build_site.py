@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=165" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=166" />
     {extra_head}
   </head>
   <body>
@@ -1085,6 +1085,21 @@ def rechte_page_body() -> str:
     </div>"""
 
 
+def faq_page_body(items: list[tuple[str, str]]) -> str:
+    details = "".join(
+        f"<details><summary>{question}</summary><p class=\"muted\">{answer}</p></details>"
+        for question, answer in items
+    )
+    hero = page_hero("FAQ", "Häufige Fragen zum Gutachten.", "assets/workshop-tools.png", 1)
+    return f"""
+    <div class="guide-faq">
+      {hero}
+      <section class="guide-faq__content faq" aria-label="Häufig gestellte Fragen">
+        {details}
+      </section>
+    </div>"""
+
+
 def service_step_item(number: int, text: str, icon_name: str) -> str:
     return f"""
             <li class="service-steps__item">
@@ -1304,12 +1319,7 @@ def main() -> None:
         ("Darf ich den Gutachter selbst wählen?", "Bei unverschuldetem Haftpflichtschaden besteht grundsätzlich die Möglichkeit zur freien Wahl. Bei kleinen Schäden und Kaskoschäden gelten Besonderheiten."),
         ("Kann ich Fotos per WhatsApp schicken?", "Ja, für eine erste Orientierung. Je nach Schaden ersetzt dies keine vollständige Begutachtung."),
     ]
-    faq_body = page_hero("FAQ", "Häufige Fragen zum Gutachten.", "assets/workshop-tools.png", 1)
-    faq_body += "<section class=\"section content-light faq\">"
-    for q, a in faq_items:
-        faq_body += f"<details><summary>{q}</summary><p class=\"muted\">{a}</p></details>"
-    faq_body += "</section>"
-    write(ROOT / "ratgeber" / "faq.html", 1, "GUTACHTEN", "FAQ", "Häufige Fragen.", faq_body)
+    write(ROOT / "ratgeber" / "faq.html", 1, "GUTACHTEN", "FAQ", "Häufige Fragen.", faq_page_body(faq_items))
 
     # Kontakt
     kontakt = page_hero("Kontakt", "Telefon, E-Mail, Anschrift und Kartenansicht.", "assets/hero-inspection.png", 0)
