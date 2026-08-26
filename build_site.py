@@ -791,7 +791,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=149" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=150" />
     {extra_head}
   </head>
   <body>
@@ -855,11 +855,19 @@ def write(
     print("wrote", path)
 
 
-def page_hero(title: str, lead: str, img: str, depth: int, editorial: bool = False) -> str:
+def page_hero(
+    title: str,
+    lead: str,
+    img: str,
+    depth: int,
+    editorial: bool = False,
+    extra_class: str = "",
+) -> str:
     p = prefix(depth)
     if editorial:
+        modifier = f" {extra_class}" if extra_class else ""
         return f"""
-    <section class="page-hero page-hero--editorial">
+    <section class="page-hero page-hero--editorial{modifier}">
       <div class="page-hero__inner">
         <div class="page-hero__copy">
           <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
@@ -882,35 +890,54 @@ def page_hero(title: str, lead: str, img: str, depth: int, editorial: bool = Fal
     </section>"""
 
 
-def ratgeber_index_body() -> str:
-    cards = [
-        ("nach-einem-unfall.html", "Was tun nach einem Unfall?", "unfall"),
-        ("rechte.html", "Ihre Rechte nach einem unverschuldeten Unfall", "rechte"),
-        ("faq.html", "FAQ", "faq"),
-    ]
-    card_html = "".join(
-        f"""
-        <article class="editorial-info-card editorial-info-card--link">
-          <a class="editorial-info-card__link" href="{slug}">
-            {service_card_icon(icon_key, "editorial-info-card__icon")}
-            <h3 class="editorial-info-card__title">{title}</h3>
+def counselor_card(slug: str, title: str, description: str, icon_name: str) -> str:
+    return f"""
+        <article class="counselor-card">
+          <a class="counselor-card__link" href="{slug}">
+            <span class="counselor-card__icon" aria-hidden="true">{lucide_svg(icon_name)}</span>
+            <h3 class="counselor-card__title">{title}</h3>
+            <p class="counselor-card__desc">{description}</p>
+            <span class="counselor-card__more">Mehr erfahren</span>
           </a>
         </article>"""
-        for slug, title, icon_key in cards
-    )
+
+
+def ratgeber_index_body() -> str:
+    cards = [
+        (
+            "nach-einem-unfall.html",
+            "Was tun nach einem Unfall?",
+            "Erste Schritte an der Unfallstelle.",
+            "car-front",
+        ),
+        (
+            "rechte.html",
+            "Ihre Rechte nach einem unverschuldeten Unfall",
+            "Informationen nach einem unverschuldeten Verkehrsunfall.",
+            "shield-check",
+        ),
+        (
+            "faq.html",
+            "FAQ",
+            "Häufige Fragen zum Gutachten.",
+            "circle-question-mark",
+        ),
+    ]
+    card_html = "".join(counselor_card(slug, title, description, icon_name) for slug, title, description, icon_name in cards)
     hero = page_hero(
         "Ratgeber",
         "Sachliche Informationen — keine Rechtsberatung.",
         "assets/nrw-road.png",
         1,
         editorial=True,
+        extra_class="page-hero--counselor",
     )
     return f"""
     <div class="guide-index">
       {hero}
-      <section class="section content-light guide-index__cards" aria-label="Ratgeber">
+      <section class="guide-index__cards" aria-label="Ratgeber">
         <div class="guide-index__inner">
-          <div class="guide-index__grid">
+          <div class="counselor-cards">
             {card_html}
           </div>
         </div>
