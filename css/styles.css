@@ -6043,8 +6043,8 @@ main:has(.guide-kontakt) + .footer {
 
 .guide-kontakt__banner {
   position: relative;
-  min-height: 380px;
-  max-height: 400px;
+  min-height: 260px;
+  max-height: 280px;
   overflow: hidden;
   background: #081525;
 }
@@ -6080,9 +6080,9 @@ main:has(.guide-kontakt) + .footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 380px;
-  max-height: 400px;
-  padding: 2.5rem 6vw;
+  min-height: 260px;
+  max-height: 280px;
+  padding: 1.5rem 5vw;
   text-align: center;
 }
 
@@ -6106,18 +6106,18 @@ main:has(.guide-kontakt) + .footer {
 }
 
 .guide-kontakt__banner-copy .lead {
-  margin: 0.75rem 0 0;
+  margin: 0.55rem 0 0;
   max-width: 34rem;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
 
 .guide-kontakt__rule {
   display: block;
   width: 2.25rem;
   height: 2px;
-  margin: 0.9rem auto 0;
+  margin: 0.65rem auto 0;
   background: var(--copper);
 }
 
@@ -6371,8 +6371,8 @@ main:has(.guide-kontakt) + .footer {
 @media (max-width: 900px) {
   .guide-kontakt__banner,
   .guide-kontakt__banner-copy {
-    min-height: 320px;
-    max-height: none;
+    min-height: 220px;
+    max-height: 240px;
   }
 
   .guide-kontakt__strip-grid {

@@ -15,6 +15,21 @@ CONTACT_HERO = "assets/hero-inspection.png"
 KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
+      .guide-kontakt__banner,
+      .guide-kontakt__banner-copy {
+        min-height: 260px;
+        max-height: 280px;
+      }
+      .guide-kontakt__banner-copy {
+        padding: 1.5rem 5vw;
+      }
+      @media (max-width: 900px) {
+        .guide-kontakt__banner,
+        .guide-kontakt__banner-copy {
+          min-height: 220px;
+          max-height: 240px;
+        }
+      }
       .guide-kontakt__signature {
         margin: 1.35rem 0 0;
         padding: 0;
