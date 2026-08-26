@@ -12,6 +12,9 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
+KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Allura&display=swap"
+KONTAKT_EXTRA_HEAD = f"""
+    <link href="{KONTAKT_SIGNATURE_FONT}" rel="stylesheet" />"""
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -794,7 +797,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=172" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=173" />
     {extra_head}
   </head>
   <body>
@@ -1170,6 +1173,7 @@ def kontakt_page_body() -> str:
                     <li>{ADDRESS}</li>
                   </ul>
                   <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
+                  <p class="guide-kontakt__signature">{OWNER}</p>
                 </div>
               </div>
             </div>
@@ -1444,6 +1448,7 @@ def main() -> None:
         "Kontakt",
         "Kontakt und Anfahrt.",
         kontakt_page_body(),
+        KONTAKT_EXTRA_HEAD,
     )
 
     # Schaden melden
