@@ -4775,7 +4775,7 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 
 /* Service detail pages — content below hero */
 .service-detail {
-  padding: clamp(3.5rem, 7vw, 5.5rem) 0 clamp(2.75rem, 5vw, 4.25rem);
+  padding: clamp(2.25rem, 5.5vw, 4.125rem) 0 clamp(2.25rem, 4.5vw, 3.5rem);
 }
 
 .service-detail__inner {
@@ -4836,7 +4836,7 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
-  margin-top: clamp(1.65rem, 2.65vw, 2.65rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
 }
 
 .service-detail__cta .btn-primary {
@@ -4879,7 +4879,7 @@ html.translated-ltr .service-detail__grid--split {
 
 @media (max-width: 900px) {
   .service-detail {
-    padding: clamp(2.5rem, 6vw, 3.75rem) 0 clamp(2rem, 4vw, 3rem);
+    padding: clamp(2rem, 5vw, 3rem) 0 clamp(1.75rem, 3.5vw, 2.5rem);
   }
 
   .service-detail__grid--split {
