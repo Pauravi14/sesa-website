@@ -791,7 +791,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=135" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=136" />
     {extra_head}
   </head>
   <body>
@@ -868,18 +868,40 @@ def page_hero(title: str, lead: str, img: str, depth: int) -> str:
     </section>"""
 
 
+def service_page_content(paragraphs: list[str]) -> str:
+    if len(paragraphs) >= 2:
+        main_paras = paragraphs[:1]
+        aside_paras = paragraphs[1:]
+        grid_class = "service-detail__grid service-detail__grid--split"
+        aside_html = f'<div class="service-detail__aside">{"".join(f"<p>{para}</p>" for para in aside_paras)}</div>'
+    else:
+        main_paras = paragraphs
+        grid_class = "service-detail__grid service-detail__grid--single"
+        aside_html = ""
+
+    main_html = "".join(f"<p>{para}</p>" for para in main_paras)
+
+    return f"""
+    <section class="section content-light service-detail">
+      <div class="service-detail__inner">
+        <div class="{grid_class}">
+          <div class="service-detail__main">
+            {main_html}
+          </div>
+          {aside_html}
+        </div>
+        <p class="service-detail__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
+        <div class="service-detail__cta">
+          <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
+          <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
+        </div>
+      </div>
+    </section>"""
+
+
 def service_page(slug: str, title: str, lead: str, paragraphs: list[str], img: str) -> None:
     body = page_hero(title, lead, img, 1)
-    body += "<section class=\"section content-light\"><div class=\"legal\">"
-    for para in paragraphs:
-        body += f"<p>{para}</p>"
-    body += """
-    <p class="muted"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
-    <div class="cta-row">
-      <a class="btn btn-solid" href="../schaden-melden.html">Schaden melden</a>
-      <a class="btn" href="tel:+491773145839">Jetzt anrufen</a>
-    </div>
-    </div></section>"""
+    body += service_page_content(paragraphs)
     write(ROOT / "leistungen" / slug, 1, "Leistungen", title, lead, body)
 
 

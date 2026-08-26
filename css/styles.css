@@ -4772,3 +4772,144 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
     justify-content: center;
   }
 }
+
+/* Service detail pages — content below hero */
+.service-detail {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0 clamp(2.75rem, 5vw, 4.25rem);
+}
+
+.service-detail__inner {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.service-detail__grid {
+  display: grid;
+  gap: clamp(1.35rem, 2.5vw, 2.5rem);
+  align-items: start;
+}
+
+.service-detail__grid--split {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.service-detail__grid--single {
+  max-width: 42rem;
+}
+
+.service-detail__main p,
+.service-detail__aside p {
+  margin: 0 0 1.05rem;
+  color: var(--text);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+.service-detail__main p:last-child,
+.service-detail__aside p:last-child {
+  margin-bottom: 0;
+}
+
+.service-detail__note {
+  margin: clamp(2rem, 3.5vw, 3.25rem) 0 0;
+  max-width: 52rem;
+  color: var(--mute);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+.service-detail__note em {
+  font-style: italic;
+}
+
+.service-detail__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: clamp(2rem, 3.2vw, 3.25rem);
+}
+
+.service-detail__cta .btn-primary {
+  min-height: 2.75rem;
+  padding: 0.7rem 1.35rem;
+  font-size: 1rem;
+}
+
+.service-detail__cta .btn-secondary-navy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.68rem 1.3rem;
+  border: 1px solid var(--navy);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--navy);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.service-detail__cta .btn-secondary-navy:hover {
+  background: #fff;
+  border-color: var(--navy-2);
+  color: var(--navy-2);
+}
+
+html.translated-ltr .service-detail__grid--split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+@media (max-width: 900px) {
+  .service-detail {
+    padding: clamp(2.5rem, 6vw, 3.75rem) 0 clamp(2rem, 4vw, 3rem);
+  }
+
+  .service-detail__grid--split {
+    gap: 1.25rem;
+  }
+
+  .service-detail__main p,
+  .service-detail__aside p {
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+}
+
+@media (max-width: 720px) {
+  .service-detail__inner {
+    padding: 0 1.1rem;
+  }
+
+  .service-detail__grid--split {
+    grid-template-columns: 1fr;
+  }
+
+  .service-detail__cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-detail__cta .btn-primary,
+  .service-detail__cta .btn-secondary-navy {
+    width: 100%;
+    max-width: 18.5rem;
+  }
+}
