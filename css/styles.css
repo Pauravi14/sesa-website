@@ -4931,46 +4931,104 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   margin-bottom: 0;
 }
 
-/* Service detail — Variant 1 editorial cards (shared template, all Leistungen pages) */
-.service-detail.service-detail--variant1 {
+/* Service detail — Editorial Steps card (shared template, all Leistungen pages) */
+.service-detail.service-detail--steps {
   padding: clamp(3rem, 6vw, 4.75rem) 0 clamp(2.5rem, 5vw, 3.75rem);
   background: var(--cream);
 }
 
-.service-detail--variant1 .service-detail__inner {
-  width: min(1400px, 100%);
+.service-detail--steps .service-detail__inner {
+  width: min(1240px, 100%);
   margin: 0 auto;
   padding: 0 clamp(1.1rem, 2.5vw, 1.75rem);
   box-sizing: border-box;
 }
 
-.service-detail--variant1 .service-detail__grid {
+.service-steps-card {
+  background: #fff;
+  border: 1px solid rgba(30, 58, 95, 0.12);
+  border-radius: 3px;
+  padding: clamp(2rem, 3.8vw, 2.75rem) clamp(1.75rem, 3.2vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.service-steps-card__grid {
   display: grid;
-  gap: clamp(1.15rem, 2vw, 1.5rem);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 3.5vw, 3rem);
+  align-items: start;
 }
 
-.service-detail--variant1 .service-detail__grid--cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.service-steps-card__grid--single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 36rem;
 }
 
-.service-detail--variant1 .service-detail__grid--cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: min(920px, 100%);
-  margin-inline: auto;
-  width: 100%;
+.service-steps-card__grid:not(.service-steps-card__grid--single) .service-steps__col:first-child {
+  padding-right: clamp(1.25rem, 2.5vw, 2rem);
+  border-right: 1px solid rgba(174, 102, 60, 0.22);
 }
 
-.service-detail--variant1 .service-detail__footer {
-  margin-top: clamp(2.25rem, 3.8vw, 3rem);
-  padding-top: clamp(1.65rem, 2.8vw, 2.15rem);
-  border-top: 1px solid rgba(174, 102, 60, 0.26);
+.service-steps-card__grid:not(.service-steps-card__grid--single) .service-steps__col:last-child {
+  padding-left: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-.service-detail--variant1 .service-detail__note {
+.service-steps__col {
+  list-style: none;
   margin: 0;
-  max-width: 54rem;
-  color: var(--text);
+  padding: 0;
+}
+
+.service-steps__item {
+  display: grid;
+  grid-template-columns: 18px 2.1rem minmax(0, 1fr);
+  gap: 0.65rem 0.75rem;
+  align-items: start;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid rgba(30, 58, 95, 0.08);
+}
+
+.service-steps__item:first-child {
+  padding-top: 0;
+}
+
+.service-steps__item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.service-steps__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15rem;
+  color: var(--copper);
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.service-steps__icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  overflow: visible;
+}
+
+.service-steps__number {
+  font-family: var(--serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  color: rgba(30, 58, 95, 0.52);
+  padding-top: 0.1rem;
+}
+
+.service-steps__text {
+  margin: 0;
+  color: var(--navy);
   font-size: var(--type-body);
   line-height: 1.65;
   overflow-wrap: break-word;
@@ -4979,25 +5037,39 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   text-wrap: pretty;
 }
 
-.service-detail--variant1 .service-detail__note em {
+.service-steps-card__note {
+  margin: clamp(1.75rem, 3vw, 2.25rem) 0 0;
+  padding-top: clamp(1.35rem, 2.4vw, 1.75rem);
+  border-top: 1px solid rgba(174, 102, 60, 0.2);
+  max-width: 54rem;
+  color: rgba(30, 58, 95, 0.72);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+.service-steps-card__note em {
   font-style: italic;
 }
 
-.service-detail--variant1 .service-detail__cta {
+.service-detail--steps .service-detail__cta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.7rem;
-  margin-top: clamp(1.15rem, 2.2vw, 1.65rem);
+  margin-top: clamp(1.5rem, 2.5vw, 2rem);
 }
 
-.service-detail--variant1 .service-detail__cta .btn-primary {
+.service-detail--steps .service-detail__cta .btn-primary {
   min-height: 2.75rem;
   padding: 0.7rem 1.4rem;
   font-size: 1rem;
 }
 
-.service-detail--variant1 .service-detail__cta .btn-secondary-navy {
+.service-detail--steps .service-detail__cta .btn-secondary-navy {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5019,49 +5091,52 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
     color 0.2s ease;
 }
 
-.service-detail--variant1 .service-detail__cta .btn-secondary-navy:hover {
+.service-detail--steps .service-detail__cta .btn-secondary-navy:hover {
   background: #fff;
   border-color: var(--navy-2);
   color: var(--navy-2);
 }
 
-html.translated-ltr .service-detail--variant1 .service-detail__grid--cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 1.8vw, 1.35rem);
-}
-
-html.translated-ltr .service-detail--variant1 .service-detail__grid--cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+html.translated-ltr .service-steps-card__grid {
+  gap: clamp(1.65rem, 2.8vw, 2.5rem);
 }
 
 @media (max-width: 900px) {
-  .service-detail--variant1 {
+  .service-detail--steps {
     padding: clamp(2.5rem, 5.5vw, 3.5rem) 0 clamp(2rem, 4vw, 2.75rem);
   }
 
-  .service-detail--variant1 .service-detail__grid--cols-3 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .service-detail--variant1 .service-detail__grid--cols-2 {
-    max-width: none;
+  .service-steps-card {
+    padding: clamp(1.65rem, 3.5vw, 2.25rem) clamp(1.25rem, 2.8vw, 1.75rem);
   }
 }
 
 @media (max-width: 720px) {
-  .service-detail--variant1 .service-detail__grid--cols-3,
-  .service-detail--variant1 .service-detail__grid--cols-2 {
+  .service-steps-card__grid {
     grid-template-columns: 1fr;
-    max-width: none;
+    gap: 0;
   }
 
-  .service-detail--variant1 .service-detail__cta {
+  .service-steps-card__grid:not(.service-steps-card__grid--single) .service-steps__col:first-child {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(174, 102, 60, 0.22);
+    padding-bottom: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .service-steps-card__grid:not(.service-steps-card__grid--single) .service-steps__col:last-child {
+    padding-left: 0;
+    padding-top: 0.25rem;
+  }
+
+  .service-detail--steps .service-detail__cta {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .service-detail--variant1 .service-detail__cta .btn-primary,
-  .service-detail--variant1 .service-detail__cta .btn-secondary-navy {
+  .service-detail--steps .service-detail__cta .btn-primary,
+  .service-detail--steps .service-detail__cta .btn-secondary-navy {
     width: 100%;
     max-width: 19rem;
   }

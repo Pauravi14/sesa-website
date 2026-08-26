@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/styles.css?v=148" />
+    <link rel="stylesheet" href="../css/styles.css?v=149" />
     
   </head>
   <body>
@@ -79,33 +79,34 @@
         </div>
       </div>
     </section>
-    <section class="section content-light service-detail service-detail--variant1" aria-label="Leistungsbeschreibung">
+    <section class="section content-light service-detail service-detail--steps" aria-label="Leistungsbeschreibung">
       <div class="service-detail__inner">
-        <div class="service-detail__cards">
-          <div class="service-detail__grid service-detail__grid--cols-2">
+        <article class="service-steps-card">
+          <div class="service-steps-card__grid">
             
-        <article class="editorial-info-card">
-          <div class="editorial-info-card__body">
-            <span class="editorial-info-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3.5 7.5 7 9 3.5-1.5 7-4.5 7-9V6l-7-3z"/><path d="M9.5 11.5h5"/><path d="M12 9v5"/></svg></span>
-            <h2 class="editorial-info-card__title">Soweit diese Leistung im konkreten Auftrag angeboten und vereinbart wird.</h2>
+          <ol class="service-steps__col" role="list">
             
+            <li class="service-steps__item">
+              <span class="service-steps__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span>
+              <span class="service-steps__number">01</span>
+              <p class="service-steps__text">Soweit diese Leistung im konkreten Auftrag angeboten und vereinbart wird.</p>
+            </li>
+          </ol>
+            
+          <ol class="service-steps__col" role="list">
+            
+            <li class="service-steps__item">
+              <span class="service-steps__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 9.4a4 4 0 1 0 0 5.2"/><path d="M7 12h5"/><circle cx="12" cy="12" r="10"/></svg></span>
+              <span class="service-steps__number">02</span>
+              <p class="service-steps__text">Bei Kaskoschäden entscheidet die eigene Versicherung über die Kostenübernahme.</p>
+            </li>
+          </ol>
           </div>
+          <p class="service-steps-card__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
         </article>
-        <article class="editorial-info-card">
-          <div class="editorial-info-card__body">
-            <span class="editorial-info-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5h12v14H6z"/><path d="M8 5V4h8v1"/><path d="M9 10h6"/><path d="M9 13h4"/><circle cx="16" cy="15" r="2"/><path d="M16 13.5v3"/></svg></span>
-            <h2 class="editorial-info-card__title">Bei Kaskoschäden entscheidet die eigene Versicherung über die Kostenübernahme.</h2>
-            
-          </div>
-        </article>
-          </div>
-        </div>
-        <div class="service-detail__footer">
-          <p class="service-detail__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
-          <div class="service-detail__cta">
-            <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
-            <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
-          </div>
+        <div class="service-detail__cta">
+          <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
+          <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
         </div>
       </div>
     </section></main>

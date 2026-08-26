@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-import re
 from pathlib import Path
 from urllib.parse import quote
+
+from lucide_icons import lucide_svg
 
 ROOT = Path(__file__).resolve().parent
 LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
@@ -267,17 +268,17 @@ SERVICE_ICONS = {
     ),
 }
 
-SERVICE_DETAIL_CARD_ICONS: dict[str, list[str]] = {
-    "unfallgutachten.html": ["unfall", "versicherungsgutachten", "beratung"],
-    "fahrzeugbewertung.html": ["bewertung", "privatgutachten"],
-    "oldtimer-youngtimer.html": ["oldtimer", "bewertung"],
-    "wohnmobile.html": ["wohnmobile", "bewertung"],
-    "beweissicherung.html": ["beweissicherung", "privatgutachten"],
-    "privatgutachten.html": ["privatgutachten", "kostenvoranschlag"],
-    "kostenvoranschlag.html": ["kostenvoranschlag", "unfall"],
-    "versicherungsgutachten.html": ["versicherungsgutachten", "beweissicherung"],
-    "beratung.html": ["beratung", "ortstermine"],
-    "ortstermine.html": ["ortstermine", "unfall"],
+SERVICE_STEP_ICONS: dict[str, list[str]] = {
+    "unfallgutachten.html": ["file-text", "shield-check", "message-circle"],
+    "fahrzeugbewertung.html": ["car", "clipboard-check"],
+    "oldtimer-youngtimer.html": ["car", "file-text"],
+    "wohnmobile.html": ["caravan", "droplets"],
+    "beweissicherung.html": ["camera", "file-text"],
+    "privatgutachten.html": ["scale", "circle-euro"],
+    "kostenvoranschlag.html": ["calculator", "clipboard-list"],
+    "versicherungsgutachten.html": ["shield", "circle-euro"],
+    "beratung.html": ["messages-square", "phone"],
+    "ortstermine.html": ["map-pin", "clock"],
 }
 
 LEISTUNGEN_SERVICES = [
@@ -300,26 +301,6 @@ def service_icon_svg(key: str) -> str:
 
 def service_card_icon(key: str, wrapper_class: str = "service-card__icon") -> str:
     return f'<span class="{wrapper_class}">{service_icon_svg(key)}</span>'
-
-
-def split_paragraph_for_card(text: str) -> tuple[str, str]:
-    stripped = text.strip()
-    match = re.match(r"^(.+?[.!?…])(?:\s+(.+))?$", stripped, flags=re.DOTALL)
-    if match:
-        return match.group(1).strip(), (match.group(2) or "").strip()
-    return stripped, ""
-
-
-def editorial_info_card(title: str, body: str, icon_key: str) -> str:
-    body_html = f'<p class="editorial-info-card__text">{body}</p>' if body else ""
-    return f"""
-        <article class="editorial-info-card">
-          <div class="editorial-info-card__body">
-            {service_card_icon(icon_key, "editorial-info-card__icon")}
-            <h2 class="editorial-info-card__title">{title}</h2>
-            {body_html}
-          </div>
-        </article>"""
 
 
 def leistungen_service_card(slug: str, title: str, description: str, icon_key: str, featured: bool = False) -> str:
@@ -810,7 +791,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=148" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=149" />
     {extra_head}
   </head>
   <body>
@@ -937,31 +918,50 @@ def ratgeber_index_body() -> str:
     </div>"""
 
 
-def service_page_content(paragraphs: list[str], icon_keys: list[str]) -> str:
-    """Shared service-detail body — Variant 1 editorial info cards (all Leistungen pages)."""
-    if len(icon_keys) != len(paragraphs):
-        raise ValueError("Each service paragraph needs a matching detail-card icon.")
+def service_step_item(number: int, text: str, icon_name: str) -> str:
+    return f"""
+            <li class="service-steps__item">
+              <span class="service-steps__icon" aria-hidden="true">{lucide_svg(icon_name)}</span>
+              <span class="service-steps__number">{number:02d}</span>
+              <p class="service-steps__text">{text}</p>
+            </li>"""
 
-    cards_html = "".join(
-        editorial_info_card(*split_paragraph_for_card(para), icon_key)
-        for para, icon_key in zip(paragraphs, icon_keys)
-    )
-    grid_class = f"service-detail__grid service-detail__grid--cols-{len(paragraphs)}"
+
+def service_steps_column(steps: list[tuple[int, str, str]]) -> str:
+    items = "".join(service_step_item(number, text, icon_name) for number, text, icon_name in steps)
+    return f"""
+          <ol class="service-steps__col" role="list">
+            {items}
+          </ol>"""
+
+
+def service_page_content(paragraphs: list[str], icon_names: list[str]) -> str:
+    """Shared service-detail body — Editorial Steps card (all Leistungen pages)."""
+    if len(icon_names) != len(paragraphs):
+        raise ValueError("Each service paragraph needs a matching step icon.")
+
+    steps = [
+        (index, paragraph, icon_name)
+        for index, (paragraph, icon_name) in enumerate(zip(paragraphs, icon_names), start=1)
+    ]
+    split_at = (len(steps) + 1) // 2
+    left_col = service_steps_column(steps[:split_at])
+    right_col = service_steps_column(steps[split_at:]) if split_at < len(steps) else ""
+    single_col_class = " service-steps-card__grid--single" if not right_col else ""
 
     return f"""
-    <section class="section content-light service-detail service-detail--variant1" aria-label="Leistungsbeschreibung">
+    <section class="section content-light service-detail service-detail--steps" aria-label="Leistungsbeschreibung">
       <div class="service-detail__inner">
-        <div class="service-detail__cards">
-          <div class="{grid_class}">
-            {cards_html}
+        <article class="service-steps-card">
+          <div class="service-steps-card__grid{single_col_class}">
+            {left_col}
+            {right_col}
           </div>
-        </div>
-        <div class="service-detail__footer">
-          <p class="service-detail__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
-          <div class="service-detail__cta">
-            <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
-            <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
-          </div>
+          <p class="service-steps-card__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
+        </article>
+        <div class="service-detail__cta">
+          <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
+          <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
         </div>
       </div>
     </section>"""
@@ -969,7 +969,7 @@ def service_page_content(paragraphs: list[str], icon_keys: list[str]) -> str:
 
 def service_page(slug: str, title: str, lead: str, paragraphs: list[str], img: str) -> None:
     body = page_hero(title, lead, img, 1, editorial=True)
-    body += service_page_content(paragraphs, SERVICE_DETAIL_CARD_ICONS[slug])
+    body += service_page_content(paragraphs, SERVICE_STEP_ICONS[slug])
     write(ROOT / "leistungen" / slug, 1, "Leistungen", title, lead, body)
 
 

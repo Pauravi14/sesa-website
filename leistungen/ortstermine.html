@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/styles.css?v=148" />
+    <link rel="stylesheet" href="../css/styles.css?v=149" />
     
   </head>
   <body>
@@ -79,33 +79,34 @@
         </div>
       </div>
     </section>
-    <section class="section content-light service-detail service-detail--variant1" aria-label="Leistungsbeschreibung">
+    <section class="section content-light service-detail service-detail--steps" aria-label="Leistungsbeschreibung">
       <div class="service-detail__inner">
-        <div class="service-detail__cards">
-          <div class="service-detail__grid service-detail__grid--cols-2">
+        <article class="service-steps-card">
+          <div class="service-steps-card__grid">
             
-        <article class="editorial-info-card">
-          <div class="editorial-info-card__body">
-            <span class="editorial-info-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5 6-9a6 6 0 1 0-12 0c0 4 6 9 6 9z"/><circle cx="12" cy="12" r="2"/></svg></span>
-            <h2 class="editorial-info-card__title">Zu Hause, in der Werkstatt, auf dem Abschlepphof oder an einem anderen geeigneten Ort.</h2>
+          <ol class="service-steps__col" role="list">
             
+            <li class="service-steps__item">
+              <span class="service-steps__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <span class="service-steps__number">01</span>
+              <p class="service-steps__text">Zu Hause, in der Werkstatt, auf dem Abschlepphof oder an einem anderen geeigneten Ort.</p>
+            </li>
+          </ol>
+            
+          <ol class="service-steps__col" role="list">
+            
+            <li class="service-steps__item">
+              <span class="service-steps__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+              <span class="service-steps__number">02</span>
+              <p class="service-steps__text">Kurzfristige Termine sind je nach Standort, Auslastung und Art des Auftrags möglich.</p>
+            </li>
+          </ol>
           </div>
+          <p class="service-steps-card__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
         </article>
-        <article class="editorial-info-card">
-          <div class="editorial-info-card__body">
-            <span class="editorial-info-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18"/><path d="M5 17v-5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/><path d="M8 12h8"/><path d="M12 12V8"/><path d="M9.5 8 12 5.5 14.5 8"/></svg></span>
-            <h2 class="editorial-info-card__title">Kurzfristige Termine sind je nach Standort, Auslastung und Art des Auftrags möglich.</h2>
-            
-          </div>
-        </article>
-          </div>
-        </div>
-        <div class="service-detail__footer">
-          <p class="service-detail__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
-          <div class="service-detail__cta">
-            <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
-            <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
-          </div>
+        <div class="service-detail__cta">
+          <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
+          <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
         </div>
       </div>
     </section></main>
