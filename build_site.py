@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent
 LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
+CONTACT_HERO = "assets/hero-inspection.png"
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -793,7 +794,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=171" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=172" />
     {extra_head}
   </head>
   <body>
@@ -1087,19 +1088,41 @@ def rechte_page_body() -> str:
 
 def kontakt_page_body() -> str:
     portrait = ABOUT_PORTRAIT
+    phone_icon = (
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        '<path d="M6.6 10.8a13 13 0 0 0 5.7 5.7l2.1-2.1a1 1 0 0 1 1-.24c1.1.37 2.2.57 3.4.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A16 16 0 0 1 3 4a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.5a1 1 0 0 1-.24 1Z"/>'
+        "</svg>"
+    )
+    mail_icon = (
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        '<rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 7 8 6 8-6"/>'
+        "</svg>"
+    )
+    pin_icon = (
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        '<path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10Z"/><circle cx="12" cy="11" r="2.2"/>'
+        "</svg>"
+    )
+    clock_icon = (
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2.5"/>'
+        "</svg>"
+    )
     return f"""
     <div class="guide-kontakt">
-      <section class="guide-kontakt__hero" aria-labelledby="kontakt-title">
-        <div class="guide-kontakt__inner guide-kontakt__hero-grid">
-          <div class="guide-kontakt__hero-copy">
-            <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
-            <h1 id="kontakt-title">Kontakt</h1>
-            <p class="lead">Telefon, E-Mail, Anschrift und Kartenansicht.</p>
-            <span class="guide-kontakt__rule" aria-hidden="true"></span>
-          </div>
-          <div class="guide-kontakt__hero-media">
-            <img src="{portrait}" alt="Porträtfoto Platzhalter" width="480" height="600" loading="eager" decoding="async" />
-          </div>
+      <section class="guide-kontakt__banner" aria-labelledby="kontakt-title">
+        <div class="guide-kontakt__banner-media" aria-hidden="true">
+          <img src="{CONTACT_HERO}" alt="" loading="eager" decoding="async" />
+        </div>
+        <div class="guide-kontakt__banner-copy">
+          <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+          <h1 id="kontakt-title">Kontakt</h1>
+          <p class="lead">Telefon, E-Mail, Anschrift und Kartenansicht.</p>
+          <span class="guide-kontakt__rule" aria-hidden="true"></span>
         </div>
       </section>
 
@@ -1107,53 +1130,57 @@ def kontakt_page_body() -> str:
         <div class="guide-kontakt__inner">
           <div class="guide-kontakt__strip-grid">
             <div class="guide-kontakt__strip-item">
-              <p class="guide-kontakt__strip-label">Telefon</p>
+              <span class="guide-kontakt__strip-icon">{phone_icon}</span>
               <p class="guide-kontakt__strip-value"><a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></p>
+              <p class="guide-kontakt__strip-label">Telefon</p>
             </div>
             <div class="guide-kontakt__strip-item">
-              <p class="guide-kontakt__strip-label">E-Mail</p>
+              <span class="guide-kontakt__strip-icon">{mail_icon}</span>
               <p class="guide-kontakt__strip-value"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+              <p class="guide-kontakt__strip-label">E-Mail</p>
             </div>
             <div class="guide-kontakt__strip-item">
-              <p class="guide-kontakt__strip-label">Anschrift</p>
+              <span class="guide-kontakt__strip-icon">{pin_icon}</span>
               <p class="guide-kontakt__strip-value">{ADDRESS}</p>
+              <p class="guide-kontakt__strip-label">Anschrift</p>
             </div>
             <div class="guide-kontakt__strip-item">
-              <p class="guide-kontakt__strip-label">Öffnungszeiten</p>
+              <span class="guide-kontakt__strip-icon">{clock_icon}</span>
               <p class="guide-kontakt__strip-value">nach Vereinbarung</p>
+              <p class="guide-kontakt__strip-label">Öffnungszeiten</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="guide-kontakt__main" aria-label="Ansprechpartner">
+      <section class="guide-kontakt__main" aria-label="Ansprechpartner und Standort">
         <div class="guide-kontakt__inner">
           <div class="guide-kontakt__main-grid">
-            <div class="guide-kontakt__panel guide-kontakt__panel--details">
-              <h2>{OWNER}</h2>
-              <ul class="contact-list guide-kontakt__contact-list">
-                <li>Telefon: <a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></li>
-                <li>E-Mail: <a href="mailto:{EMAIL}">{EMAIL}</a></li>
-                <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
-                <li>{ADDRESS}</li>
-              </ul>
-              <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
+            <div class="guide-kontakt__panel guide-kontakt__panel--profile">
+              <div class="guide-kontakt__profile-grid">
+                <div class="guide-kontakt__profile-photo">
+                  <img src="{portrait}" alt="Porträtfoto Platzhalter" width="480" height="600" loading="lazy" decoding="async" />
+                </div>
+                <div class="guide-kontakt__profile-body">
+                  <h2>{OWNER}</h2>
+                  <ul class="contact-list guide-kontakt__contact-list">
+                    <li>Telefon: <a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></li>
+                    <li>E-Mail: <a href="mailto:{EMAIL}">{EMAIL}</a></li>
+                    <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
+                    <li>{ADDRESS}</li>
+                  </ul>
+                  <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
+                </div>
+              </div>
             </div>
-            <div class="guide-kontakt__panel guide-kontakt__panel--portrait">
-              <img src="{portrait}" alt="Porträtfoto Platzhalter" width="480" height="600" loading="lazy" decoding="async" />
-              <p class="guide-kontakt__portrait-caption">{ADDRESS}</p>
+            <div class="guide-kontakt__panel guide-kontakt__panel--map">
+              <h2 id="kontakt-map-title">Standort</h2>
+              <div class="map-wrap guide-kontakt__map" data-map>
+                <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
+              </div>
+              <a class="guide-kontakt__route-btn" href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="guide-kontakt__map-section" aria-labelledby="kontakt-map-title">
-        <div class="guide-kontakt__inner">
-          <h2 id="kontakt-map-title">Standort</h2>
-          <div class="map-wrap guide-kontakt__map" data-map>
-            <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
-          </div>
-          <p class="guide-kontakt__map-link muted"><a href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a></p>
         </div>
       </section>
     </div>"""
