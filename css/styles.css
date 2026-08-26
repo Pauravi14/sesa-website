@@ -4878,18 +4878,20 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  margin: 0 0 1.1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0 0 1.15rem;
   color: var(--navy);
   flex-shrink: 0;
+  overflow: visible;
   transition: color 0.22s ease;
 }
 
 .editorial-info-card__icon svg {
-  width: 1.85rem;
-  height: 1.85rem;
+  width: 2.35rem;
+  height: 2.35rem;
   display: block;
+  overflow: visible;
 }
 
 .editorial-info-card:hover .editorial-info-card__icon {

@@ -161,123 +161,108 @@ def process_flow_unit(number: str, title: str, body: str, with_connector: bool) 
 
 
 SERVICE_ICON_SVG_OPEN = (
-    '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.15" '
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
     'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
 )
 
 SERVICE_ICONS = {
     "unfall": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<path d="M5.5 27h21"/>'
-        '<path d="M8.2 27v-9.8c0-1.2.9-2.2 2.1-2.7h11.4c1.2.5 2.1 1.5 2.1 2.7V27"/>'
-        '<ellipse cx="10.7" cy="21.7" rx="2.2" ry="1.55"/>'
-        '<ellipse cx="21.3" cy="21.7" rx="2.2" ry="1.55"/>'
-        '<path d="M13.7 20.7h4.6"/><path d="M13.2 22.2h5.6"/><path d="M13.7 23.7h4.6"/>'
-        '<path d="M9.4 15.1h6.8"/>'
-        '<path d="M16.2 15.1l1.3-2 1.6 2.4 1.8-2.9 1.6 2.5 1.2-2.3 3.4 1.4"/>'
-        '<path d="M9.1 27v2.1h3.7V27"/><path d="M19.2 27v2.1h3.7V27"/>'
+        '<path d="M3 17h18"/>'
+        '<path d="M5 17v-5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5"/>'
+        '<circle cx="7.5" cy="17" r="1.5"/>'
+        '<circle cx="16.5" cy="17" r="1.5"/>'
+        '<path d="M8 12h8"/>'
+        '<path d="M12 12V8"/>'
+        '<path d="M9.5 8 12 5.5 14.5 8"/>'
         "</svg>"
     ),
     "bewertung": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<rect x="7.4" y="5.8" width="12.2" height="17.8" rx="1.1"/>'
-        '<path d="M11.1 5.8V4.4h4.8V5.8"/>'
-        '<path d="M9.4 10.2h8.2"/><path d="M9.4 13.2h8.2"/><path d="M9.4 16.2h8.2"/><path d="M9.4 19.2h5.6"/>'
-        '<path d="M16.8 17.2c0-1 .8-1.8 1.8-2l2.6-1.1 2.6 1.1c1 .2 1.8 1 1.8 2v4.3c0 1.9-2.4 3.6-4.4 3.6s-4.4-1.7-4.4-3.6v-4.3z"/>'
-        '<path d="M18.3 19 20 20.8 23.4 17.2"/>'
+        '<path d="M8 4h8v16H8z"/>'
+        '<path d="M10 4V3h4v1"/>'
+        '<path d="M10 9h4"/><path d="M10 12h4"/><path d="M10 15h2"/>'
+        '<path d="M14.5 14.5 16 16l2.5-2.5"/>'
         "</svg>"
     ),
     "wohnmobile": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<path d="M6.3 23.2h19.4"/>'
-        '<path d="M7.8 23.2V16.4c0-.9.7-1.6 1.6-1.6h2.9"/>'
-        '<path d="M12.3 14.8 14.1 11.2h10.1"/>'
-        '<path d="M14.1 11.2h9.6c.9 0 1.6.7 1.6 1.6v11.6"/>'
-        '<path d="M14.1 11.2v12"/>'
-        '<rect x="16.9" y="14.9" width="2.4" height="2.1" rx=".35"/>'
-        '<rect x="20.1" y="14.9" width="2.4" height="2.1" rx=".35"/>'
-        '<circle cx="10.1" cy="24.7" r="1.7"/>'
-        '<circle cx="20.9" cy="24.7" r="1.7"/>'
+        '<path d="M3 16h18"/>'
+        '<path d="M5 16V11h5l2-3h8v8"/>'
+        '<rect x="11.5" y="11" width="2" height="1.8" rx=".25"/>'
+        '<rect x="14.5" y="11" width="2" height="1.8" rx=".25"/>'
+        '<circle cx="7" cy="16" r="1.5"/>'
+        '<circle cx="17" cy="16" r="1.5"/>'
         "</svg>"
     ),
     "oldtimer": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<path d="M4.6 21.2h22.8"/>'
-        '<path d="M4.6 21.2V19.1c1.1-1.4 2.7-2.1 4.3-2.1"/>'
-        '<path d="M8.9 17V13.8"/>'
-        '<path d="M8.9 13.8h12.8"/>'
-        '<path d="M21.7 13.8l2.6-1.9"/>'
-        '<path d="M24.3 11.9h2.7"/>'
-        '<path d="M27 11.9v9.3"/>'
-        '<path d="M10.1 17.2V13.5"/><path d="M12.9 17.2V13.5"/><path d="M15.7 17.2V13.5"/><path d="M18.5 17.2V13.5"/>'
-        '<path d="M8.9 19.1h12.6"/>'
-        '<path d="M14.3 14.1h.9"/>'
-        '<path d="M6.9 21.2c0-2.1 1.4-3.2 3.1-3.2"/>'
-        '<path d="M21.1 21.2c0-2.1 1.4-3.2 3.1-3.2"/>'
-        '<circle cx="9.5" cy="21.7" r="2.05"/>'
-        '<circle cx="9.5" cy="21.7" r=".85"/>'
-        '<circle cx="23.5" cy="21.7" r="2.05"/>'
-        '<circle cx="23.5" cy="21.7" r=".85"/>'
+        '<path d="M3 15h18"/>'
+        '<path d="M5 15l2-4h6l2 2h4l1 2"/>'
+        '<path d="M7 11V9"/>'
+        '<circle cx="7" cy="15" r="1.5"/>'
+        '<circle cx="17" cy="15" r="1.5"/>'
+        '<path d="M10 13h4"/>'
         "</svg>"
     ),
     "beweissicherung": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<path d="M8.4 6.8h15.2l1.8 2.2v16.2H6.6V8.9l1.8-2.1z"/>'
-        '<path d="M10.2 6.8V5.2h11.6v1.6"/>'
-        '<path d="M10.8 12.4h10.4"/><path d="M10.8 16h10.4"/><path d="M10.8 19.6h6.8"/>'
-        '<circle cx="21.8" cy="20.2" r="3.1"/>'
-        '<path d="M20.4 20.2h2.8"/><path d="M21.8 18.8v2.8"/>'
+        '<path d="M6 5h12v14H6z"/>'
+        '<path d="M8 5V4h8v1"/>'
+        '<path d="M9 10h6"/><path d="M9 13h4"/>'
+        '<circle cx="16" cy="15" r="2"/>'
+        '<path d="M16 13.5v3"/>'
         "</svg>"
     ),
     "privatgutachten": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<circle cx="11.2" cy="10.2" r="2.6"/>'
-        '<path d="M6.4 22.4c0-3 2.2-5.4 4.8-5.4s4.8 2.4 4.8 5.4"/>'
-        '<path d="M19.2 24.2h8.6"/>'
-        '<path d="M20.4 24.2v-6.8c0-.9.7-1.6 1.5-1.8h5.2c.8.2 1.5.9 1.5 1.8v6.8"/>'
-        '<ellipse cx="23.4" cy="20.8" rx="1.5" ry="1.05"/>'
-        '<ellipse cx="26.2" cy="20.8" rx="1.5" ry="1.05"/>'
+        '<circle cx="9" cy="8" r="2.5"/>'
+        '<path d="M5 18c0-2.5 1.8-4.5 4-4.5s4 2 4 4.5"/>'
+        '<path d="M15 6h5v12h-5z"/>'
+        '<path d="M17 9h2"/><path d="M17 12h2"/>'
         "</svg>"
     ),
     "kostenvoranschlag": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<rect x="7.8" y="5.6" width="16.4" height="20.8" rx="1.4"/>'
-        '<rect x="10.4" y="8.8" width="4.2" height="3.1" rx=".5"/>'
-        '<rect x="15.8" y="8.8" width="4.2" height="3.1" rx=".5"/>'
-        '<rect x="21.2" y="8.8" width="4.2" height="3.1" rx=".5"/>'
-        '<rect x="10.4" y="13.4" width="4.2" height="3.1" rx=".5"/>'
-        '<rect x="15.8" y="13.4" width="4.2" height="3.1" rx=".5"/>'
-        '<rect x="21.2" y="13.4" width="4.2" height="3.1" rx=".5"/>'
-        '<rect x="10.4" y="18" width="4.2" height="3.1" rx=".5"/>'
-        '<rect x="15.8" y="18" width="4.2" height="3.1" rx=".5"/>'
-        '<rect x="21.2" y="18" width="4.2" height="3.1" rx=".5"/>'
+        '<rect x="6" y="4" width="12" height="16" rx="1"/>'
+        '<path d="M9 8h2"/><path d="M13 8h2"/>'
+        '<path d="M9 11h2"/><path d="M13 11h2"/>'
+        '<path d="M9 14h2"/><path d="M13 14h2"/>'
         "</svg>"
     ),
     "versicherungsgutachten": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<path d="M16 4.8 7.2 8.1v7.1c0 5.2 3.6 8.8 8.8 11.8 5.2-3 8.8-6.6 8.8-11.8V8.1L16 4.8z"/>'
-        '<path d="M9.8 18.2h12.4"/>'
-        '<path d="M11.2 18.2v-4.1c0-.8.6-1.4 1.4-1.4h7.2c.8 0 1.4.6 1.4 1.4v4.1"/>'
-        '<ellipse cx="13.1" cy="17.1" rx="1.2" ry=".85"/>'
-        '<ellipse cx="18.9" cy="17.1" rx="1.2" ry=".85"/>'
+        '<path d="M12 3 5 6v5c0 4.5 3.5 7.5 7 9 3.5-1.5 7-4.5 7-9V6l-7-3z"/>'
+        '<path d="M9.5 11.5h5"/>'
+        '<path d="M12 9v5"/>'
         "</svg>"
     ),
     "beratung": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<path d="M6.8 10.2c0-3.2 2.8-5.8 6.2-5.8s6.2 2.6 6.2 5.8c0 2.6-1.7 4.8-4 5.6l-.8 3.4h-2.8l-.8-3.4c-2.3-.8-4-3-4-5.6z"/>'
-        '<path d="M12.2 19.2v2.2"/>'
-        '<path d="M19.8 12.4h5.4c1.4 0 2.5 1.1 2.5 2.5v3.2c0 1.4-1.1 2.5-2.5 2.5h-1.8l-1.2 2.4-1.2-2.4h-1.2"/>'
-        '<path d="M22.5 15.2h2.2"/><path d="M22.5 17.4h2.2"/>'
+        '<path d="M5 9c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5-1.8 3.5-4 3.5c-.5 0-1-.1-1.4-.3L7 16v-2.8"/>'
+        '<path d="M14 10h5a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1l-1.5 2-1.5-2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z"/>'
         "</svg>"
     ),
     "ortstermine": (
         f"{SERVICE_ICON_SVG_OPEN}"
-        '<path d="M16 5.2c-3.6 0-6.5 2.7-6.5 6 0 4.5 6.5 11.6 6.5 11.6s6.5-7.1 6.5-11.6c0-3.3-2.9-6-6.5-6z"/>'
-        '<circle cx="16" cy="11.2" r="2.2"/>'
-        '<path d="M7.2 24.8h17.6"/>'
-        '<path d="M9.8 24.8v-3.4c0-.8.6-1.4 1.4-1.4h9.6c.8 0 1.4.6 1.4 1.4v3.4"/>'
-        '<ellipse cx="11.8" cy="23.1" rx="1.2" ry=".85"/>'
-        '<ellipse cx="20.2" cy="23.1" rx="1.2" ry=".85"/>'
+        '<path d="M12 21s6-5 6-9a6 6 0 1 0-12 0c0 4 6 9 6 9z"/>'
+        '<circle cx="12" cy="12" r="2"/>'
+        "</svg>"
+    ),
+    "rechte": (
+        f"{SERVICE_ICON_SVG_OPEN}"
+        '<path d="M6 3h7l3 3v14H6z"/>'
+        '<path d="M13 3v3h3"/>'
+        '<path d="M9 10h4"/><path d="M9 13h3"/>'
+        '<path d="M17 5.5 19 8.25 17 11"/>'
+        '<path d="M15.25 8.25h3.5"/>'
+        "</svg>"
+    ),
+    "faq": (
+        f"{SERVICE_ICON_SVG_OPEN}"
+        '<circle cx="12" cy="12" r="8"/>'
+        '<path d="M9.5 9.5A2 2 0 0 1 12.5 11c0 1.2-1.5 1.5-1.5 2.5"/>'
+        '<path d="M12 16.5v.5"/>'
         "</svg>"
     ),
 }
@@ -825,7 +810,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=147" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=148" />
     {extra_head}
   </head>
   <body>
@@ -919,8 +904,8 @@ def page_hero(title: str, lead: str, img: str, depth: int, editorial: bool = Fal
 def ratgeber_index_body() -> str:
     cards = [
         ("nach-einem-unfall.html", "Was tun nach einem Unfall?", "unfall"),
-        ("rechte.html", "Ihre Rechte nach einem unverschuldeten Unfall", "versicherungsgutachten"),
-        ("faq.html", "FAQ", "beratung"),
+        ("rechte.html", "Ihre Rechte nach einem unverschuldeten Unfall", "rechte"),
+        ("faq.html", "FAQ", "faq"),
     ]
     card_html = "".join(
         f"""
