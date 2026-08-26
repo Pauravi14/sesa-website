@@ -6122,7 +6122,7 @@ main:has(.guide-kontakt) + .footer {
 }
 
 .guide-kontakt__strip {
-  padding: 1.75rem 0 0;
+  padding: 0.75rem 0 0;
   background: #081525;
 }
 
@@ -6141,8 +6141,8 @@ main:has(.guide-kontakt) + .footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 1.5rem 1rem;
+  gap: 0.3rem;
+  padding: 0.95rem 0.85rem;
   text-align: center;
   border-right: 1px solid rgba(174, 102, 60, 0.28);
 }
@@ -6155,22 +6155,22 @@ main:has(.guide-kontakt) + .footer {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.35rem;
+  height: 1.35rem;
   color: var(--copper);
 }
 
 .guide-kontakt__strip-icon svg {
   display: block;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.35rem;
+  height: 1.35rem;
 }
 
 .guide-kontakt__strip-value {
   margin: 0;
   color: rgba(255, 255, 255, 0.94);
-  font-size: 0.9375rem;
-  line-height: 1.45;
+  font-size: 1.125rem;
+  line-height: 1.35;
 }
 
 .guide-kontakt__strip-value a {
@@ -6185,15 +6185,15 @@ main:has(.guide-kontakt) + .footer {
 .guide-kontakt__strip-label {
   margin: 0;
   color: var(--copper);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  line-height: 1.4;
+  line-height: 1.3;
   text-transform: uppercase;
 }
 
 .guide-kontakt__main {
-  padding: 1.75rem 0 3rem;
+  padding: 1.25rem 0 3rem;
   background: #081525;
 }
 
