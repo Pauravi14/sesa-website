@@ -5297,33 +5297,46 @@ html.translated-ltr .counselor-cards {
 }
 
 .guide-unfall .page-hero--unfall {
-  padding: clamp(1.1rem, 2.2vw, 1.65rem) 0;
+  padding: 55px 0 65px;
   background: var(--bg-2);
 }
 
 .guide-unfall .page-hero--unfall .page-hero__inner {
-  width: min(1480px, 100%);
-  grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
-  gap: clamp(1.15rem, 2.2vw, 1.85rem);
+  width: calc(100% - 120px);
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0;
+  min-height: 375px;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  gap: 2rem;
   align-items: center;
-  min-height: 0;
+  box-sizing: border-box;
 }
 
 .guide-unfall .page-hero--unfall .page-hero__copy {
   min-width: 0;
-  padding-right: clamp(0.25rem, 1.5vw, 1rem);
+  max-width: 650px;
+  padding-right: 1rem;
 }
 
 .guide-unfall .page-hero--unfall h1 {
-  font-size: clamp(2.75rem, 4.2vw, 4rem);
-  line-height: 1.06;
+  font-size: clamp(3.5rem, 3.6vw, 4rem);
+  line-height: 1.05;
+  max-width: 650px;
+}
+
+.guide-unfall .page-hero--unfall .lead {
+  margin-top: 0.85rem;
+  max-width: 650px;
+  font-size: 1.0625rem;
+  line-height: 1.55;
 }
 
 .guide-unfall .page-hero--unfall .page-hero__rule {
   display: block;
-  width: 3.25rem;
+  width: 2.375rem;
   height: 2px;
-  margin: 0.7rem 0 0;
+  margin: 1rem 0 0;
   background: var(--copper);
 }
 
@@ -5332,46 +5345,47 @@ html.translated-ltr .counselor-cards {
   align-items: center;
   justify-content: flex-end;
   min-width: 0;
+  width: 100%;
 }
 
 .guide-unfall .page-hero--unfall .page-hero__media img {
   display: block;
   width: 100%;
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
-  height: auto;
-  max-height: clamp(220px, 26vh, 320px);
+  height: 320px;
   object-fit: cover;
   object-position: center center;
   opacity: 1;
 }
 
 .guide-unfall__main {
-  padding: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  padding: 60px 0;
 }
 
 .guide-unfall__inner {
-  width: min(1480px, 100%);
+  width: calc(100% - 120px);
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 0 clamp(1.1rem, 2.5vw, 1.75rem);
+  padding: 0;
   box-sizing: border-box;
 }
 
 .accident-steps-panel {
-  width: min(90%, 1420px);
-  margin: clamp(3.75rem, 5.5vw, 4.375rem) auto clamp(2.5rem, 3.5vw, 3.125rem);
+  width: 100%;
+  max-width: 1400px;
+  min-height: 355px;
+  margin: 0 auto;
   background: var(--bg-2);
   border: 1px solid rgba(174, 102, 60, 0.48);
   border-radius: 11px;
-  padding: clamp(3.25rem, 4.5vw, 4.375rem) clamp(2.25rem, 3.8vw, 3.5rem);
+  padding: 55px 60px;
   box-sizing: border-box;
 }
 
 .accident-steps-panel__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: clamp(2.25rem, 4vw, 3.25rem);
-  align-items: stretch;
+  gap: 3rem;
+  align-items: center;
 }
 
 .accident-steps__col {
@@ -5380,7 +5394,7 @@ html.translated-ltr .counselor-cards {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(2.5rem, 4.2vw, 3.35rem);
+  gap: 2.75rem;
 }
 
 .accident-step {
@@ -5394,13 +5408,13 @@ html.translated-ltr .counselor-cards {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border: 1px solid rgba(174, 102, 60, 0.78);
+  width: 3.375rem;
+  height: 3.375rem;
+  border: 1px solid var(--copper);
   border-radius: 50%;
   color: var(--copper);
   font-family: var(--serif);
-  font-size: 1.12rem;
+  font-size: 1.125rem;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.04em;
@@ -5409,8 +5423,8 @@ html.translated-ltr .counselor-cards {
 
 .accident-step__text {
   margin: 0;
-  color: rgba(255, 255, 255, 0.93);
-  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 1.0625rem;
   line-height: 1.5;
   overflow-wrap: break-word;
 }
@@ -5419,17 +5433,17 @@ html.translated-ltr .counselor-cards {
   position: relative;
   display: flex;
   justify-content: center;
+  align-self: center;
   width: 1rem;
   min-width: 1rem;
-  align-self: stretch;
+  height: 265px;
 }
 
 .accident-steps__divider-track {
   position: relative;
   width: 1px;
   height: 100%;
-  min-height: 100%;
-  background: rgba(174, 102, 60, 0.3);
+  background: rgba(174, 102, 60, 0.32);
 }
 
 .accident-steps__divider-dot {
@@ -5457,19 +5471,34 @@ html.translated-ltr .counselor-cards {
 }
 
 .guide-unfall__disclaimer {
-  width: min(90%, 1420px);
-  margin: clamp(1.75rem, 2.5vw, 2.1875rem) auto clamp(3.4375rem, 5vw, 4.0625rem);
+  margin: 2rem auto 0;
   max-width: 42rem;
   color: rgba(30, 58, 95, 0.68);
-  font-size: clamp(0.875rem, 1.15vw, 0.9375rem);
+  font-size: 0.9375rem;
   line-height: 1.5;
   text-align: center;
 }
 
+@media (max-width: 1100px) {
+  .guide-unfall .page-hero--unfall .page-hero__inner,
+  .guide-unfall__inner {
+    width: calc(100% - 64px);
+  }
+
+  .accident-steps-panel {
+    padding: 48px 40px;
+  }
+}
+
 @media (max-width: 900px) {
+  .guide-unfall .page-hero--unfall {
+    padding: 40px 0 48px;
+  }
+
   .guide-unfall .page-hero--unfall .page-hero__inner {
     grid-template-columns: 1fr;
-    gap: 1.15rem;
+    gap: 1.5rem;
+    min-height: 0;
   }
 
   .guide-unfall .page-hero--unfall .page-hero__media {
@@ -5477,20 +5506,39 @@ html.translated-ltr .counselor-cards {
   }
 
   .guide-unfall .page-hero--unfall .page-hero__media img {
-    max-height: none;
-    width: 100%;
+    height: clamp(240px, 42vw, 320px);
   }
 
-  .accident-steps-panel,
-  .guide-unfall__disclaimer {
-    width: 100%;
+  .guide-unfall__main {
+    padding: 48px 0;
+  }
+
+  .accident-steps-panel {
+    min-height: 0;
+    padding: 40px 32px;
+  }
+
+  .accident-steps-panel__grid {
+    gap: 2rem;
+  }
+
+  .accident-steps__col {
+    gap: 2.25rem;
   }
 }
 
 @media (max-width: 768px) {
+  .guide-unfall .page-hero--unfall .page-hero__inner,
+  .guide-unfall__inner {
+    width: calc(100% - 40px);
+  }
+
+  .guide-unfall .page-hero--unfall h1 {
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
+  }
+
   .accident-steps-panel {
-    margin-top: clamp(2.5rem, 6vw, 3.25rem);
-    padding: clamp(1.85rem, 4.5vw, 2.5rem) clamp(1.15rem, 3.5vw, 1.5rem);
+    padding: 36px 24px;
   }
 
   .accident-steps-panel__grid {
@@ -5515,7 +5563,7 @@ html.translated-ltr .counselor-cards {
 
   .accident-steps__col {
     position: relative;
-    gap: clamp(1.85rem, 4.5vw, 2.35rem);
+    gap: 2rem;
     padding-left: 4.35rem;
   }
 
@@ -5524,13 +5572,13 @@ html.translated-ltr .counselor-cards {
   }
 
   .accident-steps__col--right {
-    margin-top: clamp(1.85rem, 4.5vw, 2.35rem);
+    margin-top: 2rem;
   }
 
   .accident-step__marker {
-    width: 3.15rem;
-    height: 3.15rem;
-    font-size: 1.02rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1rem;
   }
 
   .accident-step__text {
