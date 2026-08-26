@@ -5869,26 +5869,61 @@ main:has(.guide-faq) + .footer {
   margin-top: 0;
 }
 
-.guide-faq .page-hero {
-  background: var(--bg);
-  border-bottom: none;
+.guide-faq__inner {
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2.4rem 6vw 3rem;
+  box-sizing: border-box;
+}
+
+.guide-faq__header {
+  margin: 0 0 1.5rem;
+}
+
+.guide-faq__header .kicker {
+  margin: 0 0 0.5rem;
+  color: var(--copper);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.guide-faq__header h1 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.guide-faq__header .lead {
+  margin: 0.55rem 0 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  line-height: 1.55;
 }
 
 .guide-faq__content {
-  max-width: 52rem;
-  margin: 0 auto;
-  padding: 0 6vw 3rem;
+  margin: 0;
+  padding: 0;
+  background: transparent;
 }
 
 .guide-faq .faq details {
   border-bottom: 1px solid rgba(174, 102, 60, 0.22);
   padding: 0.85rem 0;
+  background: transparent;
 }
 
 .guide-faq .faq summary {
   color: rgba(255, 255, 255, 0.96);
   font-weight: 600;
   line-height: 1.45;
+  background: transparent;
 }
 
 .guide-faq .faq summary:hover {
