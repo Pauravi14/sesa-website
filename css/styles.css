@@ -4790,15 +4790,6 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   position: relative;
 }
 
-.service-detail--classic .service-detail__editorial::before {
-  content: "";
-  display: block;
-  width: 3.5rem;
-  height: 2px;
-  margin-bottom: clamp(1.5rem, 2.8vw, 2rem);
-  background: var(--copper);
-}
-
 .service-detail--classic .service-detail__grid {
   display: grid;
   align-items: start;
@@ -4819,8 +4810,8 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 }
 
 .service-detail--classic .service-detail__grid--split .service-detail__aside {
-  padding-left: clamp(2rem, 3.5vw, 3rem);
-  border-left: 1px solid rgba(174, 102, 60, 0.34);
+  padding-left: 0;
+  border-left: none;
 }
 
 .service-detail--classic .service-detail__main p,
@@ -4842,8 +4833,8 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 
 .service-detail--classic .service-detail__footer {
   margin-top: clamp(2rem, 3.5vw, 2.75rem);
-  padding-top: clamp(1.65rem, 2.8vw, 2.15rem);
-  border-top: 1px solid rgba(174, 102, 60, 0.26);
+  padding-top: 0;
+  border-top: none;
 }
 
 .service-detail--classic .service-detail__note {
@@ -4910,7 +4901,7 @@ html.translated-ltr .service-detail--classic .service-detail__grid--split {
 }
 
 html.translated-ltr .service-detail--classic .service-detail__grid--split .service-detail__aside {
-  padding-left: clamp(1.65rem, 2.8vw, 2.5rem);
+  padding-left: 0;
 }
 
 @media (max-width: 900px) {
@@ -4923,7 +4914,7 @@ html.translated-ltr .service-detail--classic .service-detail__grid--split .servi
   }
 
   .service-detail--classic .service-detail__grid--split .service-detail__aside {
-    padding-left: clamp(1.35rem, 2.8vw, 1.85rem);
+    padding-left: 0;
   }
 
   .service-detail--classic .service-detail__main p,
@@ -4941,10 +4932,10 @@ html.translated-ltr .service-detail--classic .service-detail__grid--split .servi
 
   .service-detail--classic .service-detail__grid--split .service-detail__aside {
     margin-top: 1.35rem;
-    padding-top: 1.35rem;
+    padding-top: 0;
     padding-left: 0;
     border-left: none;
-    border-top: 1px solid rgba(174, 102, 60, 0.26);
+    border-top: none;
   }
 
   .service-detail--classic .service-detail__cta {
