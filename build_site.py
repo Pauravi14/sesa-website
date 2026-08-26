@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=162" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=163" />
     {extra_head}
   </head>
   <body>
@@ -1009,6 +1009,82 @@ def unfall_page_body() -> str:
     </div>"""
 
 
+RECHTE_ROWS = [
+    (
+        "Freie Sachverständigenwahl",
+        "Bei einem unverschuldeten Haftpflichtschaden kann grundsätzlich das Recht bestehen, einen eigenen unabhängigen Sachverständigen zu beauftragen. Ob Kosten erstattungsfähig sind, hängt vom Einzelfall ab.",
+    ),
+    (
+        "Reparaturkosten",
+        "Das Gutachten dokumentiert technisch erforderliche Reparaturmaßnahmen und voraussichtliche Kosten.",
+    ),
+    (
+        "Wertminderung",
+        "Ob eine merkantile Wertminderung vorliegt, wird im Einzelfall beurteilt.",
+    ),
+    (
+        "Totalschaden",
+        "Wiederbeschaffungswert, Restwert und Reparaturkosten werden gegenübergestellt.",
+    ),
+    (
+        "Teilschuld",
+        "Bei Mithaftung können Kosten nur anteilig erstattet werden. Die Haftungsquote sollte rechtlich geprüft werden.",
+    ),
+]
+
+
+def guide_rechte_row(number: int, title: str, description: str) -> str:
+    return f"""
+              <tr>
+                <td class="guide-rechte__num"><span aria-hidden="true">{number:02d}</span></td>
+                <th scope="row" class="guide-rechte__title">{title}</th>
+                <td class="guide-rechte__desc">{description}</td>
+              </tr>"""
+
+
+def rechte_page_body() -> str:
+    rows = "".join(
+        guide_rechte_row(index, title, description)
+        for index, (title, description) in enumerate(RECHTE_ROWS, start=1)
+    )
+    p = prefix(1)
+    return f"""
+    <div class="guide-rechte">
+      <section class="page-hero page-hero--editorial page-hero--rechte" aria-labelledby="rechte-title">
+        <div class="page-hero__inner">
+          <div class="page-hero__copy">
+            <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+            <h1 id="rechte-title">Ihre Rechte nach einem unverschuldeten Unfall</h1>
+            <span class="page-hero__rule" aria-hidden="true"></span>
+            <p class="lead">Informationen nach einem unverschuldeten Verkehrsunfall.</p>
+          </div>
+          <div class="page-hero__media">
+            <img src="{p}assets/workshop-tools.png" alt="" loading="eager" decoding="async" />
+          </div>
+        </div>
+      </section>
+      <section class="guide-rechte__article" aria-label="Ihre Rechte im Überblick">
+        <div class="guide-rechte__inner">
+          <p class="guide-rechte__intro">Die folgenden Hinweise dienen der sachlichen Information und ersetzen keine individuelle Rechtsberatung.</p>
+          <div class="guide-rechte__table-wrap">
+            <table class="guide-rechte__table">
+              <caption class="guide-rechte__caption">Ihre Rechte nach einem unverschuldeten Unfall</caption>
+              <colgroup>
+                <col class="guide-rechte__col-num" />
+                <col class="guide-rechte__col-title" />
+                <col class="guide-rechte__col-desc" />
+              </colgroup>
+              <tbody>
+                {rows}
+              </tbody>
+            </table>
+          </div>
+          <p class="guide-rechte__disclaimer"><em>Keine Rechtsberatung. Bei rechtlichen Fragen wenden Sie sich an einen Rechtsanwalt.</em></p>
+        </div>
+      </section>
+    </div>"""
+
+
 def service_step_item(number: int, text: str, icon_name: str) -> str:
     return f"""
             <li class="service-steps__item">
@@ -1211,19 +1287,14 @@ def main() -> None:
         unfall_page_body(),
     )
 
-    rechte = page_hero("Ihre Rechte", "Informationen nach einem unverschuldeten Verkehrsunfall.", "assets/workshop-tools.png", 1)
-    rechte += """
-    <section class="section content-light legal">
-      <p>Die folgenden Hinweise dienen der sachlichen Information und ersetzen keine individuelle Rechtsberatung.</p>
-      <table class="legal-table">
-        <tr><th>Freie Sachverständigenwahl</th><td>Bei einem unverschuldeten Haftpflichtschaden kann grundsätzlich das Recht bestehen, einen eigenen unabhängigen Sachverständigen zu beauftragen. Ob Kosten erstattungsfähig sind, hängt vom Einzelfall ab.</td></tr>
-        <tr><th>Reparaturkosten</th><td>Das Gutachten dokumentiert technisch erforderliche Reparaturmaßnahmen und voraussichtliche Kosten.</td></tr>
-        <tr><th>Wertminderung</th><td>Ob eine merkantile Wertminderung vorliegt, wird im Einzelfall beurteilt.</td></tr>
-        <tr><th>Totalschaden</th><td>Wiederbeschaffungswert, Restwert und Reparaturkosten werden gegenübergestellt.</td></tr>
-        <tr><th>Teilschuld</th><td>Bei Mithaftung können Kosten nur anteilig erstattet werden. Die Haftungsquote sollte rechtlich geprüft werden.</td></tr>
-      </table>
-    </section>"""
-    write(ROOT / "ratgeber" / "rechte.html", 1, "GUTACHTEN", "Ihre Rechte", "Informationen nach Unfall.", rechte)
+    write(
+        ROOT / "ratgeber" / "rechte.html",
+        1,
+        "GUTACHTEN",
+        "Ihre Rechte",
+        "Informationen nach Unfall.",
+        rechte_page_body(),
+    )
 
     faq_items = [
         ("Was kostet ein Gutachten?", "Bei einem unverschuldeten Haftpflichtschaden können erforderliche Sachverständigenkosten grundsätzlich zu den ersatzfähigen Schadenpositionen gehören. Bei Bagatellschäden oder Mithaftung können Abweichungen bestehen. Andere Gutachten werden je nach Auftrag berechnet."),

@@ -5282,12 +5282,12 @@ html.translated-ltr .counselor-cards {
 }
 
 @media (max-width: 900px) {
-  .page-hero--editorial:not(.page-hero--counselor):not(.page-hero--unfall) .page-hero__inner {
+  .page-hero--editorial:not(.page-hero--counselor):not(.page-hero--unfall):not(.page-hero--rechte) .page-hero__inner {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 
-  .page-hero--editorial:not(.page-hero--counselor):not(.page-hero--unfall) .page-hero__media img {
+  .page-hero--editorial:not(.page-hero--counselor):not(.page-hero--unfall):not(.page-hero--rechte) .page-hero__media img {
     height: clamp(210px, 40vw, 250px);
   }
 }
@@ -5555,5 +5555,289 @@ main:has(.guide-unfall) + .footer {
 
   .guide-unfall__step-text {
     font-size: 1rem;
+  }
+}
+
+/* Ratgeber — Ihre Rechte nach einem unverschuldeten Unfall */
+.guide-rechte {
+  background: var(--bg-2);
+  color: var(--text-on-dark);
+}
+
+main:has(.guide-rechte) + .footer {
+  margin-top: 0;
+  font-size: 0.975rem;
+}
+
+.guide-rechte .page-hero--rechte,
+.guide-rechte__article {
+  background: var(--bg-2);
+}
+
+.guide-rechte .page-hero--rechte {
+  padding: 48px 0 48px;
+}
+
+.guide-rechte .page-hero--rechte .page-hero__inner,
+.guide-rechte__inner {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-left: 48px;
+  padding-right: 48px;
+  box-sizing: border-box;
+}
+
+.guide-rechte .page-hero--rechte .page-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
+  gap: 2.25rem;
+  align-items: center;
+  max-width: 1360px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.guide-rechte .page-hero--rechte .page-hero__copy {
+  min-width: 0;
+  max-width: 40rem;
+}
+
+.guide-rechte .page-hero--rechte .kicker {
+  margin-bottom: 0.55rem;
+  font-size: 0.8125rem;
+}
+
+.guide-rechte .page-hero--rechte h1 {
+  font-size: clamp(2.35rem, 3.5vw, 3.25rem);
+  line-height: 1.08;
+  max-width: 40rem;
+}
+
+.guide-rechte .page-hero--rechte .page-hero__rule {
+  display: block;
+  width: 2.375rem;
+  height: 2px;
+  margin: 0.85rem 0 0.75rem;
+  background: var(--copper);
+}
+
+.guide-rechte .page-hero--rechte .lead {
+  margin: 0;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.guide-rechte .page-hero--rechte .page-hero__media {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.guide-rechte .page-hero--rechte .page-hero__media img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 1;
+}
+
+.guide-rechte__article {
+  padding: 72px 0 44px;
+}
+
+.guide-rechte__intro {
+  margin: 0 0 1.75rem;
+  max-width: 46rem;
+  color: rgba(201, 212, 222, 0.78);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.guide-rechte__table-wrap {
+  border: 1px solid rgba(174, 102, 60, 0.52);
+  border-radius: 10px;
+  background: rgba(8, 18, 32, 0.35);
+  overflow: hidden;
+}
+
+.guide-rechte__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.guide-rechte__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.guide-rechte__col-num {
+  width: 4.5rem;
+}
+
+.guide-rechte__col-title {
+  width: 28%;
+}
+
+.guide-rechte__table tbody tr:not(:last-child) {
+  border-bottom: 1px solid rgba(174, 102, 60, 0.22);
+}
+
+.guide-rechte__num,
+.guide-rechte__title,
+.guide-rechte__desc {
+  padding: 1.65rem 0;
+  vertical-align: top;
+  text-align: left;
+}
+
+.guide-rechte__num {
+  width: 4.5rem;
+  padding-left: 1.75rem;
+  padding-right: 0.75rem;
+}
+
+.guide-rechte__num span {
+  display: inline-block;
+  color: var(--copper);
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.guide-rechte__title {
+  padding-left: 0.5rem;
+  padding-right: 1.5rem;
+  color: rgba(255, 255, 255, 0.96);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.guide-rechte__desc {
+  padding-right: 1.75rem;
+  color: rgba(201, 212, 222, 0.82);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.guide-rechte__disclaimer {
+  margin: 1.875rem auto 0;
+  max-width: 42rem;
+  color: rgba(201, 212, 222, 0.68);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .guide-rechte .page-hero--rechte .page-hero__inner,
+  .guide-rechte__inner {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .guide-rechte__col-title {
+    width: 30%;
+  }
+}
+
+@media (max-width: 900px) {
+  .guide-rechte .page-hero--rechte {
+    padding: 36px 0 40px;
+  }
+
+  .guide-rechte .page-hero--rechte .page-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  .guide-rechte .page-hero--rechte .page-hero__media {
+    justify-content: stretch;
+  }
+
+  .guide-rechte .page-hero--rechte .page-hero__media img {
+    height: clamp(220px, 42vw, 280px);
+  }
+
+  .guide-rechte__article {
+    padding-top: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .guide-rechte .page-hero--rechte .page-hero__inner,
+  .guide-rechte__inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .guide-rechte .page-hero--rechte h1 {
+    font-size: clamp(2rem, 7.5vw, 2.65rem);
+  }
+
+  .guide-rechte__table {
+    display: block;
+  }
+
+  .guide-rechte__table colgroup {
+    display: none;
+  }
+
+  .guide-rechte__table tbody {
+    display: block;
+  }
+
+  .guide-rechte__table tbody tr {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "num title"
+      "desc desc";
+    gap: 0.35rem 0.85rem;
+    padding: 1.35rem 1.25rem;
+  }
+
+  .guide-rechte__table tbody tr:not(:last-child) {
+    border-bottom: 1px solid rgba(174, 102, 60, 0.22);
+  }
+
+  .guide-rechte__num,
+  .guide-rechte__title,
+  .guide-rechte__desc {
+    display: block;
+    width: auto;
+    padding: 0;
+  }
+
+  .guide-rechte__num {
+    grid-area: num;
+    align-self: start;
+    padding-top: 0.1rem;
+  }
+
+  .guide-rechte__title {
+    grid-area: title;
+    margin: 0;
+    padding-right: 0;
+  }
+
+  .guide-rechte__desc {
+    grid-area: desc;
+    padding-right: 0;
   }
 }
