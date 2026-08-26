@@ -4790,6 +4790,12 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   position: relative;
 }
 
+.service-detail--classic .service-detail__editorial::before,
+.service-detail--classic .service-detail__editorial::after {
+  content: none;
+  display: none;
+}
+
 .service-detail--classic .service-detail__grid {
   display: grid;
   align-items: start;
@@ -4833,8 +4839,8 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 
 .service-detail--classic .service-detail__footer {
   margin-top: clamp(2rem, 3.5vw, 2.75rem);
-  padding-top: 0;
-  border-top: none;
+  padding-top: clamp(1.65rem, 2.8vw, 2.15rem);
+  border-top: 1px solid rgba(174, 102, 60, 0.26);
 }
 
 .service-detail--classic .service-detail__note {
