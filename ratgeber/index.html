@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/styles.css?v=144" />
+    <link rel="stylesheet" href="../css/styles.css?v=145" />
     
   </head>
   <body>
@@ -67,7 +67,9 @@
       </div>
     </header>
     <main id="main">
-    <section class="page-hero">
+    <div class="guide-index">
+      
+    <section class="page-hero page-hero--editorial">
       <div>
         <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
         <h1>Ratgeber</h1>
@@ -75,11 +77,29 @@
       </div>
       <img src="../assets/nrw-road.png" alt="" loading="lazy" />
     </section>
-    <section class="section content-light"><div class="grid-3">
-      <article class="card"><h3><a href="nach-einem-unfall.html">Was tun nach einem Unfall?</a></h3></article>
-      <article class="card"><h3><a href="rechte.html">Ihre Rechte nach einem unverschuldeten Unfall</a></h3></article>
-      <article class="card"><h3><a href="faq.html">FAQ</a></h3></article>
-    </div></section></main>
+      <section class="section content-light guide-index__cards" aria-label="Ratgeber">
+        <div class="guide-index__inner">
+          <div class="guide-index__grid">
+            
+        <article class="guide-card">
+          <a class="guide-card__link" href="nach-einem-unfall.html">
+            <h3 class="guide-card__title">Was tun nach einem Unfall?</h3>
+          </a>
+        </article>
+        <article class="guide-card">
+          <a class="guide-card__link" href="rechte.html">
+            <h3 class="guide-card__title">Ihre Rechte nach einem unverschuldeten Unfall</h3>
+          </a>
+        </article>
+        <article class="guide-card">
+          <a class="guide-card__link" href="faq.html">
+            <h3 class="guide-card__title">FAQ</h3>
+          </a>
+        </article>
+          </div>
+        </div>
+      </section>
+    </div></main>
     <footer class="footer">
       <div>
         <strong>SESA KFZ-Sachverständigenbüro</strong><br />

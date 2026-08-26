@@ -791,7 +791,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=144" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=145" />
     {extra_head}
   </head>
   <body>
@@ -855,10 +855,11 @@ def write(
     print("wrote", path)
 
 
-def page_hero(title: str, lead: str, img: str, depth: int) -> str:
+def page_hero(title: str, lead: str, img: str, depth: int, editorial: bool = False) -> str:
     p = prefix(depth)
+    hero_class = "page-hero page-hero--editorial" if editorial else "page-hero"
     return f"""
-    <section class="page-hero">
+    <section class="{hero_class}">
       <div>
         <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
         <h1>{title}</h1>
@@ -866,6 +867,41 @@ def page_hero(title: str, lead: str, img: str, depth: int) -> str:
       </div>
       <img src="{p}{img}" alt="" loading="lazy" />
     </section>"""
+
+
+def ratgeber_index_body() -> str:
+    cards = [
+        ("nach-einem-unfall.html", "Was tun nach einem Unfall?"),
+        ("rechte.html", "Ihre Rechte nach einem unverschuldeten Unfall"),
+        ("faq.html", "FAQ"),
+    ]
+    card_html = "".join(
+        f"""
+        <article class="guide-card">
+          <a class="guide-card__link" href="{slug}">
+            <h3 class="guide-card__title">{title}</h3>
+          </a>
+        </article>"""
+        for slug, title in cards
+    )
+    hero = page_hero(
+        "Ratgeber",
+        "Sachliche Informationen — keine Rechtsberatung.",
+        "assets/nrw-road.png",
+        1,
+        editorial=True,
+    )
+    return f"""
+    <div class="guide-index">
+      {hero}
+      <section class="section content-light guide-index__cards" aria-label="Ratgeber">
+        <div class="guide-index__inner">
+          <div class="guide-index__grid">
+            {card_html}
+          </div>
+        </div>
+      </section>
+    </div>"""
 
 
 def service_page_content(paragraphs: list[str]) -> str:
@@ -905,7 +941,7 @@ def service_page_content(paragraphs: list[str]) -> str:
 
 
 def service_page(slug: str, title: str, lead: str, paragraphs: list[str], img: str) -> None:
-    body = page_hero(title, lead, img, 1)
+    body = page_hero(title, lead, img, 1, editorial=True)
     body += service_page_content(paragraphs)
     write(ROOT / "leistungen" / slug, 1, "Leistungen", title, lead, body)
 
@@ -1039,14 +1075,14 @@ def main() -> None:
     )
 
     # Ratgeber
-    rat_index = page_hero("Ratgeber", "Sachliche Informationen — keine Rechtsberatung.", "assets/nrw-road.png", 1)
-    rat_index += """
-    <section class="section content-light"><div class="grid-3">
-      <article class="card"><h3><a href="nach-einem-unfall.html">Was tun nach einem Unfall?</a></h3></article>
-      <article class="card"><h3><a href="rechte.html">Ihre Rechte nach einem unverschuldeten Unfall</a></h3></article>
-      <article class="card"><h3><a href="faq.html">FAQ</a></h3></article>
-    </div></section>"""
-    write(ROOT / "ratgeber" / "index.html", 1, "GUTACHTEN", "Ratgeber", "Unfallhilfe und FAQ.", rat_index)
+    write(
+        ROOT / "ratgeber" / "index.html",
+        1,
+        "GUTACHTEN",
+        "Ratgeber",
+        "Unfallhilfe und FAQ.",
+        ratgeber_index_body(),
+    )
 
     unfall_rat = page_hero("Was tun nach einem Unfall?", "Erste Schritte an der Unfallstelle.", "assets/damage-detail.png", 1)
     unfall_rat += """
