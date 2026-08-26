@@ -791,7 +791,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=138" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=139" />
     {extra_head}
   </head>
   <body>
@@ -884,16 +884,20 @@ def service_page_content(paragraphs: list[str]) -> str:
     return f"""
     <section class="section content-light service-detail">
       <div class="service-detail__inner">
-        <div class="{grid_class}">
-          <div class="service-detail__main">
-            {main_html}
+        <div class="service-detail__editorial">
+          <div class="{grid_class}">
+            <div class="service-detail__main">
+              {main_html}
+            </div>
+            {aside_html}
           </div>
-          {aside_html}
         </div>
-        <p class="service-detail__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
-        <div class="service-detail__cta">
-          <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
-          <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
+        <div class="service-detail__footer">
+          <p class="service-detail__note"><em>Hinweis: Diese Information ersetzt keine individuelle Rechtsberatung.</em></p>
+          <div class="service-detail__cta">
+            <a class="btn btn-primary" href="../schaden-melden.html">Schaden melden</a>
+            <a class="btn btn-secondary-navy" href="tel:+491773145839">Jetzt anrufen</a>
+          </div>
         </div>
       </div>
     </section>"""

@@ -4776,6 +4776,7 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 /* Service detail pages — content below hero */
 .service-detail {
   padding: clamp(2.25rem, 5.5vw, 4.125rem) 0 clamp(2.25rem, 4.5vw, 3.5rem);
+  background: #f5f2ed;
 }
 
 .service-detail__inner {
@@ -4785,18 +4786,41 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   box-sizing: border-box;
 }
 
+.service-detail__editorial {
+  position: relative;
+}
+
+.service-detail__editorial::before {
+  content: "";
+  display: block;
+  width: 3.25rem;
+  height: 2px;
+  margin-bottom: clamp(1.35rem, 2.5vw, 1.75rem);
+  background: #ae663c;
+}
+
 .service-detail__grid {
   display: grid;
-  gap: clamp(1.1rem, 2vw, 2rem);
   align-items: start;
 }
 
 .service-detail__grid--split {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 3vw, 2.75rem);
 }
 
 .service-detail__grid--single {
   max-width: 42rem;
+}
+
+.service-detail__main,
+.service-detail__aside {
+  min-width: 0;
+}
+
+.service-detail__grid--split .service-detail__aside {
+  padding-left: clamp(1.75rem, 3vw, 2.75rem);
+  border-left: 1px solid rgba(174, 102, 60, 0.38);
 }
 
 .service-detail__main p,
@@ -4816,8 +4840,14 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
   margin-bottom: 0;
 }
 
+.service-detail__footer {
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  padding-top: clamp(1.5rem, 2.5vw, 2rem);
+  border-top: 1px solid rgba(174, 102, 60, 0.28);
+}
+
 .service-detail__note {
-  margin: clamp(1.65rem, 2.85vw, 2.65rem) 0 0;
+  margin: 0;
   max-width: 52rem;
   color: var(--mute);
   font-size: 0.9375rem;
@@ -4875,6 +4905,11 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 
 html.translated-ltr .service-detail__grid--split {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+html.translated-ltr .service-detail__grid--split .service-detail__aside {
+  padding-left: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 
 @media (max-width: 900px) {
@@ -4883,7 +4918,11 @@ html.translated-ltr .service-detail__grid--split {
   }
 
   .service-detail__grid--split {
-    gap: 1rem;
+    gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+
+  .service-detail__grid--split .service-detail__aside {
+    padding-left: clamp(1.25rem, 2.5vw, 1.75rem);
   }
 
   .service-detail__main p,
@@ -4900,6 +4939,15 @@ html.translated-ltr .service-detail__grid--split {
 
   .service-detail__grid--split {
     grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .service-detail__grid--split .service-detail__aside {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(174, 102, 60, 0.28);
   }
 
   .service-detail__cta {
