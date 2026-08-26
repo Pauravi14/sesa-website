@@ -12,23 +12,30 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
-KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
       .guide-kontakt__signature {
         margin: 1.35rem 0 0;
         padding: 0;
         line-height: 1;
+        overflow: visible;
       }
       .guide-kontakt__signature-text {
         display: inline-block;
+        white-space: nowrap;
         color: #AE663C;
-        font-family: "Great Vibes", "Segoe Script", "Brush Script MT", cursive !important;
-        font-size: clamp(2.5rem, 5vw, 3.35rem);
+        font-family: "Alex Brush", "Segoe Script", "Brush Script MT", cursive !important;
+        font-size: clamp(2rem, 4.5vw, 2.85rem);
         font-style: normal !important;
         font-weight: 400 !important;
-        line-height: 1.05;
-        letter-spacing: 0.02em;
+        line-height: 1;
+        letter-spacing: 0.01em;
+      }
+      @media (max-width: 480px) {
+        .guide-kontakt__signature-text {
+          font-size: 1.75rem;
+        }
       }
     </style>"""
 KONTAKT_EXTRA_HEAD = f"""
