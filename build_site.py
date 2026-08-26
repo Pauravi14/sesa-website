@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=168" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=169" />
     {extra_head}
   </head>
   <body>
@@ -1090,12 +1090,27 @@ def faq_page_body(items: list[tuple[str, str]]) -> str:
         f"<details><summary>{question}</summary><p class=\"muted\">{answer}</p></details>"
         for question, answer in items
     )
-    hero = page_hero("FAQ", "Häufige Fragen zum Gutachten.", "assets/workshop-tools.png", 1)
+    p = prefix(1)
     return f"""
     <div class="guide-faq">
-      {hero}
-      <section class="guide-faq__content faq" aria-label="Häufig gestellte Fragen">
-        {details}
+      <section class="page-hero page-hero--editorial page-hero--faq" aria-labelledby="faq-title">
+        <div class="page-hero__inner">
+          <div class="page-hero__copy">
+            <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+            <h1 id="faq-title">FAQ</h1>
+            <p class="lead">Häufige Fragen zum Gutachten.</p>
+          </div>
+          <div class="page-hero__media">
+            <img src="{p}assets/workshop-tools.png" alt="" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section class="guide-faq__article" aria-label="Häufig gestellte Fragen">
+        <div class="guide-faq__inner">
+          <div class="guide-faq__content faq">
+            {details}
+          </div>
+        </div>
       </section>
     </div>"""
 
