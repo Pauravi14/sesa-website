@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=160" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=161" />
     {extra_head}
   </head>
   <body>
@@ -996,11 +996,7 @@ def unfall_page_body() -> str:
                 {left_steps}
               </ol>
               <div class="guide-unfall__divider" aria-hidden="true">
-                <span class="guide-unfall__divider-track">
-                  <span class="guide-unfall__divider-dot"></span>
-                  <span class="guide-unfall__divider-dot"></span>
-                  <span class="guide-unfall__divider-dot"></span>
-                </span>
+                <span class="guide-unfall__divider-track"></span>
               </div>
               <ol class="guide-unfall__col guide-unfall__col--right" role="list">
                 {right_steps}

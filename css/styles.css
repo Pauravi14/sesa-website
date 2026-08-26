@@ -5332,7 +5332,7 @@ main:has(.guide-unfall) + .footer {
 
 .guide-unfall .page-hero--unfall .page-hero__copy {
   min-width: 0;
-  max-width: 34rem;
+  max-width: 38rem;
 }
 
 .guide-unfall .page-hero--unfall .kicker {
@@ -5343,7 +5343,7 @@ main:has(.guide-unfall) + .footer {
 .guide-unfall .page-hero--unfall h1 {
   font-size: clamp(3rem, 3.85vw, 3.75rem);
   line-height: 1.05;
-  max-width: 34rem;
+  max-width: 38rem;
 }
 
 .guide-unfall .page-hero--unfall .page-hero__rule {
@@ -5356,7 +5356,7 @@ main:has(.guide-unfall) + .footer {
 
 .guide-unfall .page-hero--unfall .lead {
   margin: 0;
-  max-width: 34rem;
+  max-width: 38rem;
   font-size: 1.0625rem;
   line-height: 1.55;
 }
@@ -5385,7 +5385,7 @@ main:has(.guide-unfall) + .footer {
   width: 100%;
   border: 1px solid rgba(174, 102, 60, 0.52);
   border-radius: 10px;
-  padding: 72px 64px;
+  padding: 52px 56px;
   background: var(--bg-2);
   box-sizing: border-box;
 }
@@ -5404,17 +5404,17 @@ main:has(.guide-unfall) + .footer {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3.5rem;
 }
 
 .guide-unfall__col::before {
   content: "";
   position: absolute;
-  top: 1.25rem;
-  bottom: 1.25rem;
-  left: 1.1875rem;
+  top: 20px;
+  bottom: 20px;
+  left: 19px;
   width: 1px;
-  background: rgba(174, 102, 60, 0.36);
+  background: rgba(174, 102, 60, 0.28);
   z-index: 0;
 }
 
@@ -5431,14 +5431,14 @@ main:has(.guide-unfall) + .footer {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--copper);
   border-radius: 50%;
   background: var(--bg-2);
   color: var(--copper);
   font-family: var(--serif);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.03em;
@@ -5449,49 +5449,23 @@ main:has(.guide-unfall) + .footer {
   margin: 0;
   color: rgba(255, 255, 255, 0.92);
   font-size: 1.0625rem;
-  line-height: 1.5;
+  line-height: 1.55;
   overflow-wrap: break-word;
 }
 
 .guide-unfall__divider {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  align-self: center;
+  align-self: stretch;
   width: 1rem;
   min-width: 1rem;
-  height: 290px;
 }
 
 .guide-unfall__divider-track {
-  position: relative;
   width: 1px;
   height: 100%;
-  background: rgba(174, 102, 60, 0.36);
-}
-
-.guide-unfall__divider-dot {
-  position: absolute;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  margin-left: -2px;
-  border-radius: 50%;
-  background: var(--copper);
-}
-
-.guide-unfall__divider-dot:nth-child(1) {
-  top: 16.666%;
-}
-
-.guide-unfall__divider-dot:nth-child(2) {
-  top: 50%;
-  margin-top: -2px;
-}
-
-.guide-unfall__divider-dot:nth-child(3) {
-  top: 83.333%;
-  margin-top: -4px;
+  background: rgba(174, 102, 60, 0.16);
 }
 
 .guide-unfall__disclaimer {
@@ -5511,7 +5485,7 @@ main:has(.guide-unfall) + .footer {
   }
 
   .guide-unfall__panel {
-    padding: 56px 40px;
+    padding: 44px 36px;
   }
 }
 
@@ -5567,15 +5541,15 @@ main:has(.guide-unfall) + .footer {
   }
 
   .guide-unfall__step-marker {
-    width: 2.35rem;
-    height: 2.35rem;
-    font-size: 0.75rem;
+    width: 40px;
+    height: 40px;
+    font-size: 0.8125rem;
   }
 
   .guide-unfall__col::before {
-    left: 1.0625rem;
-    top: 1.1rem;
-    bottom: 1.1rem;
+    left: 19px;
+    top: 20px;
+    bottom: 20px;
   }
 
   .guide-unfall__step-text {
