@@ -17,17 +17,17 @@ KONTAKT_SIGNATURE_STYLE = """
     <style>
       .guide-kontakt__banner,
       .guide-kontakt__banner-copy {
-        min-height: 260px;
-        max-height: 280px;
+        min-height: 200px;
+        max-height: 210px;
       }
       .guide-kontakt__banner-copy {
-        padding: 1.5rem 5vw;
+        padding: 1rem 4vw;
       }
       @media (max-width: 900px) {
         .guide-kontakt__banner,
         .guide-kontakt__banner-copy {
-          min-height: 220px;
-          max-height: 240px;
+          min-height: 175px;
+          max-height: 185px;
         }
       }
       .guide-kontakt__signature {
