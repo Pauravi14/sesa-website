@@ -4810,8 +4810,8 @@ html.translated-ltr .services-grid__cards > .leistungen-card:last-child:not(.lei
 }
 
 .service-detail--classic .service-detail__grid--split .service-detail__aside {
-  padding-left: 0;
-  border-left: none;
+  padding-left: clamp(2rem, 3.5vw, 3rem);
+  border-left: 1px solid rgba(174, 102, 60, 0.32);
 }
 
 .service-detail--classic .service-detail__main p,
@@ -4901,7 +4901,7 @@ html.translated-ltr .service-detail--classic .service-detail__grid--split {
 }
 
 html.translated-ltr .service-detail--classic .service-detail__grid--split .service-detail__aside {
-  padding-left: 0;
+  padding-left: clamp(1.75rem, 3vw, 2.75rem);
 }
 
 @media (max-width: 900px) {
@@ -4914,10 +4914,8 @@ html.translated-ltr .service-detail--classic .service-detail__grid--split .servi
   }
 
   .service-detail--classic .service-detail__grid--split .service-detail__aside {
-    padding-left: 0;
+    padding-left: clamp(1.5rem, 2.8vw, 2rem);
   }
-
-  .service-detail--classic .service-detail__main p,
   .service-detail--classic .service-detail__aside p {
     line-height: 1.65;
   }
