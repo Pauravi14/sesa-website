@@ -791,7 +791,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=145" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=146" />
     {extra_head}
   </head>
   <body>
@@ -857,9 +857,22 @@ def write(
 
 def page_hero(title: str, lead: str, img: str, depth: int, editorial: bool = False) -> str:
     p = prefix(depth)
-    hero_class = "page-hero page-hero--editorial" if editorial else "page-hero"
+    if editorial:
+        return f"""
+    <section class="page-hero page-hero--editorial">
+      <div class="page-hero__inner">
+        <div class="page-hero__copy">
+          <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+          <h1>{title}</h1>
+          <p class="lead">{lead}</p>
+        </div>
+        <div class="page-hero__media">
+          <img src="{p}{img}" alt="" loading="lazy" />
+        </div>
+      </div>
+    </section>"""
     return f"""
-    <section class="{hero_class}">
+    <section class="page-hero">
       <div>
         <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
         <h1>{title}</h1>
