@@ -5100,18 +5100,18 @@ html.translated-ltr .service-steps-card__grid {
 }
 
 .guide-index .page-hero--counselor {
-  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+  padding: clamp(1.85rem, 3.8vw, 2.65rem) 0;
 }
 
 .guide-index .page-hero--counselor .page-hero__inner {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(2rem, 4vw, 3.5rem);
-  min-height: clamp(300px, 42vh, 440px);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  min-height: clamp(240px, 32vh, 330px);
   align-items: center;
 }
 
 .guide-index .page-hero--counselor .page-hero__media img {
-  height: clamp(240px, 34vh, 360px);
+  height: clamp(300px, 30vh, 340px);
   object-position: center center;
   opacity: 1;
 }
@@ -5249,12 +5249,12 @@ html.translated-ltr .counselor-cards {
 @media (max-width: 900px) {
   .guide-index .page-hero--counselor .page-hero__inner {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
     min-height: 0;
   }
 
   .guide-index .page-hero--counselor .page-hero__media img {
-    height: clamp(210px, 40vw, 280px);
+    height: clamp(190px, 36vw, 240px);
   }
 }
 
