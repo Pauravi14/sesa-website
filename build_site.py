@@ -793,7 +793,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=169" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=170" />
     {extra_head}
   </head>
   <body>
@@ -1085,6 +1085,80 @@ def rechte_page_body() -> str:
     </div>"""
 
 
+def kontakt_page_body() -> str:
+    portrait = ABOUT_PORTRAIT
+    return f"""
+    <div class="guide-kontakt">
+      <section class="guide-kontakt__hero" aria-labelledby="kontakt-title">
+        <div class="guide-kontakt__inner guide-kontakt__hero-grid">
+          <div class="guide-kontakt__hero-copy">
+            <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+            <h1 id="kontakt-title">Kontakt</h1>
+            <p class="lead">Telefon, E-Mail, Anschrift und Kartenansicht.</p>
+            <span class="guide-kontakt__rule" aria-hidden="true"></span>
+          </div>
+          <div class="guide-kontakt__hero-media">
+            <img src="{portrait}" alt="Porträtfoto Platzhalter" width="480" height="600" loading="eager" decoding="async" />
+          </div>
+        </div>
+      </section>
+
+      <section class="guide-kontakt__strip" aria-label="Kontaktinformationen">
+        <div class="guide-kontakt__inner">
+          <div class="guide-kontakt__strip-grid">
+            <div class="guide-kontakt__strip-item">
+              <p class="guide-kontakt__strip-label">Telefon</p>
+              <p class="guide-kontakt__strip-value"><a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></p>
+            </div>
+            <div class="guide-kontakt__strip-item">
+              <p class="guide-kontakt__strip-label">E-Mail</p>
+              <p class="guide-kontakt__strip-value"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+            </div>
+            <div class="guide-kontakt__strip-item">
+              <p class="guide-kontakt__strip-label">Anschrift</p>
+              <p class="guide-kontakt__strip-value">{ADDRESS}</p>
+            </div>
+            <div class="guide-kontakt__strip-item">
+              <p class="guide-kontakt__strip-label">Öffnungszeiten</p>
+              <p class="guide-kontakt__strip-value">nach Vereinbarung</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="guide-kontakt__main" aria-label="Ansprechpartner">
+        <div class="guide-kontakt__inner">
+          <div class="guide-kontakt__main-grid">
+            <div class="guide-kontakt__panel guide-kontakt__panel--details">
+              <h2>{OWNER}</h2>
+              <ul class="contact-list guide-kontakt__contact-list">
+                <li>Telefon: <a href="tel:{PHONE_LINK}">{PHONE_DISPLAY}</a></li>
+                <li>E-Mail: <a href="mailto:{EMAIL}">{EMAIL}</a></li>
+                <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
+                <li>{ADDRESS}</li>
+              </ul>
+              <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
+            </div>
+            <div class="guide-kontakt__panel guide-kontakt__panel--portrait">
+              <img src="{portrait}" alt="Porträtfoto Platzhalter" width="480" height="600" loading="lazy" decoding="async" />
+              <p class="guide-kontakt__portrait-caption">{ADDRESS}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="guide-kontakt__map-section" aria-labelledby="kontakt-map-title">
+        <div class="guide-kontakt__inner">
+          <h2 id="kontakt-map-title">Standort</h2>
+          <div class="map-wrap guide-kontakt__map" data-map>
+            <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
+          </div>
+          <p class="guide-kontakt__map-link muted"><a href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a></p>
+        </div>
+      </section>
+    </div>"""
+
+
 def faq_page_body(items: list[tuple[str, str]]) -> str:
     details = "".join(
         f"<details><summary>{question}</summary><p class=\"muted\">{answer}</p></details>"
@@ -1336,32 +1410,14 @@ def main() -> None:
     ]
     write(ROOT / "ratgeber" / "faq.html", 1, "GUTACHTEN", "FAQ", "Häufige Fragen.", faq_page_body(faq_items))
 
-    # Kontakt
-    kontakt = page_hero("Kontakt", "Telefon, E-Mail, Anschrift und Kartenansicht.", "assets/hero-inspection.png", 0)
-    kontakt += """
-    <section class="section content-light split">
-      <div>
-        <div class="portrait-card">
-          <img class="portrait" src="assets/portrait-placeholder.png" alt="Porträtfoto Platzhalter" />
-          <h2>""" + OWNER + """</h2>
-          <ul class="contact-list">
-            <li>Telefon: <a href="tel:+491773145839">""" + PHONE_DISPLAY + """</a></li>
-            <li>E-Mail: <a href="mailto:""" + EMAIL + """">""" + EMAIL + """</a></li>
-            <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
-            <li>""" + ADDRESS + """</li>
-          </ul>
-          <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
-        </div>
-      </div>
-      <div>
-        <h2>Standort</h2>
-        <div class="map-wrap" data-map>
-          <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
-        </div>
-        <p class="muted"><a href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a></p>
-      </div>
-    </section>"""
-    write(ROOT / "kontakt.html", 0, "Kontakt", "Kontakt", "Kontakt und Anfahrt.", kontakt)
+    write(
+        ROOT / "kontakt.html",
+        0,
+        "Kontakt",
+        "Kontakt",
+        "Kontakt und Anfahrt.",
+        kontakt_page_body(),
+    )
 
     # Schaden melden
     schaden = page_hero("Schaden melden", "Kurze Angaben — Weiterleitung an WhatsApp.", "assets/damage-detail.png", 0)

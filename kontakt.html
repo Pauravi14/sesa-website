@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=169" />
+    <link rel="stylesheet" href="./css/styles.css?v=170" />
     
   </head>
   <body>
@@ -67,36 +67,75 @@
       </div>
     </header>
     <main id="main">
-    <section class="page-hero">
-      <div>
-        <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
-        <h1>Kontakt</h1>
-        <p class="lead">Telefon, E-Mail, Anschrift und Kartenansicht.</p>
-      </div>
-      <img src="./assets/hero-inspection.png" alt="" loading="lazy" />
-    </section>
-    <section class="section content-light split">
-      <div>
-        <div class="portrait-card">
-          <img class="portrait" src="assets/portrait-placeholder.png" alt="Porträtfoto Platzhalter" />
-          <h2>Selim Sabahoglu</h2>
-          <ul class="contact-list">
-            <li>Telefon: <a href="tel:+491773145839">+49 177 3145839</a></li>
-            <li>E-Mail: <a href="mailto:sesa-svb@outlook.de">sesa-svb@outlook.de</a></li>
-            <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
-            <li>Pohlweg 76, 33098 Paderborn</li>
-          </ul>
-          <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
+    <div class="guide-kontakt">
+      <section class="guide-kontakt__hero" aria-labelledby="kontakt-title">
+        <div class="guide-kontakt__inner guide-kontakt__hero-grid">
+          <div class="guide-kontakt__hero-copy">
+            <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+            <h1 id="kontakt-title">Kontakt</h1>
+            <p class="lead">Telefon, E-Mail, Anschrift und Kartenansicht.</p>
+            <span class="guide-kontakt__rule" aria-hidden="true"></span>
+          </div>
+          <div class="guide-kontakt__hero-media">
+            <img src="assets/portrait-placeholder.png?v=1" alt="Porträtfoto Platzhalter" width="480" height="600" loading="eager" decoding="async" />
+          </div>
         </div>
-      </div>
-      <div>
-        <h2>Standort</h2>
-        <div class="map-wrap" data-map>
-          <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
+      </section>
+
+      <section class="guide-kontakt__strip" aria-label="Kontaktinformationen">
+        <div class="guide-kontakt__inner">
+          <div class="guide-kontakt__strip-grid">
+            <div class="guide-kontakt__strip-item">
+              <p class="guide-kontakt__strip-label">Telefon</p>
+              <p class="guide-kontakt__strip-value"><a href="tel:+491773145839">+49 177 3145839</a></p>
+            </div>
+            <div class="guide-kontakt__strip-item">
+              <p class="guide-kontakt__strip-label">E-Mail</p>
+              <p class="guide-kontakt__strip-value"><a href="mailto:sesa-svb@outlook.de">sesa-svb@outlook.de</a></p>
+            </div>
+            <div class="guide-kontakt__strip-item">
+              <p class="guide-kontakt__strip-label">Anschrift</p>
+              <p class="guide-kontakt__strip-value">Pohlweg 76, 33098 Paderborn</p>
+            </div>
+            <div class="guide-kontakt__strip-item">
+              <p class="guide-kontakt__strip-label">Öffnungszeiten</p>
+              <p class="guide-kontakt__strip-value">nach Vereinbarung</p>
+            </div>
+          </div>
         </div>
-        <p class="muted"><a href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a></p>
-      </div>
-    </section></main>
+      </section>
+
+      <section class="guide-kontakt__main" aria-label="Ansprechpartner">
+        <div class="guide-kontakt__inner">
+          <div class="guide-kontakt__main-grid">
+            <div class="guide-kontakt__panel guide-kontakt__panel--details">
+              <h2>Selim Sabahoglu</h2>
+              <ul class="contact-list guide-kontakt__contact-list">
+                <li>Telefon: <a href="tel:+491773145839">+49 177 3145839</a></li>
+                <li>E-Mail: <a href="mailto:sesa-svb@outlook.de">sesa-svb@outlook.de</a></li>
+                <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
+                <li>Pohlweg 76, 33098 Paderborn</li>
+              </ul>
+              <p class="muted">Öffnungszeiten: nach Vereinbarung</p>
+            </div>
+            <div class="guide-kontakt__panel guide-kontakt__panel--portrait">
+              <img src="assets/portrait-placeholder.png?v=1" alt="Porträtfoto Platzhalter" width="480" height="600" loading="lazy" decoding="async" />
+              <p class="guide-kontakt__portrait-caption">Pohlweg 76, 33098 Paderborn</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="guide-kontakt__map-section" aria-labelledby="kontakt-map-title">
+        <div class="guide-kontakt__inner">
+          <h2 id="kontakt-map-title">Standort</h2>
+          <div class="map-wrap guide-kontakt__map" data-map>
+            <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
+          </div>
+          <p class="guide-kontakt__map-link muted"><a href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a></p>
+        </div>
+      </section>
+    </div></main>
     <footer class="footer">
       <div>
         <strong>SESA KFZ-Sachverständigenbüro</strong><br />
