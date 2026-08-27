@@ -6028,6 +6028,7 @@ main:has(.guide-faq) + .footer {
   width: 100%;
   background: #081525;
   color: var(--text-on-dark);
+  font-size: var(--type-body);
 }
 
 main:has(.guide-kontakt) {
@@ -6052,8 +6053,8 @@ main:has(.guide-kontakt) + .footer {
 /* Hero — full-width background, centered copy (home-style) */
 .guide-kontakt__hero {
   position: relative;
-  min-height: 180px;
-  max-height: 200px;
+  min-height: 200px;
+  max-height: 220px;
   overflow: hidden;
   background: #081525;
 }
@@ -6098,8 +6099,8 @@ main:has(.guide-kontakt) + .footer {
   justify-content: center;
   width: 100%;
   max-width: none;
-  min-height: 180px;
-  max-height: 200px;
+  min-height: 200px;
+  max-height: 220px;
   margin: 0;
   padding: 0 6vw;
   box-sizing: border-box;
@@ -6116,13 +6117,13 @@ main:has(.guide-kontakt) + .footer {
 }
 
 .guide-kontakt__hero-copy .kicker {
-  margin: 0 0 0.25rem;
-  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 0.35rem;
+  color: rgba(255, 255, 255, 0.92);
   font-family: var(--sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.35;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.45;
   text-transform: uppercase;
 }
 
@@ -6130,20 +6131,20 @@ main:has(.guide-kontakt) + .footer {
   margin: 0;
   color: var(--ivory);
   font-family: var(--serif);
-  font-size: clamp(2rem, 4.5vw, 3rem);
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.02em;
+  font-size: var(--type-h1);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
 }
 
 .guide-kontakt__hero-copy .lead {
-  margin: 0.35rem 0 0;
+  margin: 0.5rem 0 0;
   max-width: none;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.88);
   font-family: var(--sans);
-  font-size: 1.1875rem;
+  font-size: var(--type-lead);
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.65;
 }
 
 .guide-kontakt__rule {
@@ -6203,8 +6204,8 @@ main:has(.guide-kontakt) + .footer {
 .guide-kontakt__strip-value {
   margin: 0;
   color: rgba(255, 255, 255, 0.94);
-  font-size: 1.0625rem;
-  line-height: 1.4;
+  font-size: var(--type-body);
+  line-height: 1.55;
 }
 
 .guide-kontakt__strip-value a {
@@ -6219,10 +6220,10 @@ main:has(.guide-kontakt) + .footer {
 .guide-kontakt__strip-label {
   margin: 0;
   color: rgba(174, 102, 60, 0.88);
-  font-size: 0.6875rem;
+  font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.12em;
-  line-height: 1.35;
+  line-height: 1.45;
   text-transform: uppercase;
 }
 
@@ -6274,11 +6275,12 @@ main:has(.guide-kontakt) + .footer {
   padding: 1.5rem 1.5rem 1.35rem;
 }
 
-.guide-kontakt__profile-body h2 {
+.guide-kontakt__profile-body h2,
+.guide-kontakt__panel--map h2 {
   margin: 0 0 0.35rem;
   color: #fff;
   font-family: var(--serif);
-  font-size: clamp(1.625rem, 2.4vw, 2rem);
+  font-size: var(--type-h2);
   font-weight: 600;
   line-height: 1.12;
 }
@@ -6286,17 +6288,17 @@ main:has(.guide-kontakt) + .footer {
 .guide-kontakt__eyebrow {
   margin: 0 0 0.75rem;
   color: var(--copper);
-  font-size: 0.6875rem;
+  font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.12em;
-  line-height: 1.4;
+  line-height: 1.45;
   text-transform: uppercase;
 }
 
 .guide-kontakt__intro {
   margin: 0 0 1rem;
   color: rgba(201, 212, 222, 0.88);
-  font-size: 0.9375rem;
+  font-size: var(--type-body);
   line-height: 1.65;
 }
 
@@ -6309,8 +6311,8 @@ main:has(.guide-kontakt) + .footer {
 .guide-kontakt__contact-list li {
   margin-bottom: 0.45rem;
   color: rgba(201, 212, 222, 0.88);
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  font-size: var(--type-body);
+  line-height: 1.65;
 }
 
 .guide-kontakt__contact-list a {
@@ -6353,7 +6355,7 @@ main:has(.guide-kontakt) + .footer {
   gap: 0.25rem;
   margin-top: 1rem;
   color: var(--copper);
-  font-size: 0.8125rem;
+  font-size: var(--type-body);
   font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1.4;
@@ -6377,26 +6379,21 @@ main:has(.guide-kontakt) + .footer {
 
 .guide-kontakt__panel--map h2 {
   margin: 0 0 0.85rem;
-  color: #fff;
-  font-family: var(--serif);
-  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
-  font-weight: 600;
-  line-height: 1.12;
 }
 
 .guide-kontakt__location-name {
   margin: 0 0 0.45rem;
   color: rgba(255, 255, 255, 0.92);
-  font-size: 0.9375rem;
+  font-size: var(--type-body);
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .guide-kontakt__location-detail {
   margin: 0 0 0.3rem;
   color: rgba(201, 212, 222, 0.82);
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  font-size: var(--type-body);
+  line-height: 1.65;
 }
 
 .guide-kontakt__map {
@@ -6429,7 +6426,7 @@ main:has(.guide-kontakt) + .footer {
   border-radius: 4px;
   background: transparent;
   color: var(--copper);
-  font-size: 0.75rem;
+  font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1.4;
@@ -6455,7 +6452,7 @@ main:has(.guide-kontakt) + .footer {
   }
 
   .guide-kontakt__hero-copy h1 {
-    font-size: clamp(1.85rem, 8vw, 2.5rem);
+    font-size: var(--type-h1);
   }
 
   .guide-kontakt__strip-grid {
