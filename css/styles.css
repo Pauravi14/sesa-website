@@ -6344,7 +6344,7 @@ main:has(.guide-kontakt) + .footer {
 }
 
 .guide-kontakt__profile-body .guide-kontakt__signature-text {
-  font-family: "Allura", "Segoe Script", "Brush Script MT", cursive !important;
+  font-family: "Yellowtail", "Segoe Script", "Brush Script MT", cursive !important;
   font-style: normal !important;
   font-weight: 400 !important;
 }
