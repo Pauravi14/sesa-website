@@ -162,33 +162,31 @@ def hero_slides_html() -> str:
     return "\n".join(parts)
 
 
-PROCESS_FLOW_ARROW = (
-    '<svg class="process-flow__arrow" viewBox="0 0 200 10" preserveAspectRatio="none" '
+PROCESS_FLOW_ARROW_HEAD = (
+    '<svg class="process-flow__arrow-head" viewBox="0 0 40 10" preserveAspectRatio="none" '
     'focusable="false" aria-hidden="true">'
-    '<path d="M0 5 H186" fill="none" stroke="currentColor" stroke-width="1" '
-    'vector-effect="non-scaling-stroke" stroke-linecap="butt"/>'
-    '<path d="M186 4.2 L198 5 L186 5.8" fill="none" stroke="currentColor" stroke-width="1" '
-    'vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="miter"/></svg>'
+    '<path d="M0 1.5 L36 5 L0 8.5" fill="none" stroke="currentColor" stroke-width="2" '
+    'vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 )
 
-PROCESS_FLOW_ARROW_VERTICAL = (
-    '<svg class="process-flow__arrow" viewBox="0 0 10 200" preserveAspectRatio="none" '
+PROCESS_FLOW_ARROW_HEAD_VERTICAL = (
+    '<svg class="process-flow__arrow-head" viewBox="0 0 10 40" preserveAspectRatio="none" '
     'focusable="false" aria-hidden="true">'
-    '<path d="M5 0 V186" fill="none" stroke="currentColor" stroke-width="1" '
-    'vector-effect="non-scaling-stroke" stroke-linecap="butt"/>'
-    '<path d="M4.2 186 L5 198 L5.8 186" fill="none" stroke="currentColor" stroke-width="1" '
-    'vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="miter"/></svg>'
+    '<path d="M1.5 0 L5 36 L8.5 0" fill="none" stroke="currentColor" stroke-width="2" '
+    'vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 )
 
 PROCESS_FLOW_ORBIT = (
     '<span class="process-flow__orbit" data-process-orbit>'
-    f'{PROCESS_FLOW_ARROW}'
+    '<span class="process-flow__orbit-progress"></span>'
+    f'<span class="process-flow__orbit-chevron" data-orbit-chevron aria-hidden="true">{PROCESS_FLOW_ARROW_HEAD}</span>'
     '</span>'
 )
 
 PROCESS_FLOW_ORBIT_INLINE = (
     '<span class="process-flow__orbit" data-process-orbit>'
-    f'{PROCESS_FLOW_ARROW_VERTICAL}'
+    '<span class="process-flow__orbit-progress"></span>'
+    f'<span class="process-flow__orbit-chevron" data-orbit-chevron aria-hidden="true">{PROCESS_FLOW_ARROW_HEAD_VERTICAL}</span>'
     '</span>'
 )
 
@@ -852,7 +850,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=196" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=198" />
     {extra_head}
   </head>
   <body>
