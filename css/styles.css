@@ -1615,49 +1615,25 @@ a:hover {
 
 .process-flow__orbit {
   --connector-head: 0;
-  --process-arrow-tail: 18%;
   position: relative;
   width: 100%;
   height: 10px;
   color: var(--logo-copper);
 }
 
-.process-flow__orbit-progress {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: calc(var(--connector-head) * (100% - var(--process-arrow-tail)));
-  height: 2px;
-  transform: translate3d(0, -50%, 0);
-  transform-origin: left center;
-  border-radius: 999px;
-  background: var(--logo-copper);
-  box-shadow: 0 0 10px var(--process-copper-glow);
-  will-change: width;
-  z-index: 1;
-}
-
-.process-flow__orbit-chevron {
-  position: absolute;
-  top: 50%;
-  left: calc(var(--connector-head) * 100%);
-  width: var(--process-arrow-tail);
-  height: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  pointer-events: none;
-  transform: translate3d(-100%, -50%, 0);
-  filter: drop-shadow(0 0 6px var(--process-copper-glow));
-  will-change: left, transform;
-  z-index: 2;
-}
-
-.process-flow__arrow-head {
+.process-flow__arrow {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 10px;
   overflow: visible;
+  clip-path: inset(0 calc((1 - var(--connector-head)) * 100%) 0 0);
+  filter: drop-shadow(0 0 6px var(--process-copper-glow));
+  will-change: clip-path;
+}
+
+.process-flow.is-sequencing .process-flow__connector.is-connector-done .process-flow__arrow,
+.process-flow.is-static .process-flow__arrow {
+  clip-path: inset(0 0 0 0);
 }
 
 .process-flow.is-sequencing .process-flow__connector {
@@ -1665,9 +1641,16 @@ a:hover {
   transition: opacity 0.35s ease;
 }
 
+.process-flow.is-sequencing .process-flow__connector:not(.is-connector-live):not(.is-connector-done) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .process-flow.is-sequencing .process-flow__connector.is-connector-live,
 .process-flow.is-sequencing .process-flow__connector.is-connector-done {
   opacity: 1;
+  visibility: visible;
 }
 
 .process-flow.is-sequencing .process-flow__unit:not(.is-step-live) .process-flow__marker {
@@ -1853,20 +1836,9 @@ html.translated-rtl .process-flow__card h3 {
     align-items: center;
   }
 
-  .process-flow__connector--track .process-flow__orbit-progress {
-    top: 50%;
-    height: 2px;
-  }
-
-  .process-flow.is-sequencing .process-flow__connector.is-connector-done .process-flow__orbit-chevron,
-  .process-flow.is-static .process-flow__orbit-chevron {
-    left: 100%;
-    transform: translate3d(-100%, -50%, 0);
-  }
-
-  .process-flow.is-sequencing .process-flow__connector.is-connector-done .process-flow__orbit-progress,
-  .process-flow.is-static .process-flow__orbit-progress {
-    width: calc(100% - var(--process-arrow-tail));
+  .process-flow__connector--track .process-flow__arrow {
+    width: 100%;
+    height: 10px;
   }
 }
 
@@ -1967,41 +1939,25 @@ html.translated-rtl .process-flow__card h3 {
   }
 
   .process-flow__connector--inline .process-flow__orbit {
-    container-type: size;
-    --process-arrow-tail: 1.75rem;
     width: 10px;
     height: 100%;
     margin: 0 auto;
     position: relative;
   }
 
-  .process-flow__connector--inline .process-flow__orbit-progress {
+  .process-flow__connector--inline .process-flow__arrow {
+    position: absolute;
     left: 50%;
     top: 0;
-    width: 2px;
-    height: calc(var(--connector-head) * (100% - var(--process-arrow-tail)));
-    transform: translate3d(-50%, 0, 0);
-    transform-origin: top center;
+    width: 10px;
+    height: 100%;
+    transform: translateX(-50%);
+    clip-path: inset(calc((1 - var(--connector-head)) * 100%) 0 0 0);
   }
 
-  .process-flow__connector--inline .process-flow__orbit-chevron {
-    top: calc(var(--connector-head) * 100%);
-    left: 50%;
-    width: var(--process-arrow-tail);
-    height: 10px;
-    transform: translate3d(-50%, -100%, 0) rotate(90deg);
-  }
-
-  .process-flow.is-static .process-flow__connector--inline .process-flow__orbit-chevron,
-  .process-flow.is-sequencing .process-flow__connector--inline.is-connector-done .process-flow__orbit-chevron {
-    top: 100%;
-    left: 50%;
-    transform: translate3d(-50%, -100%, 0) rotate(90deg);
-  }
-
-  .process-flow.is-static .process-flow__connector--inline .process-flow__orbit-progress,
-  .process-flow.is-sequencing .process-flow__connector--inline.is-connector-done .process-flow__orbit-progress {
-    height: calc(100% - var(--process-arrow-tail));
+  .process-flow.is-static .process-flow__connector--inline .process-flow__arrow,
+  .process-flow.is-sequencing .process-flow__connector--inline.is-connector-done .process-flow__arrow {
+    clip-path: inset(0 0 0 0);
   }
 
   .process-flow.is-sequencing .process-flow__unit:not(.is-step-open) .process-flow__card {
@@ -2045,16 +2001,9 @@ html.translated-rtl .process-flow__card h3 {
 }
 
 @media (prefers-reduced-motion: reduce) and (min-width: 1101px) {
-  .process-flow.is-sequencing .process-flow__orbit-chevron,
-  .process-flow.is-static .process-flow__orbit-chevron {
-    left: 100%;
-    top: 50%;
-    transform: translate3d(-100%, -50%, 0) !important;
-  }
-
-  .process-flow.is-sequencing .process-flow__orbit-progress,
-  .process-flow.is-static .process-flow__orbit-progress {
-    width: calc(100% - var(--process-arrow-tail)) !important;
+  .process-flow.is-sequencing .process-flow__arrow,
+  .process-flow.is-static .process-flow__arrow {
+    clip-path: inset(0 0 0 0) !important;
   }
 }
 
@@ -2063,16 +2012,9 @@ html.translated-rtl .process-flow__card h3 {
     transform: none !important;
   }
 
-  .process-flow.is-sequencing .process-flow__orbit-chevron,
-  .process-flow.is-static .process-flow__orbit-chevron {
-    top: 100%;
-    left: 50%;
-    transform: translate3d(-50%, -100%, 0) rotate(90deg) !important;
-  }
-
-  .process-flow.is-sequencing .process-flow__orbit-progress,
-  .process-flow.is-static .process-flow__orbit-progress {
-    height: calc(100% - var(--process-arrow-tail)) !important;
+  .process-flow.is-sequencing .process-flow__connector--inline .process-flow__arrow,
+  .process-flow.is-static .process-flow__connector--inline .process-flow__arrow {
+    clip-path: inset(0 0 0 0) !important;
   }
 }
 
