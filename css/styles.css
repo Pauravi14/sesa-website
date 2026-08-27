@@ -6136,7 +6136,7 @@ main:has(.guide-kontakt) + .footer {
   max-width: none;
   color: rgba(255, 255, 255, 0.78);
   font-family: var(--sans);
-  font-size: 0.8125rem;
+  font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.45;
 }
