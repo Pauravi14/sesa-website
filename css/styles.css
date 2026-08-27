@@ -6047,8 +6047,8 @@ main:has(.guide-kontakt) + .footer {
 /* Hero — full-width background, centered copy (home-style) */
 .guide-kontakt__hero {
   position: relative;
-  min-height: 380px;
-  max-height: 400px;
+  min-height: 260px;
+  max-height: 280px;
   overflow: hidden;
   background: #081525;
 }
@@ -6093,8 +6093,8 @@ main:has(.guide-kontakt) + .footer {
   justify-content: center;
   width: 100%;
   max-width: none;
-  min-height: 380px;
-  max-height: 400px;
+  min-height: 260px;
+  max-height: 280px;
   margin: 0;
   padding: 0 6vw;
   box-sizing: border-box;
@@ -6111,7 +6111,7 @@ main:has(.guide-kontakt) + .footer {
 }
 
 .guide-kontakt__hero-copy .kicker {
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.4rem;
   color: rgba(255, 255, 255, 0.72);
   font-family: var(--sans);
   font-size: 0.6875rem;
@@ -6125,14 +6125,14 @@ main:has(.guide-kontakt) + .footer {
   margin: 0;
   color: var(--ivory);
   font-family: var(--serif);
-  font-size: clamp(3.5rem, 7vw, 5rem);
+  font-size: clamp(2.5rem, 5.5vw, 3.75rem);
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.02em;
 }
 
 .guide-kontakt__hero-copy .lead {
-  margin: 0.75rem 0 0;
+  margin: 0.5rem 0 0;
   max-width: none;
   color: rgba(255, 255, 255, 0.78);
   font-family: var(--sans);
@@ -6145,7 +6145,7 @@ main:has(.guide-kontakt) + .footer {
   display: block;
   width: 2.25rem;
   height: 2px;
-  margin: 0.9rem auto 0;
+  margin: 0.55rem auto 0;
   background: var(--copper);
 }
 
@@ -6441,8 +6441,8 @@ main:has(.guide-kontakt) + .footer {
 @media (max-width: 900px) {
   .guide-kontakt__hero,
   .guide-kontakt__hero-inner {
-    min-height: 320px;
-    max-height: none;
+    min-height: 230px;
+    max-height: 250px;
   }
 
   .guide-kontakt__hero-copy {
