@@ -6047,8 +6047,8 @@ main:has(.guide-kontakt) + .footer {
 /* Hero — full-width background, centered copy (home-style) */
 .guide-kontakt__hero {
   position: relative;
-  min-height: 260px;
-  max-height: 280px;
+  min-height: 180px;
+  max-height: 200px;
   overflow: hidden;
   background: #081525;
 }
@@ -6093,8 +6093,8 @@ main:has(.guide-kontakt) + .footer {
   justify-content: center;
   width: 100%;
   max-width: none;
-  min-height: 260px;
-  max-height: 280px;
+  min-height: 180px;
+  max-height: 200px;
   margin: 0;
   padding: 0 6vw;
   box-sizing: border-box;
@@ -6111,13 +6111,13 @@ main:has(.guide-kontakt) + .footer {
 }
 
 .guide-kontakt__hero-copy .kicker {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.25rem;
   color: rgba(255, 255, 255, 0.72);
   font-family: var(--sans);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 600;
   letter-spacing: 0.14em;
-  line-height: 1.45;
+  line-height: 1.35;
   text-transform: uppercase;
 }
 
@@ -6125,33 +6125,33 @@ main:has(.guide-kontakt) + .footer {
   margin: 0;
   color: var(--ivory);
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 5.5vw, 3.75rem);
+  font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.02em;
 }
 
 .guide-kontakt__hero-copy .lead {
-  margin: 0.5rem 0 0;
+  margin: 0.35rem 0 0;
   max-width: none;
   color: rgba(255, 255, 255, 0.78);
   font-family: var(--sans);
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 .guide-kontakt__rule {
   display: block;
-  width: 2.25rem;
+  width: 2rem;
   height: 2px;
-  margin: 0.55rem auto 0;
+  margin: 0.4rem auto 0;
   background: var(--copper);
 }
 
 /* Contact strip */
 .guide-kontakt__strip {
-  padding: 1rem 0 0;
+  padding: 0.65rem 0 0;
   background: #081525;
 }
 
@@ -6223,7 +6223,7 @@ main:has(.guide-kontakt) + .footer {
 
 /* Main — profile + map side by side */
 .guide-kontakt__main {
-  padding: 1.25rem 0 2.25rem;
+  padding: 0.85rem 0 2rem;
   background: #081525;
 }
 
@@ -6441,16 +6441,16 @@ main:has(.guide-kontakt) + .footer {
 @media (max-width: 900px) {
   .guide-kontakt__hero,
   .guide-kontakt__hero-inner {
-    min-height: 230px;
-    max-height: 250px;
+    min-height: 165px;
+    max-height: 185px;
   }
 
   .guide-kontakt__hero-copy {
-    padding: 1.25rem 0;
+    padding: 0.75rem 0;
   }
 
   .guide-kontakt__hero-copy h1 {
-    font-size: clamp(2.75rem, 10vw, 3.5rem);
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
   }
 
   .guide-kontakt__strip-grid {
