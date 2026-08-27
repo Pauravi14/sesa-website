@@ -162,11 +162,17 @@ def hero_slides_html() -> str:
     return "\n".join(parts)
 
 
+PROCESS_FLOW_ARROW_HEAD = (
+    '<svg class="process-flow__arrow-head" viewBox="0 0 8 10" focusable="false" aria-hidden="true">'
+    '<path d="M1 1 L7 5 L1 9" fill="none" stroke="currentColor" stroke-width="1.6" '
+    'stroke-linecap="round" stroke-linejoin="round"/></svg>'
+)
+
 PROCESS_FLOW_ORBIT = (
     '<span class="process-flow__orbit" data-process-orbit>'
     '<span class="process-flow__orbit-track"></span>'
     '<span class="process-flow__orbit-progress"></span>'
-    '<span class="process-flow__orbit-chevron" data-orbit-chevron>&gt;</span>'
+    f'<span class="process-flow__orbit-chevron" data-orbit-chevron aria-hidden="true">{PROCESS_FLOW_ARROW_HEAD}</span>'
     '</span>'
 )
 
@@ -830,7 +836,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=190" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=192" />
     {extra_head}
   </head>
   <body>
