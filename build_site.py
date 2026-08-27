@@ -12,7 +12,7 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
-KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap"
+KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Allura&display=swap"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
       main:has(.guide-kontakt) {
@@ -32,12 +32,12 @@ KONTAKT_SIGNATURE_STYLE = """
         display: inline-block;
         white-space: nowrap;
         color: #AE663C;
-        font-family: "Alex Brush", "Segoe Script", "Brush Script MT", cursive !important;
-        font-size: clamp(2rem, 4.5vw, 2.85rem);
+        font-family: "Allura", "Segoe Script", "Brush Script MT", cursive !important;
+        font-size: clamp(2.35rem, 5vw, 3.25rem);
         font-style: normal !important;
         font-weight: 400 !important;
         line-height: 1;
-        letter-spacing: 0.01em;
+        letter-spacing: 0.03em;
       }
       @media (max-width: 480px) {
         .guide-kontakt__signature-text {
@@ -830,7 +830,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=177" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=178" />
     {extra_head}
   </head>
   <body>

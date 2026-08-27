@@ -6328,16 +6328,16 @@ main:has(.guide-kontakt) + .footer {
   display: inline-block;
   white-space: nowrap;
   color: var(--copper);
-  font-family: "Alex Brush", "Segoe Script", "Brush Script MT", cursive;
-  font-size: clamp(2rem, 4.5vw, 2.85rem);
+  font-family: "Allura", "Segoe Script", "Brush Script MT", cursive;
+  font-size: clamp(2.35rem, 5vw, 3.25rem);
   font-style: normal;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.03em;
 }
 
 .guide-kontakt__profile-body .guide-kontakt__signature-text {
-  font-family: "Alex Brush", "Segoe Script", "Brush Script MT", cursive !important;
+  font-family: "Allura", "Segoe Script", "Brush Script MT", cursive !important;
   font-style: normal !important;
   font-weight: 400 !important;
 }
