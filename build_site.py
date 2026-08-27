@@ -12,7 +12,7 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
-KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap"
+KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Allura&display=swap"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
       main:has(.guide-kontakt) {
@@ -32,17 +32,23 @@ KONTAKT_SIGNATURE_STYLE = """
         display: inline-block;
         white-space: nowrap;
         color: #AE663C;
-        font-family: "Pinyon Script", "Segoe Script", cursive !important;
-        font-size: clamp(2.15rem, 4.5vw, 2.95rem);
+        font-family: "Allura", "Segoe Script", cursive !important;
+        font-size: clamp(2.45rem, 5.2vw, 3.35rem);
         font-style: normal !important;
         font-weight: 400 !important;
         line-height: 1.05;
-        letter-spacing: 0.015em;
+        letter-spacing: 0.01em;
         -webkit-font-smoothing: antialiased;
+      }
+      .guide-kontakt__sig-cap {
+        font-family: "Cormorant Garamond", "Times New Roman", serif !important;
+        font-style: italic;
+        font-weight: 500;
+        letter-spacing: 0;
       }
       @media (max-width: 480px) {
         .guide-kontakt__signature-text {
-          font-size: 1.85rem;
+          font-size: 2rem;
         }
       }
     </style>"""
@@ -1272,7 +1278,7 @@ def kontakt_page_body() -> str:
                     <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
                     <li>{ADDRESS}</li>
                   </ul>
-                  <p class="guide-kontakt__signature"><span class="guide-kontakt__signature-text">{OWNER}</span></p>
+                  <p class="guide-kontakt__signature"><span class="guide-kontakt__signature-text"><span class="guide-kontakt__sig-cap">S</span>elim <span class="guide-kontakt__sig-cap">S</span>abahoglu</span></p>
                   <a class="guide-kontakt__cta" href="mailto:{EMAIL}">Kontakt aufnehmen →</a>
                 </div>
               </div>

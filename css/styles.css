@@ -6431,19 +6431,32 @@ main:has(.guide-kontakt) + .footer {
   display: inline-block;
   white-space: nowrap;
   color: var(--copper);
-  font-family: "Pinyon Script", "Segoe Script", cursive;
-  font-size: clamp(2.15rem, 4.5vw, 2.95rem);
+  font-family: "Allura", "Segoe Script", cursive;
+  font-size: clamp(2.45rem, 5.2vw, 3.35rem);
   font-style: normal;
   font-weight: 400;
   line-height: 1.05;
-  letter-spacing: 0.015em;
+  letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
 }
 
+.guide-kontakt__sig-cap {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
 .guide-kontakt__profile-body .guide-kontakt__signature-text {
-  font-family: "Pinyon Script", "Segoe Script", cursive !important;
+  font-family: "Allura", "Segoe Script", cursive !important;
   font-style: normal !important;
   font-weight: 400 !important;
+}
+
+.guide-kontakt__profile-body .guide-kontakt__sig-cap {
+  font-family: "Cormorant Garamond", "Times New Roman", serif !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
 }
 
 .guide-kontakt__cta {
@@ -6608,6 +6621,6 @@ main:has(.guide-kontakt) + .footer {
 
 @media (max-width: 480px) {
   .guide-kontakt__signature-text {
-    font-size: 1.85rem;
+    font-size: 2rem;
   }
 }
