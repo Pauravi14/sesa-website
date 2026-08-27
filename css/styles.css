@@ -1362,6 +1362,8 @@ a:hover {
 .expert-spotlight__title .kicker {
   display: block;
   margin-bottom: 0.55rem;
+  font-size: var(--type-section-sub);
+  letter-spacing: 0.14em;
 }
 
 .expert-spotlight__name {
