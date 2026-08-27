@@ -6431,16 +6431,17 @@ main:has(.guide-kontakt) + .footer {
   display: inline-block;
   white-space: nowrap;
   color: var(--copper);
-  font-family: "Yellowtail", "Segoe Script", "Brush Script MT", cursive;
-  font-size: clamp(2.35rem, 5vw, 3.25rem);
+  font-family: "Pinyon Script", "Segoe Script", cursive;
+  font-size: clamp(2.15rem, 4.5vw, 2.95rem);
   font-style: normal;
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.03em;
+  line-height: 1.05;
+  letter-spacing: 0.015em;
+  -webkit-font-smoothing: antialiased;
 }
 
 .guide-kontakt__profile-body .guide-kontakt__signature-text {
-  font-family: "Yellowtail", "Segoe Script", "Brush Script MT", cursive !important;
+  font-family: "Pinyon Script", "Segoe Script", cursive !important;
   font-style: normal !important;
   font-weight: 400 !important;
 }
@@ -6607,6 +6608,6 @@ main:has(.guide-kontakt) + .footer {
 
 @media (max-width: 480px) {
   .guide-kontakt__signature-text {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
   }
 }
