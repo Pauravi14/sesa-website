@@ -165,16 +165,16 @@ def hero_slides_html() -> str:
 PROCESS_FLOW_ARROW = (
     '<svg class="process-flow__arrow" viewBox="0 0 200 10" preserveAspectRatio="none" '
     'focusable="false" aria-hidden="true">'
-    '<path d="M0 5 H168 M160 1.5 L196 5 L160 8.5" fill="none" stroke="currentColor" '
-    'stroke-width="2" vector-effect="non-scaling-stroke" stroke-linecap="round" '
+    '<path d="M0 5 H178 M178 3 L196 5 L178 7" fill="none" stroke="currentColor" '
+    'stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linecap="round" '
     'stroke-linejoin="round"/></svg>'
 )
 
 PROCESS_FLOW_ARROW_VERTICAL = (
     '<svg class="process-flow__arrow" viewBox="0 0 10 200" preserveAspectRatio="none" '
     'focusable="false" aria-hidden="true">'
-    '<path d="M5 0 V168 M1.5 160 L5 196 L8.5 160" fill="none" stroke="currentColor" '
-    'stroke-width="2" vector-effect="non-scaling-stroke" stroke-linecap="round" '
+    '<path d="M5 0 V178 M3 178 L5 196 L7 178" fill="none" stroke="currentColor" '
+    'stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linecap="round" '
     'stroke-linejoin="round"/></svg>'
 )
 
