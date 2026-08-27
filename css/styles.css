@@ -1626,14 +1626,18 @@ a:hover {
   position: absolute;
   top: 50%;
   left: calc(var(--connector-head) * 100%);
+  display: flex;
+  align-items: center;
+  height: 3px;
+  overflow: visible;
   color: var(--logo-copper);
   font-family: var(--sans);
   font-size: 1.65rem;
   font-weight: 700;
-  line-height: 1;
+  line-height: 0;
   text-shadow: 0 0 14px var(--process-copper-glow);
   will-change: left, top, transform;
-  transform: translate3d(-100%, calc(-50% + 0.12em), 0);
+  transform: translate3d(-100%, calc(-50% + 0.06em), 0);
   z-index: 2;
 }
 
@@ -1857,7 +1861,7 @@ html.translated-rtl .process-flow__card h3 {
   .process-flow.is-sequencing .process-flow__connector.is-connector-done .process-flow__orbit-chevron,
   .process-flow.is-static .process-flow__orbit-chevron {
     left: 100%;
-    transform: translate3d(-100%, calc(-50% + 0.12em), 0);
+    transform: translate3d(-100%, calc(-50% + 0.06em), 0);
   }
 }
 
@@ -1981,15 +1985,21 @@ html.translated-rtl .process-flow__card h3 {
   .process-flow__connector--inline .process-flow__orbit-chevron {
     top: calc(var(--connector-head) * 100%);
     left: 50%;
+    width: 3px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
     font-size: 1.35rem;
-    transform: translate3d(calc(-50% + 0.12em), -100%, 0) rotate(90deg);
+    line-height: 0;
+    transform: translate3d(calc(-50% + 0.06em), -100%, 0) rotate(90deg);
   }
 
   .process-flow.is-static .process-flow__connector--inline .process-flow__orbit-chevron,
   .process-flow.is-sequencing .process-flow__connector--inline.is-connector-done .process-flow__orbit-chevron {
     top: 100%;
     left: 50%;
-    transform: translate3d(calc(-50% + 0.12em), -100%, 0) rotate(90deg);
+    transform: translate3d(calc(-50% + 0.06em), -100%, 0) rotate(90deg);
   }
 
   .process-flow.is-sequencing .process-flow__unit:not(.is-step-open) .process-flow__card {
@@ -2037,7 +2047,7 @@ html.translated-rtl .process-flow__card h3 {
   .process-flow.is-static .process-flow__orbit-chevron {
     left: 100%;
     top: 50%;
-    transform: translate3d(-100%, calc(-50% + 0.12em), 0) !important;
+    transform: translate3d(-100%, calc(-50% + 0.06em), 0) !important;
   }
 }
 
@@ -2050,7 +2060,7 @@ html.translated-rtl .process-flow__card h3 {
   .process-flow.is-static .process-flow__orbit-chevron {
     top: 100%;
     left: 50%;
-    transform: translate3d(calc(-50% + 0.12em), -100%, 0) rotate(90deg) !important;
+    transform: translate3d(calc(-50% + 0.06em), -100%, 0) rotate(90deg) !important;
   }
 }
 
