@@ -6044,7 +6044,7 @@ main:has(.guide-kontakt) + .footer {
   box-sizing: border-box;
 }
 
-/* Hero — full-width image, copy in wide inner */
+/* Hero — full-width background, centered copy (home-style) */
 .guide-kontakt__hero {
   position: relative;
   min-height: 380px;
@@ -6064,7 +6064,6 @@ main:has(.guide-kontakt) + .footer {
   height: 100%;
   object-fit: cover;
   object-position: center 58%;
-  opacity: 0.68;
 }
 
 .guide-kontakt__hero-media::after {
@@ -6072,8 +6071,18 @@ main:has(.guide-kontakt) + .footer {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(8, 21, 37, 0.92) 0%, rgba(8, 21, 37, 0.55) 42%, rgba(8, 21, 37, 0.35) 100%),
-    linear-gradient(180deg, rgba(8, 21, 37, 0.25) 0%, rgba(8, 21, 37, 0.72) 100%);
+    radial-gradient(
+      ellipse 82% 88% at 50% 42%,
+      rgba(8, 21, 37, 0.62) 0%,
+      rgba(8, 21, 37, 0.48) 48%,
+      rgba(8, 21, 37, 0.22) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 21, 37, 0.35) 0%,
+      rgba(8, 21, 37, 0.55) 50%,
+      rgba(8, 21, 37, 0.72) 100%
+    );
   pointer-events: none;
 }
 
@@ -6082,13 +6091,16 @@ main:has(.guide-kontakt) + .footer {
   z-index: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 380px;
   max-height: 400px;
 }
 
 .guide-kontakt__hero-copy {
-  max-width: 36rem;
-  text-align: left;
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .guide-kontakt__hero-copy .kicker {
@@ -6111,8 +6123,8 @@ main:has(.guide-kontakt) + .footer {
 }
 
 .guide-kontakt__hero-copy .lead {
-  margin: 0.7rem 0 0;
-  max-width: 30rem;
+  margin: 0.7rem auto 0;
+  max-width: 34rem;
   color: rgba(255, 255, 255, 0.9);
   font-size: 1rem;
   line-height: 1.55;
@@ -6122,7 +6134,7 @@ main:has(.guide-kontakt) + .footer {
   display: block;
   width: 2.5rem;
   height: 2px;
-  margin: 0.85rem 0 0;
+  margin: 0.85rem auto 0;
   background: var(--copper);
 }
 
@@ -6424,7 +6436,8 @@ main:has(.guide-kontakt) + .footer {
 
   .guide-kontakt__hero-copy {
     max-width: none;
-    padding: 1.5rem 0;
+    padding: 1.25rem 0;
+    text-align: center;
   }
 
   .guide-kontakt__strip-grid {
