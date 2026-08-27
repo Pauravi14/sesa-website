@@ -830,7 +830,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=176" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=177" />
     {extra_head}
   </head>
   <body>
@@ -1154,7 +1154,7 @@ def kontakt_page_body() -> str:
         <div class="guide-kontakt__hero-media" aria-hidden="true">
           <img src="{CONTACT_HERO}" alt="" loading="eager" decoding="async" />
         </div>
-        <div class="guide-kontakt__inner">
+        <div class="guide-kontakt__hero-inner">
           <div class="guide-kontakt__hero-copy">
             <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
             <h1 id="kontakt-title">Kontakt</h1>
