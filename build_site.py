@@ -13,8 +13,21 @@ ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
 KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap"
-KONTAKT_SIGNATURE_STYLE = """
+KONTAKT_PAGE_STYLE = """
     <style>
+      main:has(.guide-kontakt) {
+        width: 100%;
+        max-width: none;
+      }
+      .guide-kontakt {
+        width: 100%;
+      }
+      .guide-kontakt__inner {
+        width: 100%;
+        max-width: 1400px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
       .guide-kontakt__signature-text {
         display: inline-block;
         white-space: nowrap;
@@ -34,7 +47,7 @@ KONTAKT_SIGNATURE_STYLE = """
     </style>"""
 KONTAKT_EXTRA_HEAD = f"""
     <link rel="preload" href="{KONTAKT_SIGNATURE_FONT}" as="style" />
-    <link href="{KONTAKT_SIGNATURE_FONT}" rel="stylesheet" />{KONTAKT_SIGNATURE_STYLE}"""
+    <link href="{KONTAKT_SIGNATURE_FONT}" rel="stylesheet" />{KONTAKT_PAGE_STYLE}"""
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -817,7 +830,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=173" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=174" />
     {extra_head}
   </head>
   <body>
@@ -1146,7 +1159,7 @@ def kontakt_page_body() -> str:
             <span class="guide-kontakt__rule" aria-hidden="true"></span>
           </div>
           <div class="guide-kontakt__hero-media">
-            <img src="{portrait}" alt="" width="520" height="640" loading="eager" decoding="async" />
+            <img src="{CONTACT_HERO}" alt="" width="900" height="520" loading="eager" decoding="async" />
           </div>
         </div>
       </section>

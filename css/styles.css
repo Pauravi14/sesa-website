@@ -6020,11 +6020,14 @@ main:has(.guide-faq) + .footer {
 
 /* Kontakt — Variant 2 refined */
 .guide-kontakt {
+  width: 100%;
   background: #081525;
   color: var(--text-on-dark);
 }
 
 main:has(.guide-kontakt) {
+  width: 100%;
+  max-width: none;
   background: #081525;
 }
 
@@ -6034,15 +6037,16 @@ main:has(.guide-kontakt) + .footer {
 
 .guide-kontakt__inner {
   width: 100%;
-  max-width: 1320px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 24px;
+  padding-right: 24px;
   box-sizing: border-box;
 }
 
 /* Hero */
 .guide-kontakt__hero {
+  width: 100%;
   padding: 0;
   background: #081525;
   border-bottom: 1px solid rgba(174, 102, 60, 0.18);
@@ -6050,8 +6054,8 @@ main:has(.guide-kontakt) + .footer {
 
 .guide-kontakt__hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
   align-items: stretch;
   min-height: 380px;
   max-height: 420px;
@@ -6061,7 +6065,7 @@ main:has(.guide-kontakt) + .footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 1.75rem 0;
   text-align: left;
 }
 
@@ -6079,14 +6083,14 @@ main:has(.guide-kontakt) + .footer {
   margin: 0;
   color: #fff;
   font-family: var(--serif);
-  font-size: clamp(3rem, 5.5vw, 4.25rem);
+  font-size: clamp(3.25rem, 5.8vw, 4.5rem);
   font-weight: 600;
   line-height: 1.02;
 }
 
 .guide-kontakt__hero-copy .lead {
   margin: 0.75rem 0 0;
-  max-width: 28rem;
+  max-width: 32rem;
   color: rgba(255, 255, 255, 0.88);
   font-size: 1rem;
   line-height: 1.55;
@@ -6102,27 +6106,36 @@ main:has(.guide-kontakt) + .footer {
 
 .guide-kontakt__hero-media {
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  min-height: 380px;
+  max-height: 420px;
   overflow: hidden;
+  border-left: 1px solid rgba(174, 102, 60, 0.14);
+}
+
+.guide-kontakt__hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8, 21, 37, 0.92) 0%, rgba(8, 21, 37, 0.35) 28%, rgba(8, 21, 37, 0.15) 100%),
+    linear-gradient(180deg, rgba(8, 21, 37, 0.25) 0%, rgba(8, 21, 37, 0.55) 100%);
+  pointer-events: none;
 }
 
 .guide-kontakt__hero-media img {
   display: block;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   min-height: 380px;
   max-height: 420px;
-  object-fit: contain;
-  object-position: bottom center;
-  filter: brightness(0.82) contrast(1.08);
+  object-fit: cover;
+  object-position: center 45%;
+  opacity: 0.88;
 }
 
 /* Contact strip */
 .guide-kontakt__strip {
-  padding: 1.25rem 0 0;
+  padding: 1rem 0 0;
   background: #081525;
 }
 
@@ -6138,11 +6151,11 @@ main:has(.guide-kontakt) + .footer {
 .guide-kontakt__strip-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 1.35rem 1.5rem;
-  text-align: left;
+  gap: 0.45rem;
+  padding: 1.35rem 1.25rem;
+  text-align: center;
   border-right: 1px solid rgba(174, 102, 60, 0.14);
 }
 
@@ -6156,9 +6169,8 @@ main:has(.guide-kontakt) + .footer {
   justify-content: center;
   width: 1rem;
   height: 1rem;
-  margin-bottom: 0.15rem;
   color: var(--copper);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .guide-kontakt__strip-icon svg {
@@ -6195,17 +6207,16 @@ main:has(.guide-kontakt) + .footer {
 
 /* Personal contact */
 .guide-kontakt__personal {
-  padding: 1.75rem 0 0;
+  padding: 1.5rem 0 0;
   background: #081525;
 }
 
 .guide-kontakt__personal-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
   align-items: center;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(174, 102, 60, 0.14);
 }
 
@@ -6224,14 +6235,14 @@ main:has(.guide-kontakt) + .footer {
   margin: 0 0 0.85rem;
   color: #fff;
   font-family: var(--serif);
-  font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+  font-size: clamp(1.875rem, 3vw, 2.375rem);
   font-weight: 600;
   line-height: 1.12;
 }
 
 .guide-kontakt__intro {
   margin: 0 0 1.15rem;
-  max-width: 34rem;
+  max-width: none;
   color: rgba(201, 212, 222, 0.88);
   font-size: 0.9375rem;
   line-height: 1.65;
@@ -6304,36 +6315,39 @@ main:has(.guide-kontakt) + .footer {
 
 .guide-kontakt__personal-photo {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  min-height: 420px;
+  min-height: 440px;
   overflow: hidden;
 }
 
 .guide-kontakt__personal-photo img {
   display: block;
   width: 100%;
-  max-width: 420px;
-  height: auto;
-  min-height: 400px;
-  object-fit: contain;
-  object-position: center bottom;
-  filter: brightness(0.8) contrast(1.08);
+  height: 100%;
+  min-height: 440px;
+  object-fit: cover;
+  object-position: center 12%;
+  filter: brightness(0.78) contrast(1.08);
 }
 
 /* Location */
 .guide-kontakt__location {
-  padding: 1.75rem 0 2.5rem;
+  padding: 1.5rem 0 2.25rem;
   background: #081525;
 }
 
 .guide-kontakt__location-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 2.5rem;
+  gap: clamp(2rem, 4vw, 3.5rem);
   align-items: start;
-  padding-top: 1.75rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(174, 102, 60, 0.14);
+}
+
+.guide-kontakt__location-copy {
+  padding-top: 0.25rem;
 }
 
 .guide-kontakt__location-name {
@@ -6354,11 +6368,13 @@ main:has(.guide-kontakt) + .footer {
 .guide-kontakt__location-map {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .guide-kontakt__map {
   flex: 1 1 auto;
-  min-height: 280px;
+  width: 100%;
+  min-height: 360px;
   margin: 0;
   padding: 1rem;
   background: rgba(2, 8, 16, 0.75);
@@ -6400,7 +6416,12 @@ main:has(.guide-kontakt) + .footer {
   border-color: var(--copper);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  .guide-kontakt__inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .guide-kontakt__hero-grid {
     grid-template-columns: 1fr;
     gap: 0;
@@ -6409,25 +6430,19 @@ main:has(.guide-kontakt) + .footer {
   }
 
   .guide-kontakt__hero-copy {
-    padding: 1.75rem 0 1rem;
-    text-align: center;
-    align-items: center;
+    padding: 1.5rem 0 1rem;
   }
 
-  .guide-kontakt__hero-copy .lead {
-    max-width: none;
-  }
-
-  .guide-kontakt__rule {
-    margin-left: auto;
-    margin-right: auto;
+  .guide-kontakt__hero-media {
+    min-height: 240px;
+    max-height: 280px;
+    border-left: none;
+    border-top: 1px solid rgba(174, 102, 60, 0.14);
   }
 
   .guide-kontakt__hero-media img {
-    min-height: 280px;
-    max-height: 320px;
-    width: 100%;
-    object-fit: contain;
+    min-height: 240px;
+    max-height: 280px;
   }
 
   .guide-kontakt__strip-grid {
@@ -6451,22 +6466,19 @@ main:has(.guide-kontakt) + .footer {
 
   .guide-kontakt__personal-photo {
     order: -1;
-    min-height: 300px;
+    min-height: 320px;
   }
 
   .guide-kontakt__personal-photo img {
+    min-height: 320px;
+  }
+
+  .guide-kontakt__map {
     min-height: 280px;
-    max-width: 320px;
-    margin: 0 auto;
   }
 }
 
-@media (max-width: 768px) {
-  .guide-kontakt__inner {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
+@media (max-width: 480px) {
   .guide-kontakt__strip-grid {
     grid-template-columns: 1fr;
   }
@@ -6479,9 +6491,7 @@ main:has(.guide-kontakt) + .footer {
   .guide-kontakt__strip-item:last-child {
     border-bottom: none;
   }
-}
 
-@media (max-width: 480px) {
   .guide-kontakt__signature-text {
     font-size: 1.75rem;
   }
