@@ -2100,6 +2100,11 @@ html.translated-rtl .trust-panel h3 {
   text-transform: capitalize;
 }
 
+html.translated-ltr .guide-kontakt__hero-copy h1,
+html.translated-rtl .guide-kontakt__hero-copy h1 {
+  text-transform: capitalize;
+}
+
 h1,
 h2,
 h3 {
@@ -6114,7 +6119,7 @@ main:has(.guide-kontakt) + .footer {
   margin: 0 0 0.25rem;
   color: rgba(255, 255, 255, 0.72);
   font-family: var(--sans);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   line-height: 1.35;
