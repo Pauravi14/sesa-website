@@ -990,7 +990,7 @@ def blog_page_body(depth: int = 1) -> str:
         page_hero(
             "Blog",
             "Einblicke, Praxistipps und Neuigkeiten aus dem Sachverständigenbüro.",
-            "assets/hero-inspection.png",
+            "assets/blog/blog-hero.jpg",
             depth,
             editorial=True,
         )
