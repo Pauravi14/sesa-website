@@ -3862,6 +3862,25 @@ body.consent-open {
   cursor: pointer;
 }
 
+#schaden-form .schaden-consent__required {
+  color: #c62828;
+  font-weight: 700;
+  margin-right: 0.15rem;
+}
+
+#schaden-form .btn-solid:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #2b4f78;
+  border-color: #2b4f78;
+  color: #ffffff;
+}
+
+#schaden-form .btn-solid:disabled:hover {
+  background: #2b4f78;
+  color: #ffffff;
+}
+
 #schaden-form .schaden-consent-error {
   margin: 0.35rem 0 0;
   color: #8b2e2e;

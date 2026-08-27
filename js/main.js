@@ -244,51 +244,57 @@
     );
   });
 
-  document.querySelector("#schaden-form")?.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const consent = document.querySelector("#schaden-consent");
-    const consentError = document.querySelector("#schaden-consent-error");
+  const schadenForm = document.querySelector("#schaden-form");
+  const schadenConsent = document.querySelector("#schaden-consent");
+  const schadenSubmit = document.querySelector("#schaden-submit");
+  const schadenConsentError = document.querySelector("#schaden-consent-error");
 
-    function showConsentError() {
-      if (consentError) consentError.hidden = false;
-      consent?.focus();
+  function updateSchadenSubmitState() {
+    if (schadenSubmit) {
+      schadenSubmit.disabled = !schadenConsent?.checked;
     }
+  }
 
-    function hideConsentError() {
-      if (consentError) consentError.hidden = true;
-    }
+  if (schadenForm) {
+    updateSchadenSubmitState();
 
-    if (!consent?.checked) {
-      showConsentError();
-      return;
-    }
-    hideConsentError();
+    schadenConsent?.addEventListener("change", function (event) {
+      updateSchadenSubmitState();
+      if (event.target.checked && schadenConsentError) {
+        schadenConsentError.hidden = true;
+      }
+    });
 
-    const ort = document.querySelector("#unfallort")?.value.trim();
-    const wer = document.querySelector("input[name='verursacher']:checked")?.value;
-    const note = document.querySelector("#hinweis")?.value.trim();
-    if (!ort || !wer) {
-      alert("Bitte Unfallort und Verursacher angeben.");
-      return;
-    }
-    const lines = [
-      "Guten Tag SESA,",
-      "ich möchte einen Schaden melden.",
-      "Unfallort: " + ort,
-      "Verursacher: " + wer + ".",
-    ];
-    if (note) lines.push("Hinweis: " + note);
-    lines.push("Bitte rufen Sie mich zurück.");
-    const url = "https://wa.me/491773145839?text=" + encodeURIComponent(lines.join("\n"));
-    window.location.href = url;
-  });
+    schadenForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-  document.querySelector("#schaden-consent")?.addEventListener("change", function (event) {
-    if (event.target.checked) {
-      const consentError = document.querySelector("#schaden-consent-error");
-      if (consentError) consentError.hidden = true;
-    }
-  });
+      if (!schadenConsent?.checked) {
+        if (schadenConsentError) schadenConsentError.hidden = false;
+        schadenConsent?.focus();
+        return;
+      }
+
+      if (schadenConsentError) schadenConsentError.hidden = true;
+
+      const ort = document.querySelector("#unfallort")?.value.trim();
+      const wer = document.querySelector("input[name='verursacher']:checked")?.value;
+      const note = document.querySelector("#hinweis")?.value.trim();
+      if (!ort || !wer) {
+        alert("Bitte Unfallort und Verursacher angeben.");
+        return;
+      }
+      const lines = [
+        "Guten Tag SESA,",
+        "ich möchte einen Schaden melden.",
+        "Unfallort: " + ort,
+        "Verursacher: " + wer + ".",
+      ];
+      if (note) lines.push("Hinweis: " + note);
+      lines.push("Bitte rufen Sie mich zurück.");
+      const url = "https://wa.me/491773145839?text=" + encodeURIComponent(lines.join("\n"));
+      window.location.href = url;
+    });
+  }
 
   const waWrap = document.querySelector("[data-wa-float]");
   const waToggle = document.querySelector("[data-wa-toggle]");
