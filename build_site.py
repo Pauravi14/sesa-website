@@ -706,6 +706,8 @@ NAV = [
     ("Leistungen", "leistungen/index.html"),
     ("Über uns", "ueber-uns.html"),
     ("Ratgeber", "ratgeber/index.html"),
+    ("Karriere", "karriere.html"),
+    ("Blog", "blog/index.html"),
     ("Kontakt", "kontakt.html"),
 ]
 
@@ -754,6 +756,8 @@ def nav_links(depth: int, active: str) -> str:
         ("Über uns", "ueber-uns.html", False),
         (None, None, True),
         ("GUTACHTEN", "ratgeber/index.html", False),
+        ("Karriere", "karriere.html", False),
+        ("Blog", "blog/index.html", False),
         ("Kontakt", "kontakt.html", False),
     ]
     parts = []
@@ -850,7 +854,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=198" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=199" />
     {extra_head}
   </head>
   <body>
@@ -895,7 +899,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=44" defer></script>
+    <script src="{p}js/main.js?v=45" defer></script>
   </body>
 </html>"""
 
@@ -959,6 +963,44 @@ def counselor_card(slug: str, title: str, description: str, icon_name: str) -> s
             <span class="counselor-card__more">Mehr erfahren</span>
           </a>
         </article>"""
+
+
+def karriere_page_body() -> str:
+    return (
+        page_hero(
+            "Karriere",
+            "Werden Sie Teil unseres Teams — unabhängiges Kfz-Sachverständigenbüro in Paderborn.",
+            "assets/workshop-tools.png",
+            0,
+            editorial=True,
+        )
+        + """
+    <section class="section content-light">
+      <div class="panel">
+        <h2>Arbeiten bei SESA</h2>
+        <p>Aktuell sind keine offenen Stellen ausgeschrieben. Gerne nehmen wir Initiativbewerbungen entgegen — insbesondere mit Erfahrung in der Fahrzeugtechnik, Schadenaufnahme oder Bewertung.</p>
+        <p><a class="btn btn-primary" href="kontakt.html">Initiativbewerbung senden</a></p>
+      </div>
+    </section>"""
+    )
+
+
+def blog_page_body(depth: int = 1) -> str:
+    return (
+        page_hero(
+            "Blog",
+            "Einblicke, Praxistipps und Neuigkeiten aus dem Sachverständigenbüro.",
+            "assets/hero-inspection.png",
+            depth,
+            editorial=True,
+        )
+        + """
+    <section class="section content-light">
+      <div class="panel">
+        <p class="muted">Neue Beiträge folgen in Kürze.</p>
+      </div>
+    </section>"""
+    )
 
 
 def ratgeber_index_body() -> str:
@@ -1464,6 +1506,24 @@ def main() -> None:
         about_page_body(0),
     )
 
+    write(
+        ROOT / "karriere.html",
+        0,
+        "Karriere",
+        "Karriere",
+        "Karriere und Stellenangebote bei SESA.",
+        karriere_page_body(),
+    )
+
+    write(
+        ROOT / "blog" / "index.html",
+        1,
+        "Blog",
+        "Blog",
+        "Blog und Neuigkeiten von SESA.",
+        blog_page_body(1),
+    )
+
     # Ratgeber
     write(
         ROOT / "ratgeber" / "index.html",
@@ -1528,6 +1588,11 @@ def main() -> None:
         </fieldset>
         <label for="hinweis">Kurze Hinweise (optional)</label>
         <textarea id="hinweis" rows="4" placeholder="z. B. Kennzeichen, Kurzbeschreibung"></textarea>
+        <label class="schaden-consent" for="schaden-consent">
+          <input id="schaden-consent" name="schaden-consent" type="checkbox" value="yes" required />
+          <span>I consent to the sharing and processing of the information provided above for the purpose of handling my request. I understand that my data will be securely stored and automatically deleted after 14 days.</span>
+        </label>
+        <p class="schaden-consent-error" id="schaden-consent-error" hidden>Please provide your consent to continue.</p>
         <button class="btn btn-solid" type="submit">Weiter zu WhatsApp</button>
         <p class="muted">Fotos können Sie direkt in WhatsApp senden. Kein Datei-Upload auf dieser Website.</p>
       </form>

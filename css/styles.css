@@ -3043,6 +3043,18 @@ body.consent-open {
   }
 }
 
+@media (max-width: 1320px) {
+  .menu {
+    gap: 1.35rem;
+  }
+
+  .menu a,
+  .menu-accordion__summary {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+}
+
 @media (max-width: 1100px) {
   .menu {
     gap: 1.25rem;
@@ -3824,6 +3836,32 @@ body.consent-open {
 #schaden-form button.btn:not(.btn-solid):hover {
   background: #eef2f7;
   color: #1e3a5f;
+}
+
+#schaden-form .schaden-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin: 0;
+  font-weight: 500;
+  color: #1c2430;
+}
+
+#schaden-form .schaden-consent input[type="checkbox"] {
+  flex-shrink: 0;
+  width: auto;
+  margin-top: 0.2rem;
+  background: #ffffff;
+}
+
+#schaden-form .schaden-consent-error {
+  margin: 0.35rem 0 0;
+  color: #8b2e2e;
+  font-size: 0.9rem;
+}
+
+#schaden-form .schaden-consent-error[hidden] {
+  display: none;
 }
 
 /* Über uns */

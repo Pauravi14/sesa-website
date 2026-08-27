@@ -246,6 +246,24 @@
 
   document.querySelector("#schaden-form")?.addEventListener("submit", function (event) {
     event.preventDefault();
+    const consent = document.querySelector("#schaden-consent");
+    const consentError = document.querySelector("#schaden-consent-error");
+
+    function showConsentError() {
+      if (consentError) consentError.hidden = false;
+      consent?.focus();
+    }
+
+    function hideConsentError() {
+      if (consentError) consentError.hidden = true;
+    }
+
+    if (!consent?.checked) {
+      showConsentError();
+      return;
+    }
+    hideConsentError();
+
     const ort = document.querySelector("#unfallort")?.value.trim();
     const wer = document.querySelector("input[name='verursacher']:checked")?.value;
     const note = document.querySelector("#hinweis")?.value.trim();
@@ -263,6 +281,13 @@
     lines.push("Bitte rufen Sie mich zurück.");
     const url = "https://wa.me/491773145839?text=" + encodeURIComponent(lines.join("\n"));
     window.location.href = url;
+  });
+
+  document.querySelector("#schaden-consent")?.addEventListener("change", function (event) {
+    if (event.target.checked) {
+      const consentError = document.querySelector("#schaden-consent-error");
+      if (consentError) consentError.hidden = true;
+    }
   });
 
   const waWrap = document.querySelector("[data-wa-float]");
