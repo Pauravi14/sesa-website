@@ -1615,6 +1615,7 @@ a:hover {
 
 .process-flow__orbit {
   --connector-head: 0;
+  --orbit-chevron-y: 0.08em;
   position: relative;
 }
 
@@ -1637,7 +1638,7 @@ a:hover {
   line-height: 0;
   text-shadow: 0 0 14px var(--process-copper-glow);
   will-change: left, top, transform;
-  transform: translate3d(-100%, calc(-50% + 0.06em), 0);
+  transform: translate3d(-100%, calc(-50% + var(--orbit-chevron-y)), 0);
   z-index: 2;
 }
 
@@ -1861,7 +1862,7 @@ html.translated-rtl .process-flow__card h3 {
   .process-flow.is-sequencing .process-flow__connector.is-connector-done .process-flow__orbit-chevron,
   .process-flow.is-static .process-flow__orbit-chevron {
     left: 100%;
-    transform: translate3d(-100%, calc(-50% + 0.06em), 0);
+    transform: translate3d(-100%, calc(-50% + var(--orbit-chevron-y)), 0);
   }
 }
 
@@ -1992,14 +1993,14 @@ html.translated-rtl .process-flow__card h3 {
     overflow: visible;
     font-size: 1.35rem;
     line-height: 0;
-    transform: translate3d(calc(-50% + 0.06em), -100%, 0) rotate(90deg);
+    transform: translate3d(calc(-50% + var(--orbit-chevron-y)), -100%, 0) rotate(90deg);
   }
 
   .process-flow.is-static .process-flow__connector--inline .process-flow__orbit-chevron,
   .process-flow.is-sequencing .process-flow__connector--inline.is-connector-done .process-flow__orbit-chevron {
     top: 100%;
     left: 50%;
-    transform: translate3d(calc(-50% + 0.06em), -100%, 0) rotate(90deg);
+    transform: translate3d(calc(-50% + var(--orbit-chevron-y)), -100%, 0) rotate(90deg);
   }
 
   .process-flow.is-sequencing .process-flow__unit:not(.is-step-open) .process-flow__card {
@@ -2047,7 +2048,7 @@ html.translated-rtl .process-flow__card h3 {
   .process-flow.is-static .process-flow__orbit-chevron {
     left: 100%;
     top: 50%;
-    transform: translate3d(-100%, calc(-50% + 0.06em), 0) !important;
+    transform: translate3d(-100%, calc(-50% + var(--orbit-chevron-y)), 0) !important;
   }
 }
 
@@ -2060,7 +2061,7 @@ html.translated-rtl .process-flow__card h3 {
   .process-flow.is-static .process-flow__orbit-chevron {
     top: 100%;
     left: 50%;
-    transform: translate3d(calc(-50% + 0.06em), -100%, 0) rotate(90deg) !important;
+    transform: translate3d(calc(-50% + var(--orbit-chevron-y)), -100%, 0) rotate(90deg) !important;
   }
 }
 
