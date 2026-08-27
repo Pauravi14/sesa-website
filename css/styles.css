@@ -6335,7 +6335,7 @@ main:has(.guide-kontakt) + .footer {
   display: inline-block;
   white-space: nowrap;
   color: var(--copper);
-  font-family: "Allura", "Segoe Script", "Brush Script MT", cursive;
+  font-family: "Yellowtail", "Segoe Script", "Brush Script MT", cursive;
   font-size: clamp(2.35rem, 5vw, 3.25rem);
   font-style: normal;
   font-weight: 400;
