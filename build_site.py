@@ -854,7 +854,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=199" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=200" />
     {extra_head}
   </head>
   <body>
@@ -899,7 +899,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=45" defer></script>
+    <script src="{p}js/main.js?v=46" defer></script>
   </body>
 </html>"""
 
@@ -1589,10 +1589,10 @@ def main() -> None:
         <label for="hinweis">Kurze Hinweise (optional)</label>
         <textarea id="hinweis" rows="4" placeholder="z. B. Kennzeichen, Kurzbeschreibung"></textarea>
         <label class="schaden-consent" for="schaden-consent">
-          <input id="schaden-consent" name="schaden-consent" type="checkbox" value="yes" required />
+          <input id="schaden-consent" name="schaden-consent" type="checkbox" value="yes" aria-describedby="schaden-consent-error" />
           <span>I consent to the sharing and processing of the information provided above for the purpose of handling my request. I understand that my data will be securely stored and automatically deleted after 14 days.</span>
         </label>
-        <p class="schaden-consent-error" id="schaden-consent-error" hidden>Please provide your consent to continue.</p>
+        <p class="schaden-consent-error" id="schaden-consent-error" role="alert" hidden>Please provide your consent to continue.</p>
         <button class="btn btn-solid" type="submit">Weiter zu WhatsApp</button>
         <p class="muted">Fotos können Sie direkt in WhatsApp senden. Kein Datei-Upload auf dieser Website.</p>
       </form>
