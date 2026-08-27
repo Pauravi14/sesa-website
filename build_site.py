@@ -165,17 +165,19 @@ def hero_slides_html() -> str:
 PROCESS_FLOW_ARROW = (
     '<svg class="process-flow__arrow" viewBox="0 0 200 10" preserveAspectRatio="none" '
     'focusable="false" aria-hidden="true">'
-    '<path d="M0 5 H178 M178 3 L196 5 L178 7" fill="none" stroke="currentColor" '
-    'stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linecap="round" '
-    'stroke-linejoin="round"/></svg>'
+    '<path d="M0 5 H186" fill="none" stroke="currentColor" stroke-width="1" '
+    'vector-effect="non-scaling-stroke" stroke-linecap="butt"/>'
+    '<path d="M186 4.2 L198 5 L186 5.8" fill="none" stroke="currentColor" stroke-width="1" '
+    'vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="miter"/></svg>'
 )
 
 PROCESS_FLOW_ARROW_VERTICAL = (
     '<svg class="process-flow__arrow" viewBox="0 0 10 200" preserveAspectRatio="none" '
     'focusable="false" aria-hidden="true">'
-    '<path d="M5 0 V178 M3 178 L5 196 L7 178" fill="none" stroke="currentColor" '
-    'stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linecap="round" '
-    'stroke-linejoin="round"/></svg>'
+    '<path d="M5 0 V186" fill="none" stroke="currentColor" stroke-width="1" '
+    'vector-effect="non-scaling-stroke" stroke-linecap="butt"/>'
+    '<path d="M4.2 186 L5 198 L5.8 186" fill="none" stroke="currentColor" stroke-width="1" '
+    'vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="miter"/></svg>'
 )
 
 PROCESS_FLOW_ORBIT = (
@@ -850,7 +852,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=195" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=196" />
     {extra_head}
   </head>
   <body>

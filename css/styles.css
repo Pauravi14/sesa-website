@@ -1627,7 +1627,6 @@ a:hover {
   height: 10px;
   overflow: visible;
   clip-path: inset(0 calc((1 - var(--connector-head)) * 100%) 0 0);
-  filter: drop-shadow(0 0 6px var(--process-copper-glow));
   will-change: clip-path;
 }
 
