@@ -1614,49 +1614,19 @@ a:hover {
 }
 
 .process-flow__orbit {
-  --connector-head: 1 !important;
-  --process-arrow-gap: 0.6rem;
   position: relative;
-}
-
-.process-flow__orbit-track {
-  display: none;
-}
-
-.process-flow__orbit-chevron {
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  width: var(--process-arrow-gap);
-  height: 0.65rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: stretch;
   color: var(--logo-copper);
-  pointer-events: none;
-  transform: translate3d(-100%, -50%, 0);
-  z-index: 2;
 }
 
-.process-flow__arrow-head {
+.process-flow__arrow {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 10px;
   overflow: visible;
-}
-
-.process-flow__orbit-progress {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: calc(100% - var(--process-arrow-gap));
-  height: 2px;
-  transform: translate3d(0, -50%, 0);
-  transform-origin: left center;
-  border-radius: 999px;
-  background: var(--logo-copper);
-  box-shadow: 0 0 10px var(--process-copper-glow);
-  z-index: 1;
+  filter: drop-shadow(0 0 6px var(--process-copper-glow));
 }
 
 .process-flow.is-sequencing .process-flow__connector {
@@ -1842,6 +1812,8 @@ html.translated-rtl .process-flow__card h3 {
     margin: 0;
     padding: 0;
     z-index: 1;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .process-flow__connector--track .process-flow__orbit {
@@ -1850,17 +1822,11 @@ html.translated-rtl .process-flow__card h3 {
     margin: 0 -2.25rem;
     display: flex;
     align-items: center;
-    --connector-head: 1 !important;
   }
 
-  .process-flow__connector--track .process-flow__orbit-track {
-    display: none;
-  }
-
-  .process-flow__connector--track .process-flow__orbit-progress {
-    top: 50%;
-    height: 2px;
-    width: calc(100% - var(--process-arrow-gap));
+  .process-flow.is-sequencing .process-flow__connector--track {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
@@ -1961,33 +1927,21 @@ html.translated-rtl .process-flow__card h3 {
   }
 
   .process-flow__connector--inline .process-flow__orbit {
-    width: 3px;
+    container-type: size;
+    width: 10px;
     height: 100%;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    --connector-head: 1 !important;
+    align-items: center;
+    justify-content: center;
   }
 
-  .process-flow__connector--inline .process-flow__orbit-track {
-    display: none;
-  }
-
-  .process-flow__connector--inline .process-flow__orbit-progress {
-    left: 50%;
-    top: 0;
-    width: 2px;
-    height: calc(100% - 0.65rem);
-    transform: translate3d(-50%, 0, 0);
-    transform-origin: top center;
-  }
-
-  .process-flow__connector--inline .process-flow__orbit-chevron {
-    top: 100%;
-    left: 50%;
-    width: var(--process-arrow-gap);
-    height: 0.65rem;
-    transform: translate3d(-50%, -100%, 0) rotate(90deg);
+  .process-flow__connector--inline .process-flow__arrow {
+    width: 100cqh;
+    max-width: none;
+    height: 10px;
+    transform: rotate(90deg);
+    transform-origin: center center;
   }
 
   .process-flow.is-sequencing .process-flow__unit:not(.is-step-open) .process-flow__card {
@@ -2031,24 +1985,15 @@ html.translated-rtl .process-flow__card h3 {
 }
 
 @media (prefers-reduced-motion: reduce) and (min-width: 1101px) {
-  .process-flow.is-sequencing .process-flow__orbit-chevron,
-  .process-flow.is-static .process-flow__orbit-chevron {
-    left: 100%;
-    top: 50%;
-    transform: translate3d(-100%, -50%, 0) !important;
+  .process-flow.is-sequencing .process-flow__connector--track {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
 @media (prefers-reduced-motion: reduce) and (max-width: 1100px) {
   .process-flow.is-sequencing .process-flow__connector {
     transform: none !important;
-  }
-
-  .process-flow.is-sequencing .process-flow__orbit-chevron,
-  .process-flow.is-static .process-flow__orbit-chevron {
-    top: 100%;
-    left: 50%;
-    transform: translate3d(-50%, -100%, 0) rotate(90deg) !important;
   }
 }
 
