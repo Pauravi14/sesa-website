@@ -16,9 +16,7 @@
     document.querySelectorAll(".menu-item--services.is-services-open").forEach(function (item) {
       item.classList.remove("is-services-open");
       const details = item.querySelector(".menu-accordion");
-      const summary = item.querySelector(".menu-accordion__summary");
       details?.removeAttribute("open");
-      summary?.setAttribute("aria-expanded", "false");
     });
   }
 
@@ -31,7 +29,6 @@
       } else {
         item?.classList.remove("is-services-open");
         details.removeAttribute("open");
-        details.querySelector(".menu-accordion__summary")?.setAttribute("aria-expanded", "false");
       }
     });
   }
@@ -72,7 +69,6 @@
       if (willOpen) {
         item.classList.add("is-services-open");
         details.setAttribute("open", "");
-        summary.setAttribute("aria-expanded", "true");
       }
     });
   });

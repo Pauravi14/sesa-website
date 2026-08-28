@@ -74,6 +74,16 @@ GUTACHTEN_TIMING_CARD = (
 
 HERO_IMG_VER = "4"
 SERVICE_IMG_VER = "3"
+SERVICE_THUMB_WIDTH = 1280
+SERVICE_THUMB_HEIGHT = 720
+PAGE_HERO_WIDTH = 1536
+PAGE_HERO_HEIGHT = 1024
+PORTRAIT_WIDTH = 480
+PORTRAIT_HEIGHT = 720
+HERO_SLIDE_PLACEHOLDER = (
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3C/svg%3E"
+)
+NEW_TAB_SUFFIX = '<span class="visually-hidden"> (öffnet in neuem Tab)</span>'
 
 HERO_SLIDES = [
     (f"assets/hero/slide-1.jpg?v={HERO_IMG_VER}", "Fahrzeugbegutachtung durch Kfz-Sachverständigen"),
@@ -123,7 +133,7 @@ def wa_float_widget() -> str:
     schaden = whatsapp_url(WHATSAPP_TEXT_SCHADEN)
     return f"""
     <div class="wa-float-wrap" data-wa-float>
-      <button type="button" class="wa-float-trigger" aria-label="WhatsApp: Hilfe anfordern" aria-expanded="false" data-wa-toggle>
+      <button type="button" class="wa-float-trigger" aria-expanded="false" data-wa-toggle>
         <span class="wa-float-bubble">
           <span class="wa-float-bubble-small">Brauchen Sie Hilfe?</span>
           <span class="wa-float-bubble-strong">Jetzt kontaktieren</span>
@@ -136,11 +146,11 @@ def wa_float_widget() -> str:
         <p class="wa-float-greeting">Guten Tag SESA</p>
         <p class="wa-float-hint">Wie können wir Ihnen helfen?</p>
         <a class="wa-float-option" href="{beratung}" target="_blank" rel="noopener noreferrer">
-          <span class="wa-float-option-title">Beratung</span>
+          <span class="wa-float-option-title">Beratung{NEW_TAB_SUFFIX}</span>
           <span class="wa-float-preview">Guten Tag SESA, ich benötige eine Beratung. Bitte rufen Sie mich zurück.</span>
         </a>
         <a class="wa-float-option" href="{schaden}" target="_blank" rel="noopener noreferrer">
-          <span class="wa-float-option-title">Schaden melden</span>
+          <span class="wa-float-option-title">Schaden melden{NEW_TAB_SUFFIX}</span>
           <span class="wa-float-preview">Guten Tag SESA, ich möchte einen Schaden melden. Bitte rufen Sie mich zurück.</span>
         </a>
       </div>
@@ -170,8 +180,8 @@ def hero_slides_html() -> str:
             )
         else:
             parts.append(
-                f'        <img class="hero__slide{active}" data-src="{src}" alt="" '
-                f'width="1920" height="1080" decoding="async" />'
+                f'        <img class="hero__slide{active}" src="{HERO_SLIDE_PLACEHOLDER}" '
+                f'data-src="{src}" alt="" width="1920" height="1080" decoding="async" />'
             )
     return "\n".join(parts)
 
@@ -377,12 +387,13 @@ def service_card_icon(key: str, wrapper_class: str = "service-card__icon") -> st
 def leistungen_service_card(slug: str, title: str, description: str, icon_key: str, featured: bool = False) -> str:
     featured_class = " leistungen-card--featured" if featured else ""
     heading = "h2" if featured else "h3"
+    card_id = slug.replace(".html", "")
     return f"""
-        <article class="leistungen-card{featured_class}">
+        <article class="leistungen-card{featured_class}" aria-labelledby="leistungen-{card_id}-title">
           <a class="leistungen-card__link" href="{slug}">
             {service_card_icon(icon_key, "leistungen-card__icon")}
             <div class="leistungen-card__copy">
-              <{heading} class="leistungen-card__title">{title}</{heading}>
+              <{heading} class="leistungen-card__title" id="leistungen-{card_id}-title">{title}</{heading}>
               <p class="leistungen-card__desc">{description}</p>
             </div>
           </a>
@@ -405,7 +416,7 @@ def leistungen_page_body() -> str:
             <p class="services-hero__lead">Alle fachlichen Angebote im Überblick — von Unfallgutachten bis Ortstermin.</p>
           </header>
           <div class="services-hero__media" aria-hidden="true">
-            <img src="../assets/workshop-tools.png" alt="" width="640" height="420" loading="eager" decoding="async" />
+            <img src="../assets/workshop-tools.png" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="eager" decoding="async" />
           </div>
         </div>
       </section>
@@ -445,7 +456,7 @@ def about_page_body(depth: int = 0) -> str:
             <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
           </header>
           <div class="about-hero__media" aria-hidden="true">
-            <img src="{portrait_img}" alt="" width="480" height="600" decoding="async" />
+            <img src="{portrait_img}" alt="" width="{PORTRAIT_WIDTH}" height="{PORTRAIT_HEIGHT}" decoding="async" />
           </div>
         </div>
       </section>
@@ -454,7 +465,7 @@ def about_page_body(depth: int = 0) -> str:
         <div class="about-page__inner about-main__grid">
           <aside class="about-profile">
             <div class="about-profile__photo">
-              <img src="{portrait_img}" alt="" width="480" height="600" decoding="async" />
+              <img src="{portrait_img}" alt="" width="{PORTRAIT_WIDTH}" height="{PORTRAIT_HEIGHT}" decoding="async" />
             </div>
             <div class="about-profile__body">
               <h2>{OWNER}</h2>
@@ -578,7 +589,7 @@ def home_page_body() -> str:
           <p class="hero__region">Nordrhein-Westfalen · Niedersachsen · Hessen · Hamburg · Bremen</p>
           <p class="hero__services">Unfallgutachten · Fahrzeugbewertung · Wohnmobile · Oldtimer.</p>
           <p class="hero__description">Unverschuldeter Unfall? Wir dokumentieren Schäden fachgerecht und schaffen eine belastbare Grundlage für die weitere Schadenregulierung.</p>
-          <ul class="hero-trust hero-trust--centered" role="list">
+          <ul class="hero-trust hero-trust--centered">
             <li class="hero-trust__item">
               <span class="hero-trust__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9.5 12 1.8 1.8L15 10.1"/></svg>
@@ -610,7 +621,7 @@ def home_page_body() -> str:
           <div class="hero-actions hero-actions--centered">
             <div class="hero-actions__row">
               <a class="btn btn-primary hero-cta-primary" href="tel:{PHONE_LINK}">Jetzt anrufen</a>
-              <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben</a>
+              <a class="btn btn-secondary btn-wa hero-cta-secondary" href="{beratung}" target="_blank" rel="noopener noreferrer">Per WhatsApp schreiben{NEW_TAB_SUFFIX}</a>
             </div>
             <a class="btn btn-tertiary hero-cta-tertiary" href="schaden-melden.html">Schaden online melden</a>
           </div>
@@ -621,7 +632,7 @@ def home_page_body() -> str:
     <section class="section home-section home-expert" data-section="expert" id="expertise">
       <div class="expert-spotlight expert-spotlight--premium expert-spotlight--composed">
         <div class="expert-spotlight__media">
-          <img class="expert-spotlight__photo" src="{ABOUT_PORTRAIT}" alt="Porträtfoto — {OWNER}" width="960" height="1440" loading="lazy" decoding="async" />
+          <img class="expert-spotlight__photo" src="{ABOUT_PORTRAIT}" alt="Porträtfoto — {OWNER}" width="{PORTRAIT_WIDTH}" height="{PORTRAIT_HEIGHT}" loading="lazy" decoding="async" />
         </div>
         <div class="expert-spotlight__content">
           <h2 class="expert-spotlight__title">
@@ -647,7 +658,7 @@ def home_page_body() -> str:
       </header>
       <div class="service-grid">
         <article class="service-card">
-          <div class="service-card__media"><img src="{SERVICE_THUMBS["unfall"]}" alt="Schadendetail am Fahrzeug" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["unfall"]}" alt="Schadendetail am Fahrzeug" width="{SERVICE_THUMB_WIDTH}" height="{SERVICE_THUMB_HEIGHT}" loading="lazy" decoding="async" /></div>
           <div class="service-card__body">
             {service_card_icon("unfall")}
             <h3>Unfallgutachten</h3>
@@ -656,7 +667,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="{SERVICE_THUMBS["bewertung"]}" alt="Werkzeug und Dokumentation zur Fahrzeugbewertung" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["bewertung"]}" alt="Werkzeug und Dokumentation zur Fahrzeugbewertung" width="{SERVICE_THUMB_WIDTH}" height="{SERVICE_THUMB_HEIGHT}" loading="lazy" decoding="async" /></div>
           <div class="service-card__body">
             {service_card_icon("bewertung")}
             <h3>Fahrzeugbewertung</h3>
@@ -665,7 +676,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="{SERVICE_THUMBS["wohnmobile"]}" alt="Wohnmobil auf einer Landstraße" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["wohnmobile"]}" alt="Wohnmobil auf einer Landstraße" width="{SERVICE_THUMB_WIDTH}" height="{SERVICE_THUMB_HEIGHT}" loading="lazy" decoding="async" /></div>
           <div class="service-card__body">
             {service_card_icon("wohnmobile")}
             <h3>Wohnmobile &amp; Wohnwagen</h3>
@@ -674,7 +685,7 @@ def home_page_body() -> str:
           </div>
         </article>
         <article class="service-card">
-          <div class="service-card__media"><img src="{SERVICE_THUMBS["oldtimer"]}" alt="Oldtimer in der Werkstatt" loading="lazy" /></div>
+          <div class="service-card__media"><img src="{SERVICE_THUMBS["oldtimer"]}" alt="Oldtimer in der Werkstatt" width="{SERVICE_THUMB_WIDTH}" height="{SERVICE_THUMB_HEIGHT}" loading="lazy" decoding="async" /></div>
           <div class="service-card__body">
             {service_card_icon("oldtimer")}
             <h3>Oldtimer &amp; Youngtimer</h3>
@@ -691,7 +702,7 @@ def home_page_body() -> str:
         <h2>In vier Schritten zum Gutachten</h2>
       </header>
       <div class="process-flow" data-process-flow>
-        <ol class="process-flow__track" role="list">
+        <ol class="process-flow__track">
 {process_flow_unit("01", "Kontakt", "Kontaktaufnahme und Erstberatung", True)}
 {process_flow_unit("02", "Begutachtung", "Schadenaufnahme am Fahrzeugstandort", True)}
 {process_flow_unit("03", "Dokumentation", GUTACHTEN_TIMING_CARD, True)}
@@ -759,8 +770,8 @@ def services_dropdown(depth: int, active: str) -> str:
     submenu = "\n".join(items)
     return f"""<li class="menu-item menu-item--services">
       <details class="menu-accordion">
-        <summary class="menu-accordion__summary" aria-expanded="false">
-          <span class="menu-accordion__label">Leistungen</span>
+        <summary class="menu-accordion__summary">
+          Leistungen
           <span class="menu-caret" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" d="M2.5 4.5 6 8 9.5 4.5"/></svg></span>
         </summary>
         <ul class="menu-dropdown">
@@ -874,7 +885,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=206" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=208" />
     {extra_head}
   </head>
   <body>
@@ -919,7 +930,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=51" defer></script>
+    <script src="{p}js/main.js?v=52" defer></script>
   </body>
 </html>"""
 
@@ -958,7 +969,7 @@ def page_hero(
           <p class="lead">{lead}</p>
         </div>
         <div class="page-hero__media">
-          <img src="{p}{img}" alt="" loading="lazy" />
+          <img src="{p}{img}" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>"""
@@ -969,16 +980,17 @@ def page_hero(
         <h1>{title}</h1>
         <p class="lead">{lead}</p>
       </div>
-      <img src="{p}{img}" alt="" loading="lazy" />
+      <img src="{p}{img}" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="lazy" decoding="async" />
     </section>"""
 
 
 def counselor_card(slug: str, title: str, description: str, icon_name: str) -> str:
+    card_id = slug.replace(".html", "").replace("/", "-")
     return f"""
-        <article class="counselor-card">
+        <article class="counselor-card" aria-labelledby="counselor-{card_id}-title">
           <a class="counselor-card__link" href="{slug}">
             <span class="counselor-card__icon" aria-hidden="true">{lucide_svg(icon_name)}</span>
-            <h3 class="counselor-card__title">{title}</h3>
+            <h3 class="counselor-card__title" id="counselor-{card_id}-title">{title}</h3>
             <p class="counselor-card__desc">{description}</p>
             <span class="counselor-card__more">Mehr erfahren</span>
           </a>
@@ -1103,7 +1115,7 @@ def unfall_page_body() -> str:
             <p class="lead">Erste Schritte an der Unfallstelle.</p>
           </div>
           <div class="page-hero__media">
-            <img src="{p}assets/damage-detail.png" alt="" loading="eager" decoding="async" />
+            <img src="{p}assets/damage-detail.png" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="eager" decoding="async" />
           </div>
         </div>
       </section>
@@ -1111,13 +1123,13 @@ def unfall_page_body() -> str:
         <div class="guide-unfall__inner">
           <div class="guide-unfall__panel">
             <div class="guide-unfall__panel-grid">
-              <ol class="guide-unfall__col guide-unfall__col--left" role="list">
+              <ol class="guide-unfall__col guide-unfall__col--left">
                 {left_steps}
               </ol>
               <div class="guide-unfall__divider" aria-hidden="true">
                 <span class="guide-unfall__divider-track"></span>
               </div>
-              <ol class="guide-unfall__col guide-unfall__col--right" role="list">
+              <ol class="guide-unfall__col guide-unfall__col--right">
                 {right_steps}
               </ol>
             </div>
@@ -1178,7 +1190,7 @@ def rechte_page_body() -> str:
             <span class="page-hero__rule" aria-hidden="true"></span>
           </div>
           <div class="page-hero__media">
-            <img src="{p}assets/damage-detail.png" alt="" loading="eager" decoding="async" />
+            <img src="{p}assets/damage-detail.png" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="eager" decoding="async" />
           </div>
         </div>
       </section>
@@ -1234,7 +1246,7 @@ def kontakt_page_body() -> str:
     <div class="guide-kontakt">
       <section class="guide-kontakt__hero" aria-labelledby="kontakt-title">
         <div class="guide-kontakt__hero-media" aria-hidden="true">
-          <img src="{CONTACT_HERO}" alt="" loading="eager" decoding="async" />
+          <img src="{CONTACT_HERO}" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="eager" decoding="async" />
         </div>
         <div class="guide-kontakt__hero-inner">
           <div class="guide-kontakt__hero-copy">
@@ -1279,7 +1291,7 @@ def kontakt_page_body() -> str:
             <div class="guide-kontakt__panel guide-kontakt__panel--profile">
               <div class="guide-kontakt__profile-grid">
                 <div class="guide-kontakt__profile-photo">
-                  <img src="{portrait}" alt="Porträtfoto Platzhalter" width="480" height="600" loading="lazy" decoding="async" />
+                  <img src="{portrait}" alt="Porträtfoto Platzhalter" width="{PORTRAIT_WIDTH}" height="{PORTRAIT_HEIGHT}" loading="lazy" decoding="async" />
                 </div>
                 <div class="guide-kontakt__profile-body">
                   <h2>{OWNER}</h2>
@@ -1305,7 +1317,7 @@ def kontakt_page_body() -> str:
               <div class="map-wrap guide-kontakt__map" data-map>
                 <p class="muted">Karte wird nach Zustimmung geladen.<br /><button class="btn" type="button" data-load-map>Karte anzeigen</button></p>
               </div>
-              <a class="guide-kontakt__route-btn" href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen</a>
+              <a class="guide-kontakt__route-btn" href="https://www.google.com/maps?q=Pohlweg+76,+33098+Paderborn" rel="noopener noreferrer" target="_blank">Route in Google Maps öffnen{NEW_TAB_SUFFIX}</a>
             </div>
           </div>
         </div>
@@ -1329,7 +1341,7 @@ def faq_page_body(items: list[tuple[str, str]]) -> str:
             <p class="lead">Häufige Fragen zum Gutachten.</p>
           </div>
           <div class="page-hero__media">
-            <img src="{p}assets/workshop-tools.png" alt="" loading="lazy" />
+            <img src="{p}assets/workshop-tools.png" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
@@ -1355,12 +1367,12 @@ def service_step_item(number: int, text: str, icon_name: str) -> str:
 def service_steps_column(steps: list[tuple[int, str, str]]) -> str:
     items = "".join(service_step_item(number, text, icon_name) for number, text, icon_name in steps)
     return f"""
-          <ol class="service-steps__col" role="list">
+          <ol class="service-steps__col">
             {items}
           </ol>"""
 
 
-def service_page_content(paragraphs: list[str], icon_names: list[str]) -> str:
+def service_page_content(paragraphs: list[str], icon_names: list[str], title: str) -> str:
     """Shared service-detail body — Editorial Steps card (all Leistungen pages)."""
     if len(icon_names) != len(paragraphs):
         raise ValueError("Each service paragraph needs a matching step icon.")
@@ -1377,7 +1389,8 @@ def service_page_content(paragraphs: list[str], icon_names: list[str]) -> str:
     return f"""
     <section class="section content-light service-detail service-detail--steps" aria-label="Leistungsbeschreibung">
       <div class="service-detail__inner">
-        <article class="service-steps-card">
+        <article class="service-steps-card" aria-labelledby="service-steps-title">
+          <h2 id="service-steps-title" class="visually-hidden">{title}</h2>
           <div class="service-steps-card__grid{single_col_class}">
             {left_col}
             {right_col}
@@ -1394,7 +1407,7 @@ def service_page_content(paragraphs: list[str], icon_names: list[str]) -> str:
 
 def service_page(slug: str, title: str, lead: str, paragraphs: list[str], img: str) -> None:
     body = page_hero(title, lead, img, 1, editorial=True)
-    body += service_page_content(paragraphs, SERVICE_STEP_ICONS[slug])
+    body += service_page_content(paragraphs, SERVICE_STEP_ICONS[slug], title)
     write(ROOT / "leistungen" / slug, 1, "Leistungen", title, lead, body)
 
 
