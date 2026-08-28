@@ -9,8 +9,75 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=214" />
+    <link rel="stylesheet" href="./css/styles.css?v=215" />
     
+    <style id="split-banner-hero-critical">
+      .split-banner-hero.page-hero--editorial {
+        padding: 0;
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        overflow: hidden;
+        background: var(--bg-2);
+      }
+
+      .split-banner-hero .page-hero__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 53fr) minmax(0, 47fr);
+        align-items: center;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        padding: 0;
+        gap: 0;
+        box-sizing: border-box;
+      }
+
+      .split-banner-hero .page-hero__copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 0 clamp(1.25rem, 4vw, 3rem);
+        box-sizing: border-box;
+      }
+
+      .split-banner-hero .page-hero__media {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      .split-banner-hero .page-hero__media::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        z-index: 1;
+        width: 32%;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          var(--bg-2) 0%,
+          rgba(10, 22, 40, 0.78) 42%,
+          rgba(10, 22, 40, 0.22) 78%,
+          transparent 100%
+        );
+      }
+
+      .split-banner-hero .page-hero__media img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        object-fit: cover;
+        object-position: center right;
+      }
+    </style>
   </head>
   <body>
     <a class="skip" href="#main">Zum Hauptinhalt springen</a>
@@ -70,19 +137,19 @@
     </header>
     <main id="main">
     <div class="about-page">
-      <section class="about-hero" aria-labelledby="about-title">
-        <div class="about-hero__inner">
-          <header class="about-hero__copy">
-            <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
-            <h1 id="about-title">Über uns</h1>
-            <span class="about-hero__rule" aria-hidden="true"></span>
-            <p class="about-hero__lead">Selim Sabahoglu — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
-          </header>
-          <div class="about-hero__media" aria-hidden="true">
-            <img src="./assets/portrait-placeholder.jpg?v=2" alt="" width="480" height="720" decoding="async" />
-          </div>
+      
+    <section class="page-hero page-hero--editorial split-banner-hero">
+      <div class="page-hero__inner">
+        <div class="page-hero__copy">
+          <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+          <h1>Über uns</h1>
+          <p class="lead">Selim Sabahoglu — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
         </div>
-      </section>
+        <div class="page-hero__media">
+          <img src="./assets/about/about-hero.jpg?v=2" alt="" width="1536" height="1024" loading="eager" decoding="async" fetchpriority="high" />
+        </div>
+      </div>
+    </section>
 
       <section class="about-main">
         <div class="about-page__inner about-main__grid">

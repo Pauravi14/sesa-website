@@ -9,7 +9,7 @@ from lucide_icons import lucide_svg
 
 ROOT = Path(__file__).resolve().parent
 LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
-ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
+ABOUT_HERO = "assets/about/about-hero.jpg?v=2"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.jpg?v=2"
 CONTACT_HERO = "assets/hero-inspection.png"
 BLOG_HERO = "assets/blog/blog-hero.jpg?v=3"
@@ -74,7 +74,7 @@ GUTACHTEN_TIMING_CARD = (
 
 HERO_IMG_VER = "4"
 SERVICE_IMG_VER = "3"
-CSS_VER = "214"
+CSS_VER = "215"
 SERVICE_THUMB_WIDTH = 1280
 SERVICE_THUMB_HEIGHT = 720
 PAGE_HERO_WIDTH = 1536
@@ -446,21 +446,15 @@ def about_page_body(depth: int = 0) -> str:
     p = prefix(depth)
     kontakt = f"{p}kontakt.html"
     portrait_img = f"{p}{ABOUT_PORTRAIT}"
+    hero = split_banner_hero_html(
+        depth,
+        "Über uns",
+        f"{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.",
+        ABOUT_HERO,
+    )
     return f"""
     <div class="about-page">
-      <section class="about-hero" aria-labelledby="about-title">
-        <div class="about-hero__inner">
-          <header class="about-hero__copy">
-            <p class="about-hero__kicker">SESA · Kfz-Sachverständigenbüro</p>
-            <h1 id="about-title">Über uns</h1>
-            <span class="about-hero__rule" aria-hidden="true"></span>
-            <p class="about-hero__lead">{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.</p>
-          </header>
-          <div class="about-hero__media" aria-hidden="true">
-            <img src="{portrait_img}" alt="" width="{PORTRAIT_WIDTH}" height="{PORTRAIT_HEIGHT}" decoding="async" />
-          </div>
-        </div>
-      </section>
+      {hero}
 
       <section class="about-main">
         <div class="about-page__inner about-main__grid">
@@ -1625,6 +1619,7 @@ def main() -> None:
         "Über uns",
         f"{OWNER} — unabhängiger Kfz-Sachverständiger in Paderborn.",
         about_page_body(0),
+        extra_head=SPLIT_BANNER_HERO_CRITICAL,
     )
 
     write(
