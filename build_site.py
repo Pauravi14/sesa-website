@@ -12,7 +12,7 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
-SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png?v=3"
+SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png?v=4"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
       main:has(.guide-kontakt) {
