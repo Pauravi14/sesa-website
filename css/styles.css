@@ -2136,6 +2136,11 @@ html.translated-rtl .guide-kontakt__hero-copy h1 {
   text-transform: capitalize;
 }
 
+html.translated-ltr .page-hero--editorial h1,
+html.translated-rtl .page-hero--editorial h1 {
+  text-transform: capitalize;
+}
+
 h1,
 h2,
 h3 {
