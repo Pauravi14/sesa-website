@@ -702,22 +702,33 @@
   if (heroSlider) {
     const slides = heroSlider.querySelectorAll(".hero__slide");
     if (slides.length > 1) {
-      slides.forEach(function (slide) {
-        slide.loading = "eager";
+      function warmSlide(slide) {
+        if (!slide || slide.dataset.warmed) {
+          return;
+        }
+        slide.dataset.warmed = "1";
         if (slide.decode) {
           slide.decode().catch(function () {
             /* ignore decode errors */
           });
         }
-      });
+      }
+
+      const activeSlide = heroSlider.querySelector(".hero__slide.is-active");
+      warmSlide(activeSlide);
 
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         const fadeMs = 3000;
         const holdMs = 6500;
         let active = 0;
 
+        window.setTimeout(function () {
+          warmSlide(slides[(active + 1) % slides.length]);
+        }, holdMs - 2000);
+
         window.setInterval(function () {
           const next = (active + 1) % slides.length;
+          warmSlide(slides[(next + 1) % slides.length]);
           slides[active].classList.remove("is-active");
           slides[next].classList.add("is-active");
           active = next;

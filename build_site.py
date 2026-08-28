@@ -10,7 +10,7 @@ from lucide_icons import lucide_svg
 ROOT = Path(__file__).resolve().parent
 LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
-ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
+ABOUT_PORTRAIT = "assets/portrait-placeholder.jpg?v=2"
 CONTACT_HERO = "assets/hero-inspection.png"
 BLOG_HERO = "assets/blog/blog-hero.jpg?v=3"
 SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png?v=11"
@@ -155,11 +155,16 @@ def hero_slides_html() -> str:
     parts = []
     for i, (src, _alt) in enumerate(HERO_SLIDES):
         active = " is-active" if i == 0 else ""
-        fetch = " fetchpriority=\"high\"" if i == 0 else ""
-        parts.append(
-            f'        <img class="hero__slide{active}" src="{src}" alt="" '
-            f'loading="eager" decoding="async"{fetch} />'
-        )
+        if i == 0:
+            parts.append(
+                f'        <img class="hero__slide{active}" src="{src}" alt="" '
+                f'loading="eager" decoding="async" fetchpriority="high" />'
+            )
+        else:
+            parts.append(
+                f'        <img class="hero__slide{active}" src="{src}" alt="" '
+                f'loading="lazy" decoding="async" />'
+            )
     return "\n".join(parts)
 
 
@@ -538,9 +543,8 @@ def about_page_body(depth: int = 0) -> str:
 
 
 def hero_preload_head() -> str:
-    return "\n".join(
-        f'    <link rel="preload" as="image" href="{src.split("?")[0]}" />' for src, _ in HERO_SLIDES
-    )
+    src = HERO_SLIDES[0][0]
+    return f'    <link rel="preload" as="image" href="{src}" fetchpriority="high" />'
 
 
 def home_page_body() -> str:
@@ -602,7 +606,7 @@ def home_page_body() -> str:
     <section class="section home-section home-expert" data-section="expert" id="expertise">
       <div class="expert-spotlight expert-spotlight--premium expert-spotlight--composed">
         <div class="expert-spotlight__media">
-          <img class="expert-spotlight__photo" src="assets/portrait-placeholder.png" alt="Porträtfoto — {OWNER}" loading="lazy" />
+          <img class="expert-spotlight__photo" src="{ABOUT_PORTRAIT}" alt="Porträtfoto — {OWNER}" width="960" height="1440" loading="lazy" decoding="async" />
         </div>
         <div class="expert-spotlight__content">
           <h2 class="expert-spotlight__title">
@@ -900,7 +904,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=49" defer></script>
+    <script src="{p}js/main.js?v=50" defer></script>
   </body>
 </html>"""
 

@@ -10,11 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./css/styles.css?v=205" />
-        <link rel="preload" as="image" href="assets/hero/slide-1.jpg" />
-    <link rel="preload" as="image" href="assets/hero/slide-2.jpg" />
-    <link rel="preload" as="image" href="assets/hero/slide-3.jpg" />
-    <link rel="preload" as="image" href="assets/hero/slide-4.jpg" />
-    <link rel="preload" as="image" href="assets/hero/slide-5.jpg" />
+        <link rel="preload" as="image" href="assets/hero/slide-1.jpg?v=4" fetchpriority="high" />
   </head>
   <body>
     <a class="skip" href="#main">Zum Hauptinhalt springen</a>
@@ -76,10 +72,10 @@
     <section class="hero hero--home hero--slideshow hero--centered" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
       <div class="hero__slides" aria-hidden="true">
         <img class="hero__slide is-active" src="assets/hero/slide-1.jpg?v=4" alt="" loading="eager" decoding="async" fetchpriority="high" />
-        <img class="hero__slide" src="assets/hero/slide-2.jpg?v=4" alt="" loading="eager" decoding="async" />
-        <img class="hero__slide" src="assets/hero/slide-3.jpg?v=4" alt="" loading="eager" decoding="async" />
-        <img class="hero__slide" src="assets/hero/slide-4.jpg?v=4" alt="" loading="eager" decoding="async" />
-        <img class="hero__slide" src="assets/hero/slide-5.jpg?v=4" alt="" loading="eager" decoding="async" />
+        <img class="hero__slide" src="assets/hero/slide-2.jpg?v=4" alt="" loading="lazy" decoding="async" />
+        <img class="hero__slide" src="assets/hero/slide-3.jpg?v=4" alt="" loading="lazy" decoding="async" />
+        <img class="hero__slide" src="assets/hero/slide-4.jpg?v=4" alt="" loading="lazy" decoding="async" />
+        <img class="hero__slide" src="assets/hero/slide-5.jpg?v=4" alt="" loading="lazy" decoding="async" />
       </div>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__inner hero__inner--centered">
@@ -132,7 +128,7 @@
     <section class="section home-section home-expert" data-section="expert" id="expertise">
       <div class="expert-spotlight expert-spotlight--premium expert-spotlight--composed">
         <div class="expert-spotlight__media">
-          <img class="expert-spotlight__photo" src="assets/portrait-placeholder.png" alt="Porträtfoto — Selim Sabahoglu" loading="lazy" />
+          <img class="expert-spotlight__photo" src="assets/portrait-placeholder.jpg?v=2" alt="Porträtfoto — Selim Sabahoglu" width="960" height="1440" loading="lazy" decoding="async" />
         </div>
         <div class="expert-spotlight__content">
           <h2 class="expert-spotlight__title">
@@ -360,6 +356,6 @@
         </a>
       </div>
     </div>
-    <script src="./js/main.js?v=49" defer></script>
+    <script src="./js/main.js?v=50" defer></script>
   </body>
 </html>
