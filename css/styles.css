@@ -6426,8 +6426,8 @@ main:has(.guide-kontakt) + .footer {
 }
 
 .guide-kontakt__signature {
-  margin: 0.75rem 0 0;
-  padding: 0 0 0.2rem;
+  margin: 0.75rem 0 0.5rem;
+  padding: 0 0 0.5rem;
   line-height: 1;
   overflow: visible;
 }
@@ -6439,6 +6439,7 @@ main:has(.guide-kontakt) + .footer {
   height: auto;
   object-fit: contain;
   object-position: left center;
+  overflow: visible;
 }
 
 .guide-kontakt__cta {
