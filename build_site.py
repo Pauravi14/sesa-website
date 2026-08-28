@@ -153,17 +153,25 @@ def mobile_action_bar() -> str:
 
 def hero_slides_html() -> str:
     parts = []
+    slide_1_src = HERO_SLIDES[0][0]
+    slide_1_base = slide_1_src.split("?")[0]
+    slide_1_srcset = (
+        f'{slide_1_base.replace("slide-1.jpg", "slide-1-640w.jpg")}?v={HERO_IMG_VER} 640w, '
+        f'{slide_1_base.replace("slide-1.jpg", "slide-1-1280w.jpg")}?v={HERO_IMG_VER} 1280w, '
+        f"{slide_1_src} 1920w"
+    )
     for i, (src, _alt) in enumerate(HERO_SLIDES):
         active = " is-active" if i == 0 else ""
         if i == 0:
             parts.append(
-                f'        <img class="hero__slide{active}" src="{src}" alt="" '
-                f'loading="eager" decoding="async" fetchpriority="high" />'
+                f'        <img class="hero__slide{active}" src="{src}" '
+                f'srcset="{slide_1_srcset}" sizes="100vw" alt="" '
+                f'width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" />'
             )
         else:
             parts.append(
-                f'        <img class="hero__slide{active}" src="{src}" alt="" '
-                f'loading="lazy" decoding="async" />'
+                f'        <img class="hero__slide{active}" data-src="{src}" alt="" '
+                f'width="1920" height="1080" decoding="async" />'
             )
     return "\n".join(parts)
 
@@ -544,7 +552,14 @@ def about_page_body(depth: int = 0) -> str:
 
 def hero_preload_head() -> str:
     src = HERO_SLIDES[0][0]
-    return f'    <link rel="preload" as="image" href="{src}" fetchpriority="high" />'
+    slide_1_base = src.split("?")[0]
+    src_640 = slide_1_base.replace("slide-1.jpg", "slide-1-640w.jpg") + f"?v={HERO_IMG_VER}"
+    src_1280 = slide_1_base.replace("slide-1.jpg", "slide-1-1280w.jpg") + f"?v={HERO_IMG_VER}"
+    srcset = f"{src_640} 640w, {src_1280} 1280w, {src} 1920w"
+    return (
+        f'    <link rel="preload" as="image" href="{src_640}" '
+        f'imagesrcset="{srcset}" imagesizes="100vw" fetchpriority="high" />'
+    )
 
 
 def home_page_body() -> str:
@@ -859,7 +874,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=205" />
+    <link rel="stylesheet" href="{p}css/styles.css?v=206" />
     {extra_head}
   </head>
   <body>
@@ -904,7 +919,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=50" defer></script>
+    <script src="{p}js/main.js?v=51" defer></script>
   </body>
 </html>"""
 

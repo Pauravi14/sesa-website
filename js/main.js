@@ -702,11 +702,17 @@
   if (heroSlider) {
     const slides = heroSlider.querySelectorAll(".hero__slide");
     if (slides.length > 1) {
-      function warmSlide(slide) {
-        if (!slide || slide.dataset.warmed) {
+      function loadSlide(slide) {
+        if (!slide || slide.dataset.loaded) {
           return;
         }
-        slide.dataset.warmed = "1";
+        const deferredSrc = slide.dataset.src;
+        if (deferredSrc) {
+          slide.src = deferredSrc;
+        } else if (!slide.currentSrc && !slide.getAttribute("src")) {
+          return;
+        }
+        slide.dataset.loaded = "1";
         if (slide.decode) {
           slide.decode().catch(function () {
             /* ignore decode errors */
@@ -715,7 +721,7 @@
       }
 
       const activeSlide = heroSlider.querySelector(".hero__slide.is-active");
-      warmSlide(activeSlide);
+      loadSlide(activeSlide);
 
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         const fadeMs = 3000;
@@ -723,12 +729,12 @@
         let active = 0;
 
         window.setTimeout(function () {
-          warmSlide(slides[(active + 1) % slides.length]);
+          loadSlide(slides[(active + 1) % slides.length]);
         }, holdMs - 2000);
 
         window.setInterval(function () {
           const next = (active + 1) % slides.length;
-          warmSlide(slides[(next + 1) % slides.length]);
+          loadSlide(slides[(next + 1) % slides.length]);
           slides[active].classList.remove("is-active");
           slides[next].classList.add("is-active");
           active = next;

@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/styles.css?v=205" />
-        <link rel="preload" as="image" href="assets/hero/slide-1.jpg?v=4" fetchpriority="high" />
+    <link rel="stylesheet" href="./css/styles.css?v=206" />
+        <link rel="preload" as="image" href="assets/hero/slide-1-640w.jpg?v=4" imagesrcset="assets/hero/slide-1-640w.jpg?v=4 640w, assets/hero/slide-1-1280w.jpg?v=4 1280w, assets/hero/slide-1.jpg?v=4 1920w" imagesizes="100vw" fetchpriority="high" />
   </head>
   <body>
     <a class="skip" href="#main">Zum Hauptinhalt springen</a>
@@ -71,11 +71,11 @@
     <main id="main">
     <section class="hero hero--home hero--slideshow hero--centered" data-section="hero" data-hero-slider aria-label="SESA Kfz-Sachverständigenbüro">
       <div class="hero__slides" aria-hidden="true">
-        <img class="hero__slide is-active" src="assets/hero/slide-1.jpg?v=4" alt="" loading="eager" decoding="async" fetchpriority="high" />
-        <img class="hero__slide" src="assets/hero/slide-2.jpg?v=4" alt="" loading="lazy" decoding="async" />
-        <img class="hero__slide" src="assets/hero/slide-3.jpg?v=4" alt="" loading="lazy" decoding="async" />
-        <img class="hero__slide" src="assets/hero/slide-4.jpg?v=4" alt="" loading="lazy" decoding="async" />
-        <img class="hero__slide" src="assets/hero/slide-5.jpg?v=4" alt="" loading="lazy" decoding="async" />
+        <img class="hero__slide is-active" src="assets/hero/slide-1.jpg?v=4" srcset="assets/hero/slide-1-640w.jpg?v=4 640w, assets/hero/slide-1-1280w.jpg?v=4 1280w, assets/hero/slide-1.jpg?v=4 1920w" sizes="100vw" alt="" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" />
+        <img class="hero__slide" data-src="assets/hero/slide-2.jpg?v=4" alt="" width="1920" height="1080" decoding="async" />
+        <img class="hero__slide" data-src="assets/hero/slide-3.jpg?v=4" alt="" width="1920" height="1080" decoding="async" />
+        <img class="hero__slide" data-src="assets/hero/slide-4.jpg?v=4" alt="" width="1920" height="1080" decoding="async" />
+        <img class="hero__slide" data-src="assets/hero/slide-5.jpg?v=4" alt="" width="1920" height="1080" decoding="async" />
       </div>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__inner hero__inner--centered">
@@ -356,6 +356,6 @@
         </a>
       </div>
     </div>
-    <script src="./js/main.js?v=50" defer></script>
+    <script src="./js/main.js?v=51" defer></script>
   </body>
 </html>
