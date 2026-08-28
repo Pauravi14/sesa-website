@@ -12,7 +12,7 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
-SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png?v=5"
+SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png?v=6"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
       main:has(.guide-kontakt) {
@@ -30,7 +30,7 @@ KONTAKT_SIGNATURE_STYLE = """
       }
       .guide-kontakt__signature {
         margin: 0.75rem 0 0.5rem;
-        padding: 0 0 0.5rem;
+        padding: 0 0 1rem;
         overflow: visible;
       }
       .guide-kontakt__signature-img {
@@ -39,7 +39,7 @@ KONTAKT_SIGNATURE_STYLE = """
         max-width: none;
         height: auto;
         object-fit: contain;
-        object-position: left center;
+        object-position: left bottom;
       }
       @media (max-width: 480px) {
         .guide-kontakt__signature-img {
@@ -1271,7 +1271,7 @@ def kontakt_page_body() -> str:
                     <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
                     <li>{ADDRESS}</li>
                   </ul>
-                  <p class="guide-kontakt__signature"><img class="guide-kontakt__signature-img" src="{SIGNATURE_IMAGE}" alt="Unterschrift {OWNER}" width="420" height="137" loading="lazy" decoding="async" /></p>
+                  <p class="guide-kontakt__signature"><img class="guide-kontakt__signature-img" src="{SIGNATURE_IMAGE}" alt="Unterschrift {OWNER}" width="420" height="153" loading="lazy" decoding="async" /></p>
                   <a class="guide-kontakt__cta" href="mailto:{EMAIL}">Kontakt aufnehmen →</a>
                 </div>
               </div>

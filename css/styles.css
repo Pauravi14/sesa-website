@@ -6348,6 +6348,7 @@ main:has(.guide-kontakt) + .footer {
   grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
   gap: 0;
   min-height: 100%;
+  overflow: visible;
 }
 
 .guide-kontakt__profile-photo {
@@ -6427,7 +6428,7 @@ main:has(.guide-kontakt) + .footer {
 
 .guide-kontakt__signature {
   margin: 0.75rem 0 0.5rem;
-  padding: 0 0 0.5rem;
+  padding: 0 0 1rem;
   line-height: 1;
   overflow: visible;
 }
@@ -6438,7 +6439,7 @@ main:has(.guide-kontakt) + .footer {
   max-width: none;
   height: auto;
   object-fit: contain;
-  object-position: left center;
+  object-position: left bottom;
   overflow: visible;
 }
 
