@@ -1,7 +1,7 @@
 (function () {
   const nav = document.querySelector(".nav");
   const toggle = document.querySelector(".menu-toggle");
-  const mobileNav = window.matchMedia("(max-width: 760px)");
+  const mobileNav = window.matchMedia("(max-width: 1024px)");
 
   function closeMobileNav() {
     if (!nav) return;

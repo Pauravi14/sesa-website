@@ -42,6 +42,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-main) + 0.5rem);
   scroll-padding-bottom: 6rem;
+  overflow-x: clip;
+  width: 100%;
 }
 
 body {
@@ -52,6 +54,8 @@ body {
   background: var(--bg);
   line-height: 1.65;
   min-height: 100vh;
+  overflow-x: clip;
+  width: 100%;
 }
 
 .content-light {
@@ -132,6 +136,8 @@ a:hover {
   z-index: 40;
   background: var(--bg-2);
   border-bottom: 1px solid rgba(174, 102, 60, 0.22);
+  width: 100%;
+  max-width: 100%;
 }
 
 .nav {
@@ -141,6 +147,9 @@ a:hover {
   gap: 0;
   padding: 0.9rem 5vw;
   min-height: var(--header-main);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .brand {
@@ -594,6 +603,8 @@ a:hover {
   padding: 0;
   min-height: min(96vh, 960px);
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 .hero--home.hero--slideshow {
@@ -665,6 +676,8 @@ a:hover {
   position: absolute;
   inset: 0;
   z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .hero__slide {
@@ -672,6 +685,8 @@ a:hover {
   inset: 0;
   width: 100%;
   height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
   object-position: center 32%;
   opacity: 0;
@@ -935,7 +950,17 @@ a:hover {
 }
 
 .hero--centered .hero__slide {
-  object-position: 62% 36%;
+  object-position: center 32%;
+}
+
+@media (max-width: 1024px) {
+  .hero--centered .hero__slide {
+    object-position: center 28%;
+  }
+
+  .hero__slide.is-active {
+    transform: scale(1);
+  }
 }
 
 .hero--centered .hero__inner--centered {
@@ -3130,7 +3155,7 @@ body.consent-open {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1024px) {
   :root {
     --header-main: 4.75rem;
     --header-total: 4.75rem;
