@@ -1998,16 +1998,16 @@ html.is-browser-translated .process-flow__card h3 font {
   .process-flow__connector--inline .process-flow__orbit-chevron {
     top: calc(var(--connector-head) * var(--process-line-max));
     left: 50%;
-    width: var(--process-arrow-tail);
-    height: 10px;
-    transform: translate3d(-50%, -100%, 0) rotate(90deg);
+    width: 10px;
+    height: var(--process-arrow-tail);
+    transform: translate3d(-50%, -100%, 0);
   }
 
   .process-flow.is-static .process-flow__connector--inline .process-flow__orbit-chevron,
   .process-flow.is-sequencing .process-flow__connector--inline.is-connector-done .process-flow__orbit-chevron {
     top: var(--process-line-max);
     left: 50%;
-    transform: translate3d(-50%, -100%, 0) rotate(90deg);
+    transform: translate3d(-50%, -100%, 0);
   }
 
   .process-flow.is-static .process-flow__connector--inline .process-flow__orbit-progress,
@@ -2078,7 +2078,9 @@ html.is-browser-translated .process-flow__card h3 font {
   .process-flow.is-static .process-flow__connector--inline .process-flow__orbit-chevron {
     top: var(--process-line-max);
     left: 50%;
-    transform: translate3d(-50%, -100%, 0) rotate(90deg) !important;
+    width: 10px;
+    height: var(--process-arrow-tail);
+    transform: translate3d(-50%, -100%, 0) !important;
   }
 
   .process-flow.is-sequencing .process-flow__connector--inline .process-flow__orbit-progress,
