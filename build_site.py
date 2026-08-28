@@ -74,7 +74,7 @@ GUTACHTEN_TIMING_CARD = (
 
 HERO_IMG_VER = "4"
 SERVICE_IMG_VER = "3"
-CSS_VER = "211"
+CSS_VER = "212"
 SERVICE_THUMB_WIDTH = 1280
 SERVICE_THUMB_HEIGHT = 720
 PAGE_HERO_WIDTH = 1536
@@ -985,9 +985,9 @@ def page_hero(
     </section>"""
 
 
-RATGEBER_HERO_CRITICAL = """
-    <style id="ratgeber-hero-critical">
-      .guide-index .ratgeber-hero.page-hero--editorial {
+SPLIT_BANNER_HERO_CRITICAL = """
+    <style id="split-banner-hero-critical">
+      .split-banner-hero.page-hero--editorial {
         padding: 0;
         height: 320px;
         min-height: 320px;
@@ -996,7 +996,7 @@ RATGEBER_HERO_CRITICAL = """
         background: var(--bg-2);
       }
 
-      .guide-index .ratgeber-hero .page-hero__inner {
+      .split-banner-hero .page-hero__inner {
         display: grid;
         grid-template-columns: minmax(0, 53fr) minmax(0, 47fr);
         align-items: center;
@@ -1011,7 +1011,7 @@ RATGEBER_HERO_CRITICAL = """
         box-sizing: border-box;
       }
 
-      .guide-index .ratgeber-hero .page-hero__copy {
+      .split-banner-hero .page-hero__copy {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1020,7 +1020,7 @@ RATGEBER_HERO_CRITICAL = """
         box-sizing: border-box;
       }
 
-      .guide-index .ratgeber-hero .page-hero__media {
+      .split-banner-hero .page-hero__media {
         position: relative;
         height: 100%;
         overflow: hidden;
@@ -1028,7 +1028,7 @@ RATGEBER_HERO_CRITICAL = """
         padding: 0;
       }
 
-      .guide-index .ratgeber-hero .page-hero__media::before {
+      .split-banner-hero .page-hero__media::before {
         content: "";
         position: absolute;
         inset: 0 auto 0 0;
@@ -1044,7 +1044,7 @@ RATGEBER_HERO_CRITICAL = """
         );
       }
 
-      .guide-index .ratgeber-hero .page-hero__media img {
+      .split-banner-hero .page-hero__media img {
         display: block;
         width: 100%;
         height: 100%;
@@ -1055,21 +1055,30 @@ RATGEBER_HERO_CRITICAL = """
     </style>"""
 
 
-def ratgeber_hero_html(depth: int) -> str:
+def split_banner_hero_html(depth: int, title: str, lead: str, img: str) -> str:
     p = prefix(depth)
     return f"""
-    <section class="page-hero page-hero--editorial ratgeber-hero">
+    <section class="page-hero page-hero--editorial split-banner-hero">
       <div class="page-hero__inner">
         <div class="page-hero__copy">
           <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
-          <h1>Ratgeber</h1>
-          <p class="lead">Sachliche Informationen — keine Rechtsberatung.</p>
+          <h1>{title}</h1>
+          <p class="lead">{lead}</p>
         </div>
         <div class="page-hero__media">
-          <img src="{p}assets/nrw-road.png" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="eager" decoding="async" fetchpriority="high" />
+          <img src="{p}{img}" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="eager" decoding="async" fetchpriority="high" />
         </div>
       </div>
     </section>"""
+
+
+def ratgeber_hero_html(depth: int) -> str:
+    return split_banner_hero_html(
+        depth,
+        "Ratgeber",
+        "Sachliche Informationen — keine Rechtsberatung.",
+        "assets/nrw-road.png",
+    )
 
 
 def counselor_card(slug: str, title: str, description: str, icon_name: str) -> str:
@@ -1087,12 +1096,11 @@ def counselor_card(slug: str, title: str, description: str, icon_name: str) -> s
 
 def karriere_page_body() -> str:
     return (
-        page_hero(
+        split_banner_hero_html(
+            0,
             "Karriere",
             "Werden Sie Teil unseres Teams — unabhängiges Kfz-Sachverständigenbüro in Paderborn.",
             "assets/workshop-tools.png",
-            0,
-            editorial=True,
         )
         + """
     <section class="section content-light">
@@ -1107,12 +1115,11 @@ def karriere_page_body() -> str:
 
 def blog_page_body(depth: int = 1) -> str:
     return (
-        page_hero(
+        split_banner_hero_html(
+            depth,
             "Blog",
             "Einblicke, Praxistipps und Neuigkeiten aus dem Sachverständigenbüro.",
             BLOG_HERO,
-            depth,
-            editorial=True,
         )
         + """
     <section class="section content-light">
@@ -1627,6 +1634,7 @@ def main() -> None:
         "Karriere",
         "Karriere und Stellenangebote bei SESA.",
         karriere_page_body(),
+        extra_head=SPLIT_BANNER_HERO_CRITICAL,
     )
 
     write(
@@ -1636,6 +1644,7 @@ def main() -> None:
         "Blog",
         "Blog und Neuigkeiten von SESA.",
         blog_page_body(1),
+        extra_head=SPLIT_BANNER_HERO_CRITICAL,
     )
 
     # Ratgeber
@@ -1646,7 +1655,7 @@ def main() -> None:
         "Ratgeber",
         "Unfallhilfe und FAQ.",
         ratgeber_index_body(),
-        extra_head=RATGEBER_HERO_CRITICAL,
+        extra_head=SPLIT_BANNER_HERO_CRITICAL,
     )
 
     write(

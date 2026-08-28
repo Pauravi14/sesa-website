@@ -5244,7 +5244,8 @@ html.translated-ltr .service-steps-card__grid {
   background: var(--cream);
 }
 
-.guide-index .ratgeber-hero {
+/* Split-banner heroes (Ratgeber, Karriere, Blog) */
+.split-banner-hero {
   padding: 0;
   background: var(--bg-2);
   overflow: hidden;
@@ -5253,7 +5254,7 @@ html.translated-ltr .service-steps-card__grid {
   max-height: 320px;
 }
 
-.guide-index .ratgeber-hero .page-hero__inner {
+.split-banner-hero .page-hero__inner {
   display: grid;
   grid-template-columns: minmax(0, 53fr) minmax(0, 47fr);
   align-items: center;
@@ -5268,7 +5269,7 @@ html.translated-ltr .service-steps-card__grid {
   box-sizing: border-box;
 }
 
-.guide-index .ratgeber-hero .page-hero__copy {
+.split-banner-hero .page-hero__copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -5280,7 +5281,7 @@ html.translated-ltr .service-steps-card__grid {
   box-sizing: border-box;
 }
 
-.guide-index .ratgeber-hero .page-hero__media {
+.split-banner-hero .page-hero__media {
   position: relative;
   align-self: stretch;
   height: 100%;
@@ -5291,7 +5292,7 @@ html.translated-ltr .service-steps-card__grid {
   overflow: hidden;
 }
 
-.guide-index .ratgeber-hero .page-hero__media::before {
+.split-banner-hero .page-hero__media::before {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
@@ -5307,7 +5308,7 @@ html.translated-ltr .service-steps-card__grid {
   );
 }
 
-.guide-index .ratgeber-hero .page-hero__media img {
+.split-banner-hero .page-hero__media img {
   display: block;
   width: 100%;
   height: 100%;
@@ -5449,18 +5450,18 @@ html.translated-ltr .counselor-cards {
 }
 
 @media (max-width: 900px) {
-  .guide-index .ratgeber-hero .page-hero__inner {
+  .split-banner-hero .page-hero__inner {
     grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
     height: 320px;
     min-height: 320px;
     max-height: 320px;
   }
 
-  .guide-index .ratgeber-hero .page-hero__copy {
+  .split-banner-hero .page-hero__copy {
     padding: 0 clamp(1.1rem, 3.5vw, 1.75rem);
   }
 
-  .guide-index .ratgeber-hero .page-hero__media img {
+  .split-banner-hero .page-hero__media img {
     min-height: 320px;
     object-position: 58% center;
   }
@@ -5489,12 +5490,12 @@ html.translated-ltr .counselor-cards {
 }
 
 @media (max-width: 900px) {
-  .page-hero--editorial:not(.ratgeber-hero):not(.page-hero--unfall):not(.page-hero--rechte):not(.page-hero--faq) .page-hero__inner {
+  .page-hero--editorial:not(.split-banner-hero):not(.page-hero--unfall):not(.page-hero--rechte):not(.page-hero--faq) .page-hero__inner {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 
-  .page-hero--editorial:not(.ratgeber-hero):not(.page-hero--unfall):not(.page-hero--rechte):not(.page-hero--faq) .page-hero__media img {
+  .page-hero--editorial:not(.split-banner-hero):not(.page-hero--unfall):not(.page-hero--rechte):not(.page-hero--faq) .page-hero__media img {
     height: clamp(210px, 40vw, 250px);
   }
 }
