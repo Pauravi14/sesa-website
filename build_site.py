@@ -12,7 +12,7 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
-KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Allura&display=swap"
+KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
       main:has(.guide-kontakt) {
@@ -31,24 +31,30 @@ KONTAKT_SIGNATURE_STYLE = """
       .guide-kontakt__signature-text {
         display: inline-block;
         white-space: nowrap;
-        color: #AE663C;
-        font-family: "Allura", "Segoe Script", cursive !important;
-        font-size: clamp(2.45rem, 5.2vw, 3.35rem);
+        font-family: "Great Vibes", "Segoe Script", cursive !important;
+        font-size: clamp(2.85rem, 6.2vw, 4.1rem);
         font-style: normal !important;
         font-weight: 400 !important;
-        line-height: 1.05;
-        letter-spacing: 0.01em;
+        line-height: 1.08;
+        letter-spacing: 0.02em;
         -webkit-font-smoothing: antialiased;
-      }
-      .guide-kontakt__sig-cap {
-        font-family: "Cormorant Garamond", "Times New Roman", serif !important;
-        font-style: italic;
-        font-weight: 500;
-        letter-spacing: 0;
+        background: linear-gradient(
+          118deg,
+          #e8c4a0 0%,
+          #c9956a 20%,
+          #b07850 42%,
+          #d4a574 58%,
+          #a96b42 80%,
+          #c9956a 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
       }
       @media (max-width: 480px) {
         .guide-kontakt__signature-text {
-          font-size: 2rem;
+          font-size: 2.35rem;
         }
       }
     </style>"""
@@ -1278,7 +1284,7 @@ def kontakt_page_body() -> str:
                     <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
                     <li>{ADDRESS}</li>
                   </ul>
-                  <p class="guide-kontakt__signature"><span class="guide-kontakt__signature-text"><span class="guide-kontakt__sig-cap">S</span>elim <span class="guide-kontakt__sig-cap">S</span>abahoglu</span></p>
+                  <p class="guide-kontakt__signature"><span class="guide-kontakt__signature-text">{OWNER}</span></p>
                   <a class="guide-kontakt__cta" href="mailto:{EMAIL}">Kontakt aufnehmen →</a>
                 </div>
               </div>
