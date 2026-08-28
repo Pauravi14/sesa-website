@@ -6423,39 +6423,17 @@ main:has(.guide-kontakt) + .footer {
 .guide-kontakt__signature {
   margin: 0.75rem 0 0;
   padding: 0;
-  line-height: 1;
+  line-height: 0;
   overflow: visible;
 }
 
-.guide-kontakt__signature-text {
-  display: inline-block;
-  white-space: nowrap;
-  font-family: "Great Vibes", "Segoe Script", cursive;
-  font-size: clamp(2.85rem, 6.2vw, 4.1rem);
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: 0.02em;
-  -webkit-font-smoothing: antialiased;
-  background: linear-gradient(
-    118deg,
-    #e8c4a0 0%,
-    #c9956a 20%,
-    #b07850 42%,
-    #d4a574 58%,
-    #a96b42 80%,
-    #c9956a 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
-}
-
-.guide-kontakt__profile-body .guide-kontakt__signature-text {
-  font-family: "Great Vibes", "Segoe Script", cursive !important;
-  font-style: normal !important;
-  font-weight: 400 !important;
+.guide-kontakt__signature-img {
+  display: block;
+  width: min(100%, 26rem);
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .guide-kontakt__cta {
@@ -6619,7 +6597,7 @@ main:has(.guide-kontakt) + .footer {
 }
 
 @media (max-width: 480px) {
-  .guide-kontakt__signature-text {
-    font-size: 2.35rem;
+  .guide-kontakt__signature-img {
+    width: min(100%, 19rem);
   }
 }

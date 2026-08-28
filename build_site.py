@@ -12,7 +12,7 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
-KONTAKT_SIGNATURE_FONT = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
       main:has(.guide-kontakt) {
@@ -28,39 +28,24 @@ KONTAKT_SIGNATURE_STYLE = """
         padding-left: 24px;
         padding-right: 24px;
       }
-      .guide-kontakt__signature-text {
-        display: inline-block;
-        white-space: nowrap;
-        font-family: "Great Vibes", "Segoe Script", cursive !important;
-        font-size: clamp(2.85rem, 6.2vw, 4.1rem);
-        font-style: normal !important;
-        font-weight: 400 !important;
-        line-height: 1.08;
-        letter-spacing: 0.02em;
-        -webkit-font-smoothing: antialiased;
-        background: linear-gradient(
-          118deg,
-          #e8c4a0 0%,
-          #c9956a 20%,
-          #b07850 42%,
-          #d4a574 58%,
-          #a96b42 80%,
-          #c9956a 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
+      .guide-kontakt__signature {
+        overflow: visible;
+      }
+      .guide-kontakt__signature-img {
+        display: block;
+        width: min(100%, 26rem);
+        max-width: none;
+        height: auto;
+        object-fit: contain;
+        object-position: left center;
       }
       @media (max-width: 480px) {
-        .guide-kontakt__signature-text {
-          font-size: 2.35rem;
+        .guide-kontakt__signature-img {
+          width: min(100%, 19rem);
         }
       }
     </style>"""
-KONTAKT_EXTRA_HEAD = f"""
-    <link rel="preload" href="{KONTAKT_SIGNATURE_FONT}" as="style" />
-    <link href="{KONTAKT_SIGNATURE_FONT}" rel="stylesheet" />{KONTAKT_SIGNATURE_STYLE}"""
+KONTAKT_EXTRA_HEAD = KONTAKT_SIGNATURE_STYLE
 
 PHONE_DISPLAY = "+49 177 3145839"
 PHONE_LINK = "+491773145839"
@@ -1284,7 +1269,7 @@ def kontakt_page_body() -> str:
                     <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
                     <li>{ADDRESS}</li>
                   </ul>
-                  <p class="guide-kontakt__signature"><span class="guide-kontakt__signature-text">{OWNER}</span></p>
+                  <p class="guide-kontakt__signature"><img class="guide-kontakt__signature-img" src="{SIGNATURE_IMAGE}" alt="Unterschrift {OWNER}" width="420" height="109" loading="lazy" decoding="async" /></p>
                   <a class="guide-kontakt__cta" href="mailto:{EMAIL}">Kontakt aufnehmen →</a>
                 </div>
               </div>
