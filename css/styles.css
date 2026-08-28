@@ -1763,7 +1763,11 @@ a:hover {
 }
 
 html.translated-ltr .process-flow__card h3,
-html.translated-rtl .process-flow__card h3 {
+html.translated-rtl .process-flow__card h3,
+html.is-browser-translated .process-flow__card h3,
+html.translated-ltr .process-flow__card h3 font,
+html.translated-rtl .process-flow__card h3 font,
+html.is-browser-translated .process-flow__card h3 font {
   text-transform: capitalize;
 }
 
@@ -2121,24 +2125,59 @@ html.translated-rtl .process-flow__card h3 {
 
 /* Chrome / browser translation often injects lowercase English in labels */
 html.translated-ltr .kicker,
-html.translated-rtl .kicker {
+html.translated-rtl .kicker,
+html.is-browser-translated .kicker {
   text-transform: capitalize;
   letter-spacing: 0.08em;
 }
 
 html.translated-ltr .trust-panel h3,
-html.translated-rtl .trust-panel h3 {
+html.translated-rtl .trust-panel h3,
+html.is-browser-translated .trust-panel h3 {
   text-transform: capitalize;
 }
 
 html.translated-ltr .guide-kontakt__hero-copy h1,
-html.translated-rtl .guide-kontakt__hero-copy h1 {
-  text-transform: capitalize;
+html.translated-rtl .guide-kontakt__hero-copy h1,
+html.is-browser-translated .guide-kontakt__hero-copy h1,
+html.translated-ltr .guide-kontakt__hero-copy h1 font,
+html.translated-rtl .guide-kontakt__hero-copy h1 font,
+html.is-browser-translated .guide-kontakt__hero-copy h1 font {
+  text-transform: capitalize !important;
 }
 
+html.translated-ltr .page-hero h1,
+html.translated-rtl .page-hero h1,
+html.is-browser-translated .page-hero h1,
+html.translated-ltr .page-hero h1 font,
+html.translated-rtl .page-hero h1 font,
+html.is-browser-translated .page-hero h1 font,
 html.translated-ltr .page-hero--editorial h1,
-html.translated-rtl .page-hero--editorial h1 {
-  text-transform: capitalize;
+html.translated-rtl .page-hero--editorial h1,
+html.is-browser-translated .page-hero--editorial h1,
+html.translated-ltr .page-hero--editorial h1 font,
+html.translated-rtl .page-hero--editorial h1 font,
+html.is-browser-translated .page-hero--editorial h1 font {
+  text-transform: capitalize !important;
+}
+
+html.translated-ltr .menu > li > a,
+html.translated-rtl .menu > li > a,
+html.is-browser-translated .menu > li > a,
+html.translated-ltr .menu > li > a font,
+html.translated-rtl .menu > li > a font,
+html.is-browser-translated .menu > li > a font {
+  text-transform: capitalize !important;
+  letter-spacing: 0.08em;
+}
+
+html.translated-ltr .footer nav a,
+html.translated-rtl .footer nav a,
+html.is-browser-translated .footer nav a,
+html.translated-ltr .footer nav a font,
+html.translated-rtl .footer nav a font,
+html.is-browser-translated .footer nav a font {
+  text-transform: capitalize !important;
 }
 
 h1,

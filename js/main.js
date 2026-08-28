@@ -725,4 +725,17 @@
       }
     }
   }
+
+  function syncBrowserTranslationState() {
+    const root = document.documentElement;
+    const translated =
+      root.classList.contains("translated-ltr") || root.classList.contains("translated-rtl");
+    root.classList.toggle("is-browser-translated", translated);
+  }
+
+  syncBrowserTranslationState();
+  new MutationObserver(syncBrowserTranslationState).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class", "lang"],
+  });
 })();
