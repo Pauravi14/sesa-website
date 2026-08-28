@@ -12,6 +12,7 @@ LOGO_MONOGRAM = "assets/logo-monogram.png?v=6"
 ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
+BLOG_HERO = "assets/blog/blog-hero.jpg?v=2"
 SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png?v=7"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
@@ -990,7 +991,7 @@ def blog_page_body(depth: int = 1) -> str:
         page_hero(
             "Blog",
             "Einblicke, Praxistipps und Neuigkeiten aus dem Sachverständigenbüro.",
-            "assets/blog/blog-hero.jpg",
+            BLOG_HERO,
             depth,
             editorial=True,
         )
