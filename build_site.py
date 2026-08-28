@@ -13,7 +13,7 @@ ABOUT_HERO = "assets/about/about-hero.jpg?v=1"
 ABOUT_PORTRAIT = "assets/portrait-placeholder.png?v=1"
 CONTACT_HERO = "assets/hero-inspection.png"
 BLOG_HERO = "assets/blog/blog-hero.jpg?v=2"
-SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png?v=7"
+SIGNATURE_IMAGE = "assets/contact/selim-sabahoglu-signature.png?v=8"
 KONTAKT_SIGNATURE_STYLE = """
     <style>
       main:has(.guide-kontakt) {
@@ -1272,7 +1272,7 @@ def kontakt_page_body() -> str:
                     <li>WhatsApp: <a href="schaden-melden.html">Schaden melden</a></li>
                     <li>{ADDRESS}</li>
                   </ul>
-                  <p class="guide-kontakt__signature"><img class="guide-kontakt__signature-img" src="{SIGNATURE_IMAGE}" alt="Unterschrift {OWNER}" width="420" height="158" loading="lazy" decoding="async" /></p>
+                  <p class="guide-kontakt__signature"><img class="guide-kontakt__signature-img" src="{SIGNATURE_IMAGE}" alt="Unterschrift {OWNER}" width="420" height="150" loading="lazy" decoding="async" /></p>
                   <a class="guide-kontakt__cta" href="mailto:{EMAIL}">Kontakt aufnehmen →</a>
                 </div>
               </div>
