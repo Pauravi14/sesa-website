@@ -5245,68 +5245,74 @@ html.translated-ltr .service-steps-card__grid {
 }
 
 .guide-index .page-hero--counselor {
-  position: relative;
-  overflow: hidden;
   padding: 0;
   background: var(--bg-2);
+  overflow: hidden;
 }
 
 .guide-index .page-hero--counselor::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    102deg,
-    var(--bg-2) 0%,
-    var(--bg-2) 26%,
-    rgba(10, 22, 40, 0.98) 36%,
-    rgba(10, 22, 40, 0.88) 46%,
-    rgba(10, 22, 40, 0.58) 58%,
-    rgba(10, 22, 40, 0.22) 72%,
-    rgba(10, 22, 40, 0.04) 86%,
-    transparent 100%
-  );
+  display: none;
 }
 
 .guide-index .page-hero--counselor .page-hero__inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 53fr) minmax(0, 47fr);
+  align-items: center;
   width: 100%;
   max-width: none;
   margin: 0;
-  min-height: clamp(22rem, 46vh, 31rem);
-  padding: clamp(3rem, 7vh, 5rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2.75rem, 5.5vh, 4.25rem);
+  height: 320px;
+  min-height: 320px;
+  max-height: 320px;
+  padding: 0;
+  gap: 0;
   box-sizing: border-box;
 }
 
 .guide-index .page-hero--counselor .page-hero__copy {
-  position: relative;
-  z-index: 2;
-  width: min(100%, 38rem);
-  max-width: min(52%, 38rem);
-  padding-bottom: clamp(0.25rem, 1.5vh, 0.75rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  box-sizing: border-box;
 }
 
 .guide-index .page-hero--counselor .page-hero__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  position: relative;
+  align-self: stretch;
+  height: 100%;
+  min-width: 0;
   max-width: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-.guide-index .page-hero--counselor .page-hero__media img {
+.guide-index .page-hero--counselor .page-hero__media::before {
+  content: "";
   position: absolute;
-  top: 0;
-  right: 0;
-  width: clamp(54%, 70vw, 74%);
+  inset: 0 auto 0 0;
+  z-index: 1;
+  width: 32%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--bg-2) 0%,
+    rgba(10, 22, 40, 0.78) 42%,
+    rgba(10, 22, 40, 0.22) 78%,
+    transparent 100%
+  );
+}
+
+.guide-index .page-hero--counselor .page-hero__media img {
+  display: block;
+  width: 100%;
   height: 100%;
+  min-height: 320px;
   max-width: none;
   object-fit: cover;
   object-position: center right;
@@ -5444,32 +5450,20 @@ html.translated-ltr .counselor-cards {
 }
 
 @media (max-width: 900px) {
-  .guide-index .page-hero--counselor::before {
-    background: linear-gradient(
-      180deg,
-      var(--bg-2) 0%,
-      rgba(10, 22, 40, 0.96) 30%,
-      rgba(10, 22, 40, 0.82) 48%,
-      rgba(10, 22, 40, 0.5) 68%,
-      rgba(10, 22, 40, 0.18) 88%,
-      transparent 100%
-    );
-  }
-
   .guide-index .page-hero--counselor .page-hero__inner {
-    min-height: clamp(18rem, 50vh, 24rem);
-    padding: clamp(2.25rem, 6vh, 3.5rem) clamp(1.1rem, 4vw, 1.75rem) clamp(2rem, 4.5vh, 3rem);
-    align-items: flex-end;
+    grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
+    height: 320px;
+    min-height: 320px;
+    max-height: 320px;
   }
 
   .guide-index .page-hero--counselor .page-hero__copy {
-    max-width: 100%;
-    width: 100%;
+    padding: 0 clamp(1.1rem, 3.5vw, 1.75rem);
   }
 
   .guide-index .page-hero--counselor .page-hero__media img {
-    width: 100%;
-    object-position: 62% center;
+    min-height: 320px;
+    object-position: 58% center;
   }
 }
 
