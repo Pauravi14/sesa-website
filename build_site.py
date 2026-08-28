@@ -74,7 +74,7 @@ GUTACHTEN_TIMING_CARD = (
 
 HERO_IMG_VER = "4"
 SERVICE_IMG_VER = "3"
-CSS_VER = "213"
+CSS_VER = "214"
 SERVICE_THUMB_WIDTH = 1280
 SERVICE_THUMB_HEIGHT = 720
 PAGE_HERO_WIDTH = 1536
@@ -931,7 +931,7 @@ def shell(
     {consent_banner(depth)}
     {mobile_action_bar()}
     {wa_float_widget()}
-    <script src="{p}js/main.js?v=52" defer></script>
+    <script src="{p}js/main.js?v=53" defer></script>
   </body>
 </html>"""
 

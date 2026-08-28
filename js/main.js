@@ -332,17 +332,16 @@
     }
   });
 
-  if (waWrap && waToggle && document.querySelector(".hero--home")) {
+  if (waWrap && waToggle) {
     const reduceWaMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const ATTENTION_FIRST_DELAY_MS = 15000;
-    const ATTENTION_REPEAT_MS = 15000;
-    const ATTENTION_PULSE_MS = 1000;
+    const ATTENTION_FIRST_DELAY_MS = 4000;
+    const ATTENTION_REPEAT_MS = 8000;
+    const ATTENTION_PULSE_MS = 1400;
 
     if (!reduceWaMotion) {
       let attentionPaused = false;
       let attentionPulseTimer = null;
       let attentionNextTimer = null;
-      let attentionStarted = false;
 
       function clearAttentionTimers() {
         if (attentionPulseTimer !== null) {
@@ -436,21 +435,7 @@
         menuObserver.observe(waMenu, { attributes: true, attributeFilter: ["hidden"] });
       }
 
-      function beginAttentionAfterScroll() {
-        if (attentionStarted) return;
-        attentionStarted = true;
-        window.removeEventListener("scroll", onAttentionScroll);
-        attentionNextTimer = window.setTimeout(runAttentionPulse, ATTENTION_FIRST_DELAY_MS);
-      }
-
-      function onAttentionScroll() {
-        beginAttentionAfterScroll();
-      }
-
-      window.addEventListener("scroll", onAttentionScroll, { passive: true });
-      if (window.scrollY > 0) {
-        onAttentionScroll();
-      }
+      scheduleAttentionPulse(ATTENTION_FIRST_DELAY_MS);
     }
   }
 
