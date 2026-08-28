@@ -74,6 +74,7 @@ GUTACHTEN_TIMING_CARD = (
 
 HERO_IMG_VER = "4"
 SERVICE_IMG_VER = "3"
+CSS_VER = "211"
 SERVICE_THUMB_WIDTH = 1280
 SERVICE_THUMB_HEIGHT = 720
 PAGE_HERO_WIDTH = 1536
@@ -885,7 +886,7 @@ def shell(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{p}css/styles.css?v=210" />
+    <link rel="stylesheet" href="{p}css/styles.css?v={CSS_VER}" />
     {extra_head}
   </head>
   <body>
@@ -984,6 +985,93 @@ def page_hero(
     </section>"""
 
 
+RATGEBER_HERO_CRITICAL = """
+    <style id="ratgeber-hero-critical">
+      .guide-index .ratgeber-hero.page-hero--editorial {
+        padding: 0;
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        overflow: hidden;
+        background: var(--bg-2);
+      }
+
+      .guide-index .ratgeber-hero .page-hero__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 53fr) minmax(0, 47fr);
+        align-items: center;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        padding: 0;
+        gap: 0;
+        box-sizing: border-box;
+      }
+
+      .guide-index .ratgeber-hero .page-hero__copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 0 clamp(1.25rem, 4vw, 3rem);
+        box-sizing: border-box;
+      }
+
+      .guide-index .ratgeber-hero .page-hero__media {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      .guide-index .ratgeber-hero .page-hero__media::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        z-index: 1;
+        width: 32%;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          var(--bg-2) 0%,
+          rgba(10, 22, 40, 0.78) 42%,
+          rgba(10, 22, 40, 0.22) 78%,
+          transparent 100%
+        );
+      }
+
+      .guide-index .ratgeber-hero .page-hero__media img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        object-fit: cover;
+        object-position: center right;
+      }
+    </style>"""
+
+
+def ratgeber_hero_html(depth: int) -> str:
+    p = prefix(depth)
+    return f"""
+    <section class="page-hero page-hero--editorial ratgeber-hero">
+      <div class="page-hero__inner">
+        <div class="page-hero__copy">
+          <p class="kicker">SESA · Kfz-Sachverständigenbüro</p>
+          <h1>Ratgeber</h1>
+          <p class="lead">Sachliche Informationen — keine Rechtsberatung.</p>
+        </div>
+        <div class="page-hero__media">
+          <img src="{p}assets/nrw-road.png" alt="" width="{PAGE_HERO_WIDTH}" height="{PAGE_HERO_HEIGHT}" loading="eager" decoding="async" fetchpriority="high" />
+        </div>
+      </div>
+    </section>"""
+
+
 def counselor_card(slug: str, title: str, description: str, icon_name: str) -> str:
     card_id = slug.replace(".html", "").replace("/", "-")
     return f"""
@@ -1057,14 +1145,7 @@ def ratgeber_index_body() -> str:
         ),
     ]
     card_html = "".join(counselor_card(slug, title, description, icon_name) for slug, title, description, icon_name in cards)
-    hero = page_hero(
-        "Ratgeber",
-        "Sachliche Informationen — keine Rechtsberatung.",
-        "assets/nrw-road.png",
-        1,
-        editorial=True,
-        extra_class="page-hero--counselor",
-    )
+    hero = ratgeber_hero_html(1)
     return f"""
     <div class="guide-index">
       {hero}
@@ -1565,6 +1646,7 @@ def main() -> None:
         "Ratgeber",
         "Unfallhilfe und FAQ.",
         ratgeber_index_body(),
+        extra_head=RATGEBER_HERO_CRITICAL,
     )
 
     write(
